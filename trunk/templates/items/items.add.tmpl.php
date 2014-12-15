@@ -36,12 +36,7 @@
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
-              <td align="left" width="33%">Stackable:<br/>
-                <select name="stackable">
-                  <option value="0">0: No</option>
-                  <option value="1">1: Yes</option>
-                </select>
-              </td>
+              <td align="left" width="34%">Stackable:<br/><input type="text" name="stackable" size="10" value="0"></td>
               <td align="left" width="33%">Stacksize:<br/><input type="text" name="stacksize" size="10" value="1"></td>
               <td align="left" width="33%">Charges:<br/><input type="text" name="maxcharges" size="10" value="0"></td>
             </tr>
@@ -397,7 +392,7 @@
                   <select class="left" name="banedmgrace">
 <?foreach($itemraces as $k => $v):?>
                     <option value="<?=$k?>"><?=$k?>: <?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                   </select>
                 </td>
                 <td align="left" width="14%">
@@ -417,7 +412,7 @@
                     <select class="left" name="extradmgskill">
 <?foreach($skilltypes as $k => $v):?>
                       <option value="<?=$k?>"><?=$k?>: <?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                     </select><br/>
                     Extra Dmg Amt:<br/>
                     <input type="text" name="extradmgamt" size="5" value="0">
@@ -526,10 +521,10 @@
                   <select class="left" name="skillmodtype">
 <?foreach($skilltypes as $k => $v):?>
                     <option value="<?=$k?>"><?=$k?>: <?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                   </select>
                 </td>
-                <td align="left" width="50%">Skill Mod Value:<br/><input type="text" name="skillmodvalue" size="5" value="0"></td> 
+                <td align="left" width="50%">Skill Mod Value:<br/><input type="text" name="skillmodvalue" size="5" value="0"></td>
               </tr>
             </table>
           </fieldset><br/>
@@ -545,7 +540,7 @@
             </tr>
             <tr>
               <td align="left" width="20%">LDoN Price:<br/><input type="text" name="ldonprice" size="9" value="0"></td>
-              <td align="left" width="20%">LDoN Sellback:<br/><input type="text" name="ldonsellbackrate" size="9" value="0"></td> 
+              <td align="left" width="20%">LDoN Sellback:<br/><input type="text" name="ldonsellbackrate" size="9" value="0"></td>
               <td align="left" width="20%">
                 LDoN Sold:<br/>
                 <select name="ldonsold">
@@ -558,7 +553,7 @@
                 <select class="left" name="ldontheme">
 <?foreach($itemldontheme as $k => $v):?>
                   <option value="<?=$k?>"><?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                 </select>
               </td>
               <td align="left" width="20%">
