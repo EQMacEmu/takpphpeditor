@@ -4,12 +4,13 @@
 <html>
 
   <head>
-    <SCRIPT LANGUAGE="JavaScript">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <script type="text/javascript">
       function gotosite(site) { if (site != "") { self.location=site; } }
-    </SCRIPT>
-    <SCRIPT LANGUAGE="JavaScript">
+    </script>
+    <script type="text/javascript">
       function clearField(obj) { obj.value=""; }
-    </SCRIPT>
+    </script>
 
 <?if (isset($javascript)) echo $javascript;?>
 
@@ -21,7 +22,7 @@
   <body>
     <div id="container">
       <div id="header">
-        <a href="index.php"><img src="images/peq_editor.jpg" title="Home" border="0"></a>
+        <a href="index.php"><img src="images/peq_editor.jpg" title="Home" border="0" alt=EQMac Editor Banner"></a>
       </div>
 <?if (isset($headbar)) echo $headbar;?>
 <?if (isset($searchbar)) echo $searchbar;?>
