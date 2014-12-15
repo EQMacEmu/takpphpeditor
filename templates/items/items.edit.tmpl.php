@@ -35,7 +35,7 @@
                 <select name="itemtype" style="width:265px;">
 <?foreach($itemtypes as $k => $v):?>
                   <option value="<?=$k?>"<? echo ($k == $itemtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                 </select>
               </td>
             </tr>
@@ -54,12 +54,7 @@
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
-              <td align="left" width="33%">Stackable:<br/>
-                <select name="stackable">
-                  <option value="0"<?echo ($stackable == 0) ? " selected" : ""?>>0: No</option>
-                  <option value="1"<?echo ($stackable == 1) ? " selected" : ""?>>1: Yes</option>
-                </select>
-              </td>
+              <td align="left" width="34%">Stackable:<br/><input type="text" name="stackable" size="10" value="<?=$stackable?>"></td>
               <td align="left" width="33%">Stacksize:<br/><input type="text" name="stacksize" size="10" value="<?=$stacksize?>"></td>
               <td align="left" width="33%">Charges:<br/><input type="text" name="maxcharges" size="10" value="<?=$maxcharges?>"></td>
             </tr>
@@ -83,7 +78,7 @@
               <td align="left" width="33%">Charmfile ID:<br/><input type="text" name="charmfileid" size="10" value="<?=$charmfileid?>"></td>
               <td align="left" width="33%">Script File ID:<br/><input type="text" name="scriptfileid" size="10" value="<?=$scriptfileid?>"></td>
             </tr>
-          </table>     
+          </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
               <td align="left" width="33%">Power Source Capacity:<br/><input type="text" name="powersourcecapacity" size="10" value="<?=$powersourcecapacity?>"></td>
@@ -97,7 +92,7 @@
                 <select class="left" name="bagsize">
 <?foreach($itembagsize as $k => $v):?>
                   <option value="<?=$k?>"<? echo ($k == $bagsize) ? " selected" : ""?>><?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                 </select>
               </td>
               <td align="left" width="25%">Bag Slots:<br/><input type="text" name="bagslots" size="10" value="<?=$bagslots?>"></td>
@@ -106,7 +101,7 @@
                 <select class="left" name="bagtype">
 <?foreach($world_containers as $k => $v):?>
                   <option value="<?=$k?>"<? echo ($k == $bagtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                 </select>
               </td>
             </tr>
@@ -368,7 +363,7 @@
                   <select class="left" name="banedmgbody">
 <?foreach($bodytypes as $k => $v):?>
                     <option value="<?=$k?>"<? echo ($k == $banedmgbody) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                   </select>
                 </td>
               </tr>
@@ -486,10 +481,10 @@
                   <select class="left" name="skillmodtype">
 <?foreach($skilltypes as $k => $v):?>
                     <option value="<?=$k?>"<? echo ($k == $skillmodtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
-<?endforeach;?>       
+<?endforeach;?>
                   </select>
                 </td>
-                <td align="left" width="50%">Skill Mod Value:<br/><input type="text" name="skillmodvalue" size="5" value="<?=$skillmodvalue?>"></td> 
+                <td align="left" width="50%">Skill Mod Value:<br/><input type="text" name="skillmodvalue" size="5" value="<?=$skillmodvalue?>"></td>
               </tr>
             </table>
           </fieldset><br/>
@@ -505,7 +500,7 @@
             </tr>
             <tr>
               <td align="left" width="20%">LDoN Price:  <br/><input type="text" name="ldonprice" size="9" value="<?=$ldonprice?>"></td>
-              <td align="left" width="20%">LDoN Sellback:<br/><input type="text" name="ldonsellbackrate" size="9" value="<?=$ldonsellbackrate?>"></td> 
+              <td align="left" width="20%">LDoN Sellback:<br/><input type="text" name="ldonsellbackrate" size="9" value="<?=$ldonsellbackrate?>"></td>
               <td align="left" width="20%">LDoN Sold:<br/>
                 <select name="ldonsold">
                   <option value="0"<?echo ($ldonsold == 0) ? " selected" : ""?>>No</option>
