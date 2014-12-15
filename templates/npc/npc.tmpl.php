@@ -181,19 +181,8 @@
                   </tr>
                   <tr>
                     <td align="left" width="33%">Aggro: <?=$aggroradius?></td>
-                    <td align="left" width="33%">Atk Speed: <?=$attack_speed?>%</td>
-<?
-  $new_special_abilities = '';
-    for ($i = 1; $i <= 37; $i++){
-      if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1){
-        $match[0] = ltrim($match[0], "^");
-        $new_special_abilities .= $match[0];
-      }
-    }
-    $new_special_abilities = rtrim($new_special_abilities, ",");
-?>
-
-                    <td align="left" width="34%">Atk Delay: <?=$attack_delay?>%</td>
+                    <td align="left" width="33%">Atk Delay: <?=$attack_delay?></td>
+                    <td align="left" width="34%">&nbsp;</td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Assist: <?=$assistradius?></td>
@@ -205,6 +194,16 @@
                     <td align="left" width="33%">Heal Scale: <?=$healscale?>%</td>
                     <td align="left" width="34%">NPC Aggro: <?=$npc_aggro?></td>
                   </tr>
+                  <?
+				    $new_special_abilities = '';
+				      for ($i = 1; $i <= 37; $i++){
+				        if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1){
+				          $match[0] = ltrim($match[0], "^");
+				          $new_special_abilities .= $match[0];
+				        }
+				      }
+				      $new_special_abilities = rtrim($new_special_abilities, ",");
+				  ?>
                   <tr>
                     <td colspan="3">Special Atks: <?echo ($new_special_abilities) ? $new_special_abilities : "None";?></td>
                   </tr>
@@ -343,7 +342,6 @@
         <input type="hidden" name="AC" value="<?=$AC?>">
         <input type="hidden" name="npc_aggro" value="<?=$npc_aggro?>">
         <input type="hidden" name="spawn_limit" value="<?=$spawn_limit?>">
-        <input type="hidden" name="attack_speed" value="<?=$attack_speed?>">
         <input type="hidden" name="attack_delay" value="<?=$attack_delay?>">
         <input type="hidden" name="findable" value="<?=$findable?>">
         <input type="hidden" name="STR" value="<?=$STR?>">
