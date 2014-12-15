@@ -119,7 +119,7 @@
                 <td align="left" width="11%">HP Regen:  <br><input type="text" name="hp_regen_rate" size="5" value="<?=$hp_regen_rate?>"></td>
                 <td align="left" width="11%">MP Regen:  <br><input type="text" name="mana_regen_rate" size="5" value="<?=$mana_regen_rate?>"></td>
                 <td align="left" width="11%">Aggroradius:  <br><input type="text" name="aggroradius" size="5" value="<?=$aggroradius?>"></td>
-                <td align="left" width="11%">Atk Speed%: <br><input type="text" name="attack_speed" size="5" value="<?=$attack_speed?>"></td>
+                <td align="left" width="11%">Atk Delay: <br><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"></td>
                 <td align="left" width="12%">Slow Mit: <br><input type="text" name="slow_mitigation" size="5" value="<?=$slow_mitigation?>"></td>
               </tr>
             </table>
@@ -140,7 +140,7 @@
 				else {
 					preg_match("/^$i,.+?\$/", $special_abilities, $match);
 					$specabilcont[$i] = $match[0];
-				}	
+				}
 			}
 			elseif (preg_match("/\^$i,/", $special_abilities) == 1){
 				$specabil[$i] = 1;
@@ -152,7 +152,7 @@
 				// Trailing special ability
 				else {
 					preg_match("/\^$i,.+?\$/", $special_abilities, $match);
-					$specabilcont[$i] = $match[0];	
+					$specabilcont[$i] = $match[0];
 					$specabilcont[$i] = ltrim($specabilcont[$i], "^");
 				}
 			}
@@ -200,8 +200,8 @@
                   <input type="checkbox" name="25" value="25,1^"<?echo ($specabil[25] == 1) ? "checked" : "";?>>  Immune to Aggro<br>
                   <input type="checkbox" name="27" value="27,1^"<?echo ($specabil[27] == 1) ? "checked" : "";?>>  See through Feign Death<br>
                   <input type="checkbox" name="npc_aggro" value="1"<?echo ($npc_aggro == 1) ? "checked" : "";?>> Can Aggro NPCs<br>
-                  <input type="checkbox" name="30" value="30,1^"<?echo ($specabil[30] == 1) ? "checked" : "";?>>  Does NOT buff/heal friends<br>  
-                  <input type="checkbox" name="36" value="36,1^"<?echo ($specabil[36] == 1) ? "checked" : "";?>>  Always Flee<br>          
+                  <input type="checkbox" name="30" value="30,1^"<?echo ($specabil[30] == 1) ? "checked" : "";?>>  Does NOT buff/heal friends<br>
+                  <input type="checkbox" name="36" value="36,1^"<?echo ($specabil[36] == 1) ? "checked" : "";?>>  Always Flee<br>
 		    &nbsp;
                </td>
               </tr>

@@ -139,10 +139,10 @@
               <td align="left" width="14%">Max Dmg:     <br/><input type="text" name="maxdmg" size="5" value="<?=$maxdmg?>"/></td>
               <td align="left" width="14%">MP Regen:    <br/><input type="text" name="mana_regen_rate" size="5" value="0"/></td>
               <td align="left" width="14%">Assistradius:<br/><input type="text" name="assistradius" size="5" value="0"/></td>
-              <td align="left" width="14%">Atk Speed:   <br/><input type="text" name="attack_speed" size="5" value="<?=$attack_speed?>"/>%</td>
-              <td align="left" width="14%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"/>%</td>
+              <td align="left" width="14%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"/></td>
               <td align="left" width="14%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="5" value="0"/></td>
               <td align="left" width="15%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="100"/>%</td>
+              <td align="left" width="14%">&nbsp;</td>
             </tr>
           </table>
           <center>
@@ -230,7 +230,7 @@
                   <option value="<?=$key?>"<?echo ($key == 28)? " selected" : "";?>><?=$key?>: <?=$value?></option>
 <?endforeach;?>
                 </select>
-              </td> 
+              </td>
               <td align="left" width="50%">
                 Melee2 Type:<br/>
                 <select name="sec_melee_type" style="width: 200px;">

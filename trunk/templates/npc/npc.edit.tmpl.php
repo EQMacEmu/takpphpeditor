@@ -113,10 +113,10 @@
                 <td align="left" width="14%">Max Dmg:     <br/><input type="text" name="maxdmg" size="5" value="<?=$maxdmg?>"></td>
                 <td align="left" width="14%">MP Regen:    <br/><input type="text" name="mana_regen_rate" size="5" value="<?=$mana_regen_rate?>"></td>
                 <td align="left" width="14%">Assistradius:<br/><input type="text" name="assistradius" size="5" value="<?=$assistradius?>"></td>
-                <td align="left" width="14%">Atk Speed:   <br/><input type="text" name="attack_speed" size="5" value="<?=$attack_speed?>">%</td>
-                <td align="left" width="14%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>">%</td>
+                <td align="left" width="14%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"></td>
                 <td align="left" width="14%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="5" value="<?=$npc_spells_id?>"></td>
                 <td align="left" width="15%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="<?=$healscale?>">%</td>
+                <td align="left" width="14%">&nbsp;</td>
               </tr>
             </table>
             <center>
@@ -138,7 +138,7 @@
       else {
         preg_match("/^$i,.+?\$/", $special_abilities, $match);
         $specabilcont[$i] = $match[0];
-      }  
+      }
     }
     elseif (preg_match("/\^$i,/", $special_abilities) == 1){
       $specabil[$i] = 1;
@@ -150,7 +150,7 @@
       // Trailing special ability
       else {
         preg_match("/\^$i,.+?\$/", $special_abilities, $match);
-        $specabilcont[$i] = $match[0];  
+        $specabilcont[$i] = $match[0];
         $specabilcont[$i] = ltrim($specabilcont[$i], "^");
       }
     }
@@ -168,7 +168,7 @@
                   Tunnel Vision (29):<br/><input type="text" name="29" size="10" value="<?=$specabilcont[29]?>"><br/>
                   Leashed (32):<br/><input type="text" name="32" size="10" value="<?=$specabilcont[32]?>"><br/>
                   Tethered (33):<br/><input type="text" name="33" size="10" value="<?=$specabilcont[33]?>"><br/>
-                  Flee Percent (37):<br/><input type="text" name="37" size="10" value="<?=$specabilcont[37]?>"><br/>    
+                  Flee Percent (37):<br/><input type="text" name="37" size="10" value="<?=$specabilcont[37]?>"><br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="6" value="6,1^"<?echo ($specabil[6] == 1) ? "checked" : "";?>>  Triple Attack<br/>
