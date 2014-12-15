@@ -1,12 +1,13 @@
 <?php
 
-$current_revision = "r457";
+$current_revision = "r7";
+$original_revision = "r457";
 
 require_once("config.php");
 require_once("lib/logging.php");
 if ($mysql_class == "mysqli")
   require_once("classes/mysqli.php");
-else 
+else
   require_once("classes/mysql.php");
 require_once("classes/template.php");
 require_once("classes/session.php");
