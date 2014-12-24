@@ -55,6 +55,7 @@
               <td align="left" width="17%">Mana:     <br/><input type="text" name="mana" size="10" value="<?=$mana?>"/></td>
               <td align="left" width="17%">AC:       <br/><input type="text" name="AC" size="10" value="<?=$ac?>"/></td>
               <td align="left" width="17%">Runspeed: <br/><input type="text" name="runspeed" size="10" value="1.25"/></td>
+              <td align="left" width="17%">Walkspeed: <br/><input type="text" name="walkspeed" size="10" value="0.677"/></td>
               <td align="left" width="16%">ATK:      <br/><input type="text" name="ATK" size="10" value="0"/></td>
               <td align="left" width="16%">Accuracy: <br/><input type="text" name="Accuracy" size="10" value="0"/></td>
             </tr>
