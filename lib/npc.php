@@ -1259,9 +1259,6 @@ function update_npc () {
   if ($luclin_eyecolor2 != $_POST['luclin_eyecolor2']) $fields .= "luclin_eyecolor2=\"" . $_POST['luclin_eyecolor2'] . "\", ";
   if ($luclin_beardcolor != $_POST['luclin_beardcolor']) $fields .= "luclin_beardcolor=\"" . $_POST['luclin_beardcolor'] . "\", ";
   if ($luclin_beard != $_POST['luclin_beard']) $fields .= "luclin_beard=\"" . $_POST['luclin_beard'] . "\", ";
-  if ($drakkin_heritage != $_POST['drakkin_heritage']) $fields .= "drakkin_heritage=\"" . $_POST['drakkin_heritage'] . "\", ";
-  if ($drakkin_tattoo != $_POST['drakkin_tattoo']) $fields .= "drakkin_tattoo=\"" . $_POST['drakkin_tattoo'] . "\", ";
-  if ($drakkin_details != $_POST['drakkin_details']) $fields .= "drakkin_details=\"" . $_POST['drakkin_details'] . "\", ";
   //armortint_id
   if ($armortint_red != $_POST['armortint_red']) $fields .= "armortint_red=\"" . $_POST['armortint_red'] . "\", ";
   if ($armortint_green != $_POST['armortint_green']) $fields .= "armortint_green=\"" . $_POST['armortint_green'] . "\", ";
@@ -1277,8 +1274,6 @@ function update_npc () {
   if ($DR != $_POST['DR']) $fields .= "DR=\"" . $_POST['DR'] . "\", ";
   if ($FR != $_POST['FR']) $fields .= "FR=\"" . $_POST['FR'] . "\", ";
   if ($PR != $_POST['PR']) $fields .= "PR=\"" . $_POST['PR'] . "\", ";
-  if ($Corrup != $_POST['Corrup']) $fields .= "Corrup=\"" . $_POST['Corrup'] . "\", ";
-  if ($PhR != $_POST['PhR']) $fields .= "PhR=\"" . $_POST['PhR'] . "\", ";
   if ($see_invis != $_POST['see_invis']) $fields .= "see_invis=\"" . $_POST['see_invis'] . "\", ";
   if ($see_invis_undead != $_POST['see_invis_undead']) $fields .= "see_invis_undead=\"" . $_POST['see_invis_undead'] . "\", ";
   if ($qglobal != $_POST['qglobal']) $fields .= "qglobal=\"" . $_POST['qglobal'] . "\", ";
@@ -1380,9 +1375,6 @@ function add_npc () {
   $fields .= "luclin_eyecolor2=\"" . $_POST['luclin_eyecolor2'] . "\", ";
   $fields .= "luclin_beardcolor=\"" . $_POST['luclin_beardcolor'] . "\", ";
   $fields .= "luclin_beard=\"" . $_POST['luclin_beard'] . "\", ";
-  $fields .= "drakkin_heritage=\"" . $_POST['drakkin_heritage'] . "\", ";
-  $fields .= "drakkin_tattoo=\"" . $_POST['drakkin_tattoo'] . "\", ";
-  $fields .= "drakkin_details=\"" . $_POST['drakkin_details'] . "\", ";
   //armortint_id
   $fields .= "armortint_red=\"" . $_POST['armortint_red'] . "\", ";
   $fields .= "armortint_green=\"" . $_POST['armortint_green'] . "\", ";
@@ -1398,8 +1390,6 @@ function add_npc () {
   $fields .= "DR=\"" . $_POST['DR'] . "\", ";
   $fields .= "FR=\"" . $_POST['FR'] . "\", ";
   $fields .= "PR=\"" . $_POST['PR'] . "\", ";
-  $fields .= "Corrup=\"" . $_POST['Corrup'] . "\", ";
-  $fields .= "PhR=\"" . $_POST['PhR'] . "\", ";
   $fields .= "see_invis=\"" . $_POST['see_invis'] . "\", ";
   $fields .= "see_invis_undead=\"" . $_POST['see_invis_undead'] . "\", ";
   $fields .= "qglobal=\"" . $_POST['qglobal'] . "\", ";
@@ -1484,9 +1474,6 @@ function copy_npc () {
   $fields .= "luclin_eyecolor2=\"" . $_POST['luclin_eyecolor2'] . "\", ";
   $fields .= "luclin_beardcolor=\"" . $_POST['luclin_beardcolor'] . "\", ";
   $fields .= "luclin_beard=\"" . $_POST['luclin_beard'] . "\", ";
-  $fields .= "drakkin_heritage=\"" . $_POST['drakkin_heritage'] . "\", ";
-  $fields .= "drakkin_tattoo=\"" . $_POST['drakkin_tattoo'] . "\", ";
-  $fields .= "drakkin_details=\"" . $_POST['drakkin_details'] . "\", ";
   $fields .= "armortint_id=\"" . $_POST['armortint_id'] . "\", ";
   $fields .= "armortint_red=\"" . $_POST['armortint_red'] . "\", ";
   $fields .= "armortint_green=\"" . $_POST['armortint_green'] . "\", ";
@@ -1502,8 +1489,6 @@ function copy_npc () {
   $fields .= "DR=\"" . $_POST['DR'] . "\", ";
   $fields .= "FR=\"" . $_POST['FR'] . "\", ";
   $fields .= "PR=\"" . $_POST['PR'] . "\", ";
-  $fields .= "Corrup=\"" . $_POST['Corrup'] . "\", ";
-  $fields .= "PhR=\"" . $_POST['PhR'] . "\", ";
   $fields .= "see_invis=\"" . $_POST['see_invis'] . "\", ";
   $fields .= "see_invis_undead=\"" . $_POST['see_invis_undead'] . "\", ";
   $fields .= "qglobal=\"" . $_POST['qglobal'] . "\", ";
@@ -1601,7 +1586,6 @@ function update_npc_bytier() {
     $dresist = "DR";
     $presist = "PR";
     $fresist = "FR";
-    $coresist = "Corrup";
   }
 
   if($stat == 2) {
@@ -1611,7 +1595,6 @@ function update_npc_bytier() {
     $dresist = $resist;
     $presist = $resist;
     $fresist = $resist;
-    $coresist = $resist;
     $ac_ = "AC";
   }
   
@@ -1623,11 +1606,10 @@ function update_npc_bytier() {
     $dresist = $resist;
     $presist = $resist;
     $fresist = $resist;
-    $coresist = $resist;
   }
 
   if($type == 1) {
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist, Corrup = $coresist WHERE id=$npcid";
+    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE id=$npcid";
     $mysql->query_no_result($query);
   }
 
@@ -1636,7 +1618,7 @@ function update_npc_bytier() {
     $result = $mysql->query_assoc($query);
     $nname = $result['name'];
 
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist, Corrup = $coresist WHERE name=\"$nname\" AND id > $min_id AND id < $max_id";
+    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name=\"$nname\" AND id > $min_id AND id < $max_id";
     $mysql->query_no_result($query);
   }
 
@@ -1645,7 +1627,7 @@ function update_npc_bytier() {
     $result = $mysql->query_assoc($query);
     $nrace = $result['race'];
 
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist, Corrup = $coresist WHERE race=$nrace AND id > $min_id AND id < $max_id";
+    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE race=$nrace AND id > $min_id AND id < $max_id";
     $mysql->query_no_result($query);
   }
 
@@ -1654,7 +1636,7 @@ function update_npc_bytier() {
     $result = $mysql->query_assoc($query);
     $nclass = $result['class'];
 
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist, Corrup = $coresist WHERE class=$nclass AND id > $min_id AND id < $max_id";
+    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE class=$nclass AND id > $min_id AND id < $max_id";
     $mysql->query_no_result($query);
   }
 
@@ -1663,21 +1645,21 @@ function update_npc_bytier() {
     $result = $mysql->query_assoc($query);
     $nlevel = $result['level'];
 
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist, Corrup = $coresist WHERE level=$nlevel AND id > $min_id AND id < $max_id";
+    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE level=$nlevel AND id > $min_id AND id < $max_id";
     $mysql->query_no_result($query);
   }
 
   if($type == 6) {
     if($name == '' && $class == 0 && $race == 0 && ($level == '' || $level == 0)) {
-      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist, Corrup = $coresist WHERE id=$npcid";
+      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE id=$npcid";
       $mysql->query_no_result($query);
     }
     if($name == '' && ($class > 0 || $race > 0 || $level > 0)) {
-      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist, Corrup = $coresist WHERE name=$nname AND level=$nlevel AND class=$nclass AND race=$nrace AND id > $min_id AND id < $max_id";
+      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name=$nname AND level=$nlevel AND class=$nclass AND race=$nrace AND id > $min_id AND id < $max_id";
       $mysql->query_no_result($query);
     }
     else {
-      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist, Corrup = $coresist WHERE name like \"$nname\" AND level=$nlevel AND class=$nclass AND race=$nrace AND id > $min_id AND id < $max_id";
+      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name like \"$nname\" AND level=$nlevel AND class=$nclass AND race=$nrace AND id > $min_id AND id < $max_id";
       $mysql->query_no_result($query);
     }
   }
@@ -2054,32 +2036,32 @@ function get_stats() {
  $npc_level = $_POST['npc_level'];
  
  if($npc_level < 11) {
- $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(PhR) as PhR, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 1000 and race != 240 and str < 300 and id < 200000 group by level";
+ $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 1000 and race != 240 and str < 300 and id < 200000 group by level";
  $results = $mysql->query_assoc($query);
  return $results;
  }
  if($npc_level > 10 && $npc_level < 31) {
-  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(PhR) as PhR, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 2500 and race != 240 and str < 300 and id < 200000 group by level";
+  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 2500 and race != 240 and str < 300 and id < 200000 group by level";
  $results = $mysql->query_assoc($query);
  return $results;
  }
   if($npc_level > 30 && $npc_level < 51) {
-  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(PhR) as PhR, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 5000 and race != 240 and str < 300 and id < 200000 group by level";
+  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 5000 and race != 240 and str < 300 and id < 200000 group by level";
  $results = $mysql->query_assoc($query);
  return $results;
  }
  if($npc_level > 50 && $npc_level < 61) {
-  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(PhR) as PhR, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 7000 and race != 240 and str < 300 group by level";
+  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 7000 and race != 240 and str < 300 group by level";
  $results = $mysql->query_assoc($query);
  return $results;
  }
  if($npc_level > 60 && $npc_level < 66) {
- $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(PhR) as PhR, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 7500 and race != 240 group by level";
+ $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 7500 and race != 240 group by level";
  $results = $mysql->query_assoc($query);
  return $results;
  }
  else {
- $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(PhR) as PhR, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 50000 and race != 240 group by level";
+ $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 50000 and race != 240 group by level";
  $results = $mysql->query_assoc($query);
  return $results;
  }

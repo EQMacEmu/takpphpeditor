@@ -92,8 +92,8 @@
                 <td align="left" width="14%">FR:      <br/><input type="text" name="FR" size="5" value="<?=$FR?>"></td>
                 <td align="left" width="14%">PR:      <br/><input type="text" name="PR" size="5" value="<?=$PR?>"></td>
                 <td align="left" width="14%">DR:      <br/><input type="text" name="DR" size="5" value="<?=$DR?>"></td>
-                <td align="left" width="15%">Corrup:  <br/><input type="text" name="Corrup" size="5" value="<?=$Corrup?>"></td>
-                <td align="left" width="15%">Physical:<br/><input type="text" name="PhR" size="5" value="<?=$PhR?>"></td>
+		  <td align="left" width="15%">&nbsp;</td>
+		  <td align="left" width="15%">&nbsp;</td>
               </tr>
             </table>
          </fieldset><br/>
@@ -169,6 +169,7 @@
                   Leashed (32):<br/><input type="text" name="32" size="10" value="<?=$specabilcont[32]?>"><br/>
                   Tethered (33):<br/><input type="text" name="33" size="10" value="<?=$specabilcont[33]?>"><br/>
                   Flee Percent (37):<br/><input type="text" name="37" size="10" value="<?=$specabilcont[37]?>"><br/>
+                  Chase Distance (40):<br/><input type="text" name="40" size="10" value="<?=$specabilcont[40]?>"><br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="6" value="6,1^"<?echo ($specabil[6] == 1) ? "checked" : "";?>>  Triple Attack<br/>
@@ -186,6 +187,7 @@
                   <input type="checkbox" name="31" value="31,1^"<?echo ($specabil[31] == 1) ? "checked" : "";?>>  Unpacifiable<br/>
                   <input type="checkbox" name="18" value="18,1^"<?echo ($specabil[18] == 1) ? "checked" : "";?>>  Immune to Dispell<br/>
                   <input type="checkbox" name="35" value="35,1^"<?echo ($specabil[35] == 1) ? "checked" : "";?>>  No Harm from Players<br/>
+		    <input type="checkbox" name="39" value="39,1^"<?echo ($specabil[39] == 1) ? "checked" : "";?>>  Disable Melee<br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="26" value="26,1^"<?echo ($specabil[26] == 1) ? "checked" : "";?>>  Resist Ranged Spells<br/>
@@ -198,9 +200,12 @@
                   <input type="checkbox" name="24" value="24,1^"<?echo ($specabil[24] == 1) ? "checked" : "";?>>  Will Not Aggro<br/>
                   <input type="checkbox" name="25" value="25,1^"<?echo ($specabil[25] == 1) ? "checked" : "";?>>  Immune to Aggro<br/>
                   <input type="checkbox" name="27" value="27,1^"<?echo ($specabil[27] == 1) ? "checked" : "";?>>  See through Feign Death<br/>
-                  <input type="checkbox" name="npc_aggro" value="1"<?echo ($npc_aggro == 1) ? "checked" : "";?>> Can Aggro NPCs<br/>
+                  <input type="checkbox" name="npc_aggro" value="1"<?echo ($npc_aggro == 1) ? "checked" : "";?>>  Can Aggro NPCs<br/>
                   <input type="checkbox" name="30" value="30,1^"<?echo ($specabil[30] == 1) ? "checked" : "";?>>  Does NOT buff/heal friends<br/>
                   <input type="checkbox" name="36" value="36,1^"<?echo ($specabil[36] == 1) ? "checked" : "";?>>  Always Flee<br/>
+		    <input type="checkbox" name="38" value="38,1^"<?echo ($specabil[38] == 1) ? "checked" : "";?>>  Allow Beneficial<br/>
+                  <input type="checkbox" name="41" value="41,1^"<?echo ($specabil[41] == 1) ? "checked" : "";?>>  Allow Tank<br/>
+		    <input type="checkbox" name="42" value="42,1^"<?echo ($specabil[42] == 1) ? "checked" : "";?>>  Proximity Aggro<br/>
                 </td>
               </tr>
             </table>
@@ -226,12 +231,12 @@
               <td align="left" width="16%">Melee2:    <br/><input type="text" name="d_meele_texture2" size="10" value="<?=$d_meele_texture2?>"></td>
             </tr>
             <tr>
-              <td align="left" width="17%">Heritage:   <br/><input type="text" name="drakkin_heritage" size="10" value="<?=$drakkin_heritage?>"></td>
-              <td align="left" width="17%">Tattoo:     <br/><input type="text" name="drakkin_tattoo" size="10" value="<?=$drakkin_tattoo?>"></td>
-              <td align="left" width="17%">Details:    <br/><input type="text" name="drakkin_details" size="10" value="<?=$drakkin_details?>"></td>
               <td align="left" width="17%">Armor Red:  <br/><input type="text" name="armortint_red" size="10" value="<?=$armortint_red?>"></td>
-              <td align="left" width="16%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="<?=$armortint_green?>"></td>
-              <td align="left" width="16%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="<?=$armortint_blue?>"></td>
+              <td align="left" width="17%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="<?=$armortint_green?>"></td>
+              <td align="left" width="17%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="<?=$armortint_blue?>"></td>
+		<td align="left" width="17%">&nbsp;</td>
+		<td align="left" width="16%">&nbsp;</td>
+		<td align="left" width="16%">&nbsp;</td>
             </tr>
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">

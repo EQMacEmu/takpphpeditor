@@ -55,7 +55,6 @@
               <td align="left" width="17%">Mana:     <br/><input type="text" name="mana" size="10" value="<?=$mana?>"/></td>
               <td align="left" width="17%">AC:       <br/><input type="text" name="AC" size="10" value="<?=$ac?>"/></td>
               <td align="left" width="17%">Runspeed: <br/><input type="text" name="runspeed" size="10" value="1.25"/></td>
-              <td align="left" width="17%">Walkspeed: <br/><input type="text" name="walkspeed" size="10" value="0.677"/></td>
               <td align="left" width="16%">ATK:      <br/><input type="text" name="ATK" size="10" value="0"/></td>
               <td align="left" width="16%">Accuracy: <br/><input type="text" name="Accuracy" size="10" value="0"/></td>
             </tr>
@@ -119,8 +118,8 @@
                 <td align="left" width="14%">FR:      <br/><input type="text" name="FR" size="5" value="<?=$resists?>"/></td>
                 <td align="left" width="14%">PR:      <br/><input type="text" name="PR" size="5" value="<?=$resists?>"/></td>
                 <td align="left" width="14%">DR:      <br/><input type="text" name="DR" size="5" value="<?=$resists?>"/></td>
-                <td align="left" width="14%">Corrup:  <br/><input type="text" name="Corrup" size="5" value="<?=$resists?>"/></td>
-                <td align="left" width="15%">Physical:<br/><input type="text" name="PhR" size="5" value="<?=$PhR?>"/></td>
+		  <td align="left" width="15%">&nbsp;</td>
+	         <td align="left" width="15%">&nbsp;</td>
               </tr>
             </table>
         </fieldset><br/>
@@ -158,6 +157,8 @@
                   Tunnel Vision (29): <br><input type="text" name="29" size="10"><br>
                   Leashed (32): <br><input type="text" name="32" size="10"><br>
                   Tethered (33): <br><input type="text" name="33" size="10"><br>
+		    Flee Percent (37): <br><input type="text" name="37" size="10"><br>
+		    Chase Distance (40): <br><input type="text" name="40" size="10"><br>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="6" value="6,1^"/>  Triple Attack<br>
@@ -175,6 +176,7 @@
                   <input type="checkbox" name="31" value="31,1^"/>  Unpacifiable<br>
                   <input type="checkbox" name="18" value="18,1^"/>  Immune to Dispell<br>
                   <input type="checkbox" name="35" value="35,1^"/>  No Harm from Players<br>
+		    <input type="checkbox" name="39" value="39,1^"/>  Disable Melee<br>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="26" value="26,1^"/>  Resist Ranged Spells<br>
@@ -189,6 +191,10 @@
                   <input type="checkbox" name="27" value="27,1^"/>  See through Feign Death<br>
                   <input type="checkbox" name="npc_aggro" value="1"/> Can Aggro NPCs<br>
                   <input type="checkbox" name="30" value="30,1^"/>  Does NOT buff/heal friends<br>
+		    <input type="checkbox" name="36" value="36,1^"/>  Always Flee<br>
+  		    <input type="checkbox" name="38" value="38,1^"/>  Allow Beneficial<br>
+		    <input type="checkbox" name="41" value="41,1^"/>  Allow Tank<br>
+		    <input type="checkbox" name="42" value="32,1^"/>  Proximity Aggro<br>
                 </td>
               </tr>
             </table>
@@ -214,12 +220,12 @@
               <td align="left" width="16%">Melee2:     <br/><input type="text" name="d_meele_texture2" size="10" value="0"/></td>
             </tr>
             <tr>
-              <td align="left" width="17%">Heritage:   <br/><input type="text" name="drakkin_heritage" size="10" value="0"/></td>
-              <td align="left" width="17%">Tattoo:     <br/><input type="text" name="drakkin_tattoo" size="10" value="0"/></td>
-              <td align="left" width="17%">Details:    <br/><input type="text" name="drakkin_details" size="10" value="0"/></td>
               <td align="left" width="17%">Armor Red:  <br/><input type="text" name="armortint_red" size="10" value="0"/></td>
-              <td align="left" width="16%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="0"/></td>
-              <td align="left" width="16%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="0"/></td>
+              <td align="left" width="17%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="0"/></td>
+              <td align="left" width="17%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="0"/></td>
+		<td align="left" width="17%">&nbsp;</td>
+		<td align="left" width="16%">&nbsp;</td>
+		<td align="left" width="16%">&nbsp;</td>
             </tr>
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">

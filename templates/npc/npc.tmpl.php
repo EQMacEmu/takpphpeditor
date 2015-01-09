@@ -156,12 +156,7 @@
                   <tr>
                     <td align="left" width="33%">PR: <?=$PR?> (<?=$prper?>%)</td>
                     <td align="left" width="33%">DR: <?=$DR?> (<?=$drper?>%)</td>
-                    <td align="left" width="34%">Corrup: <?=$Corrup?> (<?=$corper?>%)</td>
-                  </tr>
-                  <tr>
-                    <td align="left" width="33%">Physical: <?=$PhR?></td>
-                    <td align="left" width="33%">&nbsp;</td>
-                    <td align="left" width="34%">&nbsp;</td>
+			<td align="left" width="34%">&nbsp;</td>
                   </tr>
                 </table>
               </fieldset>
@@ -231,11 +226,6 @@
                     <td align="left" width="33%">Eye Color 2: <?=$luclin_eyecolor2?></td>
                     <td align="left" width="33%">Beard: <?=$luclin_beard?></td>
                     <td align="left" width="34%">Beard Color: <?=$luclin_beardcolor?></td>
-                  </tr>
-                  <tr>
-                    <td align="left" width="33%">Drakkin Heritage: <?=$drakkin_heritage?></td>
-                    <td align="left" width="33%">Drakkin Tattoo: <?=$drakkin_tattoo?></td>
-                    <td align="left" width="34%">Drakkin Details: <?=$drakkin_details?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Armor Red: <?=$armortint_red?></td>
@@ -316,9 +306,6 @@
         <input type="hidden" name="luclin_eyecolor2" value="<?=$luclin_eyecolor2?>">
         <input type="hidden" name="luclin_beardcolor" value="<?=$luclin_beardcolor?>">
         <input type="hidden" name="luclin_beard" value="<?=$luclin_beard?>">
-        <input type="hidden" name="drakkin_heritage" value="<?=$drakkin_heritage?>">
-        <input type="hidden" name="drakkin_tattoo" value="<?=$drakkin_tattoo?>">
-        <input type="hidden" name="drakkin_details" value="<?=$drakkin_details?>">
         <input type="hidden" name="armortint_id" value="<?=$armortint_id?>">
         <input type="hidden" name="armortint_red" value="<?=$armortint_red?>">
         <input type="hidden" name="armortint_green" value="<?=$armortint_green?>">
@@ -334,8 +321,6 @@
         <input type="hidden" name="DR" value="<?=$DR?>">
         <input type="hidden" name="FR" value="<?=$FR?>">
         <input type="hidden" name="PR" value="<?=$PR?>">
-        <input type="hidden" name="Corrup" value="<?=$Corrup?>">
-        <input type="hidden" name="PhR" value="<?=$PhR?>">
         <input type="hidden" name="see_invis" value="<?=$see_invis?>">
         <input type="hidden" name="see_invis_undead" value="<?=$see_invis_undead?>">
         <input type="hidden" name="qglobal" value="<?=$qglobal?>">
