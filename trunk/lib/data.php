@@ -927,6 +927,11 @@ $specialattacks = array(
  "35" => "No Harm from Players",
  "36" => "Always Flee",
  "37" => "Flee Percent",
+ "38" => "Allow Beneficial",
+ "39" => "Disable Melee",
+ "40" => "Chase Distance",
+ "41" => "Allow Tank",
+ "42" => "Proximity Aggro",
 );
 
 $tradeskills = array(
@@ -1781,21 +1786,6 @@ $eqexpansions = array (
  3  => 'Scars of Velious',
  4  => 'Shadows of Luclin',
  5  => 'Planes of Power',
- 6  => 'Legacy of Ykesha',
- 7  => 'Lost Dungeons of Norrath',
- 8  => 'Gates of Discord',
- 9  => 'Omens of War',
- 10 => 'Dragons of Norrath',
- 11 => 'Depths of Darkhollow',
- 12 => 'Prophecy of Ro',
- 13 => 'The Serpents Spine',
- 14 => 'The Buried Sea',
- 15 => 'Secrets of Faydwer',
- 16 => 'Seeds of Destruction',
- 17 => 'Underfoot',
- 18 => 'House of Thule',
- 19 => 'Veil of Alaris',
- 20 => 'Rain of Fear',
  99 => 'Other'
 );
 
