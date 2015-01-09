@@ -126,7 +126,7 @@
   $specabil = array();
   $specabilcont = array();
 
-  for ($i = 1; $i <= 37; $i++) {
+  for ($i = 1; $i <= 42; $i++) {
     if (preg_match("/^$i,/", $special_abilities) == 1) {
       $specabil[$i] = 1;
       // Leading special ability
