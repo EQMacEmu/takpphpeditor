@@ -1,6 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
 
   <head>
@@ -22,7 +21,7 @@
   <body>
     <div id="container">
       <div id="header">
-        <a href="index.php"><img src="images/peq_editor.jpg" title="Home" border="0" alt=EQMac Editor Banner"></a>
+        <a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="PEQ Editor Banner"></a>
       </div>
 <?if (isset($headbar)) echo $headbar;?>
 <?if (isset($searchbar)) echo $searchbar;?>
