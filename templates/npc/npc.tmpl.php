@@ -233,8 +233,8 @@
                     <td align="left" width="34%">Armor Blue: <?=$armortint_blue?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">Melee1: <?=$d_meele_texture1?></td>
-                    <td align="left" width="33%">Melee2: <?=$d_meele_texture2?></td>
+                    <td align="left" width="33%">Melee1: <?=$d_melee_texture1?></td>
+                    <td align="left" width="33%">Melee2: <?=$d_melee_texture2?></td>
                     <td align="left" width="34%">&nbsp;</td>
                   </tr>
                   <tr>
@@ -310,8 +310,8 @@
         <input type="hidden" name="armortint_red" value="<?=$armortint_red?>">
         <input type="hidden" name="armortint_green" value="<?=$armortint_green?>">
         <input type="hidden" name="armortint_blue" value="<?=$armortint_blue?>">
-        <input type="hidden" name="d_meele_texture1" value="<?=$d_meele_texture1?>">
-        <input type="hidden" name="d_meele_texture2" value="<?=$d_meele_texture2?>">
+        <input type="hidden" name="d_melee_texture1" value="<?=$d_melee_texture1?>">
+        <input type="hidden" name="d_melee_texture2" value="<?=$d_melee_texture2?>">
         <input type="hidden" name="prim_melee_type" value="<?=$prim_melee_type?>">
         <input type="hidden" name="sec_melee_type" value="<?=$sec_melee_type?>">
         <input type="hidden" name="runspeed" value="<?=$runspeed?>">
