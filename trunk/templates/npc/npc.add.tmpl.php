@@ -217,8 +217,8 @@
               <td align="left" width="17%">Eyecolor2:  <br/><input type="text" name="luclin_eyecolor2" size="10" value="0"/></td>
               <td align="left" width="17%">Beard:      <br/><input type="text" name="luclin_beard" size="10" value="0"/></td>
               <td align="left" width="17%">Beardcolor: <br/><input type="text" name="luclin_beardcolor" size="10" value="0"/></td>
-              <td align="left" width="16%">Melee1:     <br/><input type="text" name="d_meele_texture1" size="10" value="0"/></td>
-              <td align="left" width="16%">Melee2:     <br/><input type="text" name="d_meele_texture2" size="10" value="0"/></td>
+              <td align="left" width="16%">Melee1:     <br/><input type="text" name="d_melee_texture1" size="10" value="0"/></td>
+              <td align="left" width="16%">Melee2:     <br/><input type="text" name="d_melee_texture2" size="10" value="0"/></td>
             </tr>
             <tr>
               <td align="left" width="17%">Armor Red:  <br/><input type="text" name="armortint_red" size="10" value="0"/></td>
