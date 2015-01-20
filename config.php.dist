@@ -11,10 +11,10 @@ $mysql_class = 'mysql'; // Use mysql or mysqli
  *  (i.e. setting $expansion_limit to 2 would cause only Classic and Kunark zones
  *  to appear in zone drop-down lists)
  *    1 = EQ Classic
- *    2 = Kunark
- *    3 = Velious
- *    4 = Luclin
- *    5 = Planes of Power
+ *    2 = The Ruins of Kunark
+ *    3 = The Scars of Velious
+ *    4 = The Shadows of Luclin
+ *    5 = The Planes of Power
  *    99 = Other
  */
 $expansion_limit = 5;
