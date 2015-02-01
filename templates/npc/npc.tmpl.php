@@ -235,7 +235,7 @@
                   <tr>
                     <td align="left" width="33%">Melee1: <?=$d_melee_texture1?></td>
                     <td align="left" width="33%">Melee2: <?=$d_melee_texture2?></td>
-                    <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="34%">Light Source: <?=$light?></td>
                   </tr>
                   <tr>
                    <td align="left" width="33%">Melee1 Type: <?=$prim_melee_type?></td>
@@ -283,6 +283,7 @@
         <input type="hidden" name="gender" value="<?=$gender?>">
         <input type="hidden" name="texture" value="<?=$texture?>">
         <input type="hidden" name="helmtexture" value="<?=$helmtexture?>">
+        <input type="hidden" name="herosforgemodel" value="<?=$herosforgemodel?>">
         <input type="hidden" name="size" value="<?=$size?>">
         <input type="hidden" name="hp_regen_rate" value="<?=$hp_regen_rate?>">
         <input type="hidden" name="mana_regen_rate" value="<?=$mana_regen_rate?>">
@@ -290,6 +291,7 @@
         <input type="hidden" name="merchant_id" value="<?=$merchant_id?>">
         <input type="hidden" name="alt_currency_id" value="<?=$alt_currency_id?>">
         <input type="hidden" name="npc_spells_id" value="<?=$npc_spells_id?>">
+        <input type="hidden" name="npc_spells_effects_id" value="<?=$npc_spells_effects_id?>">
         <input type="hidden" name="npc_faction_id" value="<?=$npc_faction_id?>">
         <input type="hidden" name="adventure_template_id" value="<?=$adventure_template_id?>">
         <input type="hidden" name="trap_template" value="<?=$trap_template?>">
@@ -312,8 +314,10 @@
         <input type="hidden" name="armortint_blue" value="<?=$armortint_blue?>">
         <input type="hidden" name="d_melee_texture1" value="<?=$d_melee_texture1?>">
         <input type="hidden" name="d_melee_texture2" value="<?=$d_melee_texture2?>">
+        <input type="hidden" name="ammo_idfile" value="<?=$ammo_idfile?>">
         <input type="hidden" name="prim_melee_type" value="<?=$prim_melee_type?>">
         <input type="hidden" name="sec_melee_type" value="<?=$sec_melee_type?>">
+        <input type="hidden" name="ranged_type" value="<?=$ranged_type?>">
         <input type="hidden" name="runspeed" value="<?=$runspeed?>">
 		<input type="hidden" name="walkspeed" value="<?=$walkspeed?>">
         <input type="hidden" name="MR" value="<?=$MR?>">
@@ -341,6 +345,7 @@
         <input type="hidden" name="trackable" value="<?=$trackable?>">
         <input type="hidden" name="ATK" value="<?=$ATK?>">
         <input type="hidden" name="Accuracy" value="<?=$Accuracy?>">
+        <input type="hidden" name="Avoidance" value="<?=$Avoidance?>">
         <input type="hidden" name="slow_mitigation" value="<?=$slow_mitigation?>">
         <input type="hidden" name="version" value="<?=$version?>">
         <input type="hidden" name="maxlevel" value="<?=$maxlevel?>">
@@ -354,6 +359,7 @@
         <input type="hidden" name="healscale" value="<?=$healscale?>">
         <input type="hidden" name="no_target_hotkey" value="<?=$no_target_hotkey?>">
         <input type="hidden" name="raid_target" value="<?=$raid_target?>">
+        <input type="hidden" name="light" value="<?=$light?>">
         <center>
           NEW ID:<input type="text" name="id" size="10" value="<?=$suggestedid?>">
           <input type="submit" value="Copy NPC">
