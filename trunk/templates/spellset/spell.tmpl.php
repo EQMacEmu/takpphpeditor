@@ -45,13 +45,14 @@
         <div class="table_content">
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr bgcolor="#BBBBBB">
-              <th width="35%">Spell</th>
+              <th width="30%">Spell</th>
               <th width="9%" align="center">Type</th>
               <th width="9%" align="center">minlevel</th>
               <th width="9%" align="center">maxlevel</th>
               <th width="9%" align="center">manacost</th>
               <th width="10%" align="center">recast delay</th>
               <th width="9%" align="center">priority</th>
+              <th width="9%" align="center">resist adj</th>
               <th width="10%" align="center"></th>
             </tr>
 <?$x=0; foreach($spells as $spell): extract($spell);?>
@@ -63,6 +64,7 @@
               <td align="center"><?echo ($manacost != -1) ? $manacost : "Default";?></td>
               <td align="center"><?echo ($recast_delay != -1) ? $recast_delay : "Default";?></td>
               <td align="center"><?=$priority?></td>
+              <td align="center"><?=$resist_adjust?></td>
               <td align="right">
                 <a href="index.php?editor=spellset&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&spellset=<?=$spellset?>&id=<?=$id?>&action=6">
                   <img src="images/edit2.gif" border="0" title="Edit Spell">
@@ -117,6 +119,7 @@
               <th width="9%" align="center">manacost</th>
               <th width="10%" align="center">recast delay</th>
               <th width="9%" align="center">priority</th>
+              <th width="9%" align="center">resist adj</th>
               <th width="10%" align="center"></th>
             </tr>
 <?$x=0; foreach($parent['spells'] as $spell): extract($spell);?>
@@ -128,6 +131,7 @@
               <td align="center"><?echo ($manacost != -1) ? $manacost : "Default";?></td>
               <td align="center"><?echo ($recast_delay != -1) ? $recast_delay : "Default";?></td>
               <td align="center"><?=$priority?></td>
+              <td align="center"><?=$resist_adjust?></td>
               <td align="right">
                 <a href="index.php?editor=spellset&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&spellset=<?=$spellset?>&id=<?=$id?>&action=6">
                   <img src="images/edit2.gif" border="0" title="Edit Spell">
