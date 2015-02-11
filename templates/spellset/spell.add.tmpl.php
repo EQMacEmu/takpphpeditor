@@ -2,7 +2,7 @@
         <iframe id='searchframe' src='templates/iframes/spellsearch.php'></iframe>
         <input id="button" type="button" value='Hide Spell Search' onclick='hideSearch();' style='display:none; margin-bottom: 20px;'>
       </center>
-        
+
       <div class="table_container" style="width: 150px">
         <div class="edit_form_header">
             Add a Spell
@@ -35,6 +35,9 @@
 
             <strong>Priority:</strong><br>
             <input class="indented" id="id" input type="text" name="priority" size="10" value="0"><br><br>
+
+            <strong>Resist Adj:</strong><br>
+            <input class="indented" id="id" input type="text" name="resist_adjust" size="10" value=""><br><br>
 
             <center>
               <input type="hidden" name="npc_spells_id" value="<?=$npc_spells_id?>">

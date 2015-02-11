@@ -155,7 +155,7 @@ switch($action) {
     $nss = get_new_id();
     header("Location: index.php?editor=spellset&z=$z&zoneid=$zoneid&npcid=$npcid");
     exit;
-  case 17: // Mass change spellset 
+  case 17: // Mass change spellset
     check_authorization();
     $body = new Template("templates/spellset/spellset.masschange.tmpl.php");
     $body->set('currzone', $z);
@@ -267,8 +267,9 @@ function add_spell() {
   $manacost = $_POST['manacost'];
   $recast_delay = $_POST['recast_delay'];
   $priority = $_POST['priority'];
+  $resist_adjust = $_POST['resist_adjust'];
 
-  $query = "INSERT INTO npc_spells_entries SET npc_spells_id=$npc_spells_id, spellid=$spellid, type=$type, minlevel=$minlevel, maxlevel=$maxlevel, manacost=$manacost, recast_delay=$recast_delay, priority=$priority";
+  $query = "INSERT INTO npc_spells_entries SET npc_spells_id=$npc_spells_id, spellid=$spellid, type=$type, minlevel=$minlevel, maxlevel=$maxlevel, manacost=$manacost, recast_delay=$recast_delay, priority=$priority, resist_adjust=$resist_adjust";
   $mysql->query_no_result($query);
 }
 
@@ -321,8 +322,9 @@ function update_spell() {
   $manacost = $_POST['manacost'];
   $recast_delay = $_POST['recast_delay'];
   $priority = $_POST['priority'];
+  $resist_adjust = $_POST['resist_adjust'];
 
-  $query = "UPDATE npc_spells_entries SET spellid=$spellid, type=$type, minlevel=$minlevel, maxlevel=$maxlevel, manacost=$manacost, recast_delay=$recast_delay, priority=$priority WHERE id=$id";
+  $query = "UPDATE npc_spells_entries SET spellid=$spellid, type=$type, minlevel=$minlevel, maxlevel=$maxlevel, manacost=$manacost, recast_delay=$recast_delay, priority=$priority, resist_adjust=$resist_adjust WHERE id=$id";
   $mysql->query_no_result($query);
 }
 
@@ -376,7 +378,7 @@ function search_spells() {
   global $mysql;
   $search = $_GET['search'];
 
-  $query = "SELECT npc_spells_entries.npc_spells_id, spells_new.name AS spellname 
+  $query = "SELECT npc_spells_entries.npc_spells_id, spells_new.name AS spellname
   FROM npc_spells_entries
   INNER JOIN spells_new ON spells_new.id = npc_spells_entries.spellid
   WHERE spells_new.name rlike \"$search\"";
@@ -396,12 +398,12 @@ function copy_spellset() {
   $query = "DELETE FROM npc_spells_entries WHERE npc_spells_id=0";
   $mysql->query_no_result($query);
 
-  $query = "INSERT INTO npc_spells (name,parent_list,attack_proc,proc_chance) 
+  $query = "INSERT INTO npc_spells (name,parent_list,attack_proc,proc_chance)
             SELECT name,parent_list,attack_proc,proc_chance FROM npc_spells where id=$spellsetid";
   $mysql->query_no_result($query);
 
-  $query = "INSERT INTO npc_spells_entries (spellid,type,minlevel,maxlevel,manacost,recast_delay,priority) 
-            SELECT spellid,type,minlevel,maxlevel,manacost,recast_delay,priority FROM npc_spells_entries where npc_spells_id=$spellsetid";
+  $query = "INSERT INTO npc_spells_entries (spellid,type,minlevel,maxlevel,manacost,recast_delay,priority,resist_adjust)
+            SELECT spellid,type,minlevel,maxlevel,manacost,recast_delay,priority,resist_adjust FROM npc_spells_entries where npc_spells_id=$spellsetid";
   $mysql->query_no_result($query);
 
   $query = "SELECT MAX(id) as sid FROM npc_spells";
@@ -416,7 +418,7 @@ function copy_spellset() {
   $name = $result['name'];
 
   $query = "UPDATE npc_types set npc_spells_id=$nss where id=$npcid";
-  $mysql->query_no_result($query);  
+  $mysql->query_no_result($query);
 
   $query = "UPDATE npc_spells set name=\"$name\" where id=$nss";
   $mysql->query_no_result($query);
@@ -441,7 +443,7 @@ function change_spellset_byname () {
   $id = $_GET['id'];
   $npcname = $_POST['npcname'];
   $updateall = $_POST['updateall'];
- 
+
   if($updateall == 0){
   $query = "UPDATE npc_types SET npc_spells_id=$id WHERE name like \"%$npcname%\" AND id > $min_id AND id < $max_id AND npc_spells_id = 0";
   $mysql->query_no_result($query);
@@ -462,7 +464,7 @@ function change_spellset_byclass () {
   $id = $_GET['id'];
   $npcclass = $_POST['npcclass'];
   $updateall = $_POST['updateall'];
- 
+
   if($updateall == 0){
   $query = "UPDATE npc_types SET npc_spells_id=$id WHERE class = $npcclass AND id > $min_id AND id < $max_id AND npc_spells_id = 0";
   $mysql->query_no_result($query);
