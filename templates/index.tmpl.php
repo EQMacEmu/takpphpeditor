@@ -21,7 +21,7 @@
   <body>
     <div id="container">
       <div id="header">
-        <a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="PEQ Editor Banner"></a>
+        <center><a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="PEQ Editor Banner"></a></center>
       </div>
 <?if (isset($headbar)) echo $headbar;?>
 <?if (isset($searchbar)) echo $searchbar;?>
