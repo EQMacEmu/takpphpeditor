@@ -12,7 +12,7 @@
     if ($berserker == 0 && $classes == 0) {
       return "None";
     }
-    if ($berserker == 1 && $classes == 65534) 
+    if ($berserker == 1 && $classes == 65534)
       return "ALL";
     else {
       $res = '';
@@ -54,7 +54,7 @@
   </center>
   <div class="table_container">
     <div class="table_header">
-      <?=$aa_vars['skill_id']?> - <?=$aa_vars['name']?>
+      <?=$aa_vars['eqmacid']?> - <?=$aa_vars['name']?> (<?=$aa_vars['skill_id']?>)
       <div style="float:right;">
         <a href="index.php?editor=aa&action=3"><img src="images/add.gif" border="0" title="Create a new AA"></a>
         <a href="index.php?editor=aa&aaid=<?=$aa_vars['skill_id']?>&action=2"><img src="images/edit.gif" border="0" title="Edit this AA"></a>
@@ -215,7 +215,7 @@
 <?
       }
       if ($classcheck && $rankcheck) {
-?>                    - 
+?>                    -
 <?
       }
       if ($rankcheck) {
@@ -485,7 +485,7 @@
       }
     }
   }
-  if ($found == 0) { 
+  if ($found == 0) {
 ?>
                   <br/><b>AA Action</b> - None<br/>
                   <a href="index.php?editor=aa&aaid=<?=$aaid?>&rank=<?=$aarank?>&action=5"><button type="button">Add Action</button></a><br/>
