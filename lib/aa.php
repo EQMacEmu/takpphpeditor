@@ -29,7 +29,8 @@ $defaultvalues = array(
   'account_time_required'   =>  "0",
   'sof_current_level'   =>  "0",
   'sof_next_id'   =>  "0",
-  'level_inc'   =>  "0"
+  'level_inc'   =>  "0",
+  'eqmacid' => ""
 );
 
 $aa_type = array (
@@ -97,7 +98,7 @@ switch ($action) {
       $body->set('aa_sof_expansion', $aa_sof_expansion);
       $body->set('aa_special_category', $aa_special_category);
       $body->set('aa_action_target', $aa_action_target);
-      
+
       if ($aaref) {
         $name = getNameByID($aaref);
         $body->set('aaref', $aaref);
@@ -237,7 +238,7 @@ switch ($action) {
           $loc .= "#rank$rank";
         header($loc);
       }
-    } else 
+    } else
       if ($aaid)
         header("Location: index.php?editor=aa&aaid=$aaid");
       else
@@ -245,7 +246,7 @@ switch ($action) {
     break;
   case 7: // Add AA effect slot for rank
     check_authorization();
-    // If we don't have aaid and rank then punt the user to the 
+    // If we don't have aaid and rank then punt the user to the
     // base AA template.
     // If we're provided a slot parameter then we treat that as
     // a suggestion to fill in as a preset in the form.
@@ -470,7 +471,7 @@ switch ($action) {
       else
         copyEffectSlots($fromaaid, $fromrank, $aaid, $rank);
       header("Location: index.php?editor=aa&aaid=$aaid#rank$rank");
-    } else 
+    } else
       header("Location: index.php?editor=aa&aaid=$aaid");
     break;
   case 24: // insert AA into sof list
@@ -542,7 +543,7 @@ switch ($action) {
         // done in error.
         $aaref = $oldnext;
       }
-      
+
       $loc = "Location: index.php?editor=aa&aaid=$aaid";
       if ($aaref)
         $loc .= "&aaref=$aaref";
@@ -570,7 +571,7 @@ switch ($action) {
           setAllNextByNext($aaref, $oldnext);
           setNextID($aaref, 0);
         }
-      }      
+      }
       $loc = "Location: index.php?editor=aa&aaid=$aaid";
       if ($aaref && $aaid != $aaref)
         $loc .= "&aaref=$aaref";
@@ -598,11 +599,11 @@ function aa_info () {
   //Load from altadv_vars
   $aa_vars_array = getBaseAAInfo($aaid);
   $aa_range = $aaid;
-  if ($aa_vars_array) { 
+  if ($aa_vars_array) {
     $aa_array['aa_vars'] = $aa_vars_array;
     $aa_range = $aaid+$aa_vars_array['max_level']-1;
   }
-  
+
 
   //Load from aa_actions
   $query = "SELECT * FROM aa_actions WHERE aaid=$aaid";
@@ -624,7 +625,7 @@ function aa_info () {
   if ($aa_cost_array) {
     $aa_array['aa_cost'] = $aa_cost_array;
   }
-  
+
   if ($aa_vars_array && $aa_vars_array['prereq_skill'] != 0 && $aa_vars_array['prereq_skill'] != 4294967295) {
     // Send the full info on the prereq so we can do error checking.
     $prereq_aa_name = getBaseAAInfo($aa_vars_array['prereq_skill']);
@@ -634,7 +635,7 @@ function aa_info () {
       $aa_array['prereq_name'] = null;
     }
   }
-  
+
   $aa_prev = getPrevAAsArray($aaid);
   if ($aa_prev)
     $aa_array['aa_prev'] = $aa_prev;
@@ -644,13 +645,13 @@ function aa_info () {
     if ($aa_next)
       $aa_array['aa_next'] = $aa_next;
   }
-  
+
   return $aa_array;
 }
 
 function getAAEffectInfo($aaeffectid) {
   global $mysql;
-  
+
   $query = "SELECT * FROM aa_effects WHERE id=$aaeffectid";
   return $mysql->query_assoc($query);
 }
@@ -658,7 +659,7 @@ function getAAEffectInfo($aaeffectid) {
 function getMaxEffectSlotByRank($aaid, $rank) {
   global $mysql;
   $id = $aaid+$rank-1;
-  
+
   $query = "SELECT max(slot) as maxslot FROM aa_effects WHERE aaid=$id";
   $res = $mysql->query_assoc($query);
   if ($res)
@@ -667,14 +668,14 @@ function getMaxEffectSlotByRank($aaid, $rank) {
 
 function setNextID($id, $next) {
   global $mysql;
-  
+
   $query = "UPDATE altadv_vars SET sof_next_id=$next WHERE skill_id=$id";
   $mysql->query_no_result($query);
 }
 
 function setAllNextByNext($old, $next) {
   global $mysql;
-  
+
   $query = "UPDATE altadv_vars SET sof_next_id=$next WHERE sof_next_id=$old";
   $mysql->query_no_result($query);
 }
@@ -682,7 +683,7 @@ function setAllNextByNext($old, $next) {
 function deleteAllEffectsFromRank($aaid, $rank) {
   global $mysql;
   $id = $aaid+$rank-1;
-  
+
   $query = "DELETE FROM aa_effects WHERE aaid=$id";
   $mysql->query_no_result($query);
 }
@@ -690,41 +691,41 @@ function deleteAllEffectsFromRank($aaid, $rank) {
 function deleteAllEffectSlots($aaid, $maxrank) {
   global $mysql;
   $range = $aaid+$maxrank-1;
-  
+
   $query = "DELETE FROM aa_effects WHERE aaid BETWEEN $aaid AND $range";
   $mysql->query_no_result($query);
 }
 
 function deleteEffectSlot($id) {
   global $mysql;
-  
+
   $query = "DELETE FROM aa_effects WHERE id=$id";
   $mysql->query_no_result($query);
 }
 
 function copyEffectSlots($fromaaid, $fromrank, $aaid, $rank) {
   global $mysql;
-  
+
   $fromid = $fromaaid + $fromrank - 1;
   $toid = $aaid+$rank-1;
-  
+
   $query = "INSERT INTO aa_effects (aaid, slot, effectid, base1, base2)
             SELECT $toid, slot, effectid, base1, base2 FROM aa_effects WHERE aaid=$fromid";
   $mysql->query_no_result($query);
-  
+
 }
 
 function updateEffectSlot($aa_effect) {
   global $mysql;
   extract($aa_effect);
-  
+
   $aaid = null;
   if ($ranksel == 'useraw') {
     $aaid = $raw_aaid;
   } else {
     $aaid = $old_aaid+$ranksel-1;
   }
-  
+
   if (!$aa_effect['oldid']) {
     // We are inserting.
     $query = "INSERT INTO aa_effects SET aaid=$aaid, slot=$slot, effectid=$effectid, base1=$base1, base2=$base2";
@@ -736,7 +737,7 @@ function updateEffectSlot($aa_effect) {
   }
   $old = getAAEffectInfo($aa_effect['oldid']);
   $fields = '';
-  
+
   if ($id != '' && $old['id'] != $id && !getAAEffectInfo($id)) {
     $fields .= "id=$id, ";
   }
@@ -745,9 +746,9 @@ function updateEffectSlot($aa_effect) {
   if ($old['effectid'] != $effectid) $fields .= "effectid=$effectid, ";
   if ($old['base1'] != $base1) $fields .= "base1=$base1, ";
   if ($old['base2'] != $base2) $fields .= "base2=$base2, ";
-  
+
   $fields = rtrim($fields, ", ");
-  
+
   $query = "UPDATE aa_effects SET $fields WHERE id=$oldid";
   $mysql->query_no_result($query);
 }
@@ -755,7 +756,7 @@ function updateEffectSlot($aa_effect) {
 function getActionForRank($aaid, $rank) {
   global $mysql;
   $realrank = $rank-1;
-  
+
   $query = "SELECT * FROM aa_actions WHERE aaid=$aaid and rank=$realrank";
   $res = $mysql->query_assoc($query);
   return $res;
@@ -763,7 +764,7 @@ function getActionForRank($aaid, $rank) {
 
 function build_aa_action_from_post() {
   $vars = array();
-  
+
   $vars['reuse_time'] = $_POST['reuse_time']+0;
   $vars['spell_id'] = $_POST['spell_id']+0;
   $vars['target'] = $_POST['target']+0;
@@ -774,18 +775,18 @@ function build_aa_action_from_post() {
   $vars['redux_rate'] = $_POST['redux_rate']+0;
   $vars['redux_aa2'] = $_POST['redux_aa2']+0;
   $vars['redux_rate2'] = $_POST['redux_rate2']+0;
-  
+
   if ($_POST['target'] == 'useraw') {
     $vars['target'] = $_POST['raw_target']+0;
   }
-  
+
   return $vars;
 }
 
 function deleteActionFromRank($aaid, $rank) {
   global $mysql;
   $realrank = $rank-1;
-  
+
   $query = "DELETE FROM aa_actions WHERE aaid=$aaid and rank=$realrank";
   $mysql->query_no_result($query);
 }
@@ -793,13 +794,13 @@ function deleteActionFromRank($aaid, $rank) {
 function addActionToRank($aaid, $rank, $vars) {
   global $mysql;
   $realrank = $rank-1;
-  
+
   $fields = '';
   foreach($vars as $k => $v) {
     $fields .= "$k=$v, ";
   }
   $fields .= "aaid=$aaid, rank=$realrank";
-  
+
   $query = "INSERT INTO aa_actions SET $fields";
   $mysql->query_no_result($query);
 }
@@ -807,11 +808,11 @@ function addActionToRank($aaid, $rank, $vars) {
 function updateActionForRank($aaid, $rank, $vars) {
   global $mysql;
   $realrank = $rank-1;
-  
+
   $old = getActionForRank($aaid, $rank);
-  
+
   $fields = '';
-  
+
   if(isset($vars['target']) && $old['target'] != $vars['target']) $fields .= "target={$vars['target']}, ";
   if(isset($vars['spell_id']) && $old['spell_id'] != $vars['spell_id']) $fields .= "spell_id={$vars['spell_id']}, ";
   if(isset($vars['reuse_time']) && $old['reuse_time'] != $vars['reuse_time']) $fields .= "reuse_time={$vars['reuse_time']}, ";
@@ -823,7 +824,7 @@ function updateActionForRank($aaid, $rank, $vars) {
   if(isset($vars['redux_rate']) && $old['redux_rate'] != $vars['redux_rate']) $fields .= "redux_rate2={$vars['redux_rate']}, ";
   if(isset($vars['redux_rate2']) && $old['redux_rate2'] != $vars['redux_rate2']) $fields .= "redux_rate2={$vars['redux_rate2']}, ";
   $fields = rtrim($fields, ", ");
-  
+
   $query = "UPDATE aa_actions SET $fields WHERE aaid=$aaid AND rank=$realrank";
   $mysql->query_no_result($query);
 }
@@ -831,7 +832,7 @@ function updateActionForRank($aaid, $rank, $vars) {
 function getBaseAAInfo($aaid) {
   global $mysql;
   $aa_vars_array = array();
-  
+
   $query = "SELECT * FROM altadv_vars WHERE skill_id=$aaid";
   $aa_vars_array = $mysql->query_assoc($query);
   return $aa_vars_array;
@@ -839,7 +840,7 @@ function getBaseAAInfo($aaid) {
 
 function getNameByID($aaid) {
   global $mysql;
-  
+
   $query = "SELECT * FROM altadv_vars WHERE skill_id=$aaid";
   $res = $mysql->query_assoc($query);
   if ($res) {
@@ -856,7 +857,7 @@ function getPrevAAsArray($aaid) {
   $loopflag = 0;
   $nextid = $aaid;
   $aa_prev_array = array();
-  
+
   while (!$loopflag) {
     $results = get_aa_by_next($nextid);
     if ($results) {
@@ -890,14 +891,14 @@ function getPrevAAsArray($aaid) {
 }
 
 
-// Get the chain of sof_next_id linked AAs starting with the ID 
+// Get the chain of sof_next_id linked AAs starting with the ID
 // provided as a parameter.
 function getNextAAsArray($aaid) {
   $idx = 0;
   $nextid = $aaid;
   $loopflag = 0;
   $aa_next_array = array();
-  
+
   while ($nextid != 0 && !$loopflag) {
       $results = get_aa_by_id($nextid);
       if ($results) {
@@ -936,7 +937,7 @@ function getNextAAsArray($aaid) {
 
 function get_aa_by_id($id) {
   global $mysql;
-  
+
   $query = "SELECT * FROM altadv_vars WHERE skill_id=$id";
   $results = $mysql->query_assoc($query);
   return $results;
@@ -944,7 +945,7 @@ function get_aa_by_id($id) {
 
 function get_aa_by_next($nextid) {
   global $mysql;
-  
+
   $query = "SELECT * FROM altadv_vars WHERE sof_next_id=$nextid";
   $results = $mysql->query_mult_assoc($query);
   return $results;
@@ -960,9 +961,9 @@ function get_level_cost($aaid, $rank) {
 
 function update_level_cost($aaid, $rank, $level, $cost, $desc) {
   global $mysql;
-  
+
   $id = $aaid+$rank-1;
-  
+
   $old = get_level_cost($aaid, $rank);
   if(!$old) {
     // We're inserting
@@ -970,14 +971,14 @@ function update_level_cost($aaid, $rank, $level, $cost, $desc) {
     $mysql->query_no_result($query);
     return;
   }
-  
+
   $fields = '';
   if ($old['level'] != $level) $fields .= "level=$level, ";
   if ($old['cost'] != $cost) $fields .= "cost=$cost, ";
   if ($old['description'] != $desc) $fields .= "description=\"$desc\", ";
-  
+
   $fields = rtrim($fields, ", ");
-  
+
   if ($fields != '') {
     $query = "UPDATE aa_required_level_cost SET $fields WHERE skill_id=$id";
     $mysql->query_no_result($query);
@@ -986,7 +987,7 @@ function update_level_cost($aaid, $rank, $level, $cost, $desc) {
 
 function delete_level_cost($aaid, $rank) {
   global $mysql;
-  
+
   $aa_vars = getBaseAAInfo($aaid);
   if (!$aa_vars || $rank <= 0 || ($aa_vars && $aa_vars['max_level'] < $rank)) {
     return;
@@ -999,7 +1000,7 @@ function delete_level_cost($aaid, $rank) {
 
 function build_aa_effect_from_post() {
   $aa_effect = array();
-  
+
   $aa_effect['slot'] = intval($_POST['slot']);
   $aa_effect['effectid'] = intval($_POST['effectid']);
   $aa_effect['base1'] = intval($_POST['base1']);
@@ -1008,7 +1009,7 @@ function build_aa_effect_from_post() {
   $aa_effect['raw_aaid'] = intval($_POST['raw_aaid']);
   $aa_effect['id'] = intval($_POST['id']);
   $aa_effect['oldid'] = $_POST['oldid'];
-  
+
   return $aa_effect;
 }
 
@@ -1016,7 +1017,7 @@ function build_aa_effect_from_post() {
 // that we return.
 function build_aa_vars_from_post() {
   $aa_vars = array();
-  
+
   $aa_vars['skill_id'] = $_POST['skill_id']+0;
   $aa_vars['name'] = $_POST['aaname'];
   $aa_vars['cost'] = $_POST['cost']+0;
@@ -1044,13 +1045,14 @@ function build_aa_vars_from_post() {
   $aa_vars['sof_current_level'] = $_POST['sof_current_level']+0;
   $aa_vars['sof_next_id'] = $_POST['sof_next_id']+0;
   $aa_vars['level_inc'] = $_POST['level_inc']+0;
-  
+  $aa_vars['eqmacid'] = $_POST['eqmacid']+0;
+
   if ($aa_vars['aa_expansion'] == 'useraw')
     $aa_vars['aa_expansion'] = $_POST['raw_aa_expansion']+0;
   if ($aa_vars['special_category'] == 'useraw')
     $aa_vars['special_category'] = $_POST['raw_special_category']+0;
 
-  
+
   $classes = 0;
   if (isset($_POST['class_war'])) $classes += 2;
   if (isset($_POST['class_clr'])) $classes += 4;
@@ -1068,7 +1070,7 @@ function build_aa_vars_from_post() {
   if (isset($_POST['class_enc'])) $classes += 16384;
   if (isset($_POST['class_bst'])) $classes += 32768;
   $aa_vars['classes'] = $classes;
-  
+
   $berserker = 0;
   if (isset($_POST['class_ber'])) $berserker += 1;
   $aa_vars['berserker'] = $berserker;
@@ -1079,23 +1081,23 @@ function build_aa_vars_from_post() {
 function update_aabase($aa_vars, $aaid) {
   global $mysql;
 
-  
+
   $old = getBaseAAInfo($aaid);
 
   if ($aa_vars['max_level'] != $old['max_level']) {
     // There is a size change.
     // -- We don't care currently.
   }
-  
+
   if ($aa_vars['skill_id'] != $aaid) {
     // We're moving the AA. We also need to update
     // the effects, level_cost and action tables.
     // -- Not implemented yet
   }
-  
-  
+
+
   $fields = '';
-  
+
   if (isset($aa_vars['skill_id']) && $old['skill_id'] != $aa_vars['skill_id'])
     $fields .= "skill_id=\"". $aa_vars['skill_id'] ."\", ";
   if (isset($aa_vars['name']) && $old['name'] != $aa_vars['name'] && $aa_vars['name'] != '')
@@ -1154,9 +1156,11 @@ function update_aabase($aa_vars, $aaid) {
     $fields .= "sof_next_id=\"". $aa_vars['sof_next_id'] ."\", ";
   if (isset($aa_vars['level_inc']) && $old['level_inc'] != $aa_vars['level_inc'])
     $fields .= "level_inc=\"". $aa_vars['level_inc'] ."\", ";
-  
+  if (isset($aa_vars['eqmacid']) && $old['eqmacid'] != $aa_vars['eqmacid'])
+    $fields .= "eqmacid=\"". $aa_vars['eqmacid'] ."\", ";
+
   $fields = rtrim ($fields, ", ");
-  
+
   if ($fields != '') {
     $query = "UPDATE altadv_vars SET $fields WHERE skill_id = $aaid";
     $mysql->query_no_result($query);
@@ -1171,11 +1175,11 @@ function do_aa_range_check($aaid, $ranks, $exlude=0) {
   global $mysql;
   $errors = array();
   $errror_idx = 0;
-  
+
   // Check for preceeding AA that has enough ranks to overlap the start.
   $query = "SELECT skill_id, name, max_level FROM altadv_vars WHERE skill_id <= $aaid ORDER BY skill_id DESC LIMIT 1";
   $results = $mysql->query_assoc($query);
-  
+
   if ($results) {
     if (($results['skill_id']+$results['max_level']-1) >= $aaid) {
       // We have overlap from a previous AA.
@@ -1189,7 +1193,7 @@ function insert_aabase($aa_vars) {
   global $mysql, $defaultvalues;
   $errors = array();
   $error_idx = 0;
-  
+
   $aaid = $aa_vars['skill_id'];
   // Sanity checking
   if ($aaid == '' || !is_numeric($aaid)) {
@@ -1197,12 +1201,12 @@ function insert_aabase($aa_vars) {
     $error_idx++;
     //return $errors;
   }
-  
-  
+
+
   if ($error_idx > 0) {
     return $errors;
   }
-  
+
   $fields = '';
   foreach ($aa_vars as $key => $val) {
     if ($val == '') {
@@ -1212,16 +1216,16 @@ function insert_aabase($aa_vars) {
     }
   }
   $fields = rtrim($fields, ", ");
-  
+
   $query = "INSERT INTO altadv_vars SET $fields";
   $mysql->query_no_result($query);
 }
 
 function deleteCompleteAA($aaid) {
   global $mysql;
-  
+
   $vars = getBaseAAInfo($aaid);
-  
+
   if ($vars) {
     $aarange = $aaid + $vars['max_level'] - 1;
     $query = "DELETE FROM altadv_vars WHERE skill_id=$aaid";
@@ -1239,12 +1243,12 @@ function deleteCompleteAA($aaid) {
 // since then it could also stop at the client available versions.
 function fixOffsetMax($aaid) {
   global $mysql;
-  
+
   // Step 1, figure out if we're a valid chain of AAs and what the max rank
   // for the whole thing is.
   $aa_vars = getBaseAAInfo($aaid);
   if (!$aa_vars) return;
-  
+
   $aa_prev = getPrevAAsArray($aaid);
   $maxrank = 0;
   // If we ever get more than one result then we bail.
@@ -1253,9 +1257,9 @@ function fixOffsetMax($aaid) {
        if (count($aa_prev[$i]) > 1) return;
        $maxrank += $aa_prev[$i][0]['max_level'];
     }
-  
+
   $maxrank+= $aa_vars['max_level'];
-  
+
   $aa_next = null;
   if ($aa_vars['sof_next_id'])
     $aa_next = getNextAAsArray($aa_vars['sof_next_id']);
@@ -1264,7 +1268,7 @@ function fixOffsetMax($aaid) {
       if(!isset($n['aa_expansion'])) return; // We bail if we get a 'not found'
       $maxrank += $n['max_level'];
     }
-  
+
   // Step 2: Now that we have the max rank we can walk through the
   // list and update them all.
   $cur = 0;
@@ -1275,12 +1279,12 @@ function fixOffsetMax($aaid) {
       $cur += $aa_prev[$i][0]['max_level'];
       update_aabase($aa_prev[$i][0], $aa_prev[$i][0]['skill_id']);
     }
-  
+
   $aa_vars['sof_max_level'] = $maxrank;
   $aa_vars['sof_current_level'] = $cur;
   $cur += $aa_vars['max_level'];
   update_aabase($aa_vars, $aaid);
-  
+
   if ($aa_next)
     foreach ($aa_next as $aa) {
       $aa['sof_max_level'] = $maxrank;
@@ -1292,14 +1296,14 @@ function fixOffsetMax($aaid) {
 
 function findByID($id) {
   global $mysql;
-  
+
   $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes, berserker FROM altadv_vars WHERE skill_id='$id'";
   return $mysql->query_mult_assoc($query);
 }
 
 function findByName($search) {
   global $mysql;
-  
+
   $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes, berserker FROM altadv_vars WHERE name rlike \"$search\" ORDER BY skill_id";
   return $mysql->query_mult_assoc($query);
 }
@@ -1308,7 +1312,7 @@ function findByClsExp($cls, $exp) {
   global $mysql;
   $classes = 65534;
   $berserker = 1;
-  
+
   if ($cls == -1) {
     $classes = 65534;
     $berserker = 1;
@@ -1328,14 +1332,14 @@ function findByClsExp($cls, $exp) {
     if ($cls == 13) $classes = 8192;
     if ($cls == 14) $classes = 16384;
     if ($cls == 15) $classes = 32768;
-    
+
     if ($cls == 16) $berserker = 1;
-    
+
     if ($classes != 65534) $berserker = 0;
   }
 
   $check = "(classes & $classes <> 0";
-  if ($berserker != 0) 
+  if ($berserker != 0)
     $check .= " or ((classes & $classes) = 0 and berserker=$berserker))";
   else
     $check .= ")";
@@ -1343,7 +1347,7 @@ function findByClsExp($cls, $exp) {
   if ($exp != -1) {
     $check .= " and aa_expansion=$exp";
   }
-  
+
   $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes, berserker FROM altadv_vars WHERE $check ORDER BY aa_expansion, name";
   $result = $mysql->query_mult_assoc($query);
   return $result;

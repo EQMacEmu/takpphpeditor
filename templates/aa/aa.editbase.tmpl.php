@@ -78,14 +78,18 @@
   </center>
   <div class="edit_form" style="width:500px;">
     <div class="edit_form_header">
-<?if ($editmode == 2) echo "Create a new AA"; else echo "Edit AA: {$aa_vars['name']} ($aaid)";?>
+<?if ($editmode == 2) echo "Create a new AA"; else echo "Edit AA: {$aa_vars['name']} ({$aa_vars['eqmacid']}:$aaid)";?>
     </div>
     <div class="edit_form_content">
       <form name="aa_edit" method="post" action="index.php?editor=aa<?if($editmode == 1) echo "&aaid=$aaid";?>&action=<? if($editmode == 1) echo "15"; else echo "16";?>">
         <table>
           <tr>
+          <td>
+		      EQMacID:<br/>
+		     <input type="text" name="eqmacid" size="6" value="<?echo "{$aa_vars['eqmacid']}";?>"><br/>
+            </td>
             <td>
-              ID:<br/>
+              EmuAAID:<br/>
               <input type="text" name="skill_id" size="6" value="<?echo "{$aa_vars['skill_id']}";?>"><br/>
             </td>
             <td>
