@@ -200,6 +200,15 @@
               <td align="left" width="16%">Rec Skill:<br/><input type="text" name="recskill" size="5" value="<?=$recskill?>"></td>
               <td align="left" width="16%">Evolving Level:<br/><input type="text" name="evolvinglevel" size="5" value="<?=$evolvinglevel?>"></td>
             </tr>
+            <tr>
+			  <td align="left" width="20%">GM Flag:<br/>
+			  <select class="left" name="gmflag">
+			<?foreach($gmflagtype as $k => $v):?>
+			  <option value="<?=$k?>"<? echo ($k == $gmflag) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+			<?endforeach;?>
+			   </select>
+                </td>
+              </tr>
           </table>
           <table cellpadding="20px">
             <tr>
