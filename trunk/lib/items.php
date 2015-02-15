@@ -73,6 +73,11 @@ $scrollcasttype= array(
 7   => "Scroll"
 );
 
+$gmflagtype= array(
+-1   => "GM",
+0   => "No"
+);
+
 switch ($action) {
   case 0: //Default
     check_authorization();
@@ -108,8 +113,9 @@ switch ($action) {
     $body->set("worncasttype", $worncasttype);
     $body->set("focuscasttype", $focuscasttype);
     $body->set("scrollcasttype", $scrollcasttype);
-    $body->set("equipslots", $equipslots); 
+    $body->set("equipslots", $equipslots);
     $body->set("factions", factions_array());
+    $body->set("gmflagtype", $gmflagtype);
     $vars = item_info();
     if ($vars) {
       foreach ($vars as $key=>$value) {
@@ -194,6 +200,7 @@ switch ($action) {
      $body->set("yesno", $yesno);
      $body->set('newid', get_max_id());
      $body->set("factions", factions_array());
+     $body->set("gmflagtype", $gmflagtype);
      $vars = getdate();
      if ($vars) {
       foreach ($vars as $key=>$value) {
@@ -201,7 +208,7 @@ switch ($action) {
       }
      }
      break;
-  case 9: //Add Item 
+  case 9: //Add Item
      check_authorization();
      add_item();
      $id = $_POST['id'];
@@ -559,6 +566,7 @@ function update_item () {
   if ($item['verified'] != $_POST['verified']) $fields .= "verified=\"" . $_POST['verified'] . "\", ";
   if ($item['source'] != $_POST['source']) $fields .= "source=\"" . $_POST['source'] . "\", ";
   if ($item['comment'] != $_POST['comment']) $fields .= "comment=\"" . $_POST['comment'] . "\", ";
+  if ($item['gmflag'] != $_POST['gmflag']) $fields .= "gmflag=\"" . $_POST['gmflag'] . "\", ";
   if ($fields != '') $fields .= "updated=\"" . $_POST['updated'] . "\", ";
   $fields =  rtrim($fields, ", ");
 
@@ -572,7 +580,7 @@ function copy_item () {
   global $mysql;
 
    $id = $_GET['id'];
-   
+
    $query = "DELETE FROM items where id=0";
    $mysql->query_no_result($query);
 
@@ -580,7 +588,7 @@ function copy_item () {
               SELECT minstatus, concat(Name, ' - Copy'), aagi, ac, accuracy, acha, adex, aint, artifactflag, asta, astr, attack, augrestrict, augslot1type, augslot1visible, augslot2type, augslot2visible, augslot3type, augslot3visible, augslot4type, augslot4visible, augslot5type, augslot5visible, augtype, avoidance, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgraceamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, charmfile, charmfileid, classes, color, combateffects, extradmgskill, extradmgamt, price, cr, damage, damageshield, deity, delay, augdistiller, dotshielding, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, endur, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, haste, clicklevel, hp, regen, icon, idfile, itemclass, itemtype, ldonprice, ldontheme, ldonsold, light, lore, loregroup, magic, mana, manaregen, enduranceregen, material, maxcharges, mr, nodrop, norent, pendingloreflag, pr, procrate, races, `range`, reclevel, recskill, reqlevel, sellrate, shielding, size, skillmodtype, skillmodvalue, slots, clickeffect, spellshield, strikethrough, stunresist, summonedflag, tradeskills, favor, weight, UNK012, UNK013, benefitflag, UNK054, UNK059, booktype, recastdelay, recasttype, guildfavor, UNK123, UNK124, attuneable, nopet, updated, comment, UNK127, pointtype, potionbelt, potionbeltslots, stacksize, notransfer, stackable, UNK134, UNK137, proceffect, proctype, proclevel2, proclevel, UNK142, worneffect, worntype, wornlevel2, wornlevel, UNK147, focustype, focuslevel2, focuslevel, UNK152, scrolleffect, scrolltype, scrolllevel2, scrolllevel, UNK157, serialized, verified, serialization, source, UNK033, lorefile, UNK014, svcorruption, UNK038, UNK060, augslot1unk2, augslot2unk2, augslot3unk2, augslot4unk2, augslot5unk2, UNK120, UNK121, questitemflag, UNK132, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, UNK193, purity, evolvinglevel, clickname, procname, wornname, focusname, scrollname, dsmitigation, heroic_str, heroic_int, heroic_wis, heroic_agi, heroic_dex, heroic_sta, heroic_cha, heroic_pr, heroic_dr, heroic_fr, heroic_cr, heroic_mr, heroic_svcorrup, healamt, spelldmg, clairvoyance, backstabdmg, created, elitematerial, ldonsellbackrate, scriptfileid, expendablearrow, powersourcecapacity, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, UNK214 FROM items where id=$id";
    $mysql->query_no_result($query2);
 
-   $query3 = "SELECT max(id) AS iid FROM items"; 
+   $query3 = "SELECT max(id) AS iid FROM items";
    $result = $mysql->query_assoc($query3);
    $newid = $result['iid'] + 1;
 
@@ -593,7 +601,7 @@ function copy_item () {
 function get_max_id () {
   global $mysql;
 
-  $query = "SELECT max(id) AS iid FROM items"; 
+  $query = "SELECT max(id) AS iid FROM items";
   $result = $mysql->query_assoc($query);
   $newid = $result['iid'] + 1;
 
@@ -647,7 +655,7 @@ function add_item () {
   if (isset($_POST['race_Froglok'])) $races = $races+16384;
   if (isset($_POST['race_Drakkin'])) $races = $races+32768;
   if (isset($_POST['race_Shroud'])) $races = $races+65536;
-  
+
   $classes = 0;
   if (isset($_POST['class_Warrior'])) $classes = $classes+1;
   if (isset($_POST['class_Cleric'])) $classes = $classes+2;
@@ -665,7 +673,7 @@ function add_item () {
   if (isset($_POST['class_Enchanter'])) $classes = $classes+8192;
   if (isset($_POST['class_Beastlord'])) $classes = $classes+16384;
   if (isset($_POST['class_Berserker'])) $classes = $classes+32768;
-  
+
   $deity = 0;
   if (isset($_POST['deity_Agnostic'])) $deity = $deity+1;
   if (isset($_POST['deity_Bertox'])) $deity = $deity+2;
@@ -902,6 +910,7 @@ function add_item () {
   $fields .= "updated=\"" . $_POST['updated'] . "\", ";
   $fields .= "source=\"" . $_POST['source'] . "\", ";
   $fields .= "comment=\"" . $_POST['comment'] . "\"";
+  $fields .= "gmflag=\"" . $_POST['gmflag'] . "\"";
 
   $query = "INSERT INTO items SET $fields";
   $mysql->query_no_result($query);

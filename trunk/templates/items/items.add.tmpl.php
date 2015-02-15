@@ -214,6 +214,16 @@
                 Evolving Level:<br/><input type="text" name="evolvinglevel" size="5" value="0">
               </td>
             </tr>
+             <tr>
+              <td align="left" width="16%">
+			   GM Flag:<br/>
+			  <select class="left" name="gmflag">
+			  <?foreach($gmflagtype as $k => $v):?>
+			    <option value="<?=$k?>"<? echo ($k == 0) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+			  <?endforeach;?>
+			    </select>
+                </td>
+            </tr>
           </table>
           <table cellpadding="20px">
             <tr>
