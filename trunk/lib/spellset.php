@@ -269,6 +269,11 @@ function add_spell() {
   $priority = $_POST['priority'];
   $resist_adjust = $_POST['resist_adjust'];
 
+  if($resist_adjust == "")
+  {
+  	$resist_adjust = "NULL";
+  }
+
   $query = "INSERT INTO npc_spells_entries SET npc_spells_id=$npc_spells_id, spellid=$spellid, type=$type, minlevel=$minlevel, maxlevel=$maxlevel, manacost=$manacost, recast_delay=$recast_delay, priority=$priority, resist_adjust=$resist_adjust";
   $mysql->query_no_result($query);
 }
@@ -323,6 +328,11 @@ function update_spell() {
   $recast_delay = $_POST['recast_delay'];
   $priority = $_POST['priority'];
   $resist_adjust = $_POST['resist_adjust'];
+
+  if($resist_adjust == "")
+  {
+    $resist_adjust = "NULL";
+  }
 
   $query = "UPDATE npc_spells_entries SET spellid=$spellid, type=$type, minlevel=$minlevel, maxlevel=$maxlevel, manacost=$manacost, recast_delay=$recast_delay, priority=$priority, resist_adjust=$resist_adjust WHERE id=$id";
   $mysql->query_no_result($query);
