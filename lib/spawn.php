@@ -953,6 +953,10 @@ function add_spawngroup_member() {
     $mysql->query_no_result($query);
   }
 
+  if($npc == "")
+  {
+  	$npc = 0;
+  }
   $query = "INSERT INTO spawnentry SET spawngroupID=$sid, npcID=$npc, chance=$chance";
   $mysql->query_no_result($query);
 
@@ -1509,6 +1513,10 @@ function add_spawngroup() {
   $query = "INSERT INTO spawngroup VALUES($id, \"$name\", \"$spawn_limit\", \"$dist\", \"$max_x\", \"$min_x\", \"$max_y\", \"$min_y\", \"$delay\", \"$mindelay\", \"$despawn\", \"$despawn_timer\")";
   $mysql->query_no_result($query);
 
+  if($npcID == "")
+  {
+  	$npcID = 0;
+  }
   $query = "INSERT INTO spawnentry SET spawngroupID=$id, npcID=$npcID, chance=$chance";
   $mysql->query_no_result($query);
 }
