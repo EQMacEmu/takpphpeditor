@@ -1,0 +1,1 @@
+Editor to use with EQMac database.
