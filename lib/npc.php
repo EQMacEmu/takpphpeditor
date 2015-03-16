@@ -2313,8 +2313,10 @@ function getExistingEmoteEvents($emoteid) {
   $query = "SELECT event_ FROM npc_emotes WHERE emoteid=$emoteid";
   $result = $mysql->query_mult_assoc($query);
 
-  foreach ($result as $result) {
-    array_push($events, $result['event_']);
+  if ($result) {
+    foreach ($result as $result) {
+      array_push($events, $result['event_']);
+    }
   }
 
   return $events;
