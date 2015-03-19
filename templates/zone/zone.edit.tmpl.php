@@ -48,6 +48,13 @@
                       <option value="1"<?echo ($global == 1) ? " selected" : ""?>>Yes</option>
                     </select>
                   </td>
+                 <td align="left" width="25%">
+                    Skip LoS:<br>
+                    <select name="skip_los">
+                      <option value="0"<?echo ($skip_los == 0) ? " selected" : ""?>>No</option>
+                      <option value="1"<?echo ($skip_los == 1) ? " selected" : ""?>>Yes</option>
+                    </select>
+                  </td>			  
                 </tr>
                 <tr>
                   <td align="left" width="25%">
