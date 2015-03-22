@@ -1450,7 +1450,7 @@ function add_npc () {
   //handtexture
   //legtexture
   //feettexture
-  $fields .= "light=\"" . $_POST['light'] . "\", ";
+  $fields .= "light=\"" . $_POST['light'] . "\"";
   //walkspeed
   //peqid
   //unique_
