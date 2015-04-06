@@ -171,23 +171,28 @@
                   </tr>
                   <tr>
                     <td align="left" width="33%">Loottable ID: <?=$loottable_id?></td>
-                    <td align="left" width="33%">HP Regen: <?=$hp_regen_rate?></td>
-                    <td align="left" width="34%">MP Regen: <?=$mana_regen_rate?></td>
-                  </tr>
-                  <tr>
                     <td align="left" width="33%">Aggro: <?=$aggroradius?></td>
                     <td align="left" width="33%">Atk Delay: <?=$attack_delay?></td>
-                    <td align="left" width="34%">&nbsp;</td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">Assist: <?=$assistradius?></td>
-                    <td align="left" width="33%">Spell Scale: <?=$spellscale?>%</td>
+					<td align="left" width="33%">HP Regen: <?=$hp_regen_rate?></td>
+                    <td align="left" width="34%">MP Regen: <?=$mana_regen_rate?></td>
                     <td align="left" width="34%">NPC Spells ID: <?=$npc_spells_id?></td>
                   </tr>
                   <tr>
+					<td align="left" width="33%">Combat HP Regen: <?=$combat_hp_regen?></td>
+                    <td align="left" width="34%">Combat MP Regen: <?=$combat_mana_regen?></td>
+                    <td align="left" width="33%">Assist: <?=$assistradius?></td>
+                  </tr>
+                  <tr>
+                    <td align="left" width="33%">Spell Scale: <?=$spellscale?>%</td>
                     <td align="left" width="33%">Slow Mit: <?=$slow_mitigation?> (<?=$slotmit?>%)</td>
                     <td align="left" width="33%">Heal Scale: <?=$healscale?>%</td>
+                 </tr>
+                  <tr>
                     <td align="left" width="34%">NPC Aggro: <?=$npc_aggro?></td>
+                   <td align="left" width="34%">&nbsp;</td>
+                   <td align="left" width="34%">&nbsp;</td>
                   </tr>
                   <?
 				    $new_special_abilities = '';
@@ -360,6 +365,8 @@
         <input type="hidden" name="no_target_hotkey" value="<?=$no_target_hotkey?>">
         <input type="hidden" name="raid_target" value="<?=$raid_target?>">
         <input type="hidden" name="light" value="<?=$light?>">
+        <input type="hidden" name="combat_hp_regen" value="<?=$combat_hp_regen?>">
+        <input type="hidden" name="combat_mana_regen" value="<?=$combat_mana_regen?>">
         <center>
           NEW ID:<input type="text" name="id" size="10" value="<?=$suggestedid?>">
           <input type="submit" value="Copy NPC">

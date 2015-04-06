@@ -1239,6 +1239,9 @@ function update_npc () {
   if ($size != $_POST['size']) $fields .= "size=\"" . $_POST['size'] . "\", ";
   if ($hp_regen_rate != $_POST['hp_regen_rate']) $fields .= "hp_regen_rate=\"" . $_POST['hp_regen_rate'] . "\", ";
   if ($mana_regen_rate != $_POST['mana_regen_rate']) $fields .= "mana_regen_rate=\"" . $_POST['mana_regen_rate'] . "\", ";
+  if ($combat_hp_regen != $_POST['combat_hp_regen']) $fields .= "combat_hp_regen=\"" . $_POST['combat_hp_regen'] . "\", ";
+  if ($combat_mana_regen != $_POST['combat_mana_regen']) $fields .= "combat_mana_regen=\"" . $_POST['combat_mana_regen'] . "\", ";
+
   if ($loottable_id != $_POST['loottable_id']) $fields .= "loottable_id=\"" . $_POST['loottable_id'] . "\", ";
   //merchant_id
   //alt_currency_id
@@ -1370,6 +1373,8 @@ function add_npc () {
   $fields .= "size=\"" . $_POST['size'] . "\", ";
   $fields .= "hp_regen_rate=\"" . $_POST['hp_regen_rate'] . "\", ";
   $fields .= "mana_regen_rate=\"" . $_POST['mana_regen_rate'] . "\", ";
+  $fields .= "combat_hp_regen=\"" . $_POST['combat_hp_regen'] . "\", ";
+  $fields .= "combat_mana_regen=\"" . $_POST['combat_mana_regen'] . "\", ";
   $fields .= "loottable_id=\"" . $_POST['loottable_id'] . "\", ";
   //merchant_id
   //alt_currency_id
@@ -1484,6 +1489,8 @@ function copy_npc () {
   $fields .= "size=\"" . $_POST['size'] . "\", ";
   $fields .= "hp_regen_rate=\"" . $_POST['hp_regen_rate'] . "\", ";
   $fields .= "mana_regen_rate=\"" . $_POST['mana_regen_rate'] . "\", ";
+  $fields .= "combat_hp_regen=\"" . $_POST['combat_hp_regen'] . "\", ";
+  $fields .= "combat_mana_regen=\"" . $_POST['combat_mana_regen'] . "\", ";
   $fields .= "loottable_id=\"" . $_POST['loottable_id'] . "\", ";
   $fields .= "merchant_id=\"" . $_POST['merchant_id'] . "\", ";
   $fields .= "alt_currency_id=\"" . $_POST['alt_currency_id'] . "\", ";
