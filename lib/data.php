@@ -872,21 +872,7 @@ $classes = array (
  56 => 'Unknown56',
  57 => 'Unknown57',
  58 => 'Quest NPC',
- 59 => 'Discord Merchant',
- 60 => 'LDoN Adventure Recruiter',
- 61 => 'LDoN Adventure Merchant',
- 62 => 'LDoN Object',
- 63 => 'Tribute Master',
- 64 => 'Guild Tribute Master',
- 65 => 'Unknown65',
- 66 => 'Guild Banker',
- 67 => 'Norraths Keepers Merchant',
- 68 => 'Dark Reign Merchant',
- 69 => 'Fellowship Master',
- 70 => 'Alt Currency Merchant',
- 71 => 'Mercenary Liaison',
- 72 => 'Unknown72',
- 73 => 'Loyalists of Everquest'
+ 59 => 'Discord Merchant'
 );
 
 $specialattacks = array(

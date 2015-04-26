@@ -55,13 +55,6 @@ function get_merchant_id() {
   return $result['merchant_id'];
 }
 
-function get_adventure_id() {
-  global $mysql, $npcid;
-  $query = "SELECT adventure_template_id as id FROM npc_types WHERE id=$npcid";
-  $result = $mysql->query_assoc($query);
-  return $result['id'];
-}
-
 function get_trap_template() {
   global $mysql, $npcid;
   $query = "SELECT trap_template as id FROM npc_types WHERE id=$npcid";
@@ -420,10 +413,6 @@ function delete_player($playerid) {
 
   $query = "DELETE FROM aa_timers WHERE charid=$playerid";
   $mysql->query_no_result($query);
-  $query = "DELETE FROM adventure_members WHERE charid=$playerid";
-  $mysql->query_no_result($query);
-  $query = "DELETE FROM adventure_stats WHERE player_id=$playerid";
-  $mysql->query_no_result($query);
   $query = "DELETE FROM buyer WHERE charid=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM character_activities WHERE charid=$playerid";
@@ -434,8 +423,6 @@ function delete_player($playerid) {
   $mysql->query_no_result($query);
   $query = "DELETE FROM character_backup WHERE charid=$playerid";
   $mysql->query_no_result($query);
-  $query = "DELETE FROM character_bandolier WHERE id=$playerid";
-  $mysql->query_no_result($query);
   $query = "DELETE FROM character_bind WHERE id=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM character_buffs WHERE character_id=$playerid";
@@ -445,8 +432,6 @@ function delete_player($playerid) {
   $query = "DELETE FROM character_data WHERE id=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM character_disciplines WHERE id=$playerid";
-  $mysql->query_no_result($query);
-  $query = "DELETE FROM character_enabledtasks WHERE charid=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM character_inspect_messages WHERE id=$playerid";
   $mysql->query_no_result($query);
@@ -464,15 +449,9 @@ function delete_player($playerid) {
   $mysql->query_no_result($query);
   $query = "DELETE FROM character_pet_inventory WHERE char_id=$playerid";
   $mysql->query_no_result($query);
-  $query = "DELETE FROM character_potionbelt WHERE id=$playerid";
-  $mysql->query_no_result($query);
   $query = "DELETE FROM character_skills WHERE id=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM character_spells WHERE id=$playerid";
-  $mysql->query_no_result($query);
-  $query = "DELETE FROM character_tasks WHERE charid=$playerid";
-  $mysql->query_no_result($query);
-  $query = "DELETE FROM character_tribute WHERE id=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM char_recipe_list WHERE char_id=$playerid";
   $mysql->query_no_result($query);

@@ -111,15 +111,6 @@ switch ($editor) {
     break;
   case 'server':
     break;
-  case 'adventures':
-    break;
-  case 'tasks':
-    $tasks = tasks();
-    $searchbar = new Template("templates/searchbar/searchbar.tasks.tmpl.php");
-    $searchbar->set('curreditor', $editor);
-    $searchbar->set('currtask', $tskid);
-    $searchbar->set('tasks', $tasks);
-    break;
   case 'items':
     $npcs = npcs();
     $searchbar = new Template("templates/searchbar/searchbar.items.tmpl.php");
@@ -247,12 +238,6 @@ function build_tabs () {
     case 'server':
       $tabstatus10 = "on";
       break;
-    case 'adventures':
-      $tabstatus11 = "on";
-      break;
-    case 'tasks':
-      $tabstatus12 = "on";
-      break;
     case 'items':
       $tabstatus13 = "on";
       break;
@@ -305,9 +290,7 @@ function build_tabs () {
         <div class=\"$tabstatus7\"><a href=\"index.php?editor=tradeskill\">Tradeskills</a></div>
         <div class=\"$tabstatus8\"><a href=\"index.php?editor=zone$zoneurl\">Zones</a></div>
         <div class=\"$tabstatus9\"><a href=\"index.php?editor=misc$zoneurl\">Misc</a></div>
-        <div class=\"$tabstatus10\"><a href=\"index.php?editor=server\">Server</a></div>
-        <div class=\"$tabstatus11\"><a href=\"index.php?editor=adventures$zoneurl$npcurl\">Adventures</a></div><br/><br/>
-        <div class=\"$tabstatus12\"><a href=\"index.php?editor=tasks\">Tasks</a></div>
+        <div class=\"$tabstatus10\"><a href=\"index.php?editor=server\">Server</a></div><br/><br/>
         <div class=\"$tabstatus13\"><a href=\"index.php?editor=items\">Items</a></div>
         <div class=\"$tabstatus14\"><a href=\"index.php?editor=player\">Players</a></div>
         <div class=\"$tabstatus15\"><a href=\"index.php?editor=account\">Accounts</a></div>
@@ -316,7 +299,6 @@ function build_tabs () {
         <div class=\"$tabstatus18\"><a href=\"index.php?editor=aa\">AAs</a></div>
         <div class=\"$tabstatus19\"><a href=\"index.php?editor=qglobal\">QGlobals</a></div>
         <div class=\"$tabstatus20\"><a href=\"index.php?editor=util\">Utilities</a></div>
-        <div class=\"$tabstatus21\"><a href=\"index.php?editor=altcur\">Alt Curr</a></div>
         <div class=\"$tabstatus22\"><a href=\"index.php?editor=inv\">Inventory</a></div>
         <div class=\"$tabstatus23\"><a href=\"index.php?editor=keys\">Keys</a></div><br/>
         <div style=\"float: right;\">$admin<a href=\"index.php?logout\">Logout</a></div><br/><br/>
@@ -431,15 +413,6 @@ function recipes() {
     $query = "SELECT id, name FROM tradeskill_recipe WHERE tradeskill=$ts ORDER BY name";
     $results = $mysql->query_mult_assoc($query);
   }
-
-  return $results;
-}
-
-function tasks() {
-  global $mysql;
-
-    $query = "SELECT id, title FROM tasks ORDER BY title";
-    $results = $mysql->query_mult_assoc($query);
 
   return $results;
 }

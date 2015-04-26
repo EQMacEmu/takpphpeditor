@@ -392,20 +392,6 @@ switch ($action) {
     $npcid = $_POST['id'];
     header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
     exit;
-  case 29: // Edit Adventure id
-    check_authorization();
-    $body = new Template("templates/npc/adventureid.edit.tmpl.php");
-    $body->set('currzone', $z);
-    $body->set('currzoneid', $zoneid);
-    $body->set('npcid', $npcid);
-    $body->set('adventure_id', get_adventure_id());
-    $body->set('suggested_id', suggest_adventure_id());
-    break;
-  case 30: // Update adventure id
-    check_authorization();
-    update_adventure_id();
-    header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
-    exit;
   case 31: // Edit Trap id
     check_authorization();
     $body = new Template("templates/npc/traptemplate.edit.tmpl.php");
@@ -1244,11 +1230,9 @@ function update_npc () {
 
   if ($loottable_id != $_POST['loottable_id']) $fields .= "loottable_id=\"" . $_POST['loottable_id'] . "\", ";
   //merchant_id
-  //alt_currency_id
   if ($npc_spells_id != $_POST['npc_spells_id']) $fields .= "npc_spells_id=\"" . $_POST['npc_spells_id'] . "\", ";
   //npc_spells_effects_id
   //npc_faction_id
-  //adventure_template_id
   //trap_template
   if ($mindmg != $_POST['mindmg']) $fields .= "mindmg=\"" . $_POST['mindmg'] . "\", ";
   if ($maxdmg != $_POST['maxdmg']) $fields .= "maxdmg=\"" . $_POST['maxdmg'] . "\", ";
@@ -1377,11 +1361,9 @@ function add_npc () {
   $fields .= "combat_mana_regen=\"" . $_POST['combat_mana_regen'] . "\", ";
   $fields .= "loottable_id=\"" . $_POST['loottable_id'] . "\", ";
   //merchant_id
-  //alt_currency_id
   $fields .= "npc_spells_id=\"" . $_POST['npc_spells_id'] . "\", ";
   //npc_spells_effects_id
   //npc_faction_id
-  //adventure_template_id
   //trap_template
   $fields .= "mindmg=\"" . $_POST['mindmg'] . "\", ";
   $fields .= "maxdmg=\"" . $_POST['maxdmg'] . "\", ";
@@ -1493,11 +1475,9 @@ function copy_npc () {
   $fields .= "combat_mana_regen=\"" . $_POST['combat_mana_regen'] . "\", ";
   $fields .= "loottable_id=\"" . $_POST['loottable_id'] . "\", ";
   $fields .= "merchant_id=\"" . $_POST['merchant_id'] . "\", ";
-  $fields .= "alt_currency_id=\"" . $_POST['alt_currency_id'] . "\", ";
   $fields .= "npc_spells_id=\"" . $_POST['npc_spells_id'] . "\", ";
   //npc_spells_effects_id
   $fields .= "npc_faction_id=\"" . $_POST['npc_faction_id'] . "\", ";
-  $fields .= "adventure_template_id=\"" . $_POST['adventure_template_id'] . "\", ";
   $fields .= "trap_template=\"" . $_POST['trap_template'] . "\", ";
   $fields .= "mindmg=\"" . $_POST['mindmg'] . "\", ";
   $fields .= "maxdmg=\"" . $_POST['maxdmg'] . "\", ";
@@ -1933,13 +1913,6 @@ function suggest_merchant_id() {
   return $result;
 }
 
-function suggest_adventure_id() {
-  global $mysql;
-  $query = "SELECT MAX(adventure_template_id) as id FROM npc_types";
-  $result = $mysql->query_assoc($query);
-  return ($result['id'] + 1);
-}
-
 function suggest_trap_template() {
   global $mysql;
   $query = "SELECT MAX(trap_template) as id FROM npc_types";
@@ -1959,14 +1932,6 @@ function update_merchant_id() {
   global $mysql, $npcid;
   $merchant_id = $_REQUEST['merchant_id'];
   $query = "UPDATE npc_types SET merchant_id=$merchant_id WHERE id=$npcid";
-  $mysql->query_no_result($query);
-}
-
-function update_adventure_id() {
-  check_authorization();
-  global $mysql, $npcid;
-  $adventure_template_id = $_REQUEST['adventure_template_id'];
-  $query = "UPDATE npc_types SET adventure_template_id=$adventure_template_id WHERE id=$npcid";
   $mysql->query_no_result($query);
 }
 

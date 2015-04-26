@@ -39,12 +39,6 @@ switch ($editor) {
   case 'server':
     $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>Server Config</a>";
     break;
-  case 'adventures':
-    $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>Adventures Editor</a>";
-    break;
-  case 'tasks':
-    $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>Task Editor</a>";
-    break;
   case 'items':
     $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>Item Editor</a>";
     break;
