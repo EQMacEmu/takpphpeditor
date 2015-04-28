@@ -13,7 +13,7 @@
             <th>y</th>
             <th>z</th>
             <th>heading</th>
-            <th>opentype</th>             
+            <th>opentype</th>
           </tr>
           <tr>
             <td><input type="text" size="7" name="drid" value="<?=$suggestdrid?>"></td>
@@ -36,15 +36,15 @@
             <th>lockpick</th>
           </tr>
           <tr>
-            <td><input type="text" size="7" name="guild" value="0"></td> 
+            <td><input type="text" size="7" name="guild" value="0"></td>
             <td><input type="text" size="7" name="size" value="100"></td>
             <td><input type="text" size="15" name="dest_zone" value="NONE"></td>
             <td><input type="text" size="7" name="dest_x" value="0"></td>
             <td><input type="text" size="7" name="dest_y" value="0"></td>
             <td><input type="text" size="7" name="dest_z" value="0"></td>
             <td><input type="text" size="7" name="dest_heading" value="0"></td>
-            <td><input type="text" size="7" name="lockpick" value="0"></td>  
-          </tr>       
+            <td><input type="text" size="7" name="lockpick" value="0"></td>
+          </tr>
           <tr>
             <th>triggerdoor</th>
             <th>triggertype</th>
@@ -53,26 +53,28 @@
             <th>invert</th>
             <th>incline</th>
             <th>keyitem</th>
+            <th>altkeyitem</th>
             <th>version</th>
          </tr>
           <tr>
-            <td><input type="text" size="7" name="keyitem" value="0"></td>    
             <td><input type="text" size="7" name="triggerdoor" value="0"></td>
             <td><input type="text" size="7" name="triggertype" value="0"></td>
             <td><input type="text" size="7" name="door_param" value="0"></td>
             <td><input type="text" size="7" name="doorisopen" value="0"></td>
             <td><input type="text" size="7" name="invert_state" value="0"></td>
             <td><input type="text" size="7" name="incline" value="0"></td>
+            <td><input type="text" size="7" name="keyitem" value="0"></td>
+            <td><input type="text" size="7" name="altkeyitem" value="0"></td>
             <td><input type="text" size="7" name="version" value="<?=$suggestver?>"></td>
          </tr>
          <tr>
             <th>dest instance</th>
             <th>client</th>
-            <th>LDoN</th> 
-            <th>no keyring</th> 
+            <th>LDoN</th>
+            <th>no keyring</th>
          </tr>
           <tr>
-            <td><input type="text" size="7" name="dest_instance" value="0"></td>    
+            <td><input type="text" size="7" name="dest_instance" value="0"></td>
             <td><input type="text" size="7" name="client_version_mask" value="4294967295"></td>
            <td>
                  <select name="is_ldon_door">

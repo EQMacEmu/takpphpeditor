@@ -14,7 +14,7 @@
             <th>z</th>
             <th>heading</th>
             <th>opentype</th>
-            <th>guild</th>          
+            <th>guild</th>
           </tr>
           <tr>
             <td><input type="text" size="7" name="doorid" value="<?=$doorid?>"></td>
@@ -24,7 +24,7 @@
             <td><input type="text" size="7" name="pos_z" value="<?=$pos_z?>"></td>
             <td><input type="text" size="7" name="heading" value="<?=$heading?>"></td>
             <td><input type="text" size="7" name="opentype" value="<?=$opentype?>"></td>
-            <td><input type="text" size="7" name="guild" value="<?=$guild?>"></td>      
+            <td><input type="text" size="7" name="guild" value="<?=$guild?>"></td>
            </tr>
           <tr>
             <th>size</th>
@@ -35,6 +35,7 @@
             <th>dest heading</th>
             <th>lockpick</th>
             <th>keyitem</th>
+            <th>altkeyitem</th>
           </tr>
           <tr>
             <td><input type="text" size="7" name="size" value="<?=$size?>"></td>
@@ -44,8 +45,9 @@
             <td><input type="text" size="7" name="dest_z" value="<?=$dest_z?>"></td>
             <td><input type="text" size="7" name="dest_heading" value="<?=$dest_heading?>"></td>
             <td><input type="text" size="7" name="lockpick" value="<?=$lockpick?>"></td>
-            <td><input type="text" size="7" name="keyitem" value="<?=$keyitem?>"></td>      
-          </tr>       
+            <td><input type="text" size="7" name="keyitem" value="<?=$keyitem?>"></td>
+            <td><input type="text" size="7" name="altkeyitem" value="<?=$altkeyitem?>"></td>
+          </tr>
           <tr>
             <th>triggerdoor</th>
             <th>triggertype</th>
