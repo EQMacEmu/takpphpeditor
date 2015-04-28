@@ -1026,10 +1026,12 @@ function update_spawngroup_member() {
   global $mysql;
 
   $spawngroupID = $_POST['spawngroupID'];
+  $mintime = $_POST['mintime'];
+  $maxtime = $_POST['maxtime'];
   $chance = $_POST['chance'];
   $npc = $_POST['sgnpcid'];
 
-  $query = "UPDATE spawnentry SET chance=$chance WHERE spawngroupID=$spawngroupID AND npcID=$npc";
+  $query = "UPDATE spawnentry SET mintime=$mintime, maxtime=$maxtime, chance=$chance WHERE spawngroupID=$spawngroupID AND npcID=$npc";
   $mysql->query_no_result($query);
 }
 

@@ -95,9 +95,10 @@
       <div class="table_content2" style="padding: 0px;">
         <table width="100%" cellspacing="0">
           <tr bgcolor="#AAAAAA">
-            <th width="50%">NPC</th>
-            <th width="25%" align="center">Chance</th>
-            <th width="25%" align="center">&nbsp;</th>
+          	<th width="20%" align="center">Name</th>
+            <th width="20%" align="center">MinTime</th>
+            <th width="20%" align="center">MaxTime</th>
+            <th width="20%" align="center">Chance</th>
           </tr>
 <?
   $x=0;
@@ -108,7 +109,9 @@
             <td>
               <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>"><?=$name?></a> (<?=$npcID?>)
             </td>
-            <td align="center"><?=$chance?></td>
+            <td width="20%" align="center"><?=$mintime?></td>
+            <td width="20%" align="center"><?=$maxtime?></td>
+            <td width="20%" align="center"><?=$chance?></td>
             <td align="right">
               <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&sid=<?=$spawngroupID?>&sgnpcid=<?=$npcID?>&action=1"><img src="images/edit2.gif" title="Edit this Spawngroup Member" border="0"></a>&nbsp;
               <a onClick="return confirm('Really delete this NPC from the spawngroup?');" href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&sid=<?=$spawngroupID?>&sgnpcid=<?=$npcID?>&action=71"><img src="images/table.gif" title="Remove this Spawngroup Member and Balance Group" border="0"></a>
@@ -120,7 +123,7 @@
   endforeach;
 ?>
           <tr bgcolor="#CCCCCC">
-            <td colspan="3" align="right">
+            <td colspan="5" align="right">
               <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&sid=<?=$spawngroupID?>&action=3">Balance Spawn Rates</a> (<?echo ($chance_total != 100) ? "<strong><font color='red'>" : "<font color='green'>";?>Currently: <?=$chance_total?>%</font><?echo ($chance_total != 100) ? "</strong>" : "";?>)<?$chance_total=0;?>
             </td>
           </tr>
