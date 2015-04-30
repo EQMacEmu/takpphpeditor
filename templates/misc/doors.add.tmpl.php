@@ -54,7 +54,6 @@
             <th>incline</th>
             <th>keyitem</th>
             <th>altkeyitem</th>
-            <th>version</th>
          </tr>
           <tr>
             <td><input type="text" size="7" name="triggerdoor" value="0"></td>
@@ -65,29 +64,18 @@
             <td><input type="text" size="7" name="incline" value="0"></td>
             <td><input type="text" size="7" name="keyitem" value="0"></td>
             <td><input type="text" size="7" name="altkeyitem" value="0"></td>
-            <td><input type="text" size="7" name="version" value="<?=$suggestver?>"></td>
+
          </tr>
          <tr>
             <th>dest instance</th>
             <th>client</th>
-            <th>LDoN</th>
-            <th>no keyring</th>
+            <th>version</th>
          </tr>
           <tr>
+          	<td><input type="text" size="7" name="version" value="<?=$suggestver?>"></td>
             <td><input type="text" size="7" name="dest_instance" value="0"></td>
-            <td><input type="text" size="7" name="client_version_mask" value="4294967295"></td>
+            <td><input type="text" size="10" name="client_version_mask" value="4294967295"></td>
            <td>
-                 <select name="is_ldon_door">
-                   <option value="0"<?echo ($is_ldon_door == 0) ? " selected" : ""?>>No</option>
-                   <option value="1"<?echo ($is_ldon_door == 1) ? " selected" : ""?>>Yes</option>
-                 </select>
-               </td>
-            <td>
-                 <select name="nokeyring">
-                   <option value="0"<?echo ($nokeyring == 0) ? " selected" : ""?>>No</option>
-                   <option value="1"<?echo ($nokeyring == 1) ? " selected" : ""?>>Yes</option>
-                 </select>
-               </td>
          </tr>
               </table><br><br>
         <center>

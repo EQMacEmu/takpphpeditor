@@ -27,28 +27,27 @@
             <td><input type="text" size="7" name="guild" value="<?=$guild?>"></td>
            </tr>
           <tr>
-            <th>size</th>
+          	<th>lockpick</th>
             <th>dest zone</th>
             <th>dest x</th>
             <th>dest y</th>
             <th>dest z</th>
             <th>dest heading</th>
-            <th>lockpick</th>
             <th>keyitem</th>
             <th>altkeyitem</th>
           </tr>
           <tr>
-            <td><input type="text" size="7" name="size" value="<?=$size?>"></td>
+			<td><input type="text" size="7" name="lockpick" value="<?=$lockpick?>"></td>
             <td><input type="text" size="15" name="dest_zone" value="<?=$dest_zone?>"></td>
             <td><input type="text" size="7" name="dest_x" value="<?=$dest_x?>"></td>
             <td><input type="text" size="7" name="dest_y" value="<?=$dest_y?>"></td>
             <td><input type="text" size="7" name="dest_z" value="<?=$dest_z?>"></td>
             <td><input type="text" size="7" name="dest_heading" value="<?=$dest_heading?>"></td>
-            <td><input type="text" size="7" name="lockpick" value="<?=$lockpick?>"></td>
             <td><input type="text" size="7" name="keyitem" value="<?=$keyitem?>"></td>
             <td><input type="text" size="7" name="altkeyitem" value="<?=$altkeyitem?>"></td>
           </tr>
           <tr>
+            <th>size</th>
             <th>triggerdoor</th>
             <th>triggertype</th>
             <th>param</th>
@@ -56,9 +55,9 @@
             <th>invert</th>
             <th>incline</th>
             <th>version</th>
-            <th>LDoN Door</th>
          </tr>
           <tr>
+            <td><input type="text" size="7" name="size" value="<?=$size?>"></td>
             <td><input type="text" size="7" name="triggerdoor" value="<?=$triggerdoor?>"></td>
             <td><input type="text" size="7" name="triggertype" value="<?=$triggertype?>"></td>
             <td><input type="text" size="7" name="door_param" value="<?=$door_param?>"></td>
@@ -66,27 +65,14 @@
             <td><input type="text" size="7" name="invert_state" value="<?=$invert_state?>"></td>
             <td><input type="text" size="7" name="incline" value="<?=$incline?>"></td>
             <td><input type="text" size="7" name="version" value="<?=$version?>"></td>
-             <td>
-                 <select name="is_ldon_door">
-                   <option value="0"<?echo ($is_ldon_door == 0) ? " selected" : ""?>>No</option>
-                   <option value="1"<?echo ($is_ldon_door == 1) ? " selected" : ""?>>Yes</option>
-                 </select>
-               </td>
          </tr>
           <tr>
             <th>dest instance</th>
             <th>client</th>
-            <th>no keyring</th>
          </tr>
           <tr>
             <td><input type="text" size="7" name="dest_instance" value="<?=$dest_instance?>"></td>
-            <td><input type="text" size="7" name="client_version_mask" value="<?=$client_version_mask?>"></td>
-          <td>
-                 <select name="nokeyring">
-                   <option value="0"<?echo ($nokeyring == 0) ? " selected" : ""?>>No</option>
-                   <option value="1"<?echo ($nokeyring == 1) ? " selected" : ""?>>Yes</option>
-                 </select>
-               </td>
+            <td><input type="text" size="10" name="client_version_mask" value="<?=$client_version_mask?>"></td>
          </tr>
               </table><br><br>
         <center>
