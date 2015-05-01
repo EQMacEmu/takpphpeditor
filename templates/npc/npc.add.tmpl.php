@@ -54,12 +54,13 @@
               <td align="left" width="17%">HP:       <br/><input type="text" name="hp" size="10" value="<?=$hp?>"/></td>
               <td align="left" width="17%">Mana:     <br/><input type="text" name="mana" size="10" value="<?=$mana?>"/></td>
               <td align="left" width="17%">AC:       <br/><input type="text" name="AC" size="10" value="<?=$ac?>"/></td>
-              <td align="left" width="17%">Runspeed: <br/><input type="text" name="runspeed" size="10" value="1.25"/></td>
-		<td align="left" width="17%">Walkspeed: <br/><input type="text" name="walkspeed" size="10" value="0.677"/></td>
-              <td align="left" width="16%">ATK:      <br/><input type="text" name="ATK" size="10" value="0"/></td>
-              <td align="left" width="16%">Accuracy: <br/><input type="text" name="Accuracy" size="10" value="0"/></td>
+              <td align="left" width="17%">Scalerate:<br/><input type="text" name="scalerate" size="10" value="100"/></td>
+              <td align="left" width="16%">Runspeed: <br/><input type="text" name="runspeed" size="10" value="1.25"/></td>
+			  <td align="left" width="16%">Walkspeed: <br/><input type="text" name="walkspeed" size="10" value="0.677"/></td>
             </tr>
-            <tr>
+              <tr>
+              <td align="left">ATK:      <br/><input type="text" name="ATK" size="10" value="0"/></td>
+              <td align="left">Accuracy: <br/><input type="text" name="Accuracy" size="10" value="0"/></td>
               <td align="left">
                 See Invis:<br/>
                 <select name="see_invis">
@@ -89,7 +90,7 @@
                 </select>
               </td>
               <td>&nbsp;</td>
-              <td align="left">Scalerate:<br/><input type="text" name="scalerate" size="10" value="100"/></td>
+
             </tr>
           </table>
         </fieldset><br/>
@@ -224,7 +225,7 @@
               <td align="left" width="17%">Armor Red:  <br/><input type="text" name="armortint_red" size="10" value="0"/></td>
               <td align="left" width="17%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="0"/></td>
               <td align="left" width="17%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="0"/></td>
-		<td align="left" width="17%">&nbsp;</td>
+			  <td align="left" width="17%">Light Source: <br/><input type="text" name="light" size="10" value="0"/></td>
 		<td align="left" width="16%">&nbsp;</td>
 		<td align="left" width="16%">&nbsp;</td>
             </tr>

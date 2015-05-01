@@ -51,18 +51,17 @@
                 <td align="left" width="17%">HP:      <br/><input type="text" name="hp" size="10" value="<?=$hp?>"></td>
                 <td align="left" width="17%">Mana:    <br/><input type="text" name="mana" size="10" value="<?=$mana?>"></td>
                 <td align="left" width="17%">AC:      <br/><input type="text" name="AC" size="10" value="<?=$AC?>"></td>
-                <td align="left" width="17%">Runspeed:<br/><input type="text" name="runspeed" size="10" value="<?=$runspeed?>"></td>
-				<td align="left" width="12%">Walkspeed:   <br><input type="text" name="walkspeed" size="10" value="<?=$walkspeed?>"></td>
-                <td align="left" width="16%">ATK:     <br/><input type="text" name="ATK" size="10" value="<?=$ATK?>"></td>
-                <td align="left" width="16%">Accuracy:<br/><input type="text" name="Accuracy" size="10" value="<?=$Accuracy?>"></td>
+                <td align="left" width="17%">Scalerate:<br/><input type="text" name="scalerate" size="10" value="<?=$scalerate?>"></td>
+                <td align="left" width="16%">Runspeed:<br/><input type="text" name="runspeed" size="10" value="<?=$runspeed?>"></td>
+				<td align="left" width="16%">Walkspeed:   <br><input type="text" name="walkspeed" size="10" value="<?=$walkspeed?>"></td>
               </tr>
               <tr>
+              	<td align="left">ATK:      <br/><input type="text" name="ATK" size="10" value="<?=$ATK?>"></td>
+                <td align="left">Accuracy: <br/><input type="text" name="Accuracy" size="10" value="<?=$Accuracy?>"></td>
                 <td align="left">See Invis:<br/><input type="text" name="see_invis" size="10" value="<?=$see_invis?>"></td>
                 <td align="left">See ITU:  <br/><input type="text" name="see_invis_undead" size="10" value="<?=$see_invis_undead?>"></td>
                 <td align="left">See Hide: <br/><input type="text" name="see_hide" size="10" value="<?=$see_hide?>"></td>
                 <td align="left">See IH:   <br/><input type="text" name="see_improved_hide" size="10" value="<?=$see_improved_hide?>"></td>
-                <td>&nbsp;</td>
-                <td align="left">Scalerate:<br/><input type="text" name="scalerate" size="10" value="<?=$scalerate?>"></td>
               </tr>
             </table>
           </fieldset><br/>
@@ -237,7 +236,7 @@
               <td align="left" width="17%">Armor Red:  <br/><input type="text" name="armortint_red" size="10" value="<?=$armortint_red?>"></td>
               <td align="left" width="17%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="<?=$armortint_green?>"></td>
               <td align="left" width="17%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="<?=$armortint_blue?>"></td>
-		<td align="left" width="17%">&nbsp;</td>
+			  <td align="left" width="17%">Light Source: <br/><input type="text" name="light" size="10" value="<?=$light?>"></td>
 		<td align="left" width="16%">&nbsp;</td>
 		<td align="left" width="16%">&nbsp;</td>
             </tr>

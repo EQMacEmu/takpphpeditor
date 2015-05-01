@@ -218,7 +218,7 @@
                   <tr>
                     <td align="left" width="33%">Face: <?=$face?></td>
                     <td align="left" width="33%">Helm: <?=$helmtexture?></td>
-                    <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="34%">Light Source: <?=$light?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Hair Style: <?=$luclin_hairstyle?></td>
@@ -238,7 +238,7 @@
                   <tr>
                     <td align="left" width="33%">Melee1: <?=$d_melee_texture1?></td>
                     <td align="left" width="33%">Melee2: <?=$d_melee_texture2?></td>
-                    <td align="left" width="34%">Light Source: <?=$light?></td>
+                    <td align="left" width="34%">&nbsp;</td>
                   </tr>
                   <tr>
                    <td align="left" width="33%">Melee1 Type: <?=$prim_melee_type?></td>
