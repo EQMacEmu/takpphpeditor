@@ -1490,8 +1490,10 @@ function add_spawnpoint() {
   $version = $_POST['version'];
   $enabled = $_POST['enabled'];
   $animation = $_POST['animation'];
-
-  $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation";
+  $boot_respawntime = $_POST['boot_respawntime'];
+  $clear_timer_onboot = $_POST['clear_timer_onboot'];
+  
+  $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation";
   $mysql->query_no_result($query);
 }
 
@@ -1801,8 +1803,10 @@ function copy_spawnpoint() {
   $enabled = $_POST['enabled'];
   $animation = $_POST['animation'];
   $sgid = $_POST['sgid'];
+  $boot_respawntime = $_POST['boot_respawntime'];
+  $clear_timer_onboot = $_POST['clear_timer_onboot'];
 
-  $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation";
+  $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation";
   $mysql->query_no_result($query);
 }
 

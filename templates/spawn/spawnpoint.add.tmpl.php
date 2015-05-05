@@ -67,6 +67,17 @@
               </select>
             </td>
           </tr>
+          <tr>
+            <td width="33%">
+              boot respawn:<br/>
+              <input type="text" name="boot_respawntime" value="0">
+            </td>
+              <td width="33%">
+              clear on boot:<br/>
+              <input type="text" name="clear_timer_onboot" value="0">
+            </td>
+             <td width="34%">&nbsp;</td>
+            </tr>
         </table><br/><br/>
         <center>
           <input type="hidden" name="zone" value="<?=$zone?>">

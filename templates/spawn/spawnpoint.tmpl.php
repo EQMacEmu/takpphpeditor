@@ -62,8 +62,8 @@
           </tr>
           <tr>
            <td width="33%">zone: <?=$zone?></td>
-           <td width="33%">&nbsp;</td>
-           <td width="33%">&nbsp;</td>
+           <td width="33%">boot respawn: <?=$boot_respawntime?></td>
+           <td width="33%">clear on boot: <?=$clear_timer_onboot?></td>
           </tr>
 		</table>
       </div>
