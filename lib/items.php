@@ -79,7 +79,7 @@ $gmflagtype= array(
 );
 
 $soulboundtype= array(
--1   => "Soulbound",
+1   => "Soulbound",
 0   => "No"
 );
 
