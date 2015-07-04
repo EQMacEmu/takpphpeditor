@@ -223,6 +223,14 @@
 			  <?endforeach;?>
 			    </select>
                 </td>
+              <td align="left" width="16%">
+			   Soulbound:<br/>
+			  <select class="left" name="soulbound">
+			  <?foreach($soulboundtype as $k => $v):?>
+			    <option value="<?=$k?>"<? echo ($k == 0) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+			  <?endforeach;?>
+			    </select>
+                </td>
             </tr>
           </table>
           <table cellpadding="20px">

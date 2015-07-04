@@ -80,9 +80,9 @@
             <td><input type="text" size="5" name="blu6l" value="<?=$blu6l?>"></td>
            </tr>    
            <tr> 
-            <th>Red Face</th>
-            <th>Green Face</th>
-            <th>Blue Face</th>
+            <th>Red Feet</th>
+            <th>Green Feet</th>
+            <th>Blue Feet</th>
             </tr>
             <tr>
             <td><input type="text" size="5" name="red7f" value="<?=$red7f?>"></td>
