@@ -213,12 +213,7 @@
                   <tr>
                     <td align="left" width="33%">Gender: <?echo "<a title='Gender: " . $gender . "'>" . $genders[$gender] . "</a>";?></td>
                     <td align="left" width="33%">Size: <?=$size?></td>
-                    <td align="left" width="34%">Texture: <?=$texture?></td>
-                  </tr>
-                  <tr>
-                    <td align="left" width="33%">Face: <?=$face?></td>
-                    <td align="left" width="33%">Helm: <?=$helmtexture?></td>
-                    <td align="left" width="34%">Light Source: <?=$light?></td>
+                    <td align="left" width="34%">Face: <?=$face?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Hair Style: <?=$luclin_hairstyle?></td>
@@ -238,13 +233,20 @@
                   <tr>
                     <td align="left" width="33%">Melee1: <?=$d_melee_texture1?></td>
                     <td align="left" width="33%">Melee2: <?=$d_melee_texture2?></td>
-                    <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="34%">Light Source: <?=$light?></td>
                   </tr>
                   <tr>
-                   <td align="left" width="33%">Melee1 Type: <?=$prim_melee_type?></td>
-                   <td align="left" width="33%">Melee2 Type: <?=$sec_melee_type?></td>
-                   <td align="left" width="34%">&nbsp;</td>
+                   <td align="left" width="33%">Texture: <?=$texture?></td>
+                   <td align="left" width="33%">Helm: <?=$helmtexture?></td>
+                   <td align="left" width="34%">Arms: <?=$armtexture?></td>
                   </tr>
+                  <td align="left" width="33%">Bracer: <?=$bracertexture?></td>
+                   <td align="left" width="33%">Hands: <?=$handtexture?></td>
+                   <td align="left" width="34%">Legs: <?=$legtexture?></td>
+                  </tr>
+                  <td align="left" width="33%">Feet: <?=$feettexture?></td>
+                   <td align="left" width="33%">Chest: <?=$chesttexture?></td>
+                   <td align="left" width="34%">&nbsp;</td>
                 </table>
               </fieldset>
               <fieldset>
@@ -286,6 +288,12 @@
         <input type="hidden" name="gender" value="<?=$gender?>">
         <input type="hidden" name="texture" value="<?=$texture?>">
         <input type="hidden" name="helmtexture" value="<?=$helmtexture?>">
+        <input type="hidden" name="armtexture" value="<?=$armtexture?>">
+        <input type="hidden" name="bracertexture" value="<?=$bracertexture?>">
+        <input type="hidden" name="handtexture" value="<?=$handtexture?>">
+        <input type="hidden" name="legtexture" value="<?=$legtexture?>">
+        <input type="hidden" name="feettexture" value="<?=$feettexture?>">
+        <input type="hidden" name="chesttexture" value="<?=$feettexture?>">
         <input type="hidden" name="herosforgemodel" value="<?=$herosforgemodel?>">
         <input type="hidden" name="size" value="<?=$size?>">
         <input type="hidden" name="hp_regen_rate" value="<?=$hp_regen_rate?>">

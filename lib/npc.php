@@ -347,7 +347,7 @@ switch ($action) {
   case 25: // Add npc
     check_authorization();
     $javascript = new Template("templates/npc/js.tmpl.php");
-    $body = new Template("templates/npc/npc.add.tmpl.php"); 
+    $body = new Template("templates/npc/npc.add.tmpl.php");
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);
     $body->set('suggestedid', suggest_npcid());
@@ -530,7 +530,7 @@ switch ($action) {
     change_npc_level_ver();
     header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid");
     exit;
-  case 47: // Mass change faction 
+  case 47: // Mass change faction
     check_authorization();
     $body = new Template("templates/npc/npc.factionchange.tmpl.php");
     $body->set('currzone', $z);
@@ -748,13 +748,13 @@ switch ($action) {
   case 73: // Delete emote
     check_authorization();
     $count = delete_emote();
-    $emoteid = $_GET['emoteid']; 
+    $emoteid = $_GET['emoteid'];
     if($count > 0) {
       header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid&emoteid=$count&action=72");
     }
     else {
       header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid&action=78");
-    } 
+    }
     exit;
   case 74: // Edit emote
     check_authorization();
@@ -809,7 +809,7 @@ switch ($action) {
   case 77: // Insert emote
     check_authorization();
     add_emote();
-    $emoteid = $_POST['emoteid']; 
+    $emoteid = $_POST['emoteid'];
     header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid&emoteid=$emoteid&action=72");
     exit;
   case 78: // View emote list
@@ -1222,6 +1222,13 @@ function update_npc () {
   if ($gender != $_POST['gender']) $fields .= "gender=\"" . $_POST['gender'] . "\", ";
   if ($texture != $_POST['texture']) $fields .= "texture=\"" . $_POST['texture'] . "\", ";
   if ($helmtexture != $_POST['helmtexture']) $fields .= "helmtexture=\"" . $_POST['helmtexture'] . "\", ";
+  if ($armtexture != $_POST['armtexture']) $fields .= "armtexture=\"" . $_POST['armtexture'] . "\", ";
+  if ($bracertexture != $_POST['bracertexture']) $fields .= "bracertexture=\"" . $_POST['bracertexture'] . "\", ";
+  if ($handtexture != $_POST['handtexture']) $fields .= "handtexture=\"" . $_POST['handtexture'] . "\", ";
+  if ($legtexture != $_POST['legtexture']) $fields .= "legtexture=\"" . $_POST['legtexture'] . "\", ";
+  if ($feettexture != $_POST['feettexture']) $fields .= "feettexture=\"" . $_POST['feettexture'] . "\", ";
+  if ($chesttexture != $_POST['chesttexture']) $fields .= "chesttexture=\"" . $_POST['chesttexture'] . "\", ";
+
   if ($size != $_POST['size']) $fields .= "size=\"" . $_POST['size'] . "\", ";
   if ($hp_regen_rate != $_POST['hp_regen_rate']) $fields .= "hp_regen_rate=\"" . $_POST['hp_regen_rate'] . "\", ";
   if ($mana_regen_rate != $_POST['mana_regen_rate']) $fields .= "mana_regen_rate=\"" . $_POST['mana_regen_rate'] . "\", ";
@@ -1301,11 +1308,6 @@ function update_npc () {
   if ($healscale != $_POST['healscale']) $fields .= "healscale=\"" . $_POST['healscale'] . "\", ";
   if ($no_target_hotkey != $_POST['no_target_hotkey']) $fields .= "no_target_hotkey=\"" . $_POST['no_target_hotkey'] . "\", ";
   if ($raid_target != $_POST['raid_target']) $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
-  //armtexture
-  //bracertexture
-  //handtexture
-  //legtexture
-  //feettexture
   if ($light != $_POST['light']) $fields .= "light=\"" . $_POST['light'] . "\", ";
   //walkspeed
   //peqid
@@ -1354,6 +1356,13 @@ function add_npc () {
   $fields .= "gender=\"" . $_POST['gender'] . "\", ";
   $fields .= "texture=\"" . $_POST['texture'] . "\", ";
   $fields .= "helmtexture=\"" . $_POST['helmtexture'] . "\", ";
+  $fields .= "armtexture=\"" . $_POST['armtexture'] . "\", ";
+  $fields .= "bracertexture=\"" . $_POST['bracertexture'] . "\", ";
+  $fields .= "handtexture=\"" . $_POST['handtexture'] . "\", ";
+  $fields .= "legtexture=\"" . $_POST['legtexture'] . "\", ";
+  $fields .= "feettexture=\"" . $_POST['feettexture'] . "\", ";
+  $fields .= "chesttexture=\"" . $_POST['chesttexture'] . "\", ";
+
   $fields .= "size=\"" . $_POST['size'] . "\", ";
   $fields .= "hp_regen_rate=\"" . $_POST['hp_regen_rate'] . "\", ";
   $fields .= "mana_regen_rate=\"" . $_POST['mana_regen_rate'] . "\", ";
@@ -1432,11 +1441,6 @@ function add_npc () {
   $fields .= "healscale=\"" . $_POST['healscale'] . "\", ";
   $fields .= "no_target_hotkey=\"" . $_POST['no_target_hotkey'] . "\", ";
   $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
-  //armtexture
-  //bracertexture
-  //handtexture
-  //legtexture
-  //feettexture
   $fields .= "light=\"" . $_POST['light'] . "\"";
   //walkspeed
   //peqid
@@ -1468,6 +1472,12 @@ function copy_npc () {
   $fields .= "gender=\"" . $_POST['gender'] . "\", ";
   $fields .= "texture=\"" . $_POST['texture'] . "\", ";
   $fields .= "helmtexture=\"" . $_POST['helmtexture'] . "\", ";
+  $fields .= "armtexture=\"" . $_POST['armtexture'] . "\", ";
+  $fields .= "bracertexture=\"" . $_POST['bracertexture'] . "\", ";
+  $fields .= "handtexture=\"" . $_POST['handtexture'] . "\", ";
+  $fields .= "legtexture=\"" . $_POST['legtexture'] . "\", ";
+  $fields .= "feettexture=\"" . $_POST['feettexture'] . "\", ";
+  $fields .= "chesttexture=\"" . $_POST['chesttexture'] . "\", ";
   $fields .= "size=\"" . $_POST['size'] . "\", ";
   $fields .= "hp_regen_rate=\"" . $_POST['hp_regen_rate'] . "\", ";
   $fields .= "mana_regen_rate=\"" . $_POST['mana_regen_rate'] . "\", ";
@@ -1546,11 +1556,6 @@ function copy_npc () {
   $fields .= "healscale=\"" . $_POST['healscale'] . "\", ";
   $fields .= "no_target_hotkey=\"" . $_POST['no_target_hotkey'] . "\", ";
   $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
-  //armtexture
-  //bracertexture
-  //handtexture
-  //legtexture
-  //feettexture
   $fields .= "light=\"" . $_POST['light'] . "\", ";
   //walkspeed
   //peqid
@@ -1578,7 +1583,7 @@ function update_npc_bytier() {
   $name = $_POST['npcname'];
   $level = $_POST['npclevel'];
   $stat = $_POST['npcstatchange_selected'];
- 
+
   if($race == 0){ $nrace = "race"; }
   if($race > 0){ $nrace = $race; }
   if($class == 0){ $nclass = "class"; }
@@ -1629,7 +1634,7 @@ function update_npc_bytier() {
     $fresist = $resist;
     $ac_ = "AC";
   }
-  
+
   if($stat == 3) {
     $ac_ = "((((level - 1) / 10.0) * 65.0) + 25.0) * ($npctier * $npctype)";
     $resist = "(80*0.4) * ($npctier * $npctype * $npcclass)";
@@ -1745,7 +1750,7 @@ function change_faction_byname () {
   $npcfid = $_GET['npcfid'];
   $npcname = $_POST['npcname'];
   $updateall = $_POST['updateall'];
- 
+
   if($updateall == 0){
   $query = "UPDATE npc_types SET npc_faction_id=$npcfid WHERE name LIKE \"%$npcname%\" AND id > $min_id AND id < $max_id AND npc_faction_id = 0";
   $mysql->query_no_result($query);
@@ -1766,7 +1771,7 @@ function change_faction_byrace () {
   $npcfid = $_GET['npcfid'];
   $npcrace = $_POST['npcrace'];
   $updateall = $_POST['updateall'];
- 
+
   if($updateall == 0){
   $query = "UPDATE npc_types SET npc_faction_id=$npcfid WHERE race = $npcrace AND id > $min_id AND id < $max_id AND npc_faction_id = 0";
   $mysql->query_no_result($query);
@@ -1798,7 +1803,7 @@ function search_npc_faction_ids($search) {
 
 function search_npc_faction_ids_primary($search) {
   global $mysql;
-  $query = "SELECT nf.id, nf.name, fl.name AS primaryfaction FROM npc_faction nf 
+  $query = "SELECT nf.id, nf.name, fl.name AS primaryfaction FROM npc_faction nf
             INNER JOIN faction_list fl ON fl.id = nf.primaryfaction
             WHERE fl.name rlike \"$search\";";
   $results = $mysql->query_mult_assoc($query);
@@ -1899,7 +1904,7 @@ function suggest_merchant_id() {
   global $mysql;
   $query = "SELECT MAX(merchantid) AS id FROM merchantlist";
   $result = $mysql->query_assoc($query);
-  
+
   $query2 = "SELECT MAX(merchant_id) AS npc_mid FROM npc_types";
   $result2 = $mysql->query_assoc($query2);
 
@@ -1985,7 +1990,7 @@ function add_dye_template() {
   $armortint_id = $_REQUEST['armortint_id'];
   $query = "UPDATE npc_types SET armortint_id=$armortint_id WHERE id=$npcid";
   $mysql->query_no_result($query);
-  
+
   $query = "INSERT INTO npc_types_tint (id) values ($armortint_id)";
   $mysql->query_no_result($query);
 
@@ -1996,8 +2001,8 @@ function add_dye_template() {
 function delete_tint() {
   check_authorization();
   global $mysql, $npcid;
-  
-  $id = $_GET['tint_id']; 
+
+  $id = $_GET['tint_id'];
   $query = "DELETE FROM npc_types_tint WHERE id=$id";
   $mysql->query_no_result($query);
 
@@ -2033,7 +2038,7 @@ function tint_info() {
 
   $query = "SELECT * FROM npc_types_tint WHERE id=\"$tint_id\"";
   $result = $mysql->query_assoc($query);
-  
+
   return $result;
 }
 
@@ -2049,9 +2054,9 @@ function next_npcid() {
 
 function get_stats() {
   global $mysql;
- 
+
  $npc_level = $_POST['npc_level'];
- 
+
  if($npc_level < 11) {
  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 1000 and race != 240 and str < 300 and id < 200000 group by level";
  $results = $mysql->query_assoc($query);
@@ -2086,7 +2091,7 @@ function get_stats() {
 
 function change_npc_level_ver() {
   global $mysql, $z;
- 
+
   $zid = getZoneID($z);
   $npc_version = $_POST['npc_version'];
   $npc_level = $_POST['npc_level'];
@@ -2100,7 +2105,7 @@ function change_npc_level_ver() {
   }
   $finaldiff = "(level)$leveldiff";
   $finalmaxdiff = "(maxlevel)$leveldiff";
- 
+
   $query = "UPDATE npc_types SET level=$finaldiff WHERE version=$npc_version AND id>$minlevel AND id<$maxlevel AND level>1";
   $mysql->query_no_result($query);
 
@@ -2166,8 +2171,8 @@ function get_emotes() {
 function delete_emote() {
   check_authorization();
   global $mysql, $npcid;
-  $id = $_GET['id']; 
-  $emoteid = $_GET['emoteid']; 
+  $id = $_GET['id'];
+  $emoteid = $_GET['emoteid'];
 
   $query = "DELETE FROM npc_emotes WHERE id=$id";
   $mysql->query_no_result($query);
@@ -2180,7 +2185,7 @@ function delete_emote() {
     $query = "UPDATE npc_types SET emoteid=0 WHERE emoteid=$emoteid";
     $mysql->query_no_result($query);
   }
-    
+
   if($count != 0) {
     return $emoteid;
   }
@@ -2196,7 +2201,7 @@ function emote_info() {
 
   $query = "SELECT id,emoteid,event_,type,text FROM npc_emotes WHERE id=$id";
   $result = $mysql->query_assoc($query);
-  
+
   return $result;
 }
 
@@ -2206,7 +2211,7 @@ function update_emote() {
   $id = $_POST['id'];
   $emoteid = $_POST['emoteid'];
   $oldemote = $_POST['oldemote'];
-  $event_ = $_POST['event_']; 
+  $event_ = $_POST['event_'];
   $type = $_POST['type'];
   $text = $_POST['text'];
 
@@ -2234,7 +2239,7 @@ function add_emote() {
   global $mysql, $npcid;
 
   $emoteid = $_POST['emoteid'];
-  $event_ = $_POST['event_']; 
+  $event_ = $_POST['event_'];
   $type = $_POST['type'];
   $text = $_POST['text'];
 
@@ -2263,7 +2268,7 @@ function get_npcid_from_emote($emoteid) {
   $query = "SELECT id FROM npc_types WHERE emoteid=$emoteid LIMIT 1";
   $result = $mysql->query_assoc($query);
   $npcid = $result['id'];
-  
+
   return $npcid;
 }
 

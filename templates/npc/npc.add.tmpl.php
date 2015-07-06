@@ -206,28 +206,45 @@
           <legend><strong><font size="4">Appearance</font></strong></legend>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
-              <td align="left" width="17%">Size:       <br/><input type="text" name="size" size="10" value="5"/></td>
-              <td align="left" width="17%">Texture:    <br/><input type="text" name="texture" size="10" value="0"/></td>
-              <td align="left" width="17%">HelmTexture:<br/><input type="text" name="helmtexture" size="10" value="0"/></td>
-              <td align="left" width="17%">Face:       <br/><input type="text" name="face" size="10" value="0"/></td>
-              <td align="left" width="16%">Haircolor:  <br/><input type="text" name="luclin_haircolor" size="10" value="0"/></td>
-              <td align="left" width="16%">Hairstyle:  <br/><input type="text" name="luclin_hairstyle" size="10" value="0"/></td>
+              <td align="left" width="17%">Size:       <br/><input type="text" name="size" size="10" value="5"></td>
+              <td align="left" width="17%">Face:       <br/><input type="text" name="face" size="10" value="0"></td>
+              <td align="left" width="16%">Haircolor:  <br/><input type="text" name="luclin_haircolor" size="10" value="0"></td>
+              <td align="left" width="16%">Hairstyle:  <br/><input type="text" name="luclin_hairstyle" size="10" value="0"></td>
+              <td align="left" width="17%">Eyecolor:  <br/><input type="text" name="luclin_eyecolor" size="10" value="0"></td>
+              <td align="left" width="17%">Eyecolor2: <br/><input type="text" name="luclin_eyecolor2" size="10" value="0"></td>
             </tr>
             <tr>
-              <td align="left" width="17%">Eyecolor:   <br/><input type="text" name="luclin_eyecolor" size="10" value="0"/></td>
-              <td align="left" width="17%">Eyecolor2:  <br/><input type="text" name="luclin_eyecolor2" size="10" value="0"/></td>
-              <td align="left" width="17%">Beard:      <br/><input type="text" name="luclin_beard" size="10" value="0"/></td>
-              <td align="left" width="17%">Beardcolor: <br/><input type="text" name="luclin_beardcolor" size="10" value="0"/></td>
-              <td align="left" width="16%">Melee1:     <br/><input type="text" name="d_melee_texture1" size="10" value="0"/></td>
-              <td align="left" width="16%">Melee2:     <br/><input type="text" name="d_melee_texture2" size="10" value="0"/></td>
+
+              <td align="left" width="17%">Beard:     <br/><input type="text" name="luclin_beard" size="10" value="0"></td>
+              <td align="left" width="17%">Beardcolor:<br/><input type="text" name="luclin_beardcolor" size="10" value="0"></td>
+              <td align="left" width="16%">Melee1:    <br/><input type="text" name="d_melee_texture1" size="10" value="0"></td>
+              <td align="left" width="16%">Melee2:    <br/><input type="text" name="d_melee_texture2" size="10" value="0"></td>
+              <td align="left" width="17%">&nbsp;</td>
+		          <td align="left" width="17%">&nbsp;</td>
             </tr>
             <tr>
-              <td align="left" width="17%">Armor Red:  <br/><input type="text" name="armortint_red" size="10" value="0"/></td>
-              <td align="left" width="17%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="0"/></td>
-              <td align="left" width="17%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="0"/></td>
-			  <td align="left" width="17%">Light Source: <br/><input type="text" name="light" size="10" value="0"/></td>
-		<td align="left" width="16%">&nbsp;</td>
-		<td align="left" width="16%">&nbsp;</td>
+              <td align="left" width="17%">Armor Red:  <br/><input type="text" name="armortint_red" size="10" value="0"></td>
+              <td align="left" width="17%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="0"></td>
+              <td align="left" width="17%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="0"></td>
+			        <td align="left" width="17%">Light Source: <br/><input type="text" name="light" size="10" value="0"></td>
+              <td align="left" width="16%">&nbsp;</td>
+		          <td align="left" width="16%">&nbsp;</td>
+             </tr>
+             <tr>
+              <td align="left" width="16%">Texture:    <br/><input type="text" name="texture" size="10" value="0"></td>
+              <td align="left" width="16%">HelmTexture:<br/><input type="text" name="helmtexture" size="10" value="0"></td>
+              <td align="left" width="17%">ArmTexture:       <br/><input type="text" name="armtexture" size="10" value="0"></td>
+              <td align="left" width="17%">BracerTexture:    <br/><input type="text" name="bracertexture" size="10" value="0"></td>
+              <td align="left" width="17%">HandTexture:<br/><input type="text" name="handtexture" size="10" value="0"></td>
+              <td align="left" width="17%">LegTexture:       <br/><input type="text" name="legtexture" size="10" value="0"></td>
+            </tr>
+             <tr>  
+              <td align="left" width="16%">FeetTexture:  <br/><input type="text" name="feettexture" size="10" value="0"></td>
+              <td align="left" width="16%">ChestTexture:  <br/><input type="text" name="chesttexture" size="10" value="0"></td>
+              <td align="left" width="16%">&nbsp;</td>
+		          <td align="left" width="16%">&nbsp;</td>
+              <td align="left" width="17%">&nbsp;</td>
+		          <td align="left" width="17%">&nbsp;</td>
             </tr>
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
