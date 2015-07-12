@@ -918,6 +918,7 @@ $specialattacks = array(
  "40" => "Chase Distance",
  "41" => "Allow Tank",
  "42" => "Proximity Aggro",
+ "43" => "Always Call for Help",
 );
 
 $tradeskills = array(

@@ -159,8 +159,8 @@
                   Tunnel Vision (29): <br><input type="text" name="29" size="10"><br>
                   Leashed (32): <br><input type="text" name="32" size="10"><br>
                   Tethered (33): <br><input type="text" name="33" size="10"><br>
-		    Flee Percent (37): <br><input type="text" name="37" size="10"><br>
-		    Chase Distance (40): <br><input type="text" name="40" size="10"><br>
+		              Flee Percent (37): <br><input type="text" name="37" size="10"><br>
+		              Chase Distance (40): <br><input type="text" name="40" size="10"><br>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="6" value="6,1^"/>  Triple Attack<br>
@@ -193,10 +193,11 @@
                   <input type="checkbox" name="27" value="27,1^"/>  See through Feign Death<br>
                   <input type="checkbox" name="npc_aggro" value="1"/> Can Aggro NPCs<br>
                   <input type="checkbox" name="30" value="30,1^"/>  Does NOT buff/heal friends<br>
-		    <input type="checkbox" name="36" value="36,1^"/>  Always Flee<br>
-  		    <input type="checkbox" name="38" value="38,1^"/>  Allow Beneficial<br>
-		    <input type="checkbox" name="41" value="41,1^"/>  Allow Tank<br>
-		    <input type="checkbox" name="42" value="32,1^"/>  Proximity Aggro<br>
+		              <input type="checkbox" name="36" value="36,1^"/>  Always Flee<br>
+  		            <input type="checkbox" name="38" value="38,1^"/>  Allow Beneficial<br>
+		              <input type="checkbox" name="41" value="41,1^"/>  Allow Tank<br>
+		              <input type="checkbox" name="42" value="42,1^"/>  Proximity Aggro<br>
+                  <input type="checkbox" name="43" value="43,1^"/>  Always Call for Help<br>
                 </td>
               </tr>
             </table>

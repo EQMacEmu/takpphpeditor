@@ -128,7 +128,7 @@
   $specabil = array();
   $specabilcont = array();
 
-  for ($i = 1; $i <= 42; $i++) {
+  for ($i = 1; $i <= 43; $i++) {
     if (preg_match("/^$i,/", $special_abilities) == 1) {
       $specabil[$i] = 1;
       // Leading special ability
@@ -205,9 +205,10 @@
                   <input type="checkbox" name="npc_aggro" value="1"<?echo ($npc_aggro == 1) ? "checked" : "";?>>  Can Aggro NPCs<br/>
                   <input type="checkbox" name="30" value="30,1^"<?echo ($specabil[30] == 1) ? "checked" : "";?>>  Does NOT buff/heal friends<br/>
                   <input type="checkbox" name="36" value="36,1^"<?echo ($specabil[36] == 1) ? "checked" : "";?>>  Always Flee<br/>
-		    <input type="checkbox" name="38" value="38,1^"<?echo ($specabil[38] == 1) ? "checked" : "";?>>  Allow Beneficial<br/>
+		              <input type="checkbox" name="38" value="38,1^"<?echo ($specabil[38] == 1) ? "checked" : "";?>>  Allow Beneficial<br/>
                   <input type="checkbox" name="41" value="41,1^"<?echo ($specabil[41] == 1) ? "checked" : "";?>>  Allow Tank<br/>
-		    <input type="checkbox" name="42" value="42,1^"<?echo ($specabil[42] == 1) ? "checked" : "";?>>  Proximity Aggro<br/>
+		              <input type="checkbox" name="42" value="42,1^"<?echo ($specabil[42] == 1) ? "checked" : "";?>>  Proximity Aggro<br/>
+                  <input type="checkbox" name="43" value="43,1^"<?echo ($specabil[43] == 1) ? "checked" : "";?>>  Always Call for Help<br/>
                 </td>
               </tr>
             </table>

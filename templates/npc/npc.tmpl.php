@@ -194,7 +194,7 @@
                   </tr>
                   <?
 				    $new_special_abilities = '';
-				      for ($i = 1; $i <= 42; $i++){
+				      for ($i = 1; $i <= 43; $i++){
 				        if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1){
 				          $match[0] = ltrim($match[0], "^");
 				          $new_special_abilities .= $match[0];
