@@ -189,7 +189,7 @@
                  </tr>
                   <tr>
                     <td align="left" width="34%">NPC Aggro: <?=$npc_aggro?></td>
-                   <td align="left" width="34%">&nbsp;</td>
+                   <td align="left" width="34%">Ignore Distance: <?=$ignore_distance?></td>
                    <td align="left" width="34%">&nbsp;</td>
                   </tr>
                   <?
@@ -373,6 +373,7 @@
         <input type="hidden" name="light" value="<?=$light?>">
         <input type="hidden" name="combat_hp_regen" value="<?=$combat_hp_regen?>">
         <input type="hidden" name="combat_mana_regen" value="<?=$combat_mana_regen?>">
+        <input type="hidden" name="ignore_distance" value="<?=$ignore_distance?>">
         <center>
           NEW ID:<input type="text" name="id" size="10" value="<?=$suggestedid?>">
           <input type="submit" value="Copy NPC">

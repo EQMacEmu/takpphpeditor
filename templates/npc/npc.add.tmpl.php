@@ -144,7 +144,7 @@
               <td align="left" width="14%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"/></td>
               <td align="left" width="14%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="5" value="0"/></td>
               <td align="left" width="15%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="100"/>%</td>
-              <td align="left" width="14%">&nbsp;</td>
+              <td align="left" width="14%">Ignore Distance:  <br/><input type="text" name="ignore_distance" size="5" value="600"/></td>
             </tr>
           </table>
           <center>
