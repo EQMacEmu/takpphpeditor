@@ -1309,7 +1309,7 @@ function update_npc () {
   if ($no_target_hotkey != $_POST['no_target_hotkey']) $fields .= "no_target_hotkey=\"" . $_POST['no_target_hotkey'] . "\", ";
   if ($raid_target != $_POST['raid_target']) $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
   if ($light != $_POST['light']) $fields .= "light=\"" . $_POST['light'] . "\", ";
-  if ($light != $_POST['ignore_distance']) $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
+  if ($ignore_distance != $_POST['ignore_distance']) $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   //peqid
   //unique_
   //fixed
