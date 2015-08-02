@@ -1441,7 +1441,7 @@ function add_npc () {
   $fields .= "healscale=\"" . $_POST['healscale'] . "\", ";
   $fields .= "no_target_hotkey=\"" . $_POST['no_target_hotkey'] . "\", ";
   $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
-  $fields .= "light=\"" . $_POST['light'] . "\"";
+  $fields .= "light=\"" . $_POST['light'] . "\", ";
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\"";
   //peqid
   //unique_
@@ -1557,7 +1557,7 @@ function copy_npc () {
   $fields .= "no_target_hotkey=\"" . $_POST['no_target_hotkey'] . "\", ";
   $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
   $fields .= "light=\"" . $_POST['light'] . "\", ";
-  $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
+  $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\"";
   //peqid
   //unique_
   //fixed
