@@ -16,6 +16,8 @@
         <input class="indented" id="level_required" type="text" name="level_required" value="0"/><br/><br/>
         <strong>Classes Required:</strong>
         <input class="indented" id="classes_required" type="text" name="classes_required" value="65535"/><br/><br/>
+        <strong>Quantity:</strong>
+        <input class="indented" id="quantity" type="text" name="quantity" value="0"/><br/><br/>
         <center>
           <input type="hidden" name="mid" value="<?=$mid?>"/>
           <input type="submit" name="submit" value=" Submit "/>
