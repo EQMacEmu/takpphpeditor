@@ -66,7 +66,7 @@
             <th>despawn when triggered</th>
            </tr>      
           <tr>
-             <td><input type="text" size="50" name="message" value="<?=$message?>"></td>  
+             <td><input type="text" size="75" name="message" value="<?=$message?>"></td>  
              <td><select class="left" name="despawn_when_triggered">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $despawn_when_triggered) ? " selected" : ""?>><?=$v?></option>
