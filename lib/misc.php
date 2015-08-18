@@ -3,8 +3,8 @@
 $traptype = array(
   0   => "Casting",
   1   => "Alarm",
-  2   => "NPC S. Area",
-  3   => "NPC L. Area",
+  2   => "NPC S. Area (Mystics)",
+  3   => "NPC L. Area (Bandits)",
   4   => "Damage"
 );
 
@@ -187,6 +187,7 @@ switch ($action) {
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);
     $body->set("traptype", $traptype);
+    $body->set('yesno', $yesno);
     $traps = traps_info();
     if ($traps) {
       foreach ($traps as $key=>$value) {
@@ -211,6 +212,7 @@ switch ($action) {
     $body->set('currzoneid', $zoneid);
     $body->set("traptype", $traptype);
     $body->set("alarmtype", $alarmtype);
+    $body->set('yesno', $yesno);
     $body->set('suggesttid', suggest_traps_id());
     $body->set('suggestver', suggest_version());
     break;
@@ -592,7 +594,7 @@ $query = "SELECT version AS zversion FROM zone where id=$zoneid";
   $result = $mysql->query_mult_assoc($query);
   if ($result) {
     foreach ($result as $result) {
-     $array['traps'][$result['id']] = array("tid"=>$result['id'], "x_coord"=>$result['x'], "y_coord"=>$result['y'], "z_coord"=>$result['z'], "chance"=>$result['chance'], "maxzdiff"=>$result['maxzdiff'], "radius"=>$result['radius'], "effect"=>$result['effect'], "effectvalue"=>$result['effectvalue'], "effectvalue2"=>$result['effectvalue2'], "message"=>$result['message'], "skill"=>$result['skill'], "level"=>$result['level'], "respawn_time"=>$result['respawn_time'], "respawn_var"=>$result['respawn_var'], "version"=>$result['version']);
+     $array['traps'][$result['id']] = array("tid"=>$result['id'], "x_coord"=>$result['x'], "y_coord"=>$result['y'], "z_coord"=>$result['z'], "chance"=>$result['chance'], "maxzdiff"=>$result['maxzdiff'], "radius"=>$result['radius'], "effect"=>$result['effect'], "effectvalue"=>$result['effectvalue'], "effectvalue2"=>$result['effectvalue2'], "message"=>$result['message'], "skill"=>$result['skill'], "level"=>$result['level'], "respawn_time"=>$result['respawn_time'], "respawn_var"=>$result['respawn_var'], "version"=>$result['version'], "group"=>$result['group'], "triggered_number"=>$result['triggered_number'], "despawn_when_triggered"=>$result['despawn_when_triggered']);
          }
        }
    }
@@ -602,7 +604,7 @@ $query = "SELECT version AS zversion FROM zone where id=$zoneid";
   $result = $mysql->query_mult_assoc($query);
   if ($result) {
     foreach ($result as $result) {
-     $array['traps'][$result['id']] = array("tid"=>$result['id'], "x_coord"=>$result['x'], "y_coord"=>$result['y'], "z_coord"=>$result['z'], "chance"=>$result['chance'], "maxzdiff"=>$result['maxzdiff'], "radius"=>$result['radius'], "effect"=>$result['effect'], "effectvalue"=>$result['effectvalue'], "effectvalue2"=>$result['effectvalue2'], "message"=>$result['message'], "skill"=>$result['skill'], "level"=>$result['level'], "respawn_time"=>$result['respawn_time'], "respawn_var"=>$result['respawn_var'], "version"=>$result['version']);
+     $array['traps'][$result['id']] = array("tid"=>$result['id'], "x_coord"=>$result['x'], "y_coord"=>$result['y'], "z_coord"=>$result['z'], "chance"=>$result['chance'], "maxzdiff"=>$result['maxzdiff'], "radius"=>$result['radius'], "effect"=>$result['effect'], "effectvalue"=>$result['effectvalue'], "effectvalue2"=>$result['effectvalue2'], "message"=>$result['message'], "skill"=>$result['skill'], "level"=>$result['level'], "respawn_time"=>$result['respawn_time'], "respawn_var"=>$result['respawn_var'], "version"=>$result['version'], "group"=>$result['group'], "triggered_number"=>$result['triggered_number'], "despawn_when_triggered"=>$result['despawn_when_triggered']);
          }
        }
    }
@@ -846,8 +848,11 @@ function update_traps() {
   $respawn_time = $_POST['respawn_time'];
   $respawn_var = $_POST['respawn_var'];
   $version = $_POST['version'];
+  $group = $_POST['group'];
+  $triggered_number = $_POST['triggered_number'];
+  $despawn_when_triggered = $_POST['despawn_when_triggered'];
 
-  $query = "UPDATE traps SET zone=\"$zone\", x=\"$x\", y=\"$y\", z=\"$z_coord\", chance=\"$chance\", maxzdiff=\"$maxzdiff\", radius=\"$radius\", effect=\"$effect\", effectvalue=\"$effectvalue\", effectvalue2=\"$effectvalue2\", message=\"$message\", skill=\"$skill\", level=\"$level\", respawn_time=\"$respawn_time\", respawn_var=\"$respawn_var\", version=\"$version\" WHERE id=\"$tid\"";
+  $query = "UPDATE traps SET zone=\"$zone\", x=\"$x\", y=\"$y\", z=\"$z_coord\", chance=\"$chance\", maxzdiff=\"$maxzdiff\", radius=\"$radius\", effect=\"$effect\", effectvalue=\"$effectvalue\", effectvalue2=\"$effectvalue2\", message=\"$message\", skill=\"$skill\", level=\"$level\", respawn_time=\"$respawn_time\", respawn_var=\"$respawn_var\", version=\"$version\", `group`=\"$group\", triggered_number=\"$triggered_number\", despawn_when_triggered=\"$despawn_when_triggered\" WHERE id=\"$tid\"";
   $mysql->query_no_result($query);
 }
 
@@ -1103,8 +1108,11 @@ function add_traps() {
   $respawn_time = $_POST['respawn_time'];
   $respawn_var = $_POST['respawn_var'];
   $version = $_POST['version'];
+  $group = $_POST['group'];
+  $triggered_number = $_POST['triggered_number'];
+  $despawn_when_triggered = $_POST['despawn_when_triggered'];
 
-  $query = "INSERT INTO traps SET id=\"tid\", zone=\"$zone\", x=\"$x\", y=\"$y\", z=\"$z_coord\", chance=\"$chance\", maxzdiff=\"$maxzdiff\", radius=\"$radius\", effect=\"$effect\", effectvalue=\"$effectvalue\", effectvalue2=\"$effectvalue2\", message=\"$message\", skill=\"$skill\", level=\"$level\", respawn_time=\"$respawn_time\", respawn_var=\"$respawn_var\", version=\"$version\"";
+  $query = "INSERT INTO traps SET id=\"$tid\", zone=\"$zone\", x=\"$x\", y=\"$y\", z=\"$z_coord\", chance=\"$chance\", maxzdiff=\"$maxzdiff\", radius=\"$radius\", effect=\"$effect\", effectvalue=\"$effectvalue\", effectvalue2=\"$effectvalue2\", message=\"$message\", skill=\"$skill\", level=\"$level\", respawn_time=\"$respawn_time\", respawn_var=\"$respawn_var\", version=\"$version\", `group`=\"$group\", triggered_number=\"$triggered_number\", despawn_when_triggered=\"$despawn_when_triggered\"";
   $mysql->query_no_result($query);
 }
 
@@ -1352,8 +1360,8 @@ function copy_traps() {
    $query = "UPDATE traps SET version=9999 WHERE version=0 AND zone=\"$z\"";
    $mysql->query_no_result($query);
 
-   $query = "INSERT INTO traps (zone,x,y,z,chance,maxzdiff,radius,effect,effectvalue,effectvalue2,message,skill,level,respawn_time,respawn_var)
-            SELECT zone,x,y,z,chance,maxzdiff,radius,effect,effectvalue,effectvalue2,message,skill,level,respawn_time,respawn_var FROM traps WHERE zone=\"$z\" AND version=10000";
+   $query = "INSERT INTO traps (zone,x,y,z,chance,maxzdiff,radius,effect,effectvalue,effectvalue2,message,skill,level,respawn_time,respawn_var,group,triggered_number,despawn_when_triggered)
+            SELECT zone,x,y,z,chance,maxzdiff,radius,effect,effectvalue,effectvalue2,message,skill,level,respawn_time,respawn_var,group,triggered_number,despawn_when_triggered FROM traps WHERE zone=\"$z\" AND version=10000";
    $mysql->query_no_result($query);
 
    $query = "UPDATE traps SET version=$new_version WHERE version=0 AND zone=\"$z\"";
