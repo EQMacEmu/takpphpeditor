@@ -69,10 +69,16 @@
           <tr>
             <th>dest instance</th>
             <th>client</th>
+            <th>nokeyring</th>
          </tr>
           <tr>
             <td><input type="text" size="7" name="dest_instance" value="<?=$dest_instance?>"></td>
             <td><input type="text" size="10" name="client_version_mask" value="<?=$client_version_mask?>"></td>
+            <td><select class="left" name="nokeyring">
+<?foreach($yesno as $k => $v):?>
+              <option value="<?=$k?>"<? echo ($k == $nokeyring) ? " selected" : ""?>><?=$v?></option>
+<?$x++; endforeach;?>
+           </td> 
          </tr>
               </table><br><br>
         <center>
