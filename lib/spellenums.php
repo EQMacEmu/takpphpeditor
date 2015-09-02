@@ -49,8 +49,10 @@ $sp_buffformulas = array(
 );
 
 $sp_formulas = array(
-    1   => "Effect Base + Level * Multiplier (use text entry)",
+    -1   => "Effect Base + Level * Multiplier (use text entry)",
+    0   => "Effect Base Value",
     60  => "Effect Base / 100",
+    70  => "Effect Base / 100",
     100 => "Effect Base Value",
     101 => "Effect Base + Level / 2",
     102 => "Effect Base + Level",
@@ -70,10 +72,24 @@ $sp_formulas = array(
     117 => "Effect Base + 12 * (Level - Spell Level) **",
     118 => "Effect Base + 20 * (Level - Spell Level) **",
     119 => "Effect Base + Level / 8 **",
+    120 => "Effect Base + Level / 6 **",
     121 => "Effect Base + Level / 3 **",
     122 => "Splurt",
     123 => "Random (Effect Base, Effect Max) **",
-    203 => "Effect Max"
+    124 => "Effect Base + Level - 50",
+    125 => "Effect Base + 2 * (Level - 50)",
+    126 => "Effect Base + 3 * (Level - 50)",
+    127 => "Effect Base + 4 * (Level - 50)",
+    128 => "Effect Base + 5 * (Level - 50)",
+    129 => "Effect Base + 10 * (Level - 50)",
+    130 => "Effect Base + 15 * (Level - 50)",
+    131 => "Effect Base + 20 * (Level - 50)",
+    150 => "Resistant Discipline",
+    201 => "Stacking",
+    202 => "Stacking",
+    203 => "Stacking",
+    204 => "Stacking",
+    205 => "Stacking"
 );
 
 $sp_zonetypes = array(
