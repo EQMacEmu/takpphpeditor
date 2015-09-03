@@ -206,8 +206,18 @@ switch ($action) {
     $mod_data = get_faction_mod($_GET['fmid']);
     if ($mod_data) {
       $body->set('mod', $mod_data);
+      $model = substr($mod_data['mod_name'], strpos($mod_data['mod_name'], 'm'));
+      if (preg_match('/^m/', $model))
+      {
+        $model = substr($model, 1);
+      }
+      else
+      {
+        $model = -1;
+      }
       $body->set('category', substr($mod_data['mod_name'],0,1));
       $body->set('cat_index', substr($mod_data['mod_name'],1));
+      $body->set('model', $model);
     }
     $body->set('races', $races);
     $body->set('classes', $classes);
@@ -360,11 +370,29 @@ function update_faction_mod() {
   $old_id = $_POST['old_id'];
   $old_mod_name = $_POST['old_mod_name'];
   $old_mod = $_POST['old_mod'];
+  $old_model = $_POST['old_model'];
   $new_id = $_POST['new_id'];
   $new_mod_name = $_POST['new_mod_name'];
   $new_mod = $_POST['new_mod'];
+  $new_model = "m".$_POST['new_model'];
   $fields = '';
 
+  if($new_mod_name == "r42" || $new_mod_name == "r75")
+  {
+    if($new_model == -1)
+    {
+     $new_model = "";
+    }
+    if($old_model != $new_model)
+    {
+     $new_mod_name = $new_mod_name.$new_model;
+    }
+  }
+  else
+  {
+     $new_mod_name = $new_mod_name."";
+  }
+  
   $fields .= ($old_id != $new_id) ? "id=$new_id" . ", " : '';
   $fields .= ($old_mod_name != $new_mod_name) ? "mod_name=\"$new_mod_name\"" . ", " : '';
   $fields .= ($old_mod != $new_mod) ? "`mod`=$new_mod" : '';
@@ -519,6 +547,16 @@ function npcs_using_faction($value) {
 
 function deconstruct_mod($mod_name) {
   global $races, $classes, $deities;
+  $model = substr($mod_name, strpos($mod_name, 'm'));
+  if (preg_match('/^m/', $model))
+  {
+    $mod_name = substr($mod_name, 0, strpos($mod_name, 'm'));
+    $model = substr($model, 1);
+  }
+  else
+  {
+    $model = -1;
+  }
   $category = substr($mod_name, 0, 1);
   $cat_index = substr($mod_name, 1);
   $mod_type = array();
@@ -527,14 +565,28 @@ function deconstruct_mod($mod_name) {
     case 'r':
       $mod_type['category'] = 'Race';
       $mod_type['name'] = $races[$cat_index];
+      if($cat_index == 75 || $cat_index == 42)
+      {
+        if($model == -1)
+        {
+          $model = ALL;
+        }
+        $mod_type['model'] = $model;
+      }
+      else
+      {
+        $mod_type['model'] = 'NA';
+      }
       break;
     case 'c':
       $mod_type['category'] = 'Class';
       $mod_type['name'] = $classes[$cat_index];
+      $mod_type['model'] = 'NA';
       break;
     case 'd':
       $mod_type['category'] = 'Deity';
       $mod_type['name'] = $deities[$cat_index];
+      $mod_type['model'] = 'NA';
       break;
   }
 

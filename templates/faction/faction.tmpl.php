@@ -47,8 +47,9 @@
             <th width="15%">ID</th>
             <th width="15%">Type</th>
             <th width="30%">Name</th>
-            <th width="15%">Mod</th>
-            <th width="15%">Effective<br/>Faction</th>
+            <th width="10%">Model</th>
+            <th width="10%">Mod</th>
+            <th width="10%">Effective<br/>Faction</th>
             <th width="10%"><a href="index.php?editor=faction&fid=<?=$faction_info['id']?>&action=20"><img src="images/add.gif" border="0" title="Create a new faction mod" /></a><br/></th>
           </tr>
 <?
@@ -59,8 +60,9 @@
             <td width="15%" align="center"><?=$mod['id']?></td>
             <td width="15%" align="center"><?=$mod_type['category']?></td>
             <td width="30%" align="center"><?=$mod_type['name']?></td>
-            <td width="15%" align="center"><?=$mod['mod']?></td>
-            <td width="15%" align="center"><?echo $faction_info['base'] + $mod['mod'];?></td>
+            <td width="10%" align="center"><?=$mod_type['model']?></td>
+            <td width="10%" align="center"><?=$mod['mod']?></td>
+            <td width="10%" align="center"><?echo $faction_info['base'] + $mod['mod'];?></td>
             <td width="10%" align="center"><a href="index.php?editor=faction&fid=<?=$faction_info['id']?>&fmid=<?=$mod['id']?>&action=22"><img src="images/c_table.gif" title="Edit this Faction Mod" border="0"></a>&nbsp;<a onClick="return confirm('Really delete faction mod <?=$mod['id']?>?');" href="index.php?editor=faction&fid=<?=$faction_info['id']?>&fmid=<?=$mod['id']?>&action=24"><img src="images/remove3.gif" title="Delete this Faction Mod" border="0"></a></td>
           </tr>
 <?

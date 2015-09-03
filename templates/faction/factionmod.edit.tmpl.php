@@ -46,6 +46,12 @@
 <?endforeach;?>
                   </select>
                 </td>
+                <?if($category == 'r' && ($cat_index == 75 || $cat_index == 42)){?>
+                <input type="hidden" name="old_model" value=<?=$model?>>
+                <td width="25%">Model: (-1 is ALL)<br/><input size="8" type="text" name="new_model" value="<?=$model?>"></td>
+                <?} else {?>
+                <input type="hidden" name="new_model" value="0">
+                <?}?>
                 <td width="25%">Mod:<br/><input size="8" type="text" name="new_mod" value="<?=$mod['mod']?>"></td>
               </tr>
             </table>
