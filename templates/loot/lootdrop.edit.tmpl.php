@@ -16,7 +16,7 @@
               <strong>Multiplier:</strong><br>
               <input class="indented" type="text" size="5" name="multiplier" value="<?=$multiplier?>"><br><br>
               <strong>Multiplier Min:</strong><br>
-              <input class="indented" type="text" size="5" name="multiplier_min" value="<?=$multiplier?>"><br><br>
+              <input class="indented" type="text" size="5" name="multiplier_min" value="<?=$multiplier_min?>"><br><br>
               <strong>Probability:</strong><br>
               <input class="indented" type="text" size="5" name="probability" value="<?=$probability?>"><br><br>
               <center>
