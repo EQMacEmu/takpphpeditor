@@ -1,6 +1,6 @@
 <?php
 
-$current_revision = "5 September 2015";
+$current_revision = "13 September 2015";
 
 require_once("config.php");
 require_once("lib/logging.php");
@@ -97,9 +97,6 @@ switch ($editor) {
   case 'guild':
     require_once('lib/guild.php');
     break;
-  case 'mail':
-    require_once('lib/mail.php');
-    break;
   case 'aa':
     require_once('lib/spellenums.php');
     require_once('lib/aa.php');
@@ -109,9 +106,6 @@ switch ($editor) {
     break;
   case 'util':
     require_once('lib/util.php');
-    break;
-  case 'altcur':
-    require_once('lib/altcur.php');
     break;
   case 'quest':
     require_once('lib/quest.php');

@@ -388,28 +388,6 @@ $slots = array(
  2268 => "Bank24-08",
  2269 => "Bank24-09",
  2270 => "Bank24-10",
- 2500 => "SharedBank01",
- 2501 => "SharedBank02",
- 2531 => "SharedBank01-01",
- 2532 => "SharedBank01-02",
- 2533 => "SharedBank01-03",
- 2534 => "SharedBank01-04",
- 2535 => "SharedBank01-05",
- 2536 => "SharedBank01-06",
- 2537 => "SharedBank01-07",
- 2538 => "SharedBank01-08",
- 2539 => "SharedBank01-09",
- 2540 => "SharedBank01-10",
- 2541 => "SharedBank02-01",
- 2542 => "SharedBank02-02",
- 2543 => "SharedBank02-03",
- 2544 => "SharedBank02-04",
- 2545 => "SharedBank02-05",
- 2546 => "SharedBank02-06",
- 2547 => "SharedBank02-07",
- 2548 => "SharedBank02-08",
- 2549 => "SharedBank02-09",
- 2550 => "SharedBank02-10",
  8001 => "CursorStack01",
  8002 => "CursorStack02",
  8003 => "CursorStack03",
@@ -467,15 +445,12 @@ switch ($action) {
     check_admin_authorization();
     if (isset($_GET['playerid']) && ($_GET['playerid'] > 0)) {
       $inventory = player_inventory($_GET['playerid']);
-      $shared_inventory = shared_inventory($_GET['playerid']);
     }
     $body = new Template("templates/inventory/inventory.player.tmpl.php");
     $body->set("playerid", $_GET['playerid']);
     $body->set("slots", $slots);
     if ($inventory)
       $body->set("inventory", $inventory);
-    if ($shared_inventory)
-      $body->set("shared_inventory", $shared_inventory);
     break;
   case 2: //Search by Player ID or Player Name
     check_admin_authorization();
@@ -537,20 +512,7 @@ switch ($action) {
 function player_inventory($player_id) {
   global $mysql;
 
-  $query = "SELECT charid, slotid, itemid FROM inventory WHERE charid=$player_id ORDER BY slotid";
-  $results = $mysql->query_mult_assoc($query);
-
-  return $results;
-}
-
-function shared_inventory($player_id) {
-  global $mysql;
-
-  $query = "SELECT account_id FROM character_data WHERE id=$player_id";
-  $result = $mysql->query_assoc($query);
-  $acctid = $result['account_id'];
-
-  $query = "SELECT acctid, slotid, itemid FROM sharedbank WHERE acctid=$acctid ORDER BY slotid";
+  $query = "SELECT id, slotid, itemid FROM character_inventory WHERE id=$player_id ORDER BY slotid";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
@@ -559,7 +521,7 @@ function shared_inventory($player_id) {
 function inv_slot_details($player_id, $slot_id) {
   global $mysql;
 
-  $query = "SELECT * FROM inventory WHERE charid=$player_id AND slotid=$slot_id";
+  $query = "SELECT * FROM character_inventory WHERE id=$player_id AND slotid=$slot_id";
   $results = $mysql->query_assoc($query);
 
   return $results;
@@ -568,7 +530,7 @@ function inv_slot_details($player_id, $slot_id) {
 function search_by_playerid($player_id) {
   global $mysql;
 
-  $query = "SELECT DISTINCT(charid) AS charid FROM inventory WHERE charid=$player_id";
+  $query = "SELECT DISTINCT(id) AS id FROM character_inventory WHERE id=$player_id";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
@@ -586,7 +548,7 @@ function search_by_playername($player_name, $list_limit) {
 function search_by_itemid($item_id, $list_limit) {
   global $mysql;
 
-  $query = "SELECT DISTINCT(charid) AS charid FROM inventory WHERE itemid=$item_id LIMIT $list_limit";
+  $query = "SELECT DISTINCT(id) AS charid FROM character_inventory WHERE itemid=$item_id LIMIT $list_limit";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
@@ -595,7 +557,7 @@ function search_by_itemid($item_id, $list_limit) {
 function delete_inv_item($player_id, $slot_id) {
   global $mysql;
 
-  $query = "DELETE FROM inventory WHERE charid=$player_id AND slotid=$slot_id";
+  $query = "DELETE FROM character_inventory WHERE id=$player_id AND slotid=$slot_id";
   $mysql->query_no_result($query);
 }
 
@@ -615,7 +577,7 @@ function update_inv_item() {
   $instnodrop = ($_POST['instnodrop'] == 'on') ? 1 : 0;
   $custom_data = $_POST['custom_data'];
 
-  $query = "UPDATE inventory SET itemid=$itemid, charges=$charges, color=$color, augslot1=$augslot1, augslot2=$augslot2, augslot3=$augslot3, augslot4=$augslot4, augslot5=$augslot5, instnodrop=$instnodrop, custom_data=\"$custom_data\" WHERE charid=$charid AND slotid=$slotid";
+  $query = "UPDATE character_inventory SET itemid=$itemid, charges=$charges, color=$color, augslot1=$augslot1, augslot2=$augslot2, augslot3=$augslot3, augslot4=$augslot4, augslot5=$augslot5, instnodrop=$instnodrop, custom_data=\"$custom_data\" WHERE id=$charid AND slotid=$slotid";
   $mysql->query_no_result($query);
 }
 
@@ -635,7 +597,7 @@ function insert_inv_item() {
   $instnodrop = ($_POST['instnodrop'] == 'on') ? 1 : 0;
   $custom_data = $_POST['custom_data'];
 
-  $query = "INSERT INTO inventory SET charid=$charid, slotid=$slotid, itemid=$itemid, charges=$charges, color=$color, augslot1=$augslot1, augslot2=$augslot2, augslot3=$augslot3, augslot4=$augslot4, augslot5=$augslot5, instnodrop=$instnodrop, custom_data=\"$custom_data\"";
+  $query = "INSERT INTO character_inventory SET id=$charid, slotid=$slotid, itemid=$itemid, charges=$charges, color=$color, augslot1=$augslot1, augslot2=$augslot2, augslot3=$augslot3, augslot4=$augslot4, augslot5=$augslot5, instnodrop=$instnodrop, custom_data=\"$custom_data\"";
   $mysql->query_no_result($query);
 }
 ?>

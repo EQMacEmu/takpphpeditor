@@ -48,7 +48,6 @@
                   <legend><strong>Guild Info</strong></legend>
                   Guild: <?echo ($guild_id > 0) ? '<a href="index.php?editor=guild&guildid=' . $guild_id . '">' . getGuildName($guild_id) . '</a>' : "None";?><br/>
                   Guild Rank: <?echo ($guild_id > 0) ? $guild_rank : "N/A";?><br/>
-                  Guild Banker: <?echo ($guild_id > 0) ? $yesno[$guild_banker] : "N/A";?><br/>
                 </fieldset>
                 <fieldset>
                   <legend><strong>Vitals</strong></legend>
@@ -69,10 +68,7 @@
                   <legend><strong>Other Info</strong></legend>
                   Birth: <?=get_real_time($birthday)?><br/>
                   Anonymous: <?=$anonymity[$anon]?><br/>
-                  LFG: <?=$yesno[$lfg]?><br/>
-                  LFP: <?=$yesno[$lfp]?><br/>
                   Drunkness: <?=$intoxication?><br/>
-                  Toxicity: <?=$toxicity?><br/>
                   Autosplit: <?=$yesno[$autosplit_enabled]?>
                 </fieldset>
               </td>
@@ -142,12 +138,7 @@
                     <tr>
                       <td align="left" width="33%">Beard: <?=$beard?></td>
                       <td align="left" width="33%">Beard Color: <?=$beard_color?></td>
-                      <td align="left" width="34%">Show Helm: <?=$yesno[$show_helm]?></td>
-                    </tr>
-                    <tr>
-                      <td align="left" width="33%">Drakkin Heritage: <?=$drakkin_heritage?></td>
-                      <td align="left" width="33%">Drakkin Tattoo: <?=$drakkin_tattoo?></td>
-                      <td align="left" width="34%">Drakkin Details: <?=$drakkin_details?></td>
+                      <td align="left" width="34%">&nbsp;</td>
                     </tr>
                   </table>
                 </fieldset>
@@ -159,15 +150,13 @@
                   <legend><strong>Cash</strong></legend>
                   <table width="100%" border="0" cellpadding="3" cellspacing="0">
                     <tr>
-                      <td width="25%"><u>Body</u></td>
-                      <td width="25%"><u>Cursor</u></td>
-                      <td width="25%"><u>Bank</u></td>
-                      <td width="25%"><u>Shared</u></td>
+                      <td width="33%"><u>Body</u></td>
+                      <td width="33%"><u>Cursor</u></td>
+                      <td width="34%"><u>Bank</u></td>
                     <tr>
                       <td>Platinum: <?=$currency['platinum']?></td>
                       <td>Platinum: <?=$currency['platinum_cursor']?></td>
                       <td>Platinum: <?=$currency['platinum_bank']?></td>
-                      <td>Platinum: <?=$sharedplat?></td>
                     </tr>
                     <tr>
                       <td>Gold: <?=$currency['gold']?></td>
@@ -186,92 +175,6 @@
                       <td>Copper: <?=$currency['copper_cursor']?></td>
                       <td>Copper: <?=$currency['copper_bank']?></td>
                       <td>&nbsp;</td>
-                    </tr>
-                  </table>
-                </fieldset>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <fieldset>
-                  <legend><strong>LDoN Stats</strong></legend>
-                  <table width="100%" border="0" cellpadding="2.5" cellspacing="0">
-                    <tr>
-                      <td width="25%">&nbsp;</td>
-                      <td align="center" width="25%"><u>Points</u></td>
-                      <td align="center" width="25%"><u>Wins</u></td>
-                      <td align="center" width="25%"><u>Losses</u><td>
-                    </tr>
-                    <tr>
-                      <td align="center" width="25%">GUK:</td>
-                      <td align="center" width="25%"><?=$ldon_points_guk?></td>
-                      <td align="center" width="25%"><?=$guk_wins?></td>
-                      <td align="center" width="25%"><?=$guk_losses?></td>
-                    </tr>
-                    <tr>
-                      <td align="center" width="25%">MIR:</td>
-                      <td align="center" width="25%"><?=$ldon_points_mir?></td>
-                      <td align="center" width="25%"><?=$mir_wins?></td>
-                      <td align="center" width="25%"><?=$mir_losses?></td>
-                    </tr>
-                    <tr>
-                      <td align="center" width="25%">MMC:</td>
-                      <td align="center" width="25%"><?=$ldon_points_mmc?></td>
-                      <td align="center" width="25%"><?=$mmc_wins?></td>
-                      <td align="center" width="25%"><?=$mmc_losses?></td>
-                    </tr>
-                    <tr>
-                      <td align="center" width="25%">RUJ:</td>
-                      <td align="center" width="25%"><?=$ldon_points_ruj?></td>
-                      <td align="center" width="25%"><?=$ruj_wins?></td>
-                      <td align="center" width="25%"><?=$ruj_losses?></td>
-                    </tr>
-                    <tr>
-                      <td align="center" width="25%">TAK:</td>
-                      <td align="center" width="25%"><?=$ldon_points_tak?></td>
-                      <td align="center" width="25%"><?=$tak_wins?></td>
-                      <td align="center" width="25%"><?=$tak_losses?></td>
-                    </tr>
-                    <tr>
-                      <td colspan="4">&nbsp;</td>
-                    </tr>
-                    <tr>
-                      <td align="center" colspan="4">Available Points: <?=$ldon_points_available?></td>
-                    </tr>
-                  </table>
-                </fieldset>
-              </td>
-              <td>
-                <fieldset>
-                  <legend><strong>DoN Crystals</strong></legend>
-                  <table width="100%" border="0" cellpadding="4" cellspacing="0">
-                    <tr>
-                      <td align="center" width="33%">&nbsp;</td>
-                      <td align="center" width="33%"><u>Radiant</u></td>
-                      <td align="center" width="33%"><u>Ebon</u></td>
-                    </tr>
-                    <tr>
-                      <td align="center" width="33%">Current:</td>
-                      <td align="center" width="33%"><?=$currency['radiant_crystals']?></td>
-                      <td align="center" width="33%"><?=$currency['ebon_crystals']?></td>
-                    </tr>
-                    <tr>
-                      <td align="center" width="33%">Total:</td>
-                      <td align="center" width="33%"><?=$currency['career_radiant_crystals']?></td>
-                      <td align="center" width="33%"><?=$currency['career_ebon_crystals']?></td>
-                    </tr>
-                  </table>
-                </fieldset>
-                <fieldset>
-                  <legend><strong>Tribute</strong></legend>
-                  <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tr>
-                      <td>Active: <?=$yesno[$tribute_active]?></td>
-                      <td>Timer: <?echo ($tribute_time_remaining == -1) ? "Off" : $tribute_time_remaining;?></td>
-                    </tr>
-                    <tr>
-                      <td>Points: <?=$tribute_points?></td>
-                      <td>Total: <?=$career_tribute_points?></td>
                     </tr>
                   </table>
                 </fieldset>
@@ -318,24 +221,6 @@
                     </tr>
                     <tr>
                       <td>AA Spent: <?=$aa_points_spent?></td>
-                    </tr>
-                  </table>
-                </fieldset>
-              </td>
-              <td>
-                <fieldset>
-                  <legend><strong>Leadership AA</strong></legend>
-                  <table width="100%" border="0" cellpadding="3" cellspacing="0">
-                    <tr>
-                      <td colspan="2">Leader AA Active: <?=$yesno[$leadership_exp_on]?></td>
-                    </tr>
-                    <tr>
-                      <td>Group Exp: <?=$group_leadership_exp?></td>
-                      <td>Raid Exp: <?=$raid_leadership_exp?></td>
-                    </tr>
-                    <tr>
-                      <td>Group Points: <?=$group_leadership_points?></td>
-                      <td>Raid Points: <?=$raid_leadership_points?></td>
                     </tr>
                   </table>
                 </fieldset>

@@ -187,25 +187,10 @@ function player_info() {
   $result = $mysql->query_mult_assoc($query);
   $player_array['memmed_spells'] = $result;
 
-  //Load from character_disciplines
-  $query = "SELECT * FROM character_disciplines WHERE id = $playerid";
-  $result = $mysql->query_mult_assoc($query);
-  $player_array['disciplines'] = $result;
-
   //Load from character_material
   $query = "SELECT * FROM character_material WHERE id = $playerid";
   $result = $mysql->query_mult_assoc($query);
   $player_array['material'] = $result;
-
-  //Load from character_tribute
-  $query = "SELECT * FROM character_tribute WHERE id = $playerid";
-  $result = $mysql->query_mult_assoc($query);
-  $player_array['tribute'] = $result;
-
-  //Load from character_bandolier
-  $query = "SELECT * FROM character_bandolier WHERE id = $playerid";
-  $result = $mysql->query_mult_assoc($query);
-  $player_array['bandolier'] = $result;
 
   //Load from character_inspect_messages
   $query = "SELECT * FROM character_inspect_messages WHERE id = $playerid";
@@ -213,28 +198,21 @@ function player_info() {
   if ($result) {
     $player_array['inspect_message'] = $result['inspect_message'];
   }
-
-  //Load from character_leadership_abilities
-  $query = "SELECT * FROM character_leadership_abilities WHERE id = $playerid";
-  $result = $mysql->query_mult_assoc($query);
-  $player_array['leadership_abilities'] = $result;
-
+  
   //Load account details
   $accountid = $player_array['account_id'];
-  $query = "SELECT name, lsaccount_id, status, sharedplat FROM account WHERE id = $accountid";
+  $query = "SELECT name, lsaccount_id, status FROM account WHERE id = $accountid";
   $result = $mysql->query_assoc($query);
   $player_array['lsname'] = $result['name'];
   $player_array['lsaccount'] = $result['lsaccount_id'];
   $player_array['status'] = $result['status'];
-  $player_array['sharedplat'] = $result['sharedplat'];
 
   //Load guild details
-  $query = "SELECT guild_id, rank, banker FROM guild_members WHERE char_id = $playerid";
+  $query = "SELECT guild_id, rank FROM guild_members WHERE char_id = $playerid";
   $result = $mysql->query_assoc($query);
   if ($result) {
     $player_array['guild_id'] = $result['guild_id'];
     $player_array['guild_rank'] = $result['guild_rank'];
-    $player_array['guild_banker'] = $result['guild_banker'];
   }
 
   return $player_array;

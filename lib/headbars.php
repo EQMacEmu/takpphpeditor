@@ -131,8 +131,6 @@ switch ($editor) {
     $searchbar->set('guilds', $guilds);
     $searchbar->set('currguild', $guildid);
     break;
-  case 'mail':
-    break;
   case 'aa':
     $aas = aas();
     $searchbar = new Template("templates/searchbar/searchbar.byaaid.tmpl.php");
@@ -144,8 +142,6 @@ switch ($editor) {
   case 'qglobal':
     break;
   case 'util':
-    break;
-  case 'altcur':
     break;
   case 'quest':
     $npcs = npcs();
@@ -189,10 +185,6 @@ function build_tabs () {
   $tabstatus17 = "off";
   $tabstatus18 = "off";
   $tabstatus19 = "off";
-  $tabstatus20 = "off";
-  $tabstatus21 = "off";
-  $tabstatus22 = "off";
-  $tabstatus23 = "off";
 
   $zoneurl = "";
   $npcurl = "";
@@ -239,37 +231,31 @@ function build_tabs () {
       $tabstatus10 = "on";
       break;
     case 'items':
-      $tabstatus13 = "on";
+      $tabstatus11 = "on";
       break;
     case 'player':
-      $tabstatus14 = "on";
+      $tabstatus12 = "on";
       break;
     case 'account':
-      $tabstatus15 = "on";
+      $tabstatus13 = "on";
       break;
     case 'guild':
-      $tabstatus16 = "on";
-      break;
-    case 'mail':
-      $tabstatus17 = "on";
+      $tabstatus14 = "on";
       break;
     case 'aa':
-      $tabstatus18 = "on";
+      $tabstatus15 = "on";
       break;
     case 'qglobal':
-      $tabstatus19 = "on";
+      $tabstatus16 = "on";
       break;
     case 'util':
-      $tabstatus20 = "on";
-      break;
-    case 'altcur':
-      $tabstatus21 = "on";
+      $tabstatus17 = "on";
       break;
     case 'inv':
-      $tabstatus22 = "on";
+      $tabstatus18 = "on";
       break;
     case 'keys':
-      $tabstatus23 = "on";
+      $tabstatus19 = "on";
       break;
   }
 
@@ -291,16 +277,15 @@ function build_tabs () {
         <div class=\"$tabstatus8\"><a href=\"index.php?editor=zone$zoneurl\">Zones</a></div>
         <div class=\"$tabstatus9\"><a href=\"index.php?editor=misc$zoneurl\">Misc</a></div>
         <div class=\"$tabstatus10\"><a href=\"index.php?editor=server\">Server</a></div><br/><br/>
-        <div class=\"$tabstatus13\"><a href=\"index.php?editor=items\">Items</a></div>
-        <div class=\"$tabstatus14\"><a href=\"index.php?editor=player\">Players</a></div>
-        <div class=\"$tabstatus15\"><a href=\"index.php?editor=account\">Accounts</a></div>
-        <div class=\"$tabstatus16\"><a href=\"index.php?editor=guild\">Guilds</a></div>
-        <div class=\"$tabstatus17\"><a href=\"index.php?editor=mail\">Mail</a></div>
-        <div class=\"$tabstatus18\"><a href=\"index.php?editor=aa\">AAs</a></div>
-        <div class=\"$tabstatus19\"><a href=\"index.php?editor=qglobal\">QGlobals</a></div>
-        <div class=\"$tabstatus20\"><a href=\"index.php?editor=util\">Utilities</a></div>
-        <div class=\"$tabstatus22\"><a href=\"index.php?editor=inv\">Inventory</a></div>
-        <div class=\"$tabstatus23\"><a href=\"index.php?editor=keys\">Keys</a></div><br/>
+        <div class=\"$tabstatus11\"><a href=\"index.php?editor=items\">Items</a></div>
+        <div class=\"$tabstatus12\"><a href=\"index.php?editor=player\">Players</a></div>
+        <div class=\"$tabstatus13\"><a href=\"index.php?editor=account\">Accounts</a></div>
+        <div class=\"$tabstatus14\"><a href=\"index.php?editor=guild\">Guilds</a></div>
+        <div class=\"$tabstatus15\"><a href=\"index.php?editor=aa\">AAs</a></div>
+        <div class=\"$tabstatus16\"><a href=\"index.php?editor=qglobal\">QGlobals</a></div>
+        <div class=\"$tabstatus17\"><a href=\"index.php?editor=util\">Utilities</a></div>
+        <div class=\"$tabstatus18\"><a href=\"index.php?editor=inv\">Inventory</a></div>
+        <div class=\"$tabstatus19\"><a href=\"index.php?editor=keys\">Keys</a></div><br/>
         <div style=\"float: right;\">$admin<a href=\"index.php?logout\">Logout</a></div><br/><br/>
       </div>
 ";
