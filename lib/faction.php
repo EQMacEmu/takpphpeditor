@@ -4,7 +4,7 @@ $default_size = 50;
 $default_sort = 1;
 
 $columns = array(
-  1 => 'char_id',
+  1 => 'id',
   2 => 'faction_id'
 );
 
@@ -96,7 +96,7 @@ switch ($action) {
       $filter = build_filter();
     }
     $body = new Template("templates/faction/faction.players.view.tmpl.php");
-    $page_stats = getPageInfo("faction_values", $curr_page, $curr_size, $_GET['sort'], $filter['sql']);
+    $page_stats = getPageInfo("character_faction_values", $curr_page, $curr_size, $_GET['sort'], $filter['sql']);
     if ($filter) {
       $body->set('filter', $filter);
     }
@@ -416,7 +416,7 @@ function get_player_factions($page_number, $results_per_page, $sort_by, $where =
   global $mysql;
   $limit = ($page_number - 1) * $results_per_page . "," . $results_per_page;
 
-  $query = "SELECT * FROM faction_values";
+  $query = "SELECT * FROM character_faction_values";
   if ($where) {
     $query .= " WHERE $where";
   }
@@ -428,10 +428,10 @@ function get_player_factions($page_number, $results_per_page, $sort_by, $where =
 
 function get_player_faction() {
   global $mysql;
-  $char_id = $_GET['char_id'];
+  $id = $_GET['id'];
   $faction_id = $_GET['faction_id'];
   
-  $query = "SELECT * FROM faction_values WHERE char_id = $char_id AND faction_id = $faction_id";
+  $query = "SELECT * FROM character_faction_values WHERE id = $id AND faction_id = $faction_id";
   $result = $mysql->query_assoc($query);
   
   return $result;
@@ -440,34 +440,34 @@ function get_player_faction() {
 function add_player_faction() {
   global $mysql;
 
-  $char_id = $_POST['char_id'];
+  $id = $_POST['id'];
   $faction_id = $_POST['faction_id'];
   $current_value = $_POST['current_value']; 
 
-  $query = "INSERT INTO faction_values SET char_id=\"$char_id\", faction_id=\"$faction_id\", current_value=\"$current_value\"";
+  $query = "INSERT INTO character_faction_values SET id=\"$id\", faction_id=\"$faction_id\", current_value=\"$current_value\"";
   $mysql->query_no_result($query);
 }
 
 function update_player_faction() {
   global $mysql;
 
-  $char_id = $_POST['char_id'];
+  $id = $_POST['id'];
   $faction_id = $_POST['faction_id'];
   $current_value = $_POST['current_value'];
   $o_cid = $_POST['o_cid'];
   $o_fid = $_POST['o_fid'];
 
-  $query = "UPDATE faction_values SET char_id=\"$char_id\", faction_id=\"$faction_id\", current_value=\"$current_value\" WHERE char_id=\"$o_cid\" AND faction_id=\"$o_fid\"";
+  $query = "UPDATE character_faction_values SET id=\"$id\", faction_id=\"$faction_id\", current_value=\"$current_value\" WHERE id=\"$o_cid\" AND faction_id=\"$o_fid\"";
   $mysql->query_no_result($query);
 }
 
 function delete_player_faction() {
   global $mysql;
 
-  $char_id = $_GET['char_id'];
+  $id = $_GET['id'];
   $faction_id = $_GET['faction_id'];
 
-  $query = "DELETE FROM faction_values WHERE char_id=\"$char_id\" AND faction_id=\"$faction_id\"";
+  $query = "DELETE FROM character_faction_values WHERE id=\"$id\" AND faction_id=\"$faction_id\"";
   $mysql->query_no_result($query);
 }
 
@@ -478,9 +478,9 @@ function build_filter() {
   $filter_final = array();
 
   if ($filter1) { // Filter by character
-    $query = "SELECT c.id FROM character_data c, faction_values f WHERE c.id = f.char_id AND c.name LIKE \"%$filter1%\" GROUP BY id";
+    $query = "SELECT c.id FROM character_data c, character_faction_values f WHERE c.id = f.id AND c.name LIKE \"%$filter1%\" GROUP BY id";
     $results = $mysql->query_mult_assoc($query);
-    $filter_charid = "char_id IN (";
+    $filter_charid = "id IN (";
     if ($results) {
       foreach ($results as $result) {
         $filter_charid .= $result['id'] . ",";

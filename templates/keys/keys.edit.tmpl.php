@@ -1,17 +1,17 @@
       <table class="edit_form" width="250px">
         <tr>
           <td class="edit_form_header">
-            Key on <?=getPlayerName($key_item['char_id'])?>'s Keyring
+            Key on <?=getPlayerName($key_item['id'])?>'s Keyring
           </td>
         </tr>
         <tr>
           <td class="edit_form_content">
-            <form name="keys" id="keys" method="POST" action="index.php?editor=keys&playerid=<?=$key_item['char_id']?>&action=7">
+            <form name="keys" id="keys" method="POST" action="index.php?editor=keys&playerid=<?=$key_item['id']?>&action=7">
               <table width="100%" cellpadding="3" cellspacing="0">
                 <tr>
                   <td>
                     Player ID:<br/>
-                    <input type="text" size="5" name="char_id" value="<?=$key_item['char_id']?>" readonly="true">
+                    <input type="text" size="5" name="id" value="<?=$key_item['id']?>" readonly="true">
                   </td>
                   <td>
                     Item ID:<br/>

@@ -57,10 +57,10 @@
             </tr>
 <?$x=0; foreach($player_factions as $player_faction):?>
             <tr bgcolor="#<? echo ($x % 2 == 0) ? "BBBBBB" : "AAAAAA";?>">
-              <td align="center" width="20%"><a title="Character ID: <?=$player_faction['char_id']?>"><?=getPlayerName($player_faction['char_id']);?></a></td>
+              <td align="center" width="20%"><a title="Character ID: <?=$player_faction['id']?>"><?=getPlayerName($player_faction['id']);?></a></td>
               <td align="center" width="20%"><a title="Faction: <?=getFactionName($player_faction['faction_id'])?>"><?=$player_faction['faction_id']?></a></td>
               <td align="center" width="20%"><?=$player_faction['current_value']?></td>
-              <td align="right"><a href="index.php?editor=faction&char_id=<?=$player_faction['char_id']?>&faction_id=<?=$player_faction['faction_id']?>&action=10"><img src="images/edit2.gif" border="0" title="Edit Faction Entry"></a>&nbsp;<a onClick="return confirm('Really Delete this Faction Entry?');" href="index.php?editor=faction&char_id=<?=$player_faction['char_id']?>&faction_id=<?=$player_faction['faction_id']?>&action=14"><img src="images/remove3.gif" border="0" title="Delete this faction entry"></a></td>
+              <td align="right"><a href="index.php?editor=faction&id=<?=$player_faction['id']?>&faction_id=<?=$player_faction['faction_id']?>&action=10"><img src="images/edit2.gif" border="0" title="Edit Faction Entry"></a>&nbsp;<a onClick="return confirm('Really Delete this Faction Entry?');" href="index.php?editor=faction&id=<?=$player_faction['id']?>&faction_id=<?=$player_faction['faction_id']?>&action=14"><img src="images/remove3.gif" border="0" title="Delete this faction entry"></a></td>
             </tr>
 <?$x++; endforeach;?>
 <?endif;?>

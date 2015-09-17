@@ -11,7 +11,7 @@
                 <tr>
                   <td>
                     Player ID:<br/>
-                    <input type="text" size="5" name="char_id" value="<?=$playerid?>" readonly="true">
+                    <input type="text" size="5" name="id" value="<?=$playerid?>" readonly="true">
                   </td>
                   <td>
                     Item ID:<br/>

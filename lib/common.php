@@ -459,7 +459,7 @@ function delete_player($playerid) {
   $mysql->query_no_result($query);
   $query = "DELETE FROM discovered_items WHERE char_name=(SELECT name FROM character_data WHERE id=$playerid)";
   $mysql->query_no_result($query);
-  $query = "DELETE FROM faction_values WHERE char_id=$playerid";
+  $query = "DELETE FROM character_faction_values WHERE id=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM friends WHERE charid=$playerid";
   $mysql->query_no_result($query);

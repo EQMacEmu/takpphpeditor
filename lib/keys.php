@@ -57,7 +57,7 @@ switch ($action) {
     break;
   case 5: //Insert item into keyring
     check_admin_authorization();
-    $playerid = $_POST['char_id'];
+    $playerid = $_POST['id'];
     insert_key_item();
     header("Location: index.php?editor=keys&playerid=$playerid&action=1");
     exit;
@@ -69,7 +69,7 @@ switch ($action) {
     break;
   case 7: //Update item in keyring
     check_admin_authorization();
-    $playerid = $_POST['char_id'];
+    $playerid = $_POST['id'];
     update_key_item();
     header("Location: index.php?editor=keys&playerid=$playerid&action=1");
     exit;
@@ -81,28 +81,28 @@ switch ($action) {
     exit;
 }
 
-function player_keys($player_id) {
+function player_keys($id) {
   global $mysql;
 
-  $query = "SELECT char_id, item_id FROM keyring WHERE char_id=$player_id";
+  $query = "SELECT id, item_id FROM character_keyring WHERE id=$id";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
 }
 
-function key_item_details($player_id, $item_id) {
+function key_item_details($id, $item_id) {
   global $mysql;
 
-  $query = "SELECT * FROM keyring WHERE char_id=$player_id AND item_id=$item_id";
+  $query = "SELECT * FROM character_keyring WHERE id=$id AND item_id=$item_id";
   $results = $mysql->query_assoc($query);
 
   return $results;
 }
 
-function search_by_playerid($player_id) {
+function search_by_playerid($id) {
   global $mysql;
 
-  $query = "SELECT DISTINCT(char_id) AS char_id FROM keyring WHERE char_id=$player_id";
+  $query = "SELECT DISTINCT(id) FROM character_keyring WHERE id=$id";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
@@ -111,7 +111,7 @@ function search_by_playerid($player_id) {
 function search_by_playername($player_name, $list_limit) {
   global $mysql;
 
-  $query = "SELECT id AS char_id FROM character_data WHERE `name` RLIKE \"$player_name\" LIMIT $list_limit";
+  $query = "SELECT id FROM character_data WHERE `name` RLIKE \"$player_name\" LIMIT $list_limit";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
@@ -120,37 +120,37 @@ function search_by_playername($player_name, $list_limit) {
 function search_by_itemid($item_id, $list_limit) {
   global $mysql;
 
-  $query = "SELECT DISTINCT(char_id) AS char_id FROM keyring WHERE item_id=$item_id LIMIT $list_limit";
+  $query = "SELECT DISTINCT(id) FROM character_keyring WHERE item_id=$item_id LIMIT $list_limit";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
 }
 
-function delete_key_item($player_id, $item_id) {
+function delete_key_item($id, $item_id) {
   global $mysql;
 
-  $query = "DELETE FROM keyring WHERE char_id=$player_id AND item_id=$item_id";
+  $query = "DELETE FROM character_keyring WHERE id=$id AND item_id=$item_id";
   $mysql->query_no_result($query);
 }
 
 function update_key_item() {
   global $mysql;
 
-  $char_id = $_POST['char_id'];
+  $id = $_POST['id'];
   $item_id = $_POST['item_id'];
   $old_item = $_POST['old_item'];
 
-  $query = "UPDATE keyring SET item_id=$item_id WHERE char_id=$char_id AND item_id=$old_item";
+  $query = "UPDATE character_keyring SET item_id=$item_id WHERE id=$id AND item_id=$old_item";
   $mysql->query_no_result($query);
 }
 
 function insert_key_item() {
   global $mysql;
 
-  $char_id = $_POST['char_id'];
+  $id = $_POST['id'];
   $item_id = $_POST['item_id'];
 
-  $query = "INSERT INTO keyring SET char_id=$char_id, item_id=$item_id";
+  $query = "INSERT INTO character_keyring SET id=$id, item_id=$item_id";
   $mysql->query_no_result($query);
 }
 ?>

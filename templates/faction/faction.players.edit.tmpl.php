@@ -9,7 +9,7 @@
               <td><b>Current Value:</b></td>
             </tr>
             <tr>
-              <td><input type="text" size="9" name="char_id" value="<?=$char_id?>"></td>
+              <td><input type="text" size="9" name="id" value="<?=$id?>"></td>
               <td>
                 <select name="faction_id">
                   <option value="">Select a Faction</option>
@@ -22,7 +22,7 @@
             </tr>
           </table><br/><br/>
           <center>
-            <input type="hidden" name="o_cid" value="<?=$char_id?>">
+            <input type="hidden" name="o_cid" value="<?=$id?>">
             <input type="hidden" name="o_fid" value="<?=$faction_id?>">
             <input type="submit" value="Submit Changes">&nbsp;<input type="button" value="Cancel" onClick="history.back();">
           </center>
