@@ -18,16 +18,6 @@ $itembagsize= array(
   5   => "Giant - Assembly Kit"
 );
 
-$itemldontheme= array(
-  0   => "None",
-  1   => "GUK",
-  2   => "MIR",
-  4   => "MMC",
-  8   => "RUJ",
-  16  => "TAK",
-  31  => "ALL"
-);
-
 $itembardtype= array(
   0   => "None",
   23  => "Wind",
@@ -36,14 +26,6 @@ $itembardtype= array(
   26  => "Percussion",
   50  => "Singing",
   51  => "ALL"
-);
-
-$itempointtype= array(
-  0   => "None",
-  1   => "LDoN",
-  2   => "Discord Merchant",
-  4   => "Norrath Keeper",
-  5   => "Dark Reign"
 );
 
 $itemcasttype= array(
@@ -104,7 +86,6 @@ switch ($action) {
     $body->set("itemsize", $itemsize);
     $body->set("itemmaterial", $itemmaterial);
     $body->set("itemtypes", $itemtypes);
-    $body->set("itemldontheme", $itemldontheme);
     $body->set("skilltypes", $skilltypes);
     $body->set("bodytypes", $bodytypes);
     $body->set("itemraces", $races);
@@ -112,7 +93,6 @@ switch ($action) {
     $body->set("itembagsize", $itembagsize);
     $body->set("world_containers", $world_containers);
     $body->set("itembardtype", $itembardtype);
-    $body->set("itempointtype", $itempointtype);
     $body->set("itemcasttype", $itemcasttype);
     $body->set("proccasttype", $proccasttype);
     $body->set("worncasttype", $worncasttype);
@@ -189,7 +169,6 @@ switch ($action) {
      $body->set("itemsize", $itemsize);
      $body->set("itemmaterial", $itemmaterial);
      $body->set("itemtypes", $itemtypes);
-     $body->set("itemldontheme", $itemldontheme);
      $body->set("skilltypes", $skilltypes);
      $body->set("bodytypes", $bodytypes);
      $body->set("itemraces", $races);
@@ -197,7 +176,6 @@ switch ($action) {
      $body->set("itembagsize", $itembagsize);
      $body->set("world_containers", $world_containers);
      $body->set("itembardtype", $itembardtype);
-     $body->set("itempointtype", $itempointtype);
      $body->set("itemcasttype", $itemcasttype);
      $body->set("proccasttype", $proccasttype);
      $body->set("worncasttype", $worncasttype);
@@ -278,7 +256,7 @@ function update_item () {
 
   // Define checkbox fields:
   $slots = 0;
-  if (isset($_POST['slot_Charm'])) $slots = $slots+1;
+  if (isset($_POST['slot_Cursor'])) $slots = $slots+1;
   if (isset($_POST['slot_Ear01'])) $slots = $slots+2;
   if (isset($_POST['slot_Head'])) $slots = $slots+4;
   if (isset($_POST['slot_Face'])) $slots = $slots+8;
@@ -300,7 +278,6 @@ function update_item () {
   if (isset($_POST['slot_Feet'])) $slots = $slots+524288;
   if (isset($_POST['slot_Waist'])) $slots = $slots+1048576;
   if (isset($_POST['slot_Ammo'])) $slots = $slots+2097152;
-  if (isset($_POST['slot_Powersource'])) $slots = $slots+4194304;
 
   $races = 0;
   if (isset($_POST['race_Human'])) $races = $races+1;
@@ -317,9 +294,6 @@ function update_item () {
   if (isset($_POST['race_Gnome'])) $races = $races+2048;
   if (isset($_POST['race_Iksar'])) $races = $races+4096;
   if (isset($_POST['race_Vah_Shir'])) $races = $races+8192;
-  if (isset($_POST['race_Froglok'])) $races = $races+16384;
-  if (isset($_POST['race_Drakkin'])) $races = $races+32768;
-  if (isset($_POST['race_Shroud'])) $races = $races+65536;
 
   $classes = 0;
   if (isset($_POST['class_Warrior'])) $classes = $classes+1;
@@ -337,7 +311,6 @@ function update_item () {
   if (isset($_POST['class_Magician'])) $classes = $classes+4096;
   if (isset($_POST['class_Enchanter'])) $classes = $classes+8192;
   if (isset($_POST['class_Beastlord'])) $classes = $classes+16384;
-  if (isset($_POST['class_Berserker'])) $classes = $classes+32768;
 
   $deity = 0;
   if (isset($_POST['deity_Agnostic'])) $deity = $deity+1;
@@ -358,44 +331,11 @@ function update_item () {
   if (isset($_POST['deity_Tunare'])) $deity = $deity+32768;
   if (isset($_POST['deity_Veeshan'])) $deity = $deity+65536;
 
-  $augtype = 0;
-  if (isset($_POST['augtype_Type_1'])) $augtype = $augtype+1;
-  if (isset($_POST['augtype_Type_2'])) $augtype = $augtype+2;
-  if (isset($_POST['augtype_Type_3'])) $augtype = $augtype+4;
-  if (isset($_POST['augtype_Type_4'])) $augtype = $augtype+8;
-  if (isset($_POST['augtype_Type_5'])) $augtype = $augtype+16;
-  if (isset($_POST['augtype_Type_6'])) $augtype = $augtype+32;
-  if (isset($_POST['augtype_Type_7'])) $augtype = $augtype+64;
-  if (isset($_POST['augtype_Type_8'])) $augtype = $augtype+128;
-  if (isset($_POST['augtype_Type_9'])) $augtype = $augtype+256;
-  if (isset($_POST['augtype_Type_10'])) $augtype = $augtype+512;
-  if (isset($_POST['augtype_Type_11'])) $augtype = $augtype+1024;
-  if (isset($_POST['augtype_Type_12'])) $augtype = $augtype+2048;
-  if (isset($_POST['augtype_Type_13'])) $augtype = $augtype+4096;
-  if (isset($_POST['augtype_Type_14'])) $augtype = $augtype+8192;
-  if (isset($_POST['augtype_Type_15'])) $augtype = $augtype+16384;
-  if (isset($_POST['augtype_Type_16'])) $augtype = $augtype+32768;
-  if (isset($_POST['augtype_Type_17'])) $augtype = $augtype+65536;
-  if (isset($_POST['augtype_Type_18'])) $augtype = $augtype+131072;
-  if (isset($_POST['augtype_Type_19'])) $augtype = $augtype+262144;
-  if (isset($_POST['augtype_Type_20'])) $augtype = $augtype+524288;
-  if (isset($_POST['augtype_Type_21'])) $augtype = $augtype+1048576;
-  if (isset($_POST['augtype_Type_22'])) $augtype = $augtype+2097152;
-  if (isset($_POST['augtype_Type_23'])) $augtype = $augtype+4194304;
-  if (isset($_POST['augtype_Type_24'])) $augtype = $augtype+8388608;
-  if (isset($_POST['augtype_Type_25'])) $augtype = $augtype+16777216;
-  if (isset($_POST['augtype_Type_26'])) $augtype = $augtype+33554432;
-  if (isset($_POST['augtype_Type_27'])) $augtype = $augtype+67108864;
-  if (isset($_POST['augtype_Type_28'])) $augtype = $augtype+134217728;
-  if (isset($_POST['augtype_Type_29'])) $augtype = $augtype+268435456;
-  if (isset($_POST['augtype_Type_30'])) $augtype = $augtype+536870912;
-
   $fields = '';
   if ($item['slots'] != $slots) $fields .= "slots=\"$slots\", ";
   if ($item['races'] != $races) $fields .= "races=\"$races\", ";
   if ($item['classes'] != $classes) $fields .= "classes=\"$classes\", ";
   if ($item['deity'] != $deity) $fields .= "deity=\"$deity\", ";
-  if ($item['augtype'] != $augtype) $fields .= "augtype=\"$augtype\", ";
   if ($item['Name'] != $_POST['itemname']) $fields .= "Name=\"" . $_POST['itemname'] . "\", ";
   if ($item['itemtype'] != $_POST['itemtype']) $fields .= "itemtype=\"" . $_POST['itemtype'] . "\", ";
   if ($item['lore'] != $_POST['lore']) $fields .= "lore=\"" . $_POST['lore'] . "\", ";
@@ -406,11 +346,9 @@ function update_item () {
   if ($item['filename'] != $_POST['filename']) $fields .= "filename=\"" . $_POST['filename'] . "\", ";
   if ($item['book'] != $_POST['book']) $fields .= "book=\"" . $_POST['book'] . "\", ";
   if ($item['booktype'] != $_POST['booktype']) $fields .= "booktype=\"" . $_POST['booktype'] . "\", ";
-  if ($item['powersourcecapacity'] != $_POST['powersourcecapacity']) $fields .= "powersourcecapacity=\"" . $_POST['powersourcecapacity'] . "\", ";
   if ($item['charmfile'] != $_POST['charmfile']) $fields .= "charmfile=\"" . $_POST['charmfile'] . "\", ";
   if ($item['charmfileid'] != $_POST['charmfileid']) $fields .= "charmfileid=\"" . $_POST['charmfileid'] . "\", ";
   if ($item['scriptfileid'] != $_POST['scriptfileid']) $fields .= "scriptfileid=\"" . $_POST['scriptfileid'] . "\", ";
-  if ($item['potionbeltslots'] != $_POST['potionbeltslots']) $fields .= "potionbeltslots=\"" . $_POST['potionbeltslots'] . "\", ";
   if ($item['bagsize'] != $_POST['bagsize']) $fields .= "bagsize=\"" . $_POST['bagsize'] . "\", ";
   if ($item['bagslots'] != $_POST['bagslots']) $fields .= "bagslots=\"" . $_POST['bagslots'] . "\", ";
   if ($item['bagwr'] != $_POST['bagwr']) $fields .= "bagwr=\"" . $_POST['bagwr'] . "\", ";
@@ -419,41 +357,26 @@ function update_item () {
   if ($item['norent'] != $_POST['norent']) $fields .= "norent=\"" . $_POST['norent'] . "\", ";
   if ($item['magic'] != $_POST['magic']) $fields .= "magic=\"" . $_POST['magic'] . "\", ";
   if ($item['tradeskills'] != $_POST['tradeskills']) $fields .= "tradeskills=\"" . $_POST['tradeskills'] . "\", ";
-  if ($item['artifactflag'] != $_POST['artifactflag']) $fields .= "artifactflag=\"" . $_POST['artifactflag'] . "\", ";
   if ($item['questitemflag'] != $_POST['questitemflag']) $fields .= "questitemflag=\"" . $_POST['questitemflag'] . "\", ";
-  if ($item['attuneable'] != $_POST['attuneable']) $fields .= "attuneable=\"" . $_POST['attuneable'] . "\", ";
   if ($item['nopet'] != $_POST['nopet']) $fields .= "nopet=\"" . $_POST['nopet'] . "\", ";
   if ($item['fvnodrop'] != $_POST['fvnodrop']) $fields .= "fvnodrop=\"" . $_POST['fvnodrop'] . "\", ";
   if ($item['notransfer'] != $_POST['notransfer']) $fields .= "notransfer=\"" . $_POST['notransfer'] . "\", ";
-  if ($item['potionbelt'] != $_POST['potionbelt']) $fields .= "potionbelt=\"" . $_POST['potionbelt'] . "\", ";
   if ($item['benefitflag'] != $_POST['benefitflag']) $fields .= "benefitflag=\"" . $_POST['benefitflag'] . "\", ";
-  if ($item['expendablearrow'] != $_POST['expendablearrow']) $fields .= "expendablearrow=\"" . $_POST['expendablearrow'] . "\", ";
-  if ($item['loregroup'] != $_POST['loregroup']) $fields .= "loregroup=\"" . $_POST['loregroup'] . "\", ";
   if ($item['reqlevel'] != $_POST['reqlevel']) $fields .= "reqlevel=\"" . $_POST['reqlevel'] . "\", ";
   if ($item['reclevel'] != $_POST['reclevel']) $fields .= "reclevel=\"" . $_POST['reclevel'] . "\", ";
   if ($item['recskill'] != $_POST['recskill']) $fields .= "recskill=\"" . $_POST['recskill'] . "\", ";
-  if ($item['evolvinglevel'] != $_POST['evolvinglevel']) $fields .= "evolvinglevel=\"" . $_POST['evolvinglevel'] . "\", ";
   if ($item['damage'] != $_POST['damage']) $fields .= "damage=\"" . $_POST['damage'] . "\", ";
   if ($item['delay'] != $_POST['delay']) $fields .= "delay=\"" . $_POST['delay'] . "\", ";
   if ($item['range'] != $_POST['range']) $fields .= "`range`=\"" . $_POST['range'] . "\", ";
   if ($item['banedmgamt'] != $_POST['banedmgamt']) $fields .= "banedmgamt=\"" . $_POST['banedmgamt'] . "\", ";
-  if ($item['banedmgraceamt'] != $_POST['banedmgraceamt']) $fields .= "banedmgraceamt=\"" . $_POST['banedmgraceamt'] . "\", ";
   if ($item['banedmgrace'] != $_POST['banedmgrace']) $fields .= "banedmgrace=\"" . $_POST['banedmgrace'] . "\", ";
   if ($item['banedmgbody'] != $_POST['banedmgbody']) $fields .= "banedmgbody=\"" . $_POST['banedmgbody'] . "\", ";
   if ($item['hp'] != $_POST['hp']) $fields .= "hp=\"" . $_POST['hp'] . "\", ";
   if ($item['mana'] != $_POST['mana']) $fields .= "mana=\"" . $_POST['mana'] . "\", ";
   if ($item['endur'] != $_POST['endur']) $fields .= "endur=\"" . $_POST['endur'] . "\", ";
   if ($item['ac'] != $_POST['ac']) $fields .= "ac=\"" . $_POST['ac'] . "\", ";
-  if ($item['accuracy'] != $_POST['accuracy']) $fields .= "accuracy=\"" . $_POST['accuracy'] . "\", ";
-  if ($item['attack'] != $_POST['attack']) $fields .= "attack=\"" . $_POST['attack'] . "\", ";
   if ($item['light'] != $_POST['light']) $fields .= "light=\"" . $_POST['light'] . "\", ";
   if ($item['regen'] != $_POST['regen']) $fields .= "regen=\"" . $_POST['regen'] . "\", ";
-  if ($item['manaregen'] != $_POST['manaregen']) $fields .= "manaregen=\"" . $_POST['manaregen'] . "\", ";
-  if ($item['enduranceregen'] != $_POST['enduranceregen']) $fields .= "enduranceregen=\"" . $_POST['enduranceregen'] . "\", ";
-  if ($item['haste'] != $_POST['haste']) $fields .= "haste=\"" . $_POST['haste'] . "\", ";
-  if ($item['avoidance'] != $_POST['avoidance']) $fields .= "avoidance=\"" . $_POST['avoidance'] . "\", ";
-  if ($item['purity'] != $_POST['purity']) $fields .= "purity=\"" . $_POST['purity'] . "\", ";
-  if ($item['combateffects'] != $_POST['combateffects']) $fields .= "combateffects=\"" . $_POST['combateffects'] . "\", ";
   if ($item['aagi'] != $_POST['aagi']) $fields .= "aagi=\"" . $_POST['aagi'] . "\", ";
   if ($item['acha'] != $_POST['acha']) $fields .= "acha=\"" . $_POST['acha'] . "\", ";
   if ($item['adex'] != $_POST['adex']) $fields .= "adex=\"" . $_POST['adex'] . "\", ";
@@ -466,54 +389,21 @@ function update_item () {
   if ($item['fr'] != $_POST['fr']) $fields .= "fr=\"" . $_POST['fr'] . "\", ";
   if ($item['mr'] != $_POST['mr']) $fields .= "mr=\"" . $_POST['mr'] . "\", ";
   if ($item['pr'] != $_POST['pr']) $fields .= "pr=\"" . $_POST['pr'] . "\", ";
-  if ($item['svcorruption'] != $_POST['svcorruption']) $fields .= "svcorruption=\"" . $_POST['svcorruption'] . "\", ";
-  if ($item['stunresist'] != $_POST['stunresist']) $fields .= "stunresist=\"" . $_POST['stunresist'] . "\", ";
-  if ($item['heroic_agi'] != $_POST['heroic_agi']) $fields .= "heroic_agi=\"" . $_POST['heroic_agi'] . "\", ";
-  if ($item['heroic_cha'] != $_POST['heroic_cha']) $fields .= "heroic_cha=\"" . $_POST['heroic_cha'] . "\", ";
-  if ($item['heroic_dex'] != $_POST['heroic_dex']) $fields .= "heroic_dex=\"" . $_POST['heroic_dex'] . "\", ";
-  if ($item['heroic_int'] != $_POST['heroic_int']) $fields .= "heroic_int=\"" . $_POST['heroic_int'] . "\", ";
-  if ($item['heroic_sta'] != $_POST['heroic_sta']) $fields .= "heroic_sta=\"" . $_POST['heroic_sta'] . "\", ";
-  if ($item['heroic_str'] != $_POST['heroic_str']) $fields .= "heroic_str=\"" . $_POST['heroic_str'] . "\", ";
-  if ($item['heroic_wis'] != $_POST['heroic_wis']) $fields .= "heroic_wis=\"" . $_POST['heroic_wis'] . "\", ";
-  if ($item['heroic_cr'] != $_POST['heroic_cr']) $fields .= "heroic_cr=\"" . $_POST['heroic_cr'] . "\", ";
-  if ($item['heroic_dr'] != $_POST['heroic_dr']) $fields .= "heroic_dr=\"" . $_POST['heroic_dr'] . "\", ";
-  if ($item['heroic_fr'] != $_POST['heroic_fr']) $fields .= "heroic_fr=\"" . $_POST['heroic_fr'] . "\", ";
-  if ($item['heroic_mr'] != $_POST['heroic_mr']) $fields .= "heroic_mr=\"" . $_POST['heroic_mr'] . "\", ";
-  if ($item['heroic_pr'] != $_POST['heroic_pr']) $fields .= "heroic_pr=\"" . $_POST['heroic_pr'] . "\", ";
-  if ($item['heroic_svcorrup'] != $_POST['heroic_svcorrup']) $fields .= "heroic_svcorrup=\"" . $_POST['heroic_svcorrup'] . "\", ";
-  if ($item['damageshield'] != $_POST['damageshield']) $fields .= "damageshield=\"" . $_POST['damageshield'] . "\", ";
-  if ($item['dotshielding'] != $_POST['dotshielding']) $fields .= "dotshielding=\"" . $_POST['dotshielding'] . "\", ";
-  if ($item['shielding'] != $_POST['shielding']) $fields .= "shielding=\"" . $_POST['shielding'] . "\", ";
-  if ($item['spellshield'] != $_POST['spellshield']) $fields .= "spellshield=\"" . $_POST['spellshield'] . "\", ";
-  if ($item['strikethrough'] != $_POST['strikethrough']) $fields .= "strikethrough=\"" . $_POST['strikethrough'] . "\", ";
-  if ($item['spelldmg'] != $_POST['spelldmg']) $fields .= "spelldmg=\"" . $_POST['spelldmg'] . "\", ";
-  if ($item['backstabdmg'] != $_POST['backstabdmg']) $fields .= "backstabdmg=\"" . $_POST['backstabdmg'] . "\", ";
-  if ($item['extradmgskill'] != $_POST['extradmgskill']) $fields .= "extradmgskill=\"" . $_POST['extradmgskill'] . "\", ";
-  if ($item['extradmgamt'] != $_POST['extradmgamt']) $fields .= "extradmgamt=\"" . $_POST['extradmgamt'] . "\", ";
   if ($item['elemdmgtype'] != $_POST['elemdmgtype']) $fields .= "elemdmgtype=\"" . $_POST['elemdmgtype'] . "\", ";
   if ($item['elemdmgamt'] != $_POST['elemdmgamt']) $fields .= "elemdmgamt=\"" . $_POST['elemdmgamt'] . "\", ";
   if ($item['dsmitigation'] != $_POST['dsmitigation']) $fields .= "dsmitigation=\"" . $_POST['dsmitigation'] . "\", ";
   if ($item['healamt'] != $_POST['healamt']) $fields .= "healamt=\"" . $_POST['healamt'] . "\", ";
-  if ($item['clairvoyance'] != $_POST['clairvoyance']) $fields .= "clairvoyance=\"" . $_POST['clairvoyance'] . "\", ";
   if ($item['skillmodtype'] != $_POST['skillmodtype']) $fields .= "skillmodtype=\"" . $_POST['skillmodtype'] . "\", ";
   if ($item['skillmodvalue'] != $_POST['skillmodvalue']) $fields .= "skillmodvalue=\"" . $_POST['skillmodvalue'] . "\", ";
   if ($item['bardvalue'] != $_POST['bardvalue']) $fields .= "bardvalue=\"" . $_POST['bardvalue'] . "\", ";
   if ($item['price'] != $_POST['price']) $fields .= "price=\"" . $_POST['price'] . "\", ";
   if ($item['sellrate'] != $_POST['sellrate']) $fields .= "sellrate=\"" . $_POST['sellrate'] . "\", ";
-  if ($item['favor'] != $_POST['favor']) $fields .= "favor=\"" . $_POST['favor'] . "\", ";
-  if ($item['guildfavor'] != $_POST['guildfavor']) $fields .= "guildfavor=\"" . $_POST['guildfavor'] . "\", ";
-  if ($item['ldonprice'] != $_POST['ldonprice']) $fields .= "ldonprice=\"" . $_POST['ldonprice'] . "\", ";
-  if ($item['ldonsellbackrate'] != $_POST['ldonsellbackrate']) $fields .= "ldonsellbackrate=\"" . $_POST['ldonsellbackrate'] . "\", ";
-  if ($item['ldonsold'] != $_POST['ldonsold']) $fields .= "ldonsold=\"" . $_POST['ldonsold'] . "\", ";
-  if ($item['ldontheme'] != $_POST['ldontheme']) $fields .= "ldontheme=\"" . $_POST['ldontheme'] . "\", ";
-  if ($item['pointtype'] != $_POST['pointtype']) $fields .= "pointtype=\"" . $_POST['pointtype'] . "\", ";
   if ($item['icon'] != $_POST['icon']) $fields .= "icon=\"" . $_POST['icon'] . "\", ";
   if ($item['idfile'] != $_POST['idfile']) $fields .= "idfile=\"" . $_POST['idfile'] . "\", ";
   if ($item['weight'] != $_POST['weight']) $fields .= "weight=\"" . $_POST['weight'] . "\", ";
   if ($item['color'] != $_POST['color']) $fields .= "color=\"" . $_POST['color'] . "\", ";
   if ($item['size'] != $_POST['size']) $fields .= "size=\"" . $_POST['size'] . "\", ";
   if ($item['material'] != $_POST['material']) $fields .= "material=\"" . $_POST['material'] . "\", ";
-  if ($item['elitematerial'] != $_POST['elitematerial']) $fields .= "elitematerial=\"" . $_POST['elitematerial'] . "\", ";
   if ($item['casttime'] != $_POST['casttime']) $fields .= "casttime=\"" . $_POST['casttime'] . "\", ";
   if ($item['casttime_'] != $_POST['casttime_']) $fields .= "casttime_=\"" . $_POST['casttime_'] . "\", ";
   if ($item['recastdelay'] != $_POST['recastdelay']) $fields .= "recastdelay=\"" . $_POST['recastdelay'] . "\", ";
@@ -522,45 +412,27 @@ function update_item () {
   if ($item['clickeffect'] != $_POST['clickeffect']) $fields .= "clickeffect=\"" . $_POST['clickeffect'] . "\", ";
   if ($item['clicklevel'] != $_POST['clicklevel']) $fields .= "clicklevel=\"" . $_POST['clicklevel'] . "\", ";
   if ($item['clicklevel2'] != $_POST['clicklevel2']) $fields .= "clicklevel2=\"" . $_POST['clicklevel2'] . "\", ";
-  if ($item['clickname'] != $_POST['clickname']) $fields .= "clickname=\"" . $_POST['clickname'] . "\", ";
   if ($item['proctype'] != $_POST['proctype']) $fields .= "proctype=\"" . $_POST['proctype'] . "\", ";
   if ($item['proceffect'] != $_POST['proceffect']) $fields .= "proceffect=\"" . $_POST['proceffect'] . "\", ";
   if ($item['proclevel'] != $_POST['proclevel']) $fields .= "proclevel=\"" . $_POST['proclevel'] . "\", ";
   if ($item['proclevel2'] != $_POST['proclevel2']) $fields .= "proclevel2=\"" . $_POST['proclevel2'] . "\", ";
   if ($item['procrate'] != $_POST['procrate']) $fields .= "procrate=\"" . $_POST['procrate'] . "\", ";
-  if ($item['procname'] != $_POST['procname']) $fields .= "procname=\"" . $_POST['procname'] . "\", ";
   if ($item['worntype'] != $_POST['worntype']) $fields .= "worntype=\"" . $_POST['worntype'] . "\", ";
   if ($item['worneffect'] != $_POST['worneffect']) $fields .= "worneffect=\"" . $_POST['worneffect'] . "\", ";
   if ($item['wornlevel'] != $_POST['wornlevel']) $fields .= "wornlevel=\"" . $_POST['wornlevel'] . "\", ";
   if ($item['wornlevel2'] != $_POST['wornlevel2']) $fields .= "wornlevel2=\"" . $_POST['wornlevel2'] . "\", ";
-  if ($item['wornname'] != $_POST['wornname']) $fields .= "wornname=\"" . $_POST['wornname'] . "\", ";
   if ($item['focustype'] != $_POST['focustype']) $fields .= "focustype=\"" . $_POST['focustype'] . "\", ";
   if ($item['focuseffect'] != $_POST['focuseffect']) $fields .= "focuseffect=\"" . $_POST['focuseffect'] . "\", ";
   if ($item['focuslevel'] != $_POST['focuslevel']) $fields .= "focuslevel=\"" . $_POST['focuslevel'] . "\", ";
   if ($item['focuslevel2'] != $_POST['focuslevel2']) $fields .= "focuslevel2=\"" . $_POST['focuslevel2'] . "\", ";
-  if ($item['focusname'] != $_POST['focusname']) $fields .= "focusname=\"" . $_POST['focusname'] . "\", ";
   if ($item['scrolltype'] != $_POST['scrolltype']) $fields .= "scrolltype=\"" . $_POST['scrolltype'] . "\", ";
   if ($item['scrolleffect'] != $_POST['scrolleffect']) $fields .= "scrolleffect=\"" . $_POST['scrolleffect'] . "\", ";
   if ($item['scrolllevel'] != $_POST['scrolllevel']) $fields .= "scrolllevel=\"" . $_POST['scrolllevel'] . "\", ";
   if ($item['scrolllevel2'] != $_POST['scrolllevel2']) $fields .= "scrolllevel2=\"" . $_POST['scrolllevel2'] . "\", ";
-  if ($item['scrollname'] != $_POST['scrollname']) $fields .= "scrollname=\"" . $_POST['scrollname'] . "\", ";
   if ($item['bardtype'] != $_POST['bardtype']) $fields .= "bardtype=\"" . $_POST['bardtype'] . "\", ";
   if ($item['bardeffect'] != $_POST['bardeffect']) $fields .= "bardeffect=\"" . $_POST['bardeffect'] . "\", ";
   if ($item['bardlevel'] != $_POST['bardlevel']) $fields .= "bardlevel=\"" . $_POST['bardlevel'] . "\", ";
   if ($item['bardlevel2'] != $_POST['bardlevel2']) $fields .= "bardlevel2=\"" . $_POST['bardlevel2'] . "\", ";
-  if ($item['bardname'] != $_POST['bardname']) $fields .= "bardname=\"" . $_POST['bardname'] . "\", ";
-  if ($item['augslot1visible'] != $_POST['augslot1visible']) $fields .= "augslot1visible=\"" . $_POST['augslot1visible'] . "\", ";
-  if ($item['augslot2visible'] != $_POST['augslot2visible']) $fields .= "augslot2visible=\"" . $_POST['augslot2visible'] . "\", ";
-  if ($item['augslot3visible'] != $_POST['augslot3visible']) $fields .= "augslot3visible=\"" . $_POST['augslot3visible'] . "\", ";
-  if ($item['augslot4visible'] != $_POST['augslot4visible']) $fields .= "augslot4visible=\"" . $_POST['augslot4visible'] . "\", ";
-  if ($item['augslot5visible'] != $_POST['augslot5visible']) $fields .= "augslot5visible=\"" . $_POST['augslot5visible'] . "\", ";
-  if ($item['augslot1type'] != $_POST['augslot1type']) $fields .= "augslot1type=\"" . $_POST['augslot1type'] . "\", ";
-  if ($item['augslot2type'] != $_POST['augslot2type']) $fields .= "augslot2type=\"" . $_POST['augslot2type'] . "\", ";
-  if ($item['augslot3type'] != $_POST['augslot3type']) $fields .= "augslot3type=\"" . $_POST['augslot3type'] . "\", ";
-  if ($item['augslot4type'] != $_POST['augslot4type']) $fields .= "augslot4type=\"" . $_POST['augslot4type'] . "\", ";
-  if ($item['augslot5type'] != $_POST['augslot5type']) $fields .= "augslot5type=\"" . $_POST['augslot5type'] . "\", ";
-  if ($item['augrestrict'] != $_POST['augrestrict']) $fields .= "augrestrict=\"" . $_POST['augrestrict'] . "\", ";
-  if ($item['augdistiller'] != $_POST['augdistiller']) $fields .= "augdistiller=\"" . $_POST['augdistiller'] . "\", ";
   if ($item['factionmod1'] != $_POST['factionmod1']) $fields .= "factionmod1=\"" . $_POST['factionmod1'] . "\", ";
   if ($item['factionmod2'] != $_POST['factionmod2']) $fields .= "factionmod2=\"" . $_POST['factionmod2'] . "\", ";
   if ($item['factionmod3'] != $_POST['factionmod3']) $fields .= "factionmod3=\"" . $_POST['factionmod3'] . "\", ";
@@ -592,8 +464,8 @@ function copy_item () {
    $query = "DELETE FROM items where id=0";
    $mysql->query_no_result($query);
 
-   $query2 = "INSERT INTO items (minstatus, Name, aagi, ac, accuracy, acha, adex, aint, artifactflag, asta, astr, attack, augrestrict, augslot1type, augslot1visible, augslot2type, augslot2visible, augslot3type, augslot3visible, augslot4type, augslot4visible, augslot5type, augslot5visible, augtype, avoidance, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgraceamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, charmfile, charmfileid, classes, color, combateffects, extradmgskill, extradmgamt, price, cr, damage, damageshield, deity, delay, augdistiller, dotshielding, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, endur, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, haste, clicklevel, hp, regen, icon, idfile, itemclass, itemtype, ldonprice, ldontheme, ldonsold, light, lore, loregroup, magic, mana, manaregen, enduranceregen, material, maxcharges, mr, nodrop, norent, pendingloreflag, pr, procrate, races, `range`, reclevel, recskill, reqlevel, sellrate, shielding, size, skillmodtype, skillmodvalue, slots, clickeffect, spellshield, strikethrough, stunresist, summonedflag, tradeskills, favor, weight, UNK012, UNK013, benefitflag, UNK054, UNK059, booktype, recastdelay, recasttype, guildfavor, UNK123, UNK124, attuneable, nopet, updated, comment, gmflag, soulbound, UNK127, pointtype, potionbelt, potionbeltslots, stacksize, notransfer, stackable, UNK134, UNK137, proceffect, proctype, proclevel2, proclevel, UNK142, worneffect, worntype, wornlevel2, wornlevel, UNK147, focustype, focuslevel2, focuslevel, UNK152, scrolleffect, scrolltype, scrolllevel2, scrolllevel, UNK157, serialized, verified, serialization, source, UNK033, lorefile, UNK014, svcorruption, UNK038, UNK060, augslot1unk2, augslot2unk2, augslot3unk2, augslot4unk2, augslot5unk2, UNK120, UNK121, questitemflag, UNK132, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, UNK193, purity, evolvinglevel, clickname, procname, wornname, focusname, scrollname, dsmitigation, heroic_str, heroic_int, heroic_wis, heroic_agi, heroic_dex, heroic_sta, heroic_cha, heroic_pr, heroic_dr, heroic_fr, heroic_cr, heroic_mr, heroic_svcorrup, healamt, spelldmg, clairvoyance, backstabdmg, created, elitematerial, ldonsellbackrate, scriptfileid, expendablearrow, powersourcecapacity, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4,bardunk5, bardname, bardunk7, UNK214)
-              SELECT minstatus, concat(Name, ' - Copy'), aagi, ac, accuracy, acha, adex, aint, artifactflag, asta, astr, attack, augrestrict, augslot1type, augslot1visible, augslot2type, augslot2visible, augslot3type, augslot3visible, augslot4type, augslot4visible, augslot5type, augslot5visible, augtype, avoidance, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgraceamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, charmfile, charmfileid, classes, color, combateffects, extradmgskill, extradmgamt, price, cr, damage, damageshield, deity, delay, augdistiller, dotshielding, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, endur, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, haste, clicklevel, hp, regen, icon, idfile, itemclass, itemtype, ldonprice, ldontheme, ldonsold, light, lore, loregroup, magic, mana, manaregen, enduranceregen, material, maxcharges, mr, nodrop, norent, pendingloreflag, pr, procrate, races, `range`, reclevel, recskill, reqlevel, sellrate, shielding, size, skillmodtype, skillmodvalue, slots, clickeffect, spellshield, strikethrough, stunresist, summonedflag, tradeskills, favor, weight, UNK012, UNK013, benefitflag, UNK054, UNK059, booktype, recastdelay, recasttype, guildfavor, UNK123, UNK124, attuneable, nopet, updated, comment, gmflag, soulbound, UNK127, pointtype, potionbelt, potionbeltslots, stacksize, notransfer, stackable, UNK134, UNK137, proceffect, proctype, proclevel2, proclevel, UNK142, worneffect, worntype, wornlevel2, wornlevel, UNK147, focustype, focuslevel2, focuslevel, UNK152, scrolleffect, scrolltype, scrolllevel2, scrolllevel, UNK157, serialized, verified, serialization, source, UNK033, lorefile, UNK014, svcorruption, UNK038, UNK060, augslot1unk2, augslot2unk2, augslot3unk2, augslot4unk2, augslot5unk2, UNK120, UNK121, questitemflag, UNK132, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, UNK193, purity, evolvinglevel, clickname, procname, wornname, focusname, scrollname, dsmitigation, heroic_str, heroic_int, heroic_wis, heroic_agi, heroic_dex, heroic_sta, heroic_cha, heroic_pr, heroic_dr, heroic_fr, heroic_cr, heroic_mr, heroic_svcorrup, healamt, spelldmg, clairvoyance, backstabdmg, created, elitematerial, ldonsellbackrate, scriptfileid, expendablearrow, powersourcecapacity, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, UNK214 FROM items where id=$id";
+   $query2 = "INSERT INTO items (minstatus, Name, aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, charmfile, charmfileid, classes, color, price, cr, damage, deity, delay, augdistiller, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, range, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, benefitflag, booktype, recastdelay, recasttype, nopet, updated, comment, stacksize, notransfer, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, dsmitigation, created, scriptfileid, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound)
+   SELECT minstatus, concat(Name, ' - Copy'), aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, charmfile, charmfileid, classes, color, price, cr, damage, deity, delay, augdistiller, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, range, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, benefitflag, booktype, recastdelay, recasttype, nopet, updated, comment, stacksize, notransfer, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, dsmitigation, created, scriptfileid, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound FROM items where id=$id";
    $mysql->query_no_result($query2);
 
    $query3 = "SELECT max(id) AS iid FROM items";
@@ -621,7 +493,7 @@ function add_item () {
 
   // Define checkbox fields:
   $slots = 0;
-  if (isset($_POST['slot_Charm'])) $slots = $slots+1;
+  if (isset($_POST['slot_Cursor'])) $slots = $slots+1;
   if (isset($_POST['slot_Ear01'])) $slots = $slots+2;
   if (isset($_POST['slot_Head'])) $slots = $slots+4;
   if (isset($_POST['slot_Face'])) $slots = $slots+8;
@@ -643,7 +515,6 @@ function add_item () {
   if (isset($_POST['slot_Feet'])) $slots = $slots+524288;
   if (isset($_POST['slot_Waist'])) $slots = $slots+1048576;
   if (isset($_POST['slot_Ammo'])) $slots = $slots+2097152;
-  if (isset($_POST['slot_Powersource'])) $slots = $slots+4194304;
 
   $races = 0;
   if (isset($_POST['race_Human'])) $races = $races+1;
@@ -660,9 +531,6 @@ function add_item () {
   if (isset($_POST['race_Gnome'])) $races = $races+2048;
   if (isset($_POST['race_Iksar'])) $races = $races+4096;
   if (isset($_POST['race_Vah_Shir'])) $races = $races+8192;
-  if (isset($_POST['race_Froglok'])) $races = $races+16384;
-  if (isset($_POST['race_Drakkin'])) $races = $races+32768;
-  if (isset($_POST['race_Shroud'])) $races = $races+65536;
 
   $classes = 0;
   if (isset($_POST['class_Warrior'])) $classes = $classes+1;
@@ -680,7 +548,6 @@ function add_item () {
   if (isset($_POST['class_Magician'])) $classes = $classes+4096;
   if (isset($_POST['class_Enchanter'])) $classes = $classes+8192;
   if (isset($_POST['class_Beastlord'])) $classes = $classes+16384;
-  if (isset($_POST['class_Berserker'])) $classes = $classes+32768;
 
   $deity = 0;
   if (isset($_POST['deity_Agnostic'])) $deity = $deity+1;
@@ -701,44 +568,11 @@ function add_item () {
   if (isset($_POST['deity_Tunare'])) $deity = $deity+32768;
   if (isset($_POST['deity_Veeshan'])) $deity = $deity+65536;
 
-  $augtype = 0;
-  if (isset($_POST['augtype_Type_1'])) $augtype = $augtype+1;
-  if (isset($_POST['augtype_Type_2'])) $augtype = $augtype+2;
-  if (isset($_POST['augtype_Type_3'])) $augtype = $augtype+4;
-  if (isset($_POST['augtype_Type_4'])) $augtype = $augtype+8;
-  if (isset($_POST['augtype_Type_5'])) $augtype = $augtype+16;
-  if (isset($_POST['augtype_Type_6'])) $augtype = $augtype+32;
-  if (isset($_POST['augtype_Type_7'])) $augtype = $augtype+64;
-  if (isset($_POST['augtype_Type_8'])) $augtype = $augtype+128;
-  if (isset($_POST['augtype_Type_9'])) $augtype = $augtype+256;
-  if (isset($_POST['augtype_Type_10'])) $augtype = $augtype+512;
-  if (isset($_POST['augtype_Type_11'])) $augtype = $augtype+1024;
-  if (isset($_POST['augtype_Type_12'])) $augtype = $augtype+2048;
-  if (isset($_POST['augtype_Type_13'])) $augtype = $augtype+4096;
-  if (isset($_POST['augtype_Type_14'])) $augtype = $augtype+8192;
-  if (isset($_POST['augtype_Type_15'])) $augtype = $augtype+16384;
-  if (isset($_POST['augtype_Type_16'])) $augtype = $augtype+32768;
-  if (isset($_POST['augtype_Type_17'])) $augtype = $augtype+65536;
-  if (isset($_POST['augtype_Type_18'])) $augtype = $augtype+131072;
-  if (isset($_POST['augtype_Type_19'])) $augtype = $augtype+262144;
-  if (isset($_POST['augtype_Type_20'])) $augtype = $augtype+524288;
-  if (isset($_POST['augtype_Type_21'])) $augtype = $augtype+1048576;
-  if (isset($_POST['augtype_Type_22'])) $augtype = $augtype+2097152;
-  if (isset($_POST['augtype_Type_23'])) $augtype = $augtype+4194304;
-  if (isset($_POST['augtype_Type_24'])) $augtype = $augtype+8388608;
-  if (isset($_POST['augtype_Type_25'])) $augtype = $augtype+16777216;
-  if (isset($_POST['augtype_Type_26'])) $augtype = $augtype+33554432;
-  if (isset($_POST['augtype_Type_27'])) $augtype = $augtype+67108864;
-  if (isset($_POST['augtype_Type_28'])) $augtype = $augtype+134217728;
-  if (isset($_POST['augtype_Type_29'])) $augtype = $augtype+268435456;
-  if (isset($_POST['augtype_Type_30'])) $augtype = $augtype+536870912;
-
   $fields = '';
   $fields .= "slots=\"$slots\", ";
   $fields .= "races=\"$races\", ";
   $fields .= "classes=\"$classes\", ";
   $fields .= "deity=\"$deity\", ";
-  $fields .= "augtype=\"$augtype\", ";
   $fields .= "id=\"" . $_POST['id'] . "\", ";
   $fields .= "name=\"" . $_POST['itemname'] . "\", ";
   $fields .= "itemtype=\"" . $_POST['itemtype'] . "\", ";
@@ -750,11 +584,9 @@ function add_item () {
   $fields .= "filename=\"" . $_POST['filename'] . "\", ";
   $fields .= "book=\"" . $_POST['book'] . "\", ";
   $fields .= "booktype=\"" . $_POST['booktype'] . "\", ";
-  $fields .= "powersourcecapacity=\"" . $_POST['powersourcecapacity'] . "\", ";
   $fields .= "charmfile=\"" . $_POST['charmfile'] . "\", ";
   $fields .= "charmfileid=\"" . $_POST['charmfileid'] . "\", ";
   $fields .= "scriptfileid=\"" . $_POST['scriptfileid'] . "\", ";
-  $fields .= "potionbeltslots=\"" . $_POST['potionbeltslots'] . "\", ";
   $fields .= "bagsize=\"" . $_POST['bagsize'] . "\", ";
   $fields .= "bagslots=\"" . $_POST['bagslots'] . "\", ";
   $fields .= "bagwr=\"" . $_POST['bagwr'] . "\", ";
@@ -763,41 +595,24 @@ function add_item () {
   $fields .= "norent=\"" . $_POST['norent'] . "\", ";
   $fields .= "magic=\"" . $_POST['magic'] . "\", ";
   $fields .= "tradeskills=\"" . $_POST['tradeskills'] . "\", ";
-  $fields .= "artifactflag=\"" . $_POST['artifactflag'] . "\", ";
   $fields .= "questitemflag=\"" . $_POST['questitemflag'] . "\", ";
-  $fields .= "attuneable=\"" . $_POST['attuneable'] . "\", ";
   $fields .= "nopet=\"" . $_POST['nopet'] . "\", ";
   $fields .= "fvnodrop=\"" . $_POST['fvnodrop'] . "\", ";
   $fields .= "notransfer=\"" . $_POST['notransfer'] . "\", ";
-  $fields .= "potionbelt=\"" . $_POST['potionbelt'] . "\", ";
   $fields .= "benefitflag=\"" . $_POST['benefitflag'] . "\", ";
-  $fields .= "expendablearrow=\"" . $_POST['expendablearrow'] . "\", ";
-  $fields .= "loregroup=\"" . $_POST['loregroup'] . "\", ";
   $fields .= "reqlevel=\"" . $_POST['reqlevel'] . "\", ";
   $fields .= "reclevel=\"" . $_POST['reclevel'] . "\", ";
   $fields .= "recskill=\"" . $_POST['recskill'] . "\", ";
-  $fields .= "evolvinglevel=\"" . $_POST['evolvinglevel'] . "\", ";
   $fields .= "damage=\"" . $_POST['damage'] . "\", ";
   $fields .= "delay=\"" . $_POST['delay'] . "\", ";
   $fields .= "`range`=\"" . $_POST['range'] . "\", ";
   $fields .= "banedmgamt=\"" . $_POST['banedmgamt'] . "\", ";
-  $fields .= "banedmgraceamt=\"" . $_POST['banedmgraceamt'] . "\", ";
   $fields .= "banedmgrace=\"" . $_POST['banedmgrace'] . "\", ";
   $fields .= "banedmgbody=\"" . $_POST['banedmgbody'] . "\", ";
   $fields .= "hp=\"" . $_POST['hp'] . "\", ";
   $fields .= "mana=\"" . $_POST['mana'] . "\", ";
-  $fields .= "endur=\"" . $_POST['endur'] . "\", ";
   $fields .= "ac=\"" . $_POST['ac'] . "\", ";
-  $fields .= "accuracy=\"" . $_POST['accuracy'] . "\", ";
-  $fields .= "attack=\"" . $_POST['attack'] . "\", ";
   $fields .= "light=\"" . $_POST['light'] . "\", ";
-  $fields .= "regen=\"" . $_POST['regen'] . "\", ";
-  $fields .= "manaregen=\"" . $_POST['manaregen'] . "\", ";
-  $fields .= "enduranceregen=\"" . $_POST['enduranceregen'] . "\", ";
-  $fields .= "haste=\"" . $_POST['haste'] . "\", ";
-  $fields .= "avoidance=\"" . $_POST['avoidance'] . "\", ";
-  $fields .= "purity=\"" . $_POST['purity'] . "\", ";
-  $fields .= "combateffects=\"" . $_POST['combateffects'] . "\", ";
   $fields .= "aagi=\"" . $_POST['aagi'] . "\", ";
   $fields .= "acha=\"" . $_POST['acha'] . "\", ";
   $fields .= "adex=\"" . $_POST['adex'] . "\", ";
@@ -810,54 +625,20 @@ function add_item () {
   $fields .= "fr=\"" . $_POST['fr'] . "\", ";
   $fields .= "mr=\"" . $_POST['mr'] . "\", ";
   $fields .= "pr=\"" . $_POST['pr'] . "\", ";
-  $fields .= "svcorruption=\"" . $_POST['svcorruption'] . "\", ";
-  $fields .= "stunresist=\"" . $_POST['stunresist'] . "\", ";
-  $fields .= "heroic_agi=\"" . $_POST['heroic_agi'] . "\", ";
-  $fields .= "heroic_cha=\"" . $_POST['heroic_cha'] . "\", ";
-  $fields .= "heroic_dex=\"" . $_POST['heroic_dex'] . "\", ";
-  $fields .= "heroic_int=\"" . $_POST['heroic_int'] . "\", ";
-  $fields .= "heroic_sta=\"" . $_POST['heroic_sta'] . "\", ";
-  $fields .= "heroic_str=\"" . $_POST['heroic_str'] . "\", ";
-  $fields .= "heroic_wis=\"" . $_POST['heroic_wis'] . "\", ";
-  $fields .= "heroic_cr=\"" . $_POST['heroic_cr'] . "\", ";
-  $fields .= "heroic_dr=\"" . $_POST['heroic_dr'] . "\", ";
-  $fields .= "heroic_fr=\"" . $_POST['heroic_fr'] . "\", ";
-  $fields .= "heroic_mr=\"" . $_POST['heroic_mr'] . "\", ";
-  $fields .= "heroic_pr=\"" . $_POST['heroic_pr'] . "\", ";
-  $fields .= "heroic_svcorrup=\"" . $_POST['heroic_svcorrup'] . "\", ";
-  $fields .= "damageshield=\"" . $_POST['damageshield'] . "\", ";
-  $fields .= "dotshielding=\"" . $_POST['dotshielding'] . "\", ";
-  $fields .= "shielding=\"" . $_POST['shielding'] . "\", ";
-  $fields .= "spellshield=\"" . $_POST['spellshield'] . "\", ";
-  $fields .= "strikethrough=\"" . $_POST['strikethrough'] . "\", ";
-  $fields .= "spelldmg=\"" . $_POST['spelldmg'] . "\", ";
-  $fields .= "backstabdmg=\"" . $_POST['backstabdmg'] . "\", ";
-  $fields .= "extradmgskill=\"" . $_POST['extradmgskill'] . "\", ";
-  $fields .= "extradmgamt=\"" . $_POST['extradmgamt'] . "\", ";
   $fields .= "elemdmgtype=\"" . $_POST['elemdmgtype'] . "\", ";
   $fields .= "elemdmgamt=\"" . $_POST['elemdmgamt'] . "\", ";
   $fields .= "dsmitigation=\"" . $_POST['dsmitigation'] . "\", ";
-  $fields .= "healamt=\"" . $_POST['healamt'] . "\", ";
-  $fields .= "clairvoyance=\"" . $_POST['clairvoyance'] . "\", ";
   $fields .= "skillmodtype=\"" . $_POST['skillmodtype'] . "\", ";
   $fields .= "skillmodvalue=\"" . $_POST['skillmodvalue'] . "\", ";
   $fields .= "bardvalue=\"" . $_POST['bardvalue'] . "\", ";
   $fields .= "price=\"" . $_POST['price'] . "\", ";
   $fields .= "sellrate=\"" . $_POST['sellrate'] . "\", ";
-  $fields .= "favor=\"" . $_POST['favor'] . "\", ";
-  $fields .= "guildfavor=\"" . $_POST['guildfavor'] . "\", ";
-  $fields .= "ldonprice=\"" . $_POST['ldonprice'] . "\", ";
-  $fields .= "ldonsellbackrate=\"" . $_POST['ldonsellbackrate'] . "\", ";
-  $fields .= "ldonsold=\"" . $_POST['ldonsold'] . "\", ";
-  $fields .= "ldontheme=\"" . $_POST['ldontheme'] . "\", ";
-  $fields .= "pointtype=\"" . $_POST['pointtype'] . "\", ";
   $fields .= "icon=\"" . $_POST['icon'] . "\", ";
   $fields .= "idfile=\"" . $_POST['idfile'] . "\", ";
   $fields .= "weight=\"" . $_POST['weight'] . "\", ";
   $fields .= "color=\"" . $_POST['color'] . "\", ";
   $fields .= "size=\"" . $_POST['size'] . "\", ";
   $fields .= "material=\"" . $_POST['material'] . "\", ";
-  $fields .= "elitematerial=\"" . $_POST['elitematerial'] . "\", ";
   $fields .= "casttime=\"" . $_POST['casttime'] . "\", ";
   $fields .= "casttime_=\"" . $_POST['casttime_'] . "\", ";
   $fields .= "recastdelay=\"" . $_POST['recastdelay'] . "\", ";
@@ -866,45 +647,27 @@ function add_item () {
   $fields .= "clickeffect=\"" . $_POST['clickeffect'] . "\", ";
   $fields .= "clicklevel=\"" . $_POST['clicklevel'] . "\", ";
   $fields .= "clicklevel2=\"" . $_POST['clicklevel2'] . "\", ";
-  $fields .= "clickname=\"" . $_POST['clickname'] . "\", ";
   $fields .= "proctype=\"" . $_POST['proctype'] . "\", ";
   $fields .= "proceffect=\"" . $_POST['proceffect'] . "\", ";
   $fields .= "proclevel=\"" . $_POST['proclevel'] . "\", ";
   $fields .= "proclevel2=\"" . $_POST['proclevel2'] . "\", ";
   $fields .= "procrate=\"" . $_POST['procrate'] . "\", ";
-  $fields .= "procname=\"" . $_POST['procname'] . "\", ";
   $fields .= "worntype=\"" . $_POST['worntype'] . "\", ";
   $fields .= "worneffect=\"" . $_POST['worneffect'] . "\", ";
   $fields .= "wornlevel=\"" . $_POST['wornlevel'] . "\", ";
   $fields .= "wornlevel2=\"" . $_POST['wornlevel2'] . "\", ";
-  $fields .= "wornname=\"" . $_POST['wornname'] . "\", ";
   $fields .= "focustype=\"" . $_POST['focustype'] . "\", ";
   $fields .= "focuseffect=\"" . $_POST['focuseffect'] . "\", ";
   $fields .= "focuslevel=\"" . $_POST['focuslevel'] . "\", ";
   $fields .= "focuslevel2=\"" . $_POST['focuslevel2'] . "\", ";
-  $fields .= "focusname=\"" . $_POST['focusname'] . "\", ";
   $fields .= "scrolltype=\"" . $_POST['scrolltype'] . "\", ";
   $fields .= "scrolleffect=\"" . $_POST['scrolleffect'] . "\", ";
   $fields .= "scrolllevel=\"" . $_POST['scrolllevel'] . "\", ";
   $fields .= "scrolllevel2=\"" . $_POST['scrolllevel2'] . "\", ";
-  $fields .= "scrollname=\"" . $_POST['scrollname'] . "\", ";
   $fields .= "bardtype=\"" . $_POST['bardtype'] . "\", ";
   $fields .= "bardeffect=\"" . $_POST['bardeffect'] . "\", ";
   $fields .= "bardlevel=\"" . $_POST['bardlevel'] . "\", ";
   $fields .= "bardlevel2=\"" . $_POST['bardlevel2'] . "\", ";
-  $fields .= "bardname=\"" . $_POST['bardname'] . "\", ";
-  $fields .= "augslot1visible=\"" . $_POST['augslot1visible'] . "\", ";
-  $fields .= "augslot2visible=\"" . $_POST['augslot2visible'] . "\", ";
-  $fields .= "augslot3visible=\"" . $_POST['augslot3visible'] . "\", ";
-  $fields .= "augslot4visible=\"" . $_POST['augslot4visible'] . "\", ";
-  $fields .= "augslot5visible=\"" . $_POST['augslot5visible'] . "\", ";
-  $fields .= "augslot1type=\"" . $_POST['augslot1type'] . "\", ";
-  $fields .= "augslot2type=\"" . $_POST['augslot2type'] . "\", ";
-  $fields .= "augslot3type=\"" . $_POST['augslot3type'] . "\", ";
-  $fields .= "augslot4type=\"" . $_POST['augslot4type'] . "\", ";
-  $fields .= "augslot5type=\"" . $_POST['augslot5type'] . "\", ";
-  $fields .= "augrestrict=\"" . $_POST['augrestrict'] . "\", ";
-  $fields .= "augdistiller=\"" . $_POST['augdistiller'] . "\", ";
   $fields .= "factionmod1=\"" . $_POST['factionmod1'] . "\", ";
   $fields .= "factionmod2=\"" . $_POST['factionmod2'] . "\", ";
   $fields .= "factionmod3=\"" . $_POST['factionmod3'] . "\", ";
