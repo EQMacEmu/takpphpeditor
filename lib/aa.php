@@ -5,10 +5,6 @@ $defaultvalues = array(
   'name'   =>  "",
   'cost'   =>  "0",
   'max_level'   =>  "1",
-  'hotkey_sid'   =>  "0",
-  'hotkey_sid2'   =>  "0",
-  'title_sid'   =>  "0",
-  'desc_sid'   =>  "0",
   'type'   =>  "1",
   'spellid'   =>  "4294967295",
   'prereq_skill'   =>  "0",
@@ -16,19 +12,11 @@ $defaultvalues = array(
   'spell_type'   =>  "0",
   'spell_refresh'   =>  "0",
   'classes'   =>  "65534",
-  'berserker'   =>  "1",
   'class_type'   =>  "0",
   'cost_inc'   =>  "0",
   'aa_expansion'   =>  "3",
   'special_category'   =>  "4294967295",
-  'sof_type'   =>  "1",
-  'sof_cost_inc'   =>  "0",
-  'sof_max_level'   =>  "1",
-  'sof_next_skill'   =>  "0",
-  'clientver'   =>  "1",
   'account_time_required'   =>  "0",
-  'sof_current_level'   =>  "0",
-  'sof_next_id'   =>  "0",
   'level_inc'   =>  "0",
   'eqmacid' => ""
 );
@@ -40,30 +28,14 @@ $aa_type = array (
   3  =>  "Class",
   4  =>  "PoP Advanced",
   5  =>  "PoP Abilities",
-  6  =>  "Gates of Discord",
-  7  =>  "Omens of War",
-  8  =>  "Veteran",
-  9  =>  "Dragons of Norrath",
-  10  =>  "Depths of Darkhollow"
-);
-
-$aa_sof_type = array (
-  1  =>  "General",
-  2  =>  "Archetype",
-  3  =>  "Class",
-  4  =>  "Special"
-);
-
-$aa_sof_expansion = array (
-  523  =>  "Drakkin Red",
-  524  =>  "Drakkin Black",
-  525  =>  "Drakkin Blue",
-  526  =>  "Drakkin Green",
-  527  =>  "Drakkin White",
-  528  =>  "Drakkin Gold"
+  6  =>  "Not Applicable",
+  7  =>  "Not Applicable",
+  8  =>  "Veteran"
 );
 
 $aa_special_category = array (
+  '1'  =>  "Not Applicable",
+  '2'  =>  "Not Implemented",
   '3'  =>  "Shroud Passive",
   '4'  =>  "Shroud Active",
   '5'  =>  "Veteran Reward",
@@ -94,8 +66,6 @@ switch ($action) {
       $body->set('eqexpansions', $eqexpansions);
       $body->set('sp_effects', $sp_effects);
       $body->set('aa_type', $aa_type);
-      $body->set('aa_sof_type', $aa_sof_type);
-      $body->set('aa_sof_expansion', $aa_sof_expansion);
       $body->set('aa_special_category', $aa_special_category);
       $body->set('aa_action_target', $aa_action_target);
 
@@ -156,9 +126,7 @@ switch ($action) {
       $body->set('editmode', 1);
       $body->set('aaid', $aaid);
       $body->set('aa_type', $aa_type);
-      $body->set('aa_sof_type', $aa_sof_type);
       $body->set('eqexpansions', $eqexpansions);
-      $body->set('aa_sof_expansion', $aa_sof_expansion);
       $body->set('aa_special_category', $aa_special_category);
       $vars = getBaseAAInfo($aaid);
       if ($vars) {
@@ -174,9 +142,7 @@ switch ($action) {
     $body = new Template("templates/aa/aa.editbase.tmpl.php");
     $body->set('editmode', 2);
     $body->set('aa_type', $aa_type);
-    $body->set('aa_sof_type', $aa_sof_type);
     $body->set('eqexpansions', $eqexpansions);
-    $body->set('aa_sof_expansion', $aa_sof_expansion);
     $body->set('aa_special_category', $aa_special_category);
     $body->set('aa_vars', $defaultvalues);
     $body->set('errors', null);
@@ -358,9 +324,7 @@ switch ($action) {
       $body = new Template("templates/aa/aa.editbase.tmpl.php");
       $body->set('editmode', 2);
       $body->set('aa_type', $aa_type);
-      $body->set('aa_sof_type', $aa_sof_type);
       $body->set('eqexpansions', $eqexpansions);
-      $body->set('aa_sof_expansion', $aa_sof_expansion);
       $body->set('aa_special_category', $aa_special_category);
       $body->set('aa_vars', $aa_vars);
       $body->set('errors', $errors);
@@ -377,9 +341,7 @@ switch ($action) {
       $body = new Template("templates/aa/aa.editbase.tmpl.php");
       $body->set('editmode', 2);
       $body->set('aa_type', $aa_type);
-      $body->set('aa_sof_type', $aa_sof_type);
       $body->set('eqexpansions', $eqexpansions);
-      $body->set('aa_sof_expansion', $aa_sof_expansion);
       $body->set('aa_special_category', $aa_special_category);
       $body->set('aa_vars', $aa_vars);
       $body->set('errors', $errors);
@@ -488,28 +450,6 @@ switch ($action) {
     if ($aa_add && $aa_anchor && $before != null && $aaid && $aa_add != $aa_anchor) {
       $anchor_vars = getBaseAAInfo($aa_anchor);
       $add_vars = getBaseAAInfo($aa_add);
-      if ($anchor_vars && $add_vars) {
-        if($before == 1) { // insert after
-          if ($movetype == 2) {
-            // We're moving instead of just inserting.
-            // We need to fix the next list for where we're taking the AA from.
-            setAllNextByNext($aa_add, $add_vars['sof_next_id']);
-          }
-          setNextID($aa_add, $anchor_vars['sof_next_id']);
-          setNextID($aa_anchor, $aa_add);
-        } else {
-          // insert before.
-          if ($movetype == 2) {
-            setAllNextByNext($aa_add, $add_vars['sof_next_id']);
-          }
-          // We update all prev references.
-          setAllNextByNext($aa_anchor, $aa_add);
-          setNextID($aa_add, $aa_anchor);
-        }
-      }// else {
-        // TODO: Throw some kind of error.
-      //  $body= "<center><br><br>aa_add: $aa_add<br>aa_anchor: $aa_anchor<br></center>";
-      //}
     }
     header("Location: index.php?editor=aa&aaid=$aaid");
     break;
@@ -563,15 +503,6 @@ switch ($action) {
       $aaref = (isset($_GET['aaref']) ? $_GET['aaref'] : null);
       $aarefdata = null;
       $oldnext = null;
-      if ($aaref) {
-        // Sanity check if the aaref actually exists.
-        $aaref_data = getBaseAAInfo($aaref);
-        if ($aaref_data) {
-          $oldnext = $aaref_data['sof_next_id'];
-          setAllNextByNext($aaref, $oldnext);
-          setNextID($aaref, 0);
-        }
-      }
       $loc = "Location: index.php?editor=aa&aaid=$aaid";
       if ($aaref && $aaid != $aaref)
         $loc .= "&aaref=$aaref";
@@ -636,16 +567,6 @@ function aa_info () {
     }
   }
 
-  $aa_prev = getPrevAAsArray($aaid);
-  if ($aa_prev)
-    $aa_array['aa_prev'] = $aa_prev;
-
-  if ($aa_vars_array) {
-    $aa_next = getNextAAsArray($aa_vars_array['sof_next_id']);
-    if ($aa_next)
-      $aa_array['aa_next'] = $aa_next;
-  }
-
   return $aa_array;
 }
 
@@ -670,13 +591,6 @@ function setNextID($id, $next) {
   global $mysql;
 
   $query = "UPDATE altadv_vars SET sof_next_id=$next WHERE skill_id=$id";
-  $mysql->query_no_result($query);
-}
-
-function setAllNextByNext($old, $next) {
-  global $mysql;
-
-  $query = "UPDATE altadv_vars SET sof_next_id=$next WHERE sof_next_id=$old";
   $mysql->query_no_result($query);
 }
 
@@ -848,106 +762,11 @@ function getNameByID($aaid) {
   }
 }
 
-// Get all AAs that use the provided aaid as their sof_next_id
-// Continue looking up previous AAs based on what we find.
-// Stop once we get one we already have found, there is more
-// than one row that has the same sof_next_id, or we find no matches.
-function getPrevAAsArray($aaid) {
-  $idx = 0;
-  $loopflag = 0;
-  $nextid = $aaid;
-  $aa_prev_array = array();
-
-  while (!$loopflag) {
-    $results = get_aa_by_next($nextid);
-    if ($results) {
-      // Check if we end up in a cyclic loop
-      $rescount = count($results);
-      for ($i = 0; $i < $idx && !$loopflag; $i++) {
-        for ($j = 0; $j < $rescount && !$loopflag; $j++) {
-          if (($aa_prev_array[$i][0]['skill_id'] == $results[$j]['skill_id'])
-            || ($results[$j]['skill_id'] == $aaid))
-          {
-            $loopflag = 1;
-          }
-        }
-      }
-      $aa_prev_array[$idx] = $results;
-      $idx++;
-      if (!$loopflag && $rescount == 1) {
-        $nextid = $results[0]['skill_id'];
-      } else {
-        $nextid = 0;
-        $loopflag = 1;
-      }
-    } else {
-      // Nothing found, leave the loop.
-      $loopflag = 1;
-    }
-  }
-  if ($idx > 0) {
-    return $aa_prev_array;
-  }
-}
-
-
-// Get the chain of sof_next_id linked AAs starting with the ID
-// provided as a parameter.
-function getNextAAsArray($aaid) {
-  $idx = 0;
-  $nextid = $aaid;
-  $loopflag = 0;
-  $aa_next_array = array();
-
-  while ($nextid != 0 && !$loopflag) {
-      $results = get_aa_by_id($nextid);
-      if ($results) {
-        // Check if we already have the ID in the array. We don't want to
-        // get into an endless loop due to wrong DB data. This is meant to
-        // help find such problems, not make things worse.
-        for ($i = 0; $i < $idx && !$loopflag; $i++) {
-          if ($aa_next_array[$i]['skill_id'] == $results['skill_id']) {
-            $loopflag = 1;
-          }
-        }
-        if (!$loopflag) {
-          $aa_next_array[$idx] = $results;
-          $idx++;
-          $nextid = $results['sof_next_id'];
-        }
-      } else {
-        $aa_next_array[$idx]['skill_id'] = $nextid;
-        $aa_next_array[$idx]['name'] = "Not Found";
-        $aa_next_array[$idx]['class_type'] = "";
-        $aa_next_array[$idx]['sof_type'] = "";
-        $aa_next_array[$idx]['aa_expansion'] = null; // Set to null so we don't show one
-        $aa_next_array[$idx]['sof_next_id'] = "";
-        $aa_next_array[$idx]['sof_max_level'] = "";
-        $aa_next_array[$idx]['sof_current_level'] = "";
-        $aa_next_array[$idx]['max_level'] = "";
-        $nextid = 0;
-        $loopflag = 1;
-        $idx++;
-      }
-  }
-  if ($idx > 0) {
-    return $aa_next_array;
-  }
-}
-
 function get_aa_by_id($id) {
   global $mysql;
 
   $query = "SELECT * FROM altadv_vars WHERE skill_id=$id";
   $results = $mysql->query_assoc($query);
-  return $results;
-}
-
-function get_aa_by_next($nextid) {
-  global $mysql;
-
-  $query = "SELECT * FROM altadv_vars WHERE sof_next_id=$nextid";
-  $results = $mysql->query_mult_assoc($query);
   return $results;
 }
 
@@ -1022,10 +841,6 @@ function build_aa_vars_from_post() {
   $aa_vars['name'] = $_POST['aaname'];
   $aa_vars['cost'] = $_POST['cost']+0;
   $aa_vars['max_level'] = $_POST['max_level']+0;
-  $aa_vars['hotkey_sid'] = $_POST['hotkey_sid']+0;
-  $aa_vars['hotkey_sid2'] = $_POST['hotkey_sid2']+0;
-  $aa_vars['title_sid'] = $_POST['title_sid']+0;
-  $aa_vars['desc_sid'] = $_POST['desc_sid']+0;
   $aa_vars['type'] = $_POST['type']+0;
   $aa_vars['spellid'] = $_POST['spellid']+0;
   $aa_vars['prereq_skill'] = $_POST['prereq_skill']+0;
@@ -1036,14 +851,7 @@ function build_aa_vars_from_post() {
   $aa_vars['cost_inc'] = $_POST['cost_inc']+0;
   $aa_vars['aa_expansion'] = $_POST['aa_expansion'];
   $aa_vars['special_category'] = $_POST['special_category'];
-  $aa_vars['sof_type'] = $_POST['sof_type']+0;
-  $aa_vars['sof_cost_inc'] = $_POST['sof_cost_inc']+0;
-  $aa_vars['sof_max_level'] = $_POST['sof_max_level']+0;
-  $aa_vars['sof_next_skill'] = $_POST['sof_next_skill']+0;
-  $aa_vars['clientver'] = $_POST['clientver']+0;
   $aa_vars['account_time_required'] = $_POST['account_time_required']+0;
-  $aa_vars['sof_current_level'] = $_POST['sof_current_level']+0;
-  $aa_vars['sof_next_id'] = $_POST['sof_next_id']+0;
   $aa_vars['level_inc'] = $_POST['level_inc']+0;
   $aa_vars['eqmacid'] = $_POST['eqmacid']+0;
 
@@ -1070,10 +878,6 @@ function build_aa_vars_from_post() {
   if (isset($_POST['class_enc'])) $classes += 16384;
   if (isset($_POST['class_bst'])) $classes += 32768;
   $aa_vars['classes'] = $classes;
-
-  $berserker = 0;
-  if (isset($_POST['class_ber'])) $berserker += 1;
-  $aa_vars['berserker'] = $berserker;
 
   return $aa_vars;
 }
@@ -1106,14 +910,6 @@ function update_aabase($aa_vars, $aaid) {
     $fields .= "cost=\"". $aa_vars['cost'] ."\", ";
   if (isset($aa_vars['max_level']) && $old['max_level'] != $aa_vars['max_level'])
     $fields .= "max_level=\"". $aa_vars['max_level'] ."\", ";
-  if (isset($aa_vars['hotkey_sid']) && $old['hotkey_sid'] != $aa_vars['hotkey_sid'])
-    $fields .= "hotkey_sid=\"". $aa_vars['hotkey_sid'] ."\", ";
-  if (isset($aa_vars['hotkey_sid2']) && $old['hotkey_sid2'] != $aa_vars['hotkey_sid2'])
-    $fields .= "hotkey_sid2=\"". $aa_vars['hotkey_sid2'] ."\", ";
-  if (isset($aa_vars['title_sid']) && $old['title_sid'] != $aa_vars['title_sid'])
-    $fields .= "title_sid=\"". $aa_vars['title_sid'] ."\", ";
-  if (isset($aa_vars['desc_sid']) && $old['desc_sid'] != $aa_vars['desc_sid'])
-    $fields .= "desc_sid=\"". $aa_vars['desc_sid'] ."\", ";
   if (isset($aa_vars['type']) && $old['type'] != $aa_vars['type'] && $aa_vars['type'] != '')
     $fields .= "type=\"". $aa_vars['type'] ."\", ";
   if (isset($aa_vars['spellid']) && $old['spellid'] != $aa_vars['spellid'])
@@ -1128,8 +924,6 @@ function update_aabase($aa_vars, $aaid) {
     $fields .= "spell_refresh=\"". $aa_vars['spell_refresh'] ."\", ";
   if (isset($aa_vars['classes']) && $old['classes'] != $aa_vars['classes'])
     $fields .= "classes=\"". $aa_vars['classes'] ."\", ";
-  if (isset($aa_vars['berserker']) && $old['berserker'] != $aa_vars['berserker'])
-    $fields .= "berserker=\"". $aa_vars['berserker'] ."\", ";
   if (isset($aa_vars['class_type']) && $old['class_type'] != $aa_vars['class_type'])
     $fields .= "class_type=\"". $aa_vars['class_type'] ."\", ";
   if (isset($aa_vars['cost_inc']) && $old['cost_inc'] != $aa_vars['cost_inc'])
@@ -1138,22 +932,8 @@ function update_aabase($aa_vars, $aaid) {
     $fields .= "aa_expansion=\"". $aa_vars['aa_expansion'] ."\", ";
   if (isset($aa_vars['special_category']) && $old['special_category'] != $aa_vars['special_category'])
     $fields .= "special_category=\"". $aa_vars['special_category'] ."\", ";
-  if (isset($aa_vars['sof_type']) && $old['sof_type'] != $aa_vars['sof_type'])
-    $fields .= "sof_type=\"". $aa_vars['sof_type'] ."\", ";
-  if (isset($aa_vars['sof_cost_inc']) && $old['sof_cost_inc'] != $aa_vars['sof_cost_inc'])
-    $fields .= "sof_cost_inc=\"". $aa_vars['sof_cost_inc'] ."\", ";
-  if (isset($aa_vars['sof_max_level']) && $old['sof_max_level'] != $aa_vars['sof_max_level'])
-    $fields .= "sof_max_level=\"". $aa_vars['sof_max_level'] ."\", ";
-  if (isset($aa_vars['sof_next_skill']) && $old['sof_next_skill'] != $aa_vars['sof_next_skill'])
-    $fields .= "sof_next_skill=\"". $aa_vars['sof_next_skill'] ."\", ";
-  if (isset($aa_vars['clientver']) && $old['clientver'] != $aa_vars['clientver'])
-    $fields .= "clientver=\"". $aa_vars['clientver'] ."\", ";
   if (isset($aa_vars['account_time_required']) && $old['account_time_required'] != $aa_vars['account_time_required'])
     $fields .= "account_time_required=\"". $aa_vars['account_required_time'] ."\", ";
-  if (isset($aa_vars['sof_current_level']) && $old['sof_current_level'] != $aa_vars['sof_current_level'])
-    $fields .= "sof_current_level=\"". $aa_vars['sof_current_level'] ."\", ";
-  if (isset($aa_vars['sof_next_id']) && $old['sof_next_id'] != $aa_vars['sof_next_id'])
-    $fields .= "sof_next_id=\"". $aa_vars['sof_next_id'] ."\", ";
   if (isset($aa_vars['level_inc']) && $old['level_inc'] != $aa_vars['level_inc'])
     $fields .= "level_inc=\"". $aa_vars['level_inc'] ."\", ";
   if (isset($aa_vars['eqmacid']) && $old['eqmacid'] != $aa_vars['eqmacid'])
@@ -1249,46 +1029,23 @@ function fixOffsetMax($aaid) {
   $aa_vars = getBaseAAInfo($aaid);
   if (!$aa_vars) return;
 
-  $aa_prev = getPrevAAsArray($aaid);
   $maxrank = 0;
-  // If we ever get more than one result then we bail.
-  if ($aa_prev)
-    for ($i = 0; $i < count($aa_prev); $i++) {
-       if (count($aa_prev[$i]) > 1) return;
-       $maxrank += $aa_prev[$i][0]['max_level'];
-    }
-
   $maxrank+= $aa_vars['max_level'];
-
-  $aa_next = null;
-  if ($aa_vars['sof_next_id'])
-    $aa_next = getNextAAsArray($aa_vars['sof_next_id']);
-  if ($aa_next)
-    foreach($aa_next as $n) {
-      if(!isset($n['aa_expansion'])) return; // We bail if we get a 'not found'
-      $maxrank += $n['max_level'];
-    }
 
   // Step 2: Now that we have the max rank we can walk through the
   // list and update them all.
   $cur = 0;
   if($aa_prev)
     for ($i = count($aa_prev)-1; $i >= 0; $i--) {
-      $aa_prev[$i][0]['sof_max_level'] = $maxrank;
-      $aa_prev[$i][0]['sof_current_level'] = $cur;
       $cur += $aa_prev[$i][0]['max_level'];
       update_aabase($aa_prev[$i][0], $aa_prev[$i][0]['skill_id']);
     }
 
-  $aa_vars['sof_max_level'] = $maxrank;
-  $aa_vars['sof_current_level'] = $cur;
   $cur += $aa_vars['max_level'];
   update_aabase($aa_vars, $aaid);
 
   if ($aa_next)
     foreach ($aa_next as $aa) {
-      $aa['sof_max_level'] = $maxrank;
-      $aa['sof_current_level'] = $cur;
       $cur += $aa['max_level'];
       update_aabase($aa, $aa['skill_id']);
     }
@@ -1297,25 +1054,23 @@ function fixOffsetMax($aaid) {
 function findByID($id) {
   global $mysql;
 
-  $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes, berserker FROM altadv_vars WHERE skill_id='$id'";
+  $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes FROM altadv_vars WHERE skill_id='$id'";
   return $mysql->query_mult_assoc($query);
 }
 
 function findByName($search) {
   global $mysql;
 
-  $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes, berserker FROM altadv_vars WHERE name rlike \"$search\" ORDER BY skill_id";
+  $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes FROM altadv_vars WHERE name rlike \"$search\" ORDER BY skill_id";
   return $mysql->query_mult_assoc($query);
 }
 
 function findByClsExp($cls, $exp) {
   global $mysql;
   $classes = 65534;
-  $berserker = 1;
 
   if ($cls == -1) {
     $classes = 65534;
-    $berserker = 1;
   } else {
     if ($cls == 1) $classes = 2;
     if ($cls == 2) $classes = 4;
@@ -1332,23 +1087,17 @@ function findByClsExp($cls, $exp) {
     if ($cls == 13) $classes = 8192;
     if ($cls == 14) $classes = 16384;
     if ($cls == 15) $classes = 32768;
-
-    if ($cls == 16) $berserker = 1;
-
-    if ($classes != 65534) $berserker = 0;
   }
 
   $check = "(classes & $classes <> 0";
-  if ($berserker != 0)
-    $check .= " or ((classes & $classes) = 0 and berserker=$berserker))";
-  else
-    $check .= ")";
+
+  $check .= ")";
 
   if ($exp != -1) {
     $check .= " and aa_expansion=$exp";
   }
 
-  $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes, berserker FROM altadv_vars WHERE $check ORDER BY aa_expansion, name";
+  $query = "SELECT skill_id, name, prereq_skill, aa_expansion, classes FROM altadv_vars WHERE $check ORDER BY aa_expansion, name";
   $result = $mysql->query_mult_assoc($query);
   return $result;
 }

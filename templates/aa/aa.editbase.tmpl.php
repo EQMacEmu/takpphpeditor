@@ -1,6 +1,5 @@
   <script type="text/javascript">
     function Toggle() {
-      document.aa_edit.class_ber.checked = document.aa_edit.all_none.checked;
       document.aa_edit.class_brd.checked = document.aa_edit.all_none.checked;
       document.aa_edit.class_bst.checked = document.aa_edit.all_none.checked;
       document.aa_edit.class_clr.checked = document.aa_edit.all_none.checked;
@@ -127,24 +126,8 @@
                       Cost Inc:<br/>
                       <input type="text" name="cost_inc" size="5" value="<?echo "{$aa_vars['cost_inc']}";?>"><br/>
                     </td>
-                    <td>
-                      SoF Cost Inc:<br/>
-                      <input type="text" name="sof_cost_inc" size="5" value="<?echo "{$aa_vars['sof_cost_inc']}";?>"><br/>
-                    </td>
                   </tr>
                   <tr>
-                    <td>
-                      SoF Next ID:<br/>
-                      <input type="text" name="sof_next_id" size="5" value="<?echo "{$aa_vars['sof_next_id']}";?>"><br/>
-                    </td>
-                    <td>
-                      SoF Max: <br/>
-                      <input type="text" name="sof_max_level" size="5" value="<?echo "{$aa_vars['sof_max_level']}";?>"><br/>
-                    </td>
-                    <td>
-                      SoF Offset:<br/>
-                      <input type="text" name="sof_current_level" size="5" value="<?echo "{$aa_vars['sof_current_level']}";?>"><br/>
-                    </td>
                   </tr>
                 </table>
               </fieldset>
@@ -157,14 +140,6 @@
                       <select class="left" name="type" style="width:125px;">
 <? foreach($aa_type as $key => $val) {?>
                         <option value="<?=$key?>"<?if($aa_vars['type'] == $key) echo " selected"?>><?=$val?></option>
-<? } ?>
-                      </select><br/>
-                    </td>
-                    <td>
-                      SoF Tab:<br/>
-                      <select class="left" name="sof_type" style="width:90px;">
-<? foreach($aa_sof_type as $key => $val) {?>
-                        <option value="<?=$key?>"<?if($aa_vars['sof_type'] == $key) echo " selected"?>><?=$val?></option>
 <? } ?>
                       </select><br/>
                     </td>
@@ -207,8 +182,6 @@
                     </td>
                   </tr>
                 </table><br/>
-                Client Version:<br/>
-                <input type="text" name="clientver" size="5" value="<?echo "{$aa_vars['clientver']}";?>"><br/><br/>
               </fieldset>
             </td>
             <td style="width:240px;">
@@ -233,7 +206,6 @@
                   <table>
                     <tr>
                       <td>
-                        <input type="checkbox" name="class_ber" value="65536"<?echo ($aa_vars['berserker'] == 1) ? " checked" : "";?>> BER<br/>
                         <input type="checkbox" name="class_brd" value="256"<?echo ($aa_vars['classes'] & 256) ? " checked" : "";?>> BRD<br/>
                         <input type="checkbox" name="class_bst" value="32768"<?echo ($aa_vars['classes'] & 32768) ? " checked" : "";?>> BST<br/>
                         <input type="checkbox" name="class_clr" value="4"<?echo ($aa_vars['classes'] & 4) ? " checked" : "";?>> CLR<br/>
@@ -259,42 +231,7 @@
                     </tr>
                     <tr>
                       <td colspan="4">
-                        <input type="checkbox" name="all_none" value="yes" onClick="Toggle();"<?if($aa_vars['berserker']==1 && $aa_vars['classes'] == 65534) echo " checked";?>><b>All/None</b><br/>
-                      </td>
-                    </tr>
-                  </table>
-                </fieldset>
-              </div>
-              <div style="margin-top:2px;">
-                <fieldset>
-                  <legend><b>String IDs</b></legend>
-                  <table>
-                    <tr>
-                      <td style="width:110px;">
-                        Hotkey SID 1:<br/>
-                        <input type="text" name="hotkey_sid" size="10" value="<?echo "{$aa_vars['hotkey_sid']}";?>"><img src="images/minus.gif" border="0" title="Fill in the Not Used value for this field" onclick="fill8F(document.aa_edit.hotkey_sid)"><br/><br/>
-                      </td>
-                      <td style="width:110px;">
-                        Hotkey SID 2:<br/>
-                        <input type="text" name="hotkey_sid2" size="10" value="<?echo "{$aa_vars['hotkey_sid2']}";?>"><img src="images/minus.gif" border="0" title="Fill in the Not Used value for this field" onclick="fill8F(document.aa_edit.hotkey_sid2)"><br/><br/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Title SID:<br/>
-                        <input type="text" name="title_sid" size="10" value="<?echo "{$aa_vars['title_sid']}";?>"><br/><br/>
-                      </td>
-                      <td>
-                        Description SID:<br/>
-                        <input type="text" name="desc_sid" size="10" value="<?echo "{$aa_vars['desc_sid']}";?>"><br/><br/>
-                      </td>
-                    </tr>
-                  </table>
-                  <table>
-                    <tr>
-                      <td>
-                        SoF SID (sof_next_skill):<br/>
-                        <input type="text" name="sof_next_skill" size="10" value="<?echo "{$aa_vars['sof_next_skill']}";?>"><br/>
+                        <input type="checkbox" name="all_none" value="yes" onClick="Toggle();"<?if($aa_vars['classes'] == 65534) echo " checked";?>><b>All/None</b><br/>
                       </td>
                     </tr>
                   </table>

@@ -1,22 +1,20 @@
 <?
   function getExpansionName($expid) {
-    global $eqexpansions, $aa_sof_expansion;
+    global $eqexpansions;
     if (!isset($expid)) return "";
     if ($expid < 0) return "$expid"; // Avoid hitting the 'None Selected'
-    if (isset($aa_sof_expansion[$expid])) return $aa_sof_expansion[$expid]; // Drakkin
     if (isset($eqexpansions[$expid+1])) return $eqexpansions[$expid+1];
     return "$expid";
   }
 
-  function getClasses($classes, $berserker) {
-    if ($berserker == 0 && $classes == 0) {
+  function getClasses($classes) {
+    if ($classes == 0) {
       return "None";
     }
-    if ($berserker == 1 && $classes == 65534)
+    if ($classes == 65534)
       return "ALL";
     else {
       $res = '';
-      if ($berserker == 1)  $res .= "BER ";
       if ($classes &   256) $res .= "BRD ";
       if ($classes & 32768) $res .= "BST ";
       if ($classes &     4) $res .= "CLR ";
@@ -76,134 +74,12 @@
                       <img src="images/minus2.gif" onclick="document.aa_list_insert.aa_add.value=<?=$aaref?>;" title="Set as what to be inserted"><br/>
                     </div>
 <? } ?>
-                    <div class="table_container">
-                      <div class="table_header">
-                        <table width="100%" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td>SoF AA Group</td>
-                            <td align="right">
-                              <form name="aa_list_insert" method="post" action="index.php?editor=aa&aaid=<?=$aaid?>&action=24">
-                                <a href="index.php?editor=aa&aaid=<?=$aaid?>&action=27" onclick="return confirm('Fix the offset and max fields for all AAs in this SoF AA Group?');" title="Fixes the Offset and Max entries. Only works if there are no group problems.">Fix Offset/Max</a>&nbsp;
-                                <select name="movetype" style="font-size:9px;">
-                                  <option value="2">Move</option>
-                                  <option value="1" selected>Add</option>
-                                </select>
-                                <input type="text" id="searchtarget" name="aa_add" size="5" style="font-size:9px;" value="What" onfocus="if (this.value=='What') this.value='';" onblur="if (this.value=='') this.value='What';">
-                                <img src="images/create.gif" title="Show the AA Search" onclick="showSearch();">
-                                <select name="before" style="font-size:9px;">
-                                  <option value="2">Before</option>
-                                  <option value="1" selected>After</option>
-                                </select>
-                                <input type="text" name="aa_anchor" size="5" style="font-size:9px;" value="<?=$aa_vars['skill_id']?>" onfocus="if (this.value=='Where') this.value='';" onblur="if (this.value=='') this.value='Where';">
-                                <input type="submit" style="font-size:9px;" value="Go">
-                              </form>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                      <table class="table_content2" width="100%">
-                        <tr>
-                          <th width="2%">&nbsp;</th>
-                          <th align="center" width="7%">ID</th>
-                          <th align="center" width="7%">Seq</th>
-                          <th align="center" width="29%">Name</th>
-                          <th align="center" width="5%">Lvl</th>
-                          <th align="center" width="4%">Rks</th>
-                          <th align="center" width="4%">Off</th>
-                          <th align="center" width="4%">Max</th>
-                          <th align="center" width="4%">Tab</th>
-                          <th align="center" width="16%">Expansion</th>
-                          <th align="center" width="7%">Next ID</th>
-                          <th width="7%">&nbsp;</th>
-                        </tr>
-<?
-  $x=0;
-  $ranksum = 0;
-  if($aa_prev) {
-    $prevcount = count($aa_prev);
-    for ($i = $prevcount-1; $i >= 0; $i--) {
-      $prev_row = $aa_prev[$i];
-      $count = count($prev_row);
-      foreach($prev_row as $prev_sub) {
-?>
-                        <tr bgcolor="#<? echo ($x % 2 == 0) ? "CCCCCC" : "AAAAAA";?>">
-                          <td>&nbsp;</td>
-                          <td align="center"><a href="index.php?editor=aa&aaid=<?=$prev_sub['skill_id']?>"><?=$prev_sub['skill_id']?></a></td>
-                          <td>&nbsp;</td>
-                          <td align="center"><a href="index.php?editor=aa&aaid=<?=$prev_sub['skill_id']?>"><?=$prev_sub['name']?></a></td>
-                          <td align="center"><?=$prev_sub['class_type']?></td>
-                          <td align="center"><?=$prev_sub['max_level']?></td>
-                          <td align="center"><?=$prev_sub['sof_current_level']?></td>
-                          <td align="center"><?=$prev_sub['sof_max_level']?></td>
-                          <td align="center"><?=$prev_sub['sof_type']?></td>
-                          <td align="center"><?=getExpansionName($prev_sub['aa_expansion'])?></td>
-                          <td align="center"><? if($count > 1) echo "<font color='red'><b>";?><?=$prev_sub['sof_next_id']?><?if($count > 1) echo "</b></font>";?></td>
-                          <td align="right"><a href="index.php?editor=aa&aaid=<?=$aaid?>&aaref=<?=$prev_sub['skill_id']?>&action=25"><img src="images/minus.gif" border="0" title="Set Next ID to 0 for this AA"></a><a href="index.php?editor=aa&aaid=<?=$aaid?>&aaref=<?=$prev_sub['skill_id']?>&action=26" onclick="return confirm('Really remove <?=addslashes($prev_sub['name'])?> (<?=$prev_sub['skill_id']?>) from the SoF AA Group?');"><img src="images/minus2.gif" border="0" title="Remove this AA from the Group"></a><img src="images/add.gif" border="0" title="Set as where to insert" onclick="document.aa_list_insert.aa_anchor.value=<?=$prev_sub['skill_id']?>"></td>
-                        </tr>
-<?
-        $ranksum += $prev_sub['max_level'];
-      } // end foreach (row)
-      $x++;
-    } // end for(prev)
-  } // end if
-?>
-                        <tr bgcolor="#FFFFFF">
-                          <td align="right">&gt;</td>
-                          <td align="center"><?=$aa_vars['skill_id']?></td>
-                          <td>&nbsp;</td>
-                          <td align="center"><?=$aa_vars['name']?></td>
-                          <td align="center"><?=$aa_vars['class_type']?></td>
-                          <td align="center"><?=$aa_vars['max_level']?></td>
-                          <td align="center"><?=$aa_vars['sof_current_level']?></td>
-                          <td align="center"><?=$aa_vars['sof_max_level']?></td>
-                          <td align="center"><?=$aa_vars['sof_type']?></td>
-                          <td align="center"><?=getExpansionName($aa_vars['aa_expansion'])?></td>
-                          <td align="center"><?=$aa_vars['sof_next_id']?></td>
-                          <td align="right"><a href="index.php?editor=aa&aaid=<?=$aaid?>&aaref=<?=$aa_vars['skill_id']?>&action=25"><img src="images/minus.gif" border="0" title="Set Next ID to 0 for this AA"></a><a href="index.php?editor=aa&aaid=<?=$aaid?>&aaref=<?=$aa_vars['skill_id']?>&action=26" onclick="return confirm('Really remove <?=addslashes($aa_vars['name'])?> (<?=$aa_vars['skill_id']?>) from the SoF AA Group?');"><img src="images/minus2.gif" border="0" title="Remove this AA from the Group"></a><img src="images/add.gif" border="0" title="Set as where to insert" onclick="document.aa_list_insert.aa_anchor.value=<?=$aa_vars['skill_id']?>;"></td>
-                        </tr>
-<?
-  $x++;
-  $ranksum += $aa_vars['max_level'];
-  if($aa_next) {
-    foreach($aa_next as $next_row) {
-?>
-                        <tr bgcolor="#<? echo ($x % 2 == 0) ? "CCCCCC" : "AAAAAA";?>">
-                          <td>&nbsp;</td>
-                          <td align="center"><a href="index.php?editor=aa&aaid=<?=$next_row['skill_id']?>"><?=$next_row['skill_id']?></a></td>
-                          <td>&nbsp;</td>
-                          <td align="center"><a href="index.php?editor=aa&aaid=<?=$next_row['skill_id']?>"><?=$next_row['name']?></a></td>
-                          <td align="center"><?=$next_row['class_type']?></td>
-                          <td align="center"><?=$next_row['max_level']?></td>
-                          <td align="center"><?=$next_row['sof_current_level']?></td>
-                          <td align="center"><?=$next_row['sof_max_level']?></td>
-                          <td align="center"><?=$next_row['sof_type']?></td>
-                          <td align="center"><?=getExpansionName($next_row['aa_expansion'])?></td>
-                          <td align="center"><?=$next_row['sof_next_id']?></td>
-                          <td align="right"><? if (isset($next_row['aa_expansion'])) { ?><a href="index.php?editor=aa&aaid=<?=$aaid?>&aaref=<?=$next_row['skill_id']?>&action=25"><img src="images/minus.gif" border="0" title="Set Next ID to 0 for this AA"></a><a href="index.php?editor=aa&aaid=<?=$aaid?>&aaref=<?=$next_row['skill_id']?>&action=26" onclick="return confirm('Really remove <?=addslashes($next_row['name'])?> (<?=$next_row['skill_id']?>) from the SoF AA Group?');"><img src="images/minus2.gif" border="0" title="Remove this AA from the Group"></a><img src="images/add.gif" border="0" title="Set as where to insert" onclick="document.aa_list_insert.aa_anchor.value=<?=$next_row['skill_id']?>"><? } ?></td>
-                        </tr>
-<?
-      $x++;
-      $ranksum += $next_row['max_level'];
-    } // end foreach (next)
-  } // end if (aa_next)
-  if ($aa_prev || $aa_next) {
-?>
-                        <tr bgcolor="#FFFFFF">
-                          <td colspan="5" align="right">Ranks Sum:</td>
-                          <td align="center"><?=$ranksum?></td>
-                          <td colspan="6">&nbsp;</td>
-                        </tr>
-<?
-  } // end if
-?>
-                      </table>
-                    </div><br/>
                     Prerequisite AA: <? if($aa_vars['prereq_skill'] != 0 && $aa_vars['prereq_skill'] != 4294967295) echo "{$aa_vars['prereq_skill']} - (<a href=\"index.php?editor=aa&aaid={$aa_vars['prereq_skill']}\">". ((isset($prereq_name) && $prereq_name != null)?$prereq_name['name'] : "<span style=\"color:red;\"><b>Not Found</b></span>")."</a>) at Rank: {$aa_vars['prereq_minpoints']}<br/>"; else echo "None<br/>";?>
-                    Classes: <?=getClasses($aa_vars['classes'], $aa_vars['berserker'])?>
+                    Classes: <?=getClasses($aa_vars['classes'])?>
 <?
   if ($aa_vars['prereq_skill'] != 0 && $aa_vars['prereq_skill'] != 0xffffffff && $prereq_name != null) {
     $rankcheck = $aa_vars['prereq_minpoints'] > $prereq_name['max_level'];
-    $classcheck = (((int)$aa_vars['classes'] & (int)$prereq_name['classes']) == 0) && (((int)$aa_vars['berserker'] & (int)$prereq_name['berserker']) == 0);
+    $classcheck = (((int)$aa_vars['classes'] & (int)$prereq_name['classes']) == 0);
     if ($rankcheck || $classcheck) {
 ?>
                     <br/>
@@ -211,7 +87,7 @@
 <?
       if($classcheck) {
 ?>
-                      Classes: <?=getClasses($prereq_name['classes'], $prereq_name['berserker'])?>
+                      Classes: <?=getClasses($prereq_name['classes'])?>
 <?
       }
       if ($classcheck && $rankcheck) {
@@ -246,10 +122,6 @@
                                       <td align="right">Cost Increment:</td>
                                       <td>&nbsp;<?=$aa_vars['cost_inc']?></td>
                                     </tr>
-                                    <tr>
-                                      <td align="right">SoF Cost Inc:</td>
-                                      <td>&nbsp;<?=$aa_vars['sof_cost_inc']?></td>
-                                    </tr>
                                   </table>
                                 </td>
                                 <td style="width:100px;">
@@ -270,14 +142,7 @@
                                 </td>
                                 <td style="width:140px;">
                                   <table cellpadding="0">
-                                    <tr>
-                                      <td align="right">SoF Group Offset:</td>
-                                      <td>&nbsp;<?=$aa_vars['sof_current_level']?></td>
-                                    </tr>
-                                    <tr>
-                                      <td align="right">SoF Max Level:</td>
-                                      <td>&nbsp;<?=$aa_vars['sof_max_level']?></td>
-                                    </tr>
+
                                     <tr>
                                       <td align="right">&nbsp;</td>
                                       <td>&nbsp;</td>
@@ -340,47 +205,12 @@
                                 <td>&nbsp;<?=$aa_type[$aa_vars['type']]?></td>
                               </tr>
                               <tr>
-                                <td align="right">SoF Tab:</td>
-                                <td>&nbsp;<?echo ($aa_sof_type[$aa_vars['sof_type']]) ? "{$aa_sof_type[$aa_vars['sof_type']]}" : "{$aa_vars['sof_type']}";?></td>
-                              </tr>
-                              <tr>
                                 <td align="right">Expansion:</td>
                                 <td>&nbsp;<?=getExpansionName($aa_vars['aa_expansion'])?> (<?=$aa_vars['aa_expansion']?>)</td>
                               </tr>
                               <tr>
                                 <td align="right">Special Category:</td>
                                 <td>&nbsp;<?echo (isset($aa_special_category[$aa_vars['special_category']])) ? "{$aa_special_category[$aa_vars['special_category']]}" : "{$aa_vars['special_category']}";?></td>
-                              </tr>
-                              <tr>
-                                <td align="right">Client Version:</td>
-                                <td>&nbsp;<?=$aa_vars['clientver']?></td>
-                              </tr>
-                            </table>
-                          </fieldset>
-                        </td>
-                        <td style="width:200px;">
-                          <fieldset>
-                            <legend><b>String IDs</b></legend>
-                            <table cellpadding="0">
-                              <tr>
-                                <td style="text-align:right;">Hotkey SID 1:</td>
-                                <td>&nbsp;<?=$aa_vars['hotkey_sid']?></td>
-                              </tr>
-                              <tr>
-                                <td style="text-align:right;">Hotkey SID 2:</td>
-                                <td>&nbsp;<?=$aa_vars['hotkey_sid2']?></td>
-                              </tr>
-                              <tr>
-                                <td style="text-align:right;">Title SID:</td>
-                                <td>&nbsp;<?=$aa_vars['title_sid']?></td>
-                              </tr>
-                              <tr>
-                                <td style="text-align:right;">Desc. SID:</td>
-                                <td>&nbsp;<?=$aa_vars['desc_sid']?></td>
-                              </tr>
-                              <tr>
-                                <td style="text-align:right;">SoF SID:</td>
-                                <td>&nbsp;<?=$aa_vars['sof_next_skill']?></td>
                               </tr>
                             </table>
                           </fieldset>
