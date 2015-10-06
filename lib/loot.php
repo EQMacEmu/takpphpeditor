@@ -713,13 +713,12 @@ function add_lootdrop_item ($itemid) {
   $chance= $_POST['chance'];
   $eitem = 0;
 
-  $query = "SELECT slots, augtype FROM items WHERE id=$itemid";
+  $query = "SELECT slots FROM items WHERE id=$itemid";
   $result = $mysql->query_assoc($query);
 
   $slots = $result['slots'];
-  $augment = $result['augtype'];
 
-  if ($slots && !$augment) {
+  if ($slots) {
     $eitem = 1;
   }
 
