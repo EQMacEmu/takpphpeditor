@@ -590,7 +590,7 @@
               <tr>
                 <td align="left" width="25%">Created:<br/><input type="text" name="created" size="20" value="<?=$created?>"></td>
                 <td align="left" width="25%">Verified:<br/><input type="text" name="verified" size="20" value="<?=$verified?>"></td>
-                <td align="left" width="25%">Updated:<br/><input type="text" name="updated" size="20" value="<?=$year?>-<?=$mon?>-<?=$mday?> <?=$hours?>:<?=$minutes?>:<?=$seconds?>"></td>
+                <td align="left" width="25%">Updated:<br/><input type="text" name="updated_read" size="20" value="<?=$updated?>"></td>
                 <td align="left" width="25%">Source:<br/><input type="text" name="source" size="20" value="<?=$source?>"></td>
               </tr>
               <tr>
@@ -600,6 +600,7 @@
           </table>
         </fieldset><br/>
         <center>
+          <input type="hidden" name="updated" value="<?=$year?>-<?=$mon?>-<?=$mday?> <?=$hours?>:<?=$minutes?>:<?=$seconds?>">
           <input type="submit" value="Submit Changes">
         </center>
       </div>
