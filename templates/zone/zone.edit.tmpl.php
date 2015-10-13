@@ -127,6 +127,7 @@
                       <option value="0"<?echo ($canbind == 0) ? " selected" : ""?>>No</option>
                       <option value="1"<?echo ($canbind == 1) ? " selected" : ""?>>Self</option>
                       <option value="2"<?echo ($canbind == 2) ? " selected" : ""?>>Others</option>
+                      <option value="2"<?echo ($canbind == 3) ? " selected" : ""?>>Area</option>
                     </select>
                   </td>
                 </tr>

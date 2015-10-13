@@ -3,7 +3,8 @@
 $bindallowed = array(
   0   => "No",
   1   => "Self",
-  2   => "Others"
+  2   => "Others",
+  3   => "Area"
 );
 
 $blockedtype = array(
