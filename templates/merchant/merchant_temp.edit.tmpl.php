@@ -11,6 +11,7 @@
             <th>Item ID</th>
             <th>Item Name</th>
             <th>Charges</th>
+            <th>Quantity</th>
           </tr>
 <?$x=1; foreach ($slots as $slot => $v):?>
           <tr>
@@ -19,6 +20,7 @@
             <td align="center"><input type="text" size="7" name="itemid<?=$x?>" value="<?=$v['itemid']?>"/></td>
             <td><?=$v['item_name']?></td>
             <td align="center"><input type="text" size="3" name="charges<?=$x?>" value="<?=$v['charges']?>"/></td>
+            <td align="center"><input type="text" size="3" name="quantity<?=$x?>" value="<?=$v['quantity']?>"/></td>
             <input type="hidden" name="slot<?=$x?>" value="<?=$slot?>">
           </tr>
 <?$x++; endforeach?>

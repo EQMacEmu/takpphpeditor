@@ -19,6 +19,7 @@
           <th>Item Name</th>
           <th>&nbsp;</th>
           <th>Charges</th>
+          <th>Quantity</th>
           <th>Buy Price</th>
           <th>Sell Price</th>
           <th>&nbsp;</th>
@@ -57,6 +58,7 @@ foreach($slots as $slot=>$v):
           <td><?=$v['item_name']?></td>
           <td><a href="http://lucy.allakhazam.com/item.html?id=<?=$v['itemid']?>">Lucy</a></td>
           <td align="center"><?=$v['charges']?></td>
+          <td align="center"><?=$v['quantity']?></td>
           <td align="center"><?=$cost?>
 <?if ($v['price'] > 999):?>
             pp
