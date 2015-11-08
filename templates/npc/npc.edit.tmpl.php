@@ -135,7 +135,7 @@
   $specabil = array();
   $specabilcont = array();
 
-  for ($i = 1; $i <= 43; $i++) {
+  for ($i = 1; $i <= 44; $i++) {
     if (preg_match("/^$i,/", $special_abilities) == 1) {
       $specabil[$i] = 1;
       // Leading special ability
@@ -196,7 +196,8 @@
                   <input type="checkbox" name="31" value="31,1^"<?echo ($specabil[31] == 1) ? "checked" : "";?>>  Unpacifiable<br/>
                   <input type="checkbox" name="18" value="18,1^"<?echo ($specabil[18] == 1) ? "checked" : "";?>>  Immune to Dispell<br/>
                   <input type="checkbox" name="35" value="35,1^"<?echo ($specabil[35] == 1) ? "checked" : "";?>>  No Harm from Players<br/>
-		    <input type="checkbox" name="39" value="39,1^"<?echo ($specabil[39] == 1) ? "checked" : "";?>>  Disable Melee<br/>
+		              <input type="checkbox" name="39" value="39,1^"<?echo ($specabil[39] == 1) ? "checked" : "";?>>  Disable Melee<br/>
+                  <input type="checkbox" name="44" value="44,1^"<?echo ($specabil[44] == 1) ? "checked" : "";?>>  Use Warrior Skills<br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="26" value="26,1^"<?echo ($specabil[26] == 1) ? "checked" : "";?>>  Resist Ranged Spells<br/>

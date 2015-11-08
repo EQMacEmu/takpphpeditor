@@ -187,6 +187,7 @@
                   <input type="checkbox" name="31" value="31,1^"/>  Unpacifiable<br>
                   <input type="checkbox" name="18" value="18,1^"/>  Immune to Dispell<br>
                   <input type="checkbox" name="35" value="35,1^"/>  No Harm from Players<br>
+                  <input type="checkbox" name="44" value="44,1^"/>  Use Warrior SKills<br>
 		    <input type="checkbox" name="39" value="39,1^"/>  Disable Melee<br>
                 </td>
                 <td valign="top" align="left">

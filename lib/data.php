@@ -523,6 +523,7 @@ $specialattacks = array(
  "41" => "Allow Tank",
  "42" => "Proximity Aggro",
  "43" => "Always Call for Help",
+ "44" => "Use Warrior Skills",
 );
 
 $tradeskills = array(
