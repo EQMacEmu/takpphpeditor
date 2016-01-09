@@ -24,13 +24,17 @@
         <center><a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="PEQ Editor Banner"></a></center>
       </div>
         <?php
-            global $server_name;
-            if($_SERVER['SERVER_NAME'] !== $server_name) {
-                echo '<center><H1 style="color:red">You are not editing main database, check url.</H1></center>';
+            global $server, $server_name;
+            $color = 'style=""';
+            if($server !== $server_name) {
+                //echo '<center><H1 style="color:red">'. $server .'</H1></center>';
+                $color = 'style="color:red"';
             }
             else{
-                echo '<center><H1 style="color:green">You are editing main database..</H1></center>';
+                //echo '<center><H1 style="color:green">'. $server .'</H1></center>';
+                $color = 'style="color:green"';
             }
+            echo '<center><H1 '. $color .'>'. $server .'</H1></center>';
         ?>
 <?if (isset($headbar)) echo $headbar;?>
 <?if (isset($searchbar)) echo $searchbar;?>
