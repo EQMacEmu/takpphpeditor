@@ -23,6 +23,14 @@
       <div id="header">
         <center><a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="PEQ Editor Banner"></a></center>
       </div>
+        <?php
+            if($_SERVER['SERVER_NAME'] !== "www.takproject.org") {
+                echo '<center><H1 style="color:red">You are not editing main database, check url.</H1></center>';
+            }
+            else{
+                echo '<center><H1 style="color:green">You are editing main database..</H1></center>';
+            }
+        ?>
 <?if (isset($headbar)) echo $headbar;?>
 <?if (isset($searchbar)) echo $searchbar;?>
       <div id="content">
