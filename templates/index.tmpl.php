@@ -24,7 +24,8 @@
         <center><a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="PEQ Editor Banner"></a></center>
       </div>
         <?php
-            if($_SERVER['SERVER_NAME'] !== "www.takproject.org") {
+            global $server_name;
+            if($_SERVER['SERVER_NAME'] !== $server_name) {
                 echo '<center><H1 style="color:red">You are not editing main database, check url.</H1></center>';
             }
             else{
