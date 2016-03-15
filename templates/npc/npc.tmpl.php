@@ -270,7 +270,7 @@
                   <tr>
                     <td align="left" width="33%">No Target Hotkey: <?=$yesno[$no_target_hotkey]?></td>
                     <td align="left" width="33%">Raid Target: <?=$yesno[$raid_target]?></td>
-                    <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="34%">Encounter: <?=$yesno[$encounter]?></td>
                   </tr>
                 </table>
               </fieldset>
@@ -374,6 +374,7 @@
         <input type="hidden" name="combat_hp_regen" value="<?=$combat_hp_regen?>">
         <input type="hidden" name="combat_mana_regen" value="<?=$combat_mana_regen?>">
         <input type="hidden" name="ignore_distance" value="<?=$ignore_distance?>">
+        <input type="hidden" name="encounter" value="<?=$encounter?>">
         <center>
           NEW ID:<input type="text" name="id" size="10" value="<?=$suggestedid?>">
           <input type="submit" value="Copy NPC">

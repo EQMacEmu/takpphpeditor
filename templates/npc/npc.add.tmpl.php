@@ -288,7 +288,7 @@
               <td align="left" width="17%">Emote:           <br/><input type="text" name="emoteid" size="10" value="0"/></td>
               <td align="left" width="17%">No Target Hotkey:<br/><input type="text" name="no_target_hotkey" size="10" value="0"></td>
               <td align="left" width="16%">Raid Target:     <br/><input type="text" name="raid_target" size="5" value="0"></td>
-              <td align="left" width="16%">&nbsp;</td>
+              <td align="left" width="16%">Encounter:       <br/><input type="text" name="encounter" size="5" value="0"></td>
             </tr>
           </table><br/>
           <center>
