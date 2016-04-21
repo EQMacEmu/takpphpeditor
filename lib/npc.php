@@ -1311,6 +1311,7 @@ function update_npc () {
   if ($light != $_POST['light']) $fields .= "light=\"" . $_POST['light'] . "\", ";
   if ($ignore_distance != $_POST['ignore_distance']) $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   if ($encounter != $_POST['encounter']) $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
+  if ($ignore_despawn != $_POST['ignore_despawn']) $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
 
   //peqid
   //unique_
@@ -1445,7 +1446,8 @@ function add_npc () {
   $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
   $fields .= "light=\"" . $_POST['light'] . "\", ";
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
-  $fields .= "encounter=\"" . $_POST['encounter'] . "\"";
+  $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
+  $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\"";
   //peqid
   //unique_
   //fixed
@@ -1561,7 +1563,8 @@ function copy_npc () {
   $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
   $fields .= "light=\"" . $_POST['light'] . "\", ";
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
-  $fields .= "encounter=\"" . $_POST['encounter'] . "\"";
+  $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
+  $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\"";
   //peqid
   //unique_
   //fixed

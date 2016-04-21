@@ -173,12 +173,12 @@
                     <td align="left" width="33%">Atk Delay: <?=$attack_delay?></td>
                   </tr>
                   <tr>
-					<td align="left" width="33%">HP Regen: <?=$hp_regen_rate?></td>
+					          <td align="left" width="33%">HP Regen: <?=$hp_regen_rate?></td>
                     <td align="left" width="34%">MP Regen: <?=$mana_regen_rate?></td>
                     <td align="left" width="34%">NPC Spells ID: <?=$npc_spells_id?></td>
                   </tr>
                   <tr>
-					<td align="left" width="33%">Combat HP Regen: <?=$combat_hp_regen?></td>
+					          <td align="left" width="33%">Combat HP Regen: <?=$combat_hp_regen?></td>
                     <td align="left" width="34%">Combat MP Regen: <?=$combat_mana_regen?></td>
                     <td align="left" width="33%">Assist: <?=$assistradius?></td>
                   </tr>
@@ -271,6 +271,11 @@
                     <td align="left" width="33%">No Target Hotkey: <?=$yesno[$no_target_hotkey]?></td>
                     <td align="left" width="33%">Raid Target: <?=$yesno[$raid_target]?></td>
                     <td align="left" width="34%">Encounter: <?=$yesno[$encounter]?></td>
+                  </tr>
+                  <tr>
+                    <td align="left" width="33%">Ignore Despawn: <?=$yesno[$ignore_despawn]?></td>
+                    <td align="left" width="33%">&nbsp;</td>
+                    <td align="left" width="34%">&nbsp;</td>
                   </tr>
                 </table>
               </fieldset>
@@ -375,6 +380,7 @@
         <input type="hidden" name="combat_mana_regen" value="<?=$combat_mana_regen?>">
         <input type="hidden" name="ignore_distance" value="<?=$ignore_distance?>">
         <input type="hidden" name="encounter" value="<?=$encounter?>">
+        <input type="hidden" name="ignore_despawn" value="<?=$ignore_despawn?>">
         <center>
           NEW ID:<input type="text" name="id" size="10" value="<?=$suggestedid?>">
           <input type="submit" value="Copy NPC">

@@ -318,6 +318,9 @@
                   <input type="checkbox" name="34" value="34,1^"<?echo ($specabil[34] == 1) ? "checked" : "";?>>  Destructible Object<br/>
                   <input type="checkbox" name="isquest" value="1"<?echo ($isquest == 1) ? " checked" : "";?>> Has Quest File<br/>
                 </td>
+                <td valign="top" align="left">
+                  <input type="checkbox" name="ignore_despawn" value="1"<?echo ($ignore_despawn == 1) ? " checked" : "";?>> Ignore Despawn<br/>
+                </td>
               </tr>
             </table>
           </center>
