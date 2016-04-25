@@ -1195,6 +1195,7 @@ function update_npc () {
   if (!isset($_POST['unique_spawn_by_name'])) $_POST['unique_spawn_by_name'] = 0;
   if (!isset($_POST['underwater'])) $_POST['underwater'] = 0;
   if (!isset($_POST['isquest'])) $_POST['isquest'] = 0;
+  if (!isset($_POST['ignore_despawn'])) $_POST['ignore_despawn'] = 0;
 
   // Check for special attacks change
   $new_specialattks = '';
@@ -1339,6 +1340,7 @@ function add_npc () {
   if ($_POST['unique_spawn_by_name'] != 1) $_POST['unique_spawn_by_name'] = 0;
   if ($_POST['underwater'] != 1) $_POST['underwater'] = 0;
   if ($_POST['isquest'] != 1) $_POST['isquest'] = 0;
+  if ($_POST['ignore_despawn'] != 1) $_POST['ignore_despawn'] = 0;
 
   foreach ($specialattacks as $k => $v) {
     if (isset($_POST["$k"])) {
@@ -1447,7 +1449,7 @@ function add_npc () {
   $fields .= "light=\"" . $_POST['light'] . "\", ";
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
-  $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\"";
+  $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\" ";
   //peqid
   //unique_
   //fixed
