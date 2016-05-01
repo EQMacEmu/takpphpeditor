@@ -22,8 +22,6 @@
               <input class="indented" type="text" name="componentcount" size="7" value="<?=$componentcount?>"><br><br>
               Qty Returned on Fail:<br>
               <input class="indented" type="text" name="failcount" size="7" value="<?=$failcount?>"><br><br>
-              Qty Returned on Salvage:<br>
-              <input class="indented" type="text" name="salvagecount" size="7" value="<?=$salvagecount?>">
             </fieldset><br><br>
             <fieldset>
               <legend><strong><font size="-1">Products:</font></strong></legend>

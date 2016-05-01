@@ -105,9 +105,6 @@
               <td align="center" width="10%">
                 Returned: <?=$failcount?>
               </td>
-              <td align="center" width="10%">
-               Salvage: <?=$salvagecount?>
-              </td>
               <td align="right" width="15%">
                 <a href="index.php?editor=tradeskill&ts=<?=$ts?>&rec=<?=$rec?>&id=<?=$id?>&action=5"><img src="images/edit2.gif" border="0" title="Edit this component"></a>&nbsp;
                 <a href="index.php?editor=tradeskill&ts=<?=$ts?>&rec=<?=$rec?>&id=<?=$id?>&action=4" onClick="return confirm('Really delete this component?');"><img src="images/remove.gif" border="0" title="Delete this component"></a>

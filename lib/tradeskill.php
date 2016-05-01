@@ -304,7 +304,6 @@ function update_component() {
   $failcount = $_POST['failcount'];
   $componentcount = $_POST['componentcount'];
   $iscontainer = $_POST['iscontainer'];
-  $salvagecount = $_POST['salvagecount'];
   
   $old = component_info();
   $fields = '';
@@ -315,7 +314,6 @@ function update_component() {
   if($old['failcount'] != $failcount) $fields .= "failcount=$failcount, ";
   if($old['componentcount'] != $componentcount) $fields .= "componentcount=$componentcount, ";
   if($old['iscontainer'] != $iscontainer) $fields .= "iscontainer=$iscontainer, ";
-  if($old['salvagecount'] != $salvagecount) $fields .= "salvagecount=$salvagecount, ";
 
   $fields =  rtrim($fields, ", ");
 
@@ -337,7 +335,6 @@ function add_component() {
   if(isset($_POST['failcount'])) $fields .= "failcount={$_POST['failcount']}, ";
   if(isset($_POST['componentcount'])) $fields .= "componentcount={$_POST['componentcount']}, ";
   if(isset($_POST['iscontainer'])) $fields .= "iscontainer={$_POST['iscontainer']}, ";
-  if(isset($_POST['salvagecount'])) $fields .= "salvagecount={$_POST['salvagecount']}, ";
 
   $fields =  rtrim($fields, ", ");
 
@@ -417,8 +414,8 @@ function copy_tradeskill() {
             SELECT CONCAT(name,' - Copy'),tradeskill,skillneeded,trivial,nofail,replace_container,notes,must_learn,quest,enabled FROM tradeskill_recipe where id=$rec";
   $mysql->query_no_result($query);
 
-  $query = "INSERT INTO tradeskill_recipe_entries (item_id,successcount,failcount,componentcount,iscontainer,salvagecount) 
-            SELECT item_id,successcount,failcount,componentcount,iscontainer,salvagecount FROM tradeskill_recipe_entries where recipe_id=$rec";
+  $query = "INSERT INTO tradeskill_recipe_entries (item_id,successcount,failcount,componentcount,iscontainer) 
+            SELECT item_id,successcount,failcount,componentcount,iscontainer FROM tradeskill_recipe_entries where recipe_id=$rec";
   $mysql->query_no_result($query);
 
   $query = "SELECT MAX(id) as tid FROM tradeskill_recipe";

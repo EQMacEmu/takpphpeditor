@@ -199,7 +199,7 @@ function get_merchantlist_temp() {
   $array = array();
 
   $npcid = $_GET['npcid'];
-  $query = "SELECT npcid,slot,itemid,charges,quantity FROM merchantlist_temp WHERE npcid=$npcid";
+  $query = "SELECT npcid,slot,itemid,charges,quantity FROM merchantlist_temp WHERE npcid=$npcid order by slot";
   $results = $mysql->query_mult_assoc($query);
   if ($results) {
       	foreach ($results as $result) {
