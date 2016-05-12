@@ -88,7 +88,8 @@ $eventtype = array(
   5 => "KILLEDPC",
   6 => "KILLEDNPC",
   7 => "ONSPAWN",
-  8 => "ONDESPAWN"
+  8 => "ONDESPAWN",
+  9 => "KILLED"
 );
 
 $emotetype = array(
