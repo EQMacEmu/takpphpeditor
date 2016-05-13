@@ -72,6 +72,7 @@
                   <b>Faction Hits:</b> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=15"><img src="images/add.gif" border="0" title="Add Faction Hit"></a><br/>
 <?if ($faction_hits != '') {?>
                   <table width="100%">
+<?$temp_ = 0;?>
 <?foreach($faction_hits as $hit): extract($hit);?>
                     <tr>
                       <td><?echo "<a title='Faction ID: " . $faction_id . "'>" . $factions[$faction_id] . "</a>";?></td>
@@ -80,7 +81,14 @@
                       <td>(<?=$tmpfacshort[$temp]?>)</td>
                       <td align="right">
                         <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&npc_faction_id=<?=$npc_faction_id?>&faction_id=<?=$faction_id?>&action=19"><img src="images/edit2.gif" border="0" title="Edit this Faction Hit"></a>
-                        <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&npc_faction_id=<?=$npc_faction_id?>&faction_id=<?=$faction_id?>&action=21" onClick="return confirm('Are you sure you want to remove this faction hit?');"><img src="images/remove.gif" border="0" title="Remove this Faction Hit"></a>
+                        <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&npc_faction_id=<?=$npc_faction_id?>&faction_id=<?=$faction_id?>&action=21" onClick="return confirm('Are you sure you want to remove this faction hit?');"><img src="images/remove.gif"</a>
+                        <?if ($temp_ != 0) {?>
+                           <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&npc_faction_id=<?=$npc_faction_id?>&faction_id=<?=$faction_id?>&action=83"><img src="images/upgrade.gif" border="0" title="Change order"></a>
+                        <?} else {?>
+                          <a><img src="images/blank.png" border="0"></a>
+                          <?$temp_ = 1;?>
+                        <?}?>
+                        <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&npc_faction_id=<?=$npc_faction_id?>&faction_id=<?=$faction_id?>&action=84"><img src="images/downgrade.gif" border="0" title="Change order"></a>
                       </td>
                     </tr>
 <?endforeach;?>

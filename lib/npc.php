@@ -889,6 +889,16 @@ switch ($action) {
     setExistingEmote($npcid, 0);
     header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
     exit;
+   case 83: // Change faction order
+    check_authorization();
+    move_factionhit();
+    header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
+    exit;
+   case 84: // Change faction order down
+    check_authorization();
+    move_down_factionhit();
+    header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
+    exit;
 }
 
 function npc_info () {
@@ -912,7 +922,7 @@ function npc_info () {
     $result['primaryfaction'] = $result2['primaryfaction'];
     $result['primaryfactionname'] = get_faction_name($result2['primaryfaction']);
 
-    $query = "SELECT * FROM npc_faction_entries WHERE npc_faction_id=$factionid";
+    $query = "SELECT * FROM npc_faction_entries WHERE npc_faction_id=$factionid order by sort_order";
     $result3 = $mysql->query_mult_assoc($query);
 
     $result['faction_hits'] = $result3;
@@ -1871,7 +1881,12 @@ function add_faction_hit () {
   $value = $_POST['value'];
   $npc_value = $_POST['npc_value'];
   $temp = $_POST['temp'];
-  $query = "INSERT INTO npc_faction_entries SET npc_faction_id=$npc_faction_id, faction_id=$fid, value=$value, npc_value=$npc_value, temp=$temp";
+  
+  $query = "SELECT max(sort_order) + 1 AS maxorder FROM npc_faction_entries WHERE npc_faction_id=$npc_faction_id";
+  $result = $mysql->query_assoc($query);
+  $order = $result['maxorder'];
+  
+  $query = "INSERT INTO npc_faction_entries SET npc_faction_id=$npc_faction_id, faction_id=$fid, value=$value, npc_value=$npc_value, temp=$temp, sort_order=$order";
   $mysql->query_no_result($query);
 }
 
@@ -2375,4 +2390,65 @@ function build_filter() {
 
   return $filter_final;
 }
+
+function move_factionhit() {
+  check_authorization();
+  global $mysql;
+
+  $npc_faction_id = $_GET['npc_faction_id'];
+  $fid = $_GET['faction_id'];
+
+  $query = "SELECT sort_order FROM npc_faction_entries WHERE npc_faction_id=$npc_faction_id AND faction_id=$fid";
+  $result = $mysql->query_assoc($query);
+  $order = $result['sort_order'];
+  
+  if($order > 1)
+  {
+    $neworder = $order - 1;
+    
+    $query = "update npc_faction_entries SET sort_order = sort_order + 1 WHERE npc_faction_id=$npc_faction_id AND sort_order = $neworder";
+    $mysql->query_no_result($query);
+    
+    $query = "update npc_faction_entries SET sort_order = $neworder WHERE npc_faction_id=$npc_faction_id AND faction_id=$fid";
+    $mysql->query_no_result($query);
+    
+  }
+}
+
+function move_down_factionhit() {
+  check_authorization();
+  global $mysql;
+
+  $npc_faction_id = $_GET['npc_faction_id'];
+  $fid = $_GET['faction_id'];
+
+  $query = "SELECT max(sort_order) AS maxorder FROM npc_faction_entries WHERE npc_faction_id=$npc_faction_id";
+  $result = $mysql->query_assoc($query);
+  $maxorder = $result['maxorder'];
+  
+  $query = "SELECT sort_order FROM npc_faction_entries WHERE npc_faction_id=$npc_faction_id AND faction_id=$fid";
+  $result = $mysql->query_assoc($query);
+  $order = $result['sort_order'];
+  
+  if($maxorder == $order)
+  {
+    $query = "update npc_faction_entries SET sort_order = $maxorder WHERE npc_faction_id=$npc_faction_id AND sort_order = 1";
+    $mysql->query_no_result($query);
+    
+    $query = "update npc_faction_entries SET sort_order = 1 WHERE npc_faction_id=$npc_faction_id AND faction_id=$fid";
+    $mysql->query_no_result($query);
+  }
+  else
+  {
+    $neworder = $order + 1;
+    
+    $query = "update npc_faction_entries SET sort_order = sort_order - 1 WHERE npc_faction_id=$npc_faction_id AND sort_order = $neworder";
+    $mysql->query_no_result($query);
+    
+    $query = "update npc_faction_entries SET sort_order = $neworder WHERE npc_faction_id=$npc_faction_id AND faction_id=$fid";
+    $mysql->query_no_result($query);
+    
+  }
+}
+
 ?>
