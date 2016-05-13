@@ -75,6 +75,7 @@
 <?$temp_ = 0;?>
 <?foreach($faction_hits as $hit): extract($hit);?>
                     <tr>
+                      <td>(<?=$sort_order?>)</td>
                       <td><?echo "<a title='Faction ID: " . $faction_id . "'>" . $factions[$faction_id] . "</a>";?></td>
                       <td><?=$value?></td>
                       <td><?=$faction_values[$npc_value]?></td>
