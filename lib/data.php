@@ -525,7 +525,7 @@ $specialattacks = array(
  "43" => "Always Call for Help",
  "44" => "Use Warrior Skills",
  "45" => "Always Flee if Low Con",
- "46" => "Con Changes Flee Percent",
+ "46" => "No Loitering",
 );
 
 $tradeskills = array(

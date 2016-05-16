@@ -205,7 +205,7 @@
                   <input type="checkbox" name="30" value="30,1^"/>  Does NOT buff/heal friends<br>
 		              <input type="checkbox" name="36" value="36,1^"/>  Always Flee<br>
                   <input type="checkbox" name="45" value="45,1^"/>  Always Flee if Low Con<br/>
-                  <input type="checkbox" name="46" value="46,1^"/>  Con Changes Flee Percent<br/>
+                  <input type="checkbox" name="46" value="46,1^"/>  No Loitering<br/>
   		            <input type="checkbox" name="38" value="38,1^"/>  Allow Beneficial<br>
 		              <input type="checkbox" name="41" value="41,1^"/>  Allow Tank<br>
 		              <input type="checkbox" name="42" value="42,1^"/>  Proximity Aggro<br>
