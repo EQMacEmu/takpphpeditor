@@ -173,10 +173,10 @@
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="6" value="6,1^"/>  Triple Attack<br>
-                  <input type="checkbox" name="7" value="7,1^"/>  Quad Attack<br>
+                  <input type="checkbox" name="7" value="7,1^"/>  Innate Dual Wield<br>
                   <input type="checkbox" name="10" value="10,1^"/>  Magic Attack<br>
                   <input type="checkbox" name="9" value="9,1^"/>  Bane Attack<br>
-                  <input type="checkbox" name="8" value="8,1^"/>  Dual Wield<br>
+                  <input type="checkbox" name="8" value="8,1^"/>  Do Not Equip Items<br>
                   <input type="checkbox" name="11" value="11,1^"/>  Ranged Attack<br>
                   <input type="checkbox" name="12" value="12,1^"/>  Unslowable<br>
                   <input type="checkbox" name="13" value="13,1^"/>  Unmezable<br>
