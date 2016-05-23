@@ -1886,6 +1886,10 @@ function add_faction_hit () {
   $result = $mysql->query_assoc($query);
   $order = $result['maxorder'];
   
+  if(!$order)
+  {
+    $order = 1;
+  }
   $query = "INSERT INTO npc_faction_entries SET npc_faction_id=$npc_faction_id, faction_id=$fid, value=$value, npc_value=$npc_value, temp=$temp, sort_order=$order";
   $mysql->query_no_result($query);
 }
