@@ -543,7 +543,50 @@ switch ($action) {
       $body->set('zoneids', $zoneids);
       $body->set('expansions', $expansions);
     }
+   case 57: // View Key Ring Data
+    check_authorization();
+    $breadcrumbs .= " >> Key Ring Data";
+    $body = new Template("templates/server/keyring.tmpl.php");
+    $keyring = get_keyringdata();
+    if ($keyring) {
+      foreach ($keyring as $key=>$value) {
+        $body->set($key, $value);
+      }
+    }
     break;
+   case 58: // Create Key Ring
+    check_authorization();
+    $javascript .= file_get_contents("templates/iframes/js.tmpl.php");
+    $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=57'>" . "Key Ring Data</a> >> Create Key Ring";
+    $body = new Template("templates/server/keyring.add.tmpl.php");
+    break;
+   case 59: // Create Key Ring
+    check_authorization();
+    add_keyring();
+    header("Location: index.php?editor=server&action=57");
+    exit;
+    case 60: // Edit Key Ring
+    check_authorization();
+    $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=57'>" . "Key Ring Data</a> >> Edit Key Ring";
+    $body = new Template("templates/server/keyring.edit.tmpl.php");
+    $body->set('key_item', $_GET['key_item']);
+    $keyring = view_keyring();
+    if ($keyring) {
+      foreach ($keyring as $key=>$value) {
+        $body->set($key, $value);
+      }
+    }
+    break;
+   case 61: // Update Key Ring
+    check_authorization();
+    update_keyring();
+    header("Location: index.php?editor=server&action=57");
+    exit;
+   case 62: //Delete Key Ring
+    check_admin_authorization();
+    delete_keyring();
+    header("Location: index.php?editor=server&action=57");
+    exit;
 }
 
 function get_open_bugs($page_number, $results_per_page, $sort_by) {
@@ -1218,4 +1261,64 @@ function getCharCreateComboList() {
 
   return $results;
 }
+
+function get_keyringdata() {
+  global $mysql;
+
+  $query = "SELECT key_item, key_name, zoneid, stage FROM keyring_data";
+  $result = $mysql->query_mult_assoc($query);
+ 
+    if ($result) {
+    foreach ($result as $result) {
+      $array['keyring'][$result['key_item']] = array("key_item"=>$result['key_item'], "key_name"=>$result['key_name'], "zoneid"=>$result['zoneid'], "stage"=>$result['stage']);
+    }
+  }
+  
+  return $array;
+}
+
+function add_keyring() {
+  global $mysql;
+
+  $key_item = $_POST['key_item'];
+  $key_name = $_POST['key_name']; 
+  $zoneid = $_POST['zoneid']; 
+  $stage = $_POST['stage']; 
+
+  $query = "INSERT INTO keyring_data SET key_item=\"$key_item\", key_name=\"$key_name\", zoneid=\"$zoneid\", stage=\"$stage\"";
+  $mysql->query_no_result($query);
+}
+
+function view_keyring() {
+  global $mysql;
+
+  $key_item = $_GET['key_item'];
+
+  $query = "SELECT key_name, zoneid, stage FROM keyring_data where key_item = \"$key_item\"";
+  $result = $mysql->query_assoc($query);
+  
+  return $result;
+}
+
+function update_keyring() {
+  global $mysql;
+
+  $key_item = $_POST['key_item'];
+  $key_name = $_POST['key_name']; 
+  $zoneid = $_POST['zoneid']; 
+  $stage = $_POST['stage']; 
+
+  $query = "UPDATE keyring_data SET key_name=\"$key_name\", zoneid=\"$zoneid\", stage=\"$stage\" WHERE key_item=\"$key_item\"";
+  $mysql->query_no_result($query);
+}
+
+function delete_keyring() {
+  global $mysql;
+
+  $key_item = $_GET['key_item'];
+
+  $query = "DELETE FROM keyring_data WHERE key_item=\"$key_item\"";
+  $mysql->query_no_result($query);
+}
+
 ?>
