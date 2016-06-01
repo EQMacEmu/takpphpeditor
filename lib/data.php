@@ -526,6 +526,7 @@ $specialattacks = array(
  "44" => "Use Warrior Skills",
  "45" => "Always Flee if Low Con",
  "46" => "No Loitering",
+ "47" => "Block handins if KOS",
 );
 
 $tradeskills = array(
