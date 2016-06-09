@@ -379,7 +379,7 @@ function update_faction_mod() {
 
   if($new_mod_name == "r42" || $new_mod_name == "r75")
   {
-    if($new_model == -1)
+    if($new_model == "m-1")
     {
      $new_model = "";
     }
