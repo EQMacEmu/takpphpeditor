@@ -12,7 +12,7 @@
       <tr><td align="right">-1000 and Below</td><td>&nbsp;</td><td align="left">Ready to attack</td></tr>
     </table><br/><br/>
   </center>
-  <div style="width: 500px; margin: auto;">
+  <div style="width: 600px; margin: auto;">
     <form name="faction" method="post" action="index.php?editor=faction&fid=<?=$faction_info['id']?>&action=2">
       <div style="border: 1px solid black;">
         <div class="edit_form_header">
@@ -26,6 +26,12 @@
                 <td width="25%">ID:<br/><input size="8" type="text" name="new_id" value="<?=$faction_info['id']?>"></td>
                 <td width="50%">Name:<br/><input size="30" type="text" name="new_name" value="<?=$faction_info['name']?>"></td>
                 <td width="25%">Base:<br/><input size="8" type="text" name="new_base" value="<?=$faction_info['base']?>"></td>
+                <td width="35%">SeeIllusion:<br/>
+                <select name="new_illusion">
+                  <option value="0"<?echo ($faction_info['see_illusion'] == 0) ? " selected" : ""?>>No</option>
+                  <option value="1"<?echo ($faction_info['see_illusion'] == 1) ? " selected" : ""?>>Yes</option>
+                </select>
+                </td>
               </tr>
             </table>
           </fieldset><br/>
@@ -33,6 +39,7 @@
             <input type="hidden" name="old_id" value="<?=$faction_info['id']?>">
             <input type="hidden" name="old_name" value="<?=$faction_info['name']?>">
             <input type="hidden" name="old_base" value="<?=$faction_info['base']?>">
+            <input type="hidden" name="old_illusion" value="<?=$faction_info['see_illusion']?>">
             <input type="submit" value="Submit Changes">&nbsp;<input type="button" value="Cancel Changes" onclick="history.back()">
           </center>
         </div>

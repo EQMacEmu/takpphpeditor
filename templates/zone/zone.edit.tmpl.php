@@ -33,6 +33,12 @@
                   <td align="left" width="25%">Exp Multiplier:<br><input type="text" name="zone_exp_multiplier" size="7" value="<?=$zone_exp_multiplier?>"></td>
                 </tr>
                 <tr>
+                  <td align="left" width="25%">Music:<br><input type="text" name="music" size="7" value="<?=$music?>"></td>
+                  <td align="left" width="25%">RandomLoc:<br><input type="text" name="random_loc" size="7" value="<?=$random_loc?>"></td>
+                  <td align="left" width="25%">&nbsp;</td>
+                  <td align="left" width="25%">&nbsp;</td>
+                </tr>
+                <tr>
                   <td align="left" width="25%">Walkspeed:<br><input type="text" name="walkspeed" size="7" value="<?=$walkspeed?>"></td>
                   <td align="left" width="25%">
                     Hotzone:<br>
@@ -174,7 +180,7 @@
                 </tr>
                 <tr>
                   <td align="left" width="14%">Fog Density:<br><input type="text" name="fog_density" size="5" value="<?=$fog_density?>"></td>
-                  <td align="left" width="14%">&nbsp;</td>
+                  <td align="left" width="14%">SkyLock:<br><input type="text" name="skylock" size="5" value="<?=$skylock?>"></td>
                   <td align="left" width="14%">&nbsp;</td>
                   <td align="left" width="14%">&nbsp;</td>
                   <td align="left" width="14%">&nbsp;</td>

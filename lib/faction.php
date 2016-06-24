@@ -28,8 +28,9 @@ switch ($action) {
       }
       if ($faction_data['faction_mods']) {
         $body->set('faction_mods', $faction_data['faction_mods']);
-	 $body->set("fac_mods", $fac_mods);
+	      $body->set("fac_mods", $fac_mods);
       }
+      $body->set('yesno', $yesno);
     }
     break;
   case 1: // Edit faction
@@ -297,8 +298,9 @@ function add_faction() {
   $id = $_POST['id'];
   $name = $_POST['name'];
   $base = $_POST['base'];
+  $illusion = $_POST['illusion'];
 
-  $query = "INSERT INTO faction_list SET id=$id, `name`=\"$name\", base=$base";
+  $query = "INSERT INTO faction_list SET id=$id, `name`=\"$name\", base=$base, see_illusion=$illusion";
   $mysql->query_no_result($query);
 }
 
@@ -309,14 +311,17 @@ function update_faction() {
   $old_id = $fid;
   $old_name = $_POST['old_name'];
   $old_base = $_POST['old_base'];
+  $old_illusion = $_POST['old_illusion'];
   $new_id = $_POST['new_id'];
   $new_name = $_POST['new_name'];
   $new_base = $_POST['new_base'];
+  $new_illusion = $_POST['new_illusion'];
   $fields = '';
 
   $fields .= ($old_id != $new_id) ? "id=$new_id" . ", " : '';
   $fields .= ($old_name != $new_name) ? "`name`=\"$new_name\"" . ", " : '';
   $fields .= ($old_base != $new_base) ? "base=$new_base" . ", " : '';
+  $fields .= ($old_illusion != $new_illusion) ? "see_illusion=$new_illusion" . ", " : '';
   $fields = rtrim($fields, ", ");
 
   if ($fields != '') {

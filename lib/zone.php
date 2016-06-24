@@ -391,6 +391,9 @@ function update_zone () {
   if ($snow_duration2 != $_POST['snow_duration2']) $fields .= "snow_duration2=\"" . $_POST['snow_duration2'] . "\", ";
   if ($snow_duration3 != $_POST['snow_duration3']) $fields .= "snow_duration3=\"" . $_POST['snow_duration3'] . "\", ";
   if ($snow_duration4 != $_POST['snow_duration4']) $fields .= "snow_duration4=\"" . $_POST['snow_duration4'] . "\", ";
+  if ($music != $_POST['music']) $fields .= "music=\"" . $_POST['music'] . "\", ";
+  if ($skylock != $_POST['skylock']) $fields .= "skylock=\"" . $_POST['skylock'] . "\", ";
+  if ($random_loc != $_POST['random_loc']) $fields .= "random_loc=\"" . $_POST['random_loc'] . "\", ";
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {

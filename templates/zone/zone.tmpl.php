@@ -70,6 +70,11 @@
                     <td align="left" width="33%">Global: <?=$yesno[$global]?></td>
                     <td align="left" width="34%">Suspend Buffs: <?=$yesno[$suspendbuffs]?></td>
                   </tr>
+                  <tr>
+                    <td align="left" width="33%">Music: <?=$music?></td>
+                    <td align="left" width="33%">RandomLoc: <?=$random_loc?></td>
+                    <td align="left" width="34%">&nbsp;</td>
+                  </tr>
                 </table>
               </fieldset>
               <fieldset>
@@ -143,7 +148,7 @@
                   <tr>
                     <td align="left" width="33%">Fog Green4: <?=$fog_green4?></td>
                     <td align="left" width="33%">Fog Density: <?=$fog_density?></td>
-                    <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="34%">Skylock: <?=$skylock?></td>
                   </tr>
                 </table>
               </fieldset>

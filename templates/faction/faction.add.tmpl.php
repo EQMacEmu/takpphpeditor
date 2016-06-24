@@ -26,6 +26,12 @@
                 <td width="25%">ID:<br/><input size="8" type="text" name="id" value="<?=$suggested_id?>"></td>
                 <td width="50%">Name:<br/><input size="30" type="text" name="name" value=""></td>
                 <td width="25%">Base:<br/><input size="8" type="text" name="base" value="0"></td>
+                <td width="35%">SeeIllusion:<br/>
+                <select name="illusion">
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+                </td>
               </tr>
             </table>
           </fieldset><br/>
