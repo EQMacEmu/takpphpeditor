@@ -527,6 +527,7 @@ $specialattacks = array(
  "45" => "Always Flee if Low Con",
  "46" => "No Loitering",
  "47" => "Block handins if KOS",
+ "48" => "PC Deathblow Creates Corpse",
 );
 
 $tradeskills = array(
