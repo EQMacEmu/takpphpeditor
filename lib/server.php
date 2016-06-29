@@ -543,6 +543,7 @@ switch ($action) {
       $body->set('zoneids', $zoneids);
       $body->set('expansions', $expansions);
     }
+    break;
    case 57: // View Key Ring Data
     check_authorization();
     $breadcrumbs .= " >> Key Ring Data";
@@ -586,6 +587,31 @@ switch ($action) {
     check_admin_authorization();
     delete_keyring();
     header("Location: index.php?editor=server&action=57");
+    exit;
+    case 63: // View Skill dificulty
+    $breadcrumbs .= " >> Skills";
+    $body = new Template("templates/server/skills.tmpl.php");
+    $skills = get_skills();
+    if ($skills) {
+      foreach ($skills as $key=>$value) {
+        $body->set($key, $value);
+      }
+    }
+    break;
+   case 64: // Edit skills
+    check_authorization();
+    $body = new Template("templates/server/skills.edit.tmpl.php");
+    $skills = skills_info();
+    if ($skills) {
+      foreach ($skills as $key=>$value) {
+        $body->set($key, $value);
+      }
+    }
+    break;
+   case 65: // Update skills
+    check_authorization();
+    update_skills();
+    header("Location: index.php?editor=server&action=63");
     exit;
 }
 
@@ -1318,6 +1344,42 @@ function delete_keyring() {
   $key_item = $_GET['key_item'];
 
   $query = "DELETE FROM keyring_data WHERE key_item=\"$key_item\"";
+  $mysql->query_no_result($query);
+}
+
+function get_skills() {
+  global $mysql;
+
+  $array = array();
+
+  $query = "SELECT * FROM skill_difficulty order by skillid";
+  $result = $mysql->query_mult_assoc($query);
+  if ($result) {
+    foreach ($result as $result) {
+     $array['skills'][$result['skillid']] = array("skillid"=>$result['skillid'], "difficulty"=>$result['difficulty'],"name"=>$result['name']);
+    }
+  }
+  return $array;
+}
+
+function skills_info() {
+  global $mysql;
+
+  $skillid = $_GET['skillid'];
+
+  $query = "SELECT * FROM skill_difficulty WHERE skillid=\"$skillid\"";
+  $result = $mysql->query_assoc($query);
+
+  return $result;
+}
+
+function update_skills() {
+  global $mysql;
+
+  $skillid = $_POST['skillid'];
+  $difficulty = $_POST['difficulty'];
+
+  $query = "UPDATE skill_difficulty SET difficulty=\"$difficulty\" WHERE skillid=\"$skillid\"";
   $mysql->query_no_result($query);
 }
 

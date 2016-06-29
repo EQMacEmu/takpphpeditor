@@ -23,7 +23,7 @@
             <td align="center" width="50%"><?=$v['name']?></td>   
             <td align="center" width="25%"><?=$v['difficulty']?></td>
             <td align="right">      
-              <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&skillid=<?=$v['skillid']?>&action=64"><img src="images/edit2.gif" border="0" title="Edit Entry"></a>          
+              <a href="index.php?editor=server&skillid=<?=$v['skillid']?>&action=64"><img src="images/edit2.gif" border="0" title="Edit Entry"></a>          
             </td>
           </tr>
           <?$x++; endforeach;?>
