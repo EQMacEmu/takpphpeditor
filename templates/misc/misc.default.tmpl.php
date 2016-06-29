@@ -12,6 +12,7 @@
              <center><a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=19">Traps in <?=$currzone?></a><br></center>
              <center><a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=35">View Doors in <?=$currzone?></a><br></center>
              <center><a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=41">View Objects in <?=$currzone?></a><br></center> 
+             <center><a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=63">View Skills</a><br></center> 
           </td>
          </tr>
        </table>
