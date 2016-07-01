@@ -70,6 +70,7 @@
             <th>dest instance</th>
             <th>client</th>
             <th>nokeyring</th>
+            <th>islift</th>
          </tr>
           <tr>
             <td><input type="text" size="7" name="dest_instance" value="<?=$dest_instance?>"></td>
@@ -77,6 +78,11 @@
             <td><select class="left" name="nokeyring">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $nokeyring) ? " selected" : ""?>><?=$v?></option>
+<?$x++; endforeach;?>
+           </td> 
+            <td><select class="left" name="islift">
+<?foreach($yesno as $k => $v):?>
+              <option value="<?=$k?>"<? echo ($k == $islift) ? " selected" : ""?>><?=$v?></option>
 <?$x++; endforeach;?>
            </td> 
          </tr>
