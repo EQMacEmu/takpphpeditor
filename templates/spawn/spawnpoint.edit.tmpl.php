@@ -70,11 +70,14 @@
               boot respawn:<br/>
               <input type="text" name="boot_respawntime" value="<?=$boot_respawntime?>">
             </td>
-              <td width="33%">
+            <td width="33%">
+              boot variance:<br/>
+              <input type="text" name="boot_variance" value="<?=$boot_variance?>">
+            </td>
+              <td width="34%">
               clear on boot:<br/>
               <input type="text" name="clear_timer_onboot" value="<?=$clear_timer_onboot?>">
             </td>
-             <td width="34%">&nbsp;</td>
             </tr>
         </table><br/><br/>
         <center>

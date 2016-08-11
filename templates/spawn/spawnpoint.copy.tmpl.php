@@ -20,7 +20,10 @@
             <input type="hidden" name="cond_value" value="<?=$cond_value?>">
             <input type="hidden" name="version" value="<?=$version?>">
             <input type="hidden" name="enabled" value="<?=$enabled?>">
-	     <input type="hidden" name="animation" value="<?=$animation?>">
+	          <input type="hidden" name="animation" value="<?=$animation?>">
+            <input type="hidden" name="boot_respawntime" value="<?=$boot_respawntime?>">
+            <input type="hidden" name="boot_variance" value="<?=$boot_variance?>">
+            <input type="hidden" name="clear_timer_onboot" value="<?=$clear_timer_onboot?>">
         </center>
       </div>
     </div>

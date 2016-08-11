@@ -60,10 +60,14 @@
            <td width="33%">enabled: <?=$enabled?></td>
            <td width="33%">animation: <?=$animations[$animation]?></td>
           </tr>
+           <td width="33%">boot respawn: <?=$boot_respawntime?></td>
+           <td width="33%">boot variance: <?=$boot_variance?></td>
+           <td width="33%">clear on boot: <?=$clear_timer_onboot?></td>
+          </tr>
           <tr>
            <td width="33%">zone: <?=$zone?></td>
-           <td width="33%">boot respawn: <?=$boot_respawntime?></td>
-           <td width="33%">clear on boot: <?=$clear_timer_onboot?></td>
+           <td width="33%">&nbsp;</td>
+           <td width="34%">&nbsp;</td>
           </tr>
 		</table>
       </div>
