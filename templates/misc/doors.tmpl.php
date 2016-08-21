@@ -4,6 +4,7 @@
           <tr>
            <td>Doors</td>
            <td align="right">
+          <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=63"><img src="images/contents.png" border="0" title="View door objects"></a>
           <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=47"><img src="images/last.gif" border="0" title="Copy doors by version"></a>
           <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=39"><img src="images/add.gif" border="0" title="Add an entry to this zone"></a>
           <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=55"><img src="images/remove3.gif" border="0" title="Delete doors by version"></a>
@@ -17,10 +18,10 @@
           <td align="center" width="7%"><strong>ID</strong></td>
           <td align="center" width="5%"><strong>Door ID</strong></td>
           <td align="center" width="10%"><strong>Name</strong></td>
-          <td align="center" width="10%"><strong>X</strong></td>
-          <td align="center" width="10%"><strong>Y</strong></td>
-          <td align="center" width="10%"><strong>Z</strong></td>
-          <td align="center" width="3%"><strong>Lock Pick</strong></td>
+          <td align="center" width="8%"><strong>X</strong></td>
+          <td align="center" width="8%"><strong>Y</strong></td>
+          <td align="center" width="7%"><strong>Z</strong></td>
+          <td align="center" width="3%"><strong>LckPck</strong></td>
           <td align="center" width="3%"><strong>Key</strong></td>
           <td align="center" width="3%"><strong>AltKey</strong></td>
           <td align="center" width="3%"><strong>Type</strong></td>
@@ -34,9 +35,9 @@
           <td align="center" width="7%"><?=$v['drid']?></td>
           <td align="center" width="5%"><?=$v['doorid']?></td>
           <td align="center" width="10%"><?=$v['name']?></td>
-          <td align="center" width="10%"><?=$v['pos_x']?></td>
-          <td align="center" width="10%"><?=$v['pos_y']?></td>
-          <td align="center" width="10%"><?=$v['pos_z']?></td>
+          <td align="center" width="8%"><?=$v['pos_x']?></td>
+          <td align="center" width="8%"><?=$v['pos_y']?></td>
+          <td align="center" width="7%"><?=$v['pos_z']?></td>
           <td align="center" width="3%"><?=$v['lockpick']?></td>
 <?if($v['keyitem'] > 1000):?>
           <td align="center" width="3%"><?=get_item_name($v['keyitem'])?> <span>[<a href="http://lucy.allakhazam.com/item.html?id=<?=$v['keyitem']?>">lucy</a>]</span></td>

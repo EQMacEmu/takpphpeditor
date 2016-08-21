@@ -35,7 +35,13 @@
                 <tr>
                   <td align="left" width="25%">Music:<br><input type="text" name="music" size="7" value="<?=$music?>"></td>
                   <td align="left" width="25%">RandomLoc:<br><input type="text" name="random_loc" size="7" value="<?=$random_loc?>"></td>
-                  <td align="left" width="25%">&nbsp;</td>
+                  <td align="left" width="25%">
+                    Drag Aggro:<br>
+                    <select name="dragaggro">
+                      <option value="0"<?echo ($dragaggro == 0) ? " selected" : ""?>>No</option>
+                      <option value="1"<?echo ($dragaggro == 1) ? " selected" : ""?>>Yes</option>
+                    </select>
+                  </td>
                   <td align="left" width="25%">&nbsp;</td>
                 </tr>
                 <tr>

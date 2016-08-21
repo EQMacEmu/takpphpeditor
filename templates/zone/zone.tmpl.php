@@ -73,7 +73,7 @@
                   <tr>
                     <td align="left" width="33%">Music: <?=$music?></td>
                     <td align="left" width="33%">RandomLoc: <?=$random_loc?></td>
-                    <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="34%">Drag Aggro: <?=$yesno[$dragaggro]?></td>
                   </tr>
                 </table>
               </fieldset>

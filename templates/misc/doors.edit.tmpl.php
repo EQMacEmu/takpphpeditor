@@ -71,6 +71,8 @@
             <th>client</th>
             <th>nokeyring</th>
             <th>islift</th>
+            <th>close_time</th>
+            <th>can_open</th>
          </tr>
           <tr>
             <td><input type="text" size="7" name="dest_instance" value="<?=$dest_instance?>"></td>
@@ -83,6 +85,12 @@
             <td><select class="left" name="islift">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $islift) ? " selected" : ""?>><?=$v?></option>
+<?$x++; endforeach;?>
+           </td> 
+           <td><input type="text" size="7" name="close_time" value="<?=$close_time?>"></td>
+          <td><select class="left" name="can_open">
+<?foreach($yesno as $k => $v):?>
+              <option value="<?=$k?>"<? echo ($k == $can_open) ? " selected" : ""?>><?=$v?></option>
 <?$x++; endforeach;?>
            </td> 
          </tr>

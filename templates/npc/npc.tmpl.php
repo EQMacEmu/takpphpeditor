@@ -116,12 +116,12 @@
                   </tr>
                   <tr>
                     <td align="left" width="34%">ATK: <?=$ATK?></td>
-                    <td align="left" width="33%">See Invis: <?=$yesno[$see_invis]?></td>
-                    <td align="left" width="34%">See ITU: <?=$yesno[$see_invis_undead]?></td>
+                    <td align="left" width="33%">See Invis: <?=$see_invis?></td>
+                    <td align="left" width="34%">See ITU: <?=$see_invis_undead?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">See Hide: <?=$yesno[$see_hide]?></td>
-                    <td align="left" width="33%">See Imp Hide: <?=$yesno[$see_improved_hide]?></td>
+                    <td align="left" width="33%">See Hide: <?=$see_hide?></td>
+                    <td align="left" width="33%">See Imp Hide: <?=$see_improved_hide?></td>
                     <td align="left" width="34%">Scalerate: <?=$scalerate?></td>
                   </tr>
                 </table>

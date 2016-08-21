@@ -72,6 +72,8 @@
             <th>version</th>
             <th>nokeyring</th>
             <th>islift</th>
+            <th>close_time</th>
+            <th>can_open</th>
          </tr>
           <tr>
           	<td><input type="text" size="7" name="version" value="<?=$suggestver?>"></td>
@@ -85,6 +87,12 @@
           <td><select class="left" name="islift">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $islift) ? " selected" : ""?>><?=$v?></option>
+<?$x++; endforeach;?>
+           </td>
+          <td><input type="text" size="7" name="close_time" value="5"></td>
+          <td><select class="left" name="can_open">
+<?foreach($yesno as $k => $v):?>
+              <option value="<?=$k?>"<? echo ($k == $can_open) ? " selected" : ""?>><?=$v?></option>
 <?$x++; endforeach;?>
            </td>
          </tr>
