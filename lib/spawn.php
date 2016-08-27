@@ -165,6 +165,7 @@ switch ($action) {
       $spawnpoints = get_spawnpoints();
       $body->set('spawnpoints', $spawnpoints);
       $body->set('animations', $animations);
+      $body->set('yesno', $yesno);
     }
     else {
       header("Location: index.php?editor=spawn&z=$z&zoneid=$zoneid&action=31");
@@ -178,6 +179,7 @@ switch ($action) {
     $body->set('currzoneid', $zoneid);
     $body->set('npcid', $npcid);
     $body->set('animations', $animations);
+    $body->set('yesno', $yesno);
     $spawnpoint = spawnpoint_info();
     if ($spawnpoint) {
       foreach ($spawnpoint as $key=>$value) {
@@ -1493,8 +1495,9 @@ function add_spawnpoint() {
   $boot_respawntime = $_POST['boot_respawntime'];
   $boot_variance = $_POST['boot_variance'];
   $clear_timer_onboot = $_POST['clear_timer_onboot'];
+  $force_z = $_POST['force_z'];
   
-  $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation";
+  $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation, force_z=$force_z";
   $mysql->query_no_result($query);
 }
 
@@ -1808,8 +1811,9 @@ function copy_spawnpoint() {
   $boot_respawntime = $_POST['boot_respawntime'];
   $boot_variance = $_POST['boot_variance'];
   $clear_timer_onboot = $_POST['clear_timer_onboot'];
+  $force_z = $_POST['force_z'];
 
-  $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation";
+  $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation, force_z=$force_z";
   $mysql->query_no_result($query);
 }
 

@@ -80,6 +80,18 @@
               clear on boot:<br/>
               <input type="text" name="clear_timer_onboot" value="0">
             </tr>
+            <tr>
+            <td align="left" width="33%">
+              force_z:<br/>
+              <select name="force_z">
+<?foreach($yesno as $k => $v):?>
+                <option value="<?=$k?>"><?=$v?>&nbsp;&nbsp;</option>
+<?endforeach;?>
+              </select>
+            </td>
+            <td width="33%">&nbsp;</td>
+            <td width="34%">&nbsp;</td>
+            </tr>
         </table><br/><br/>
         <center>
           <input type="hidden" name="zone" value="<?=$zone?>">

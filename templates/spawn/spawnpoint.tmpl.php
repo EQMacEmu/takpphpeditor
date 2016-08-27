@@ -65,8 +65,8 @@
            <td width="33%">clear on boot: <?=$clear_timer_onboot?></td>
           </tr>
           <tr>
+           <td width="33%">force_z: <?=$yesno[$force_z]?></td>
            <td width="33%">zone: <?=$zone?></td>
-           <td width="33%">&nbsp;</td>
            <td width="34%">&nbsp;</td>
           </tr>
 		</table>

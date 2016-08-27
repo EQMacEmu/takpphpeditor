@@ -79,6 +79,18 @@
               <input type="text" name="clear_timer_onboot" value="<?=$clear_timer_onboot?>">
             </td>
             </tr>
+           <tr>
+            <td align="left" width="33%">
+              force_z:<br/>
+              <select name="force_z">
+<?foreach($yesno as $k => $v):?>
+                <option value="<?=$k?>"<? echo ($k == $force_z) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
+<?endforeach;?>
+              </select>
+            </td>
+            <td width="33%">&nbsp;</td>
+            <td width="34%">&nbsp;</td>
+            </tr>
         </table><br/><br/>
         <center>
           <input type="hidden" name="zone" value="<?=$zone?>">
