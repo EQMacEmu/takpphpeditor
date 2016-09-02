@@ -7,7 +7,7 @@ class session {
   }
   
   public static function login($login, $pw) {
-    global $mysql;
+    global $mysql, $password;
     
     $query = "SELECT password FROM peq_admin WHERE login=\"$login\"";
     $result = $mysql->query_assoc($query);
@@ -29,7 +29,7 @@ class session {
   }
   
   public static function logged_in() {
-    global $mysql;
+    global $mysql, $password;
 
     if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return true;
 
@@ -53,7 +53,7 @@ class session {
   }
 
   public static function check_authorization() {
-    global $mysql;
+    global $mysql, $password;
     
     if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return false;
 
@@ -77,7 +77,7 @@ class session {
   }
 
   public static function is_admin() {
-    global $mysql;
+    global $mysql, $administrator;
     
     if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return false;
 

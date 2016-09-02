@@ -630,7 +630,7 @@ function copyEffectSlots($fromaaid, $fromrank, $aaid, $rank) {
 }
 
 function updateEffectSlot($aa_effect) {
-  global $mysql;
+  global $mysql, $ranksel, $raw_aaid, $old_aaid, $slot, $effectid, $base1, $base2, $id, $oldid;
   extract($aa_effect);
 
   $aaid = null;
@@ -1022,7 +1022,7 @@ function deleteCompleteAA($aaid) {
 // This really should be something that the AA loader handles dynamically,
 // since then it could also stop at the client available versions.
 function fixOffsetMax($aaid) {
-  global $mysql;
+  global $mysql, $aa_prev, $aa_next;
 
   // Step 1, figure out if we're a valid chain of AAs and what the max rank
   // for the whole thing is.

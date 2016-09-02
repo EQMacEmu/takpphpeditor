@@ -1,120 +1,104 @@
 <?php
 
-require_once("revision.php");
-require_once("config.php");
-require_once("lib/logging.php");
-if ($mysql_class == "mysqli")
-  require_once("classes/mysqli.php");
-else
-  require_once("classes/mysql.php");
-require_once("classes/template.php");
-require_once("classes/session.php");
-require_once("lib/common.php");
-require_once("lib/data.php");
+$current_revision = "r17";
+$original_revision = "r457";
 
-$editor = (isset($_GET['editor']) ? $_GET['editor'] : '');
-$action = (isset($_GET['action']) ? $_GET['action'] : 0);
-$npcid = (isset($_GET['npcid']) ? $_GET['npcid'] : null);
-$z = (isset($_GET['z']) ? $_GET['z'] : '');
-$zoneid = (isset($_GET['zoneid']) ? $_GET['zoneid'] : '');
-$fid = (isset($_GET['fid']) ? $_GET['fid'] : '');
-$tskid = (isset($_GET['tskid']) ? $_GET['tskid'] : '');
-$ts = (isset($_GET['ts']) ? $_GET['ts'] : '');
-$rec = (isset($_GET['rec']) ? intval($_GET['rec']) : '0');
-$spellset = (isset($_GET['spellset']) ? $_GET['spellset'] : '');
-$playerid = (isset($_GET['playerid']) ? $_GET['playerid'] : null);
-$acctid = (isset($_GET['acctid']) ? $_GET['acctid'] : null);
-$guildid = (isset($_GET['guildid']) ? $_GET['guildid'] : null);
-$aaid = (isset($_GET['aaid']) ? $_GET['aaid'] : null);
-
-$searchbar = '';
-$body = '';
-$javascript = '';
-$breadcrumbs = '';
-$headbar = '';
-
-require_once('lib/headbars.php');
-require_once('lib/breadcrumbs.php');
+require_once(dirname(__FILE__) . '/config.php');
+require_once(dirname(__FILE__) . '/defines.php');
+require_once(dirname(__FILE__) . '/lib/logging.php');
+if ($mysql_class == 'mysqli') {
+	require_once(dirname(__FILE__) . '/classes/mysqli.php');
+}
+else {
+	require_once(dirname(__FILE__) . '/classes/mysql.php');
+}
+require_once(dirname(__FILE__) . '/classes/template.php');
+require_once(dirname(__FILE__) . '/classes/session.php');
+require_once(dirname(__FILE__) . '/lib/common.php');
+require_once(dirname(__FILE__) . '/lib/data.php');
+require_once(dirname(__FILE__) . '/ajax.php');
+require_once(dirname(__FILE__) . '/lib/headbars.php');
+require_once(dirname(__FILE__) . '/lib/breadcrumbs.php');
 
 if (isset($_GET['admin'])) {
-  if (session::is_admin()) {
-    require_once('lib/admin.php');
-  }
+	if (session::is_admin()) {
+		require_once(dirname(__FILE__) . '/lib/admin.php');
+	}
 }
 
 switch ($editor) {
-  case '':
-    $body = new Template("templates/intro.tmpl.php");
-    $body->set('current_revision', $current_revision);
-    break;
-  case 'loot':
-    require_once('lib/loot.php');
-    break;
-  case 'npc':
-    require_once('lib/npc.php');
-    break;
-  case 'spawn':
-    require_once('lib/spawn.php');
-    break;
-  case 'merchant':
-    require_once('lib/merchant.php');
-    break;
-  case 'faction':
-    require_once('lib/faction.php');
-    break;
-  case 'spellset':
-    require_once('lib/spellset.php');
-    break;
-  case 'tradeskill':
-    require_once('lib/tradeskill.php');
-    break;
-  case 'zone':
-    require_once('lib/zone.php');
-    break;
-  case 'misc':
-    require_once('lib/misc.php');
-    break;
-  case 'server':
-    require_once('lib/server.php');
-    break;
-  case 'items':
-    require_once('lib/items.php');
-    break;
-  case 'player':
-    require_once('lib/player.php');
-    break;
-  case 'spells':
-    require_once('lib/spellenums.php');
-    require_once('lib/spells.php');
-    break;
-  case 'spellops':
-    require_once('lib/spellops.php');
-    break;
-  case 'account':
-    require_once('lib/account.php');
-    break;
-  case 'guild':
-    require_once('lib/guild.php');
-    break;
-  case 'aa':
-    require_once('lib/spellenums.php');
-    require_once('lib/aa.php');
-    break;
-  case 'qglobal':
-    require_once('lib/qglobal.php');
-    break;
-  case 'util':
-    require_once('lib/util.php');
-    break;
-  case 'quest':
-    require_once('lib/quest.php');
-    break;
-  case 'inv':
-    require_once('lib/inventory.php');
-    break;
-  case 'keys':
-    require_once('lib/keys.php');
-    break;
+	case '':
+		$body = new Template("templates/intro.tmpl.php");
+		$body->set('current_revision', $current_revision);
+		break;
+	case 'loot':
+		require_once(dirname(__FILE__) . '/lib/loot.php');
+		break;
+	case 'npc':
+		require_once(dirname(__FILE__) . '/lib/npc.php');
+		break;
+	case 'spawn':
+		require_once(dirname(__FILE__) . '/lib/spawn.php');
+		break;
+	case 'merchant':
+		require_once(dirname(__FILE__) . '/lib/merchant.php');
+		break;
+	case 'faction':
+		require_once(dirname(__FILE__) . '/lib/faction.php');
+		break;
+	case 'spellset':
+		require_once(dirname(__FILE__) . '/lib/spellset.php');
+		break;
+	case 'tradeskill':
+		require_once(dirname(__FILE__) . '/lib/tradeskill.php');
+		break;
+	case 'zone':
+		require_once(dirname(__FILE__) . '/lib/zone.php');
+		break;
+	case 'misc':
+		require_once(dirname(__FILE__) . '/lib/misc.php');
+ 		break;
+	case 'server':
+		require_once(dirname(__FILE__) . '/lib/server.php');
+		break;
+	case 'items':
+		require_once(dirname(__FILE__) . '/lib/items.php');
+		break;
+	case 'player':
+		require_once(dirname(__FILE__) . '/lib/player.php');
+		break;
+	case 'spells':
+		require_once(dirname(__FILE__) . '/lib/spellenums.php');
+		require_once(dirname(__FILE__) . '/lib/spells.php');
+		break;
+	case 'spellops':
+		require_once(dirname(__FILE__) . '/lib/spellops.php');
+		break;
+	case 'account':
+		require_once(dirname(__FILE__) . '/lib/account.php');
+		break;
+	case 'guild':
+		require_once(dirname(__FILE__) . '/lib/guild.php');
+		break;
+	case 'aa':
+		require_once(dirname(__FILE__) . '/lib/spellenums.php');
+		require_once(dirname(__FILE__) . '/lib/aa.php');
+		break;
+	case 'qglobal':
+		require_once(dirname(__FILE__) . '/lib/qglobal.php');
+		break;
+	case 'util':
+		require_once(dirname(__FILE__) . '/lib/util.php');
+		break;
+	case 'quest':
+		require_once(dirname(__FILE__) . '/lib/quest.php');
+		break;
+	case 'inv':
+		require_once(dirname(__FILE__) . '/lib/inventory.php');
+		break;
+	case 'keys':
+		require_once(dirname(__FILE__) . '/lib/keys.php');
+		break;
 }
 
 $tmpl->set('javascript', $javascript);
@@ -124,5 +108,3 @@ $tmpl->set('breadcrumbs', $breadcrumbs);
 $tmpl->set('body', $body);
 
 echo $tmpl->fetch('templates/index.tmpl.php');
-
-?>
