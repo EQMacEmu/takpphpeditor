@@ -528,6 +528,7 @@ $specialattacks = array(
  "46" => "No Loitering",
  "47" => "Block handins if KOS",
  "48" => "PC Deathblow Creates Corpse",
+ "49" => "Corpse Camper",
 );
 
 $tradeskills = array(

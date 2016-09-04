@@ -135,7 +135,7 @@
   $specabil = array();
   $specabilcont = array();
 
-  for ($i = 1; $i <= 48; $i++) {
+  for ($i = 1; $i <= 49; $i++) {
     if (preg_match("/^$i,/", $special_abilities) == 1) {
       $specabil[$i] = 1;
       // Leading special ability
@@ -200,6 +200,7 @@
                   <input type="checkbox" name="44" value="44,1^"<?echo ($specabil[44] == 1) ? "checked" : "";?>>  Use Warrior Skills<br/>
                   <input type="checkbox" name="47" value="47,1^"<?echo ($specabil[47] == 1) ? "checked" : "";?>>  Block handins if KOS<br/>
                   <input type="checkbox" name="48" value="48,1^"<?echo ($specabil[48] == 1) ? "checked" : "";?>>  PC Deathblow Leaves Corpse<br/>
+                  <input type="checkbox" name="49" value="49,1^"<?echo ($specabil[49] == 1) ? "checked" : "";?>>  Corpse Camper<br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="26" value="26,1^"<?echo ($specabil[26] == 1) ? "checked" : "";?>>  Resist Ranged Spells<br/>
