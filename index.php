@@ -1,8 +1,6 @@
 <?php
 
-$current_revision = "r17";
-$original_revision = "r457";
-
+require_once("revision.php");
 require_once(dirname(__FILE__) . '/config.php');
 require_once(dirname(__FILE__) . '/defines.php');
 require_once(dirname(__FILE__) . '/lib/logging.php');
