@@ -179,6 +179,7 @@
                   Tethered (33):<br/><input type="text" name="33" size="10" value="<?=$specabilcont[33]?>"><br/>
                   Flee Percent (37):<br/><input type="text" name="37" size="10" value="<?=$specabilcont[37]?>"><br/>
                   Chase Distance (40):<br/><input type="text" name="40" size="10" value="<?=$specabilcont[40]?>"><br/>
+                  Corpse Camper (49):<br/><input type="text" name="40" size="10" value="<?=$specabilcont[49]?>"><br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="6" value="6,1^"<?echo ($specabil[6] == 1) ? "checked" : "";?>>  Triple Attack<br/>
@@ -200,7 +201,6 @@
                   <input type="checkbox" name="44" value="44,1^"<?echo ($specabil[44] == 1) ? "checked" : "";?>>  Use Warrior Skills<br/>
                   <input type="checkbox" name="47" value="47,1^"<?echo ($specabil[47] == 1) ? "checked" : "";?>>  Block handins if KOS<br/>
                   <input type="checkbox" name="48" value="48,1^"<?echo ($specabil[48] == 1) ? "checked" : "";?>>  PC Deathblow Leaves Corpse<br/>
-                  <input type="checkbox" name="49" value="49,1^"<?echo ($specabil[49] == 1) ? "checked" : "";?>>  Corpse Camper<br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="26" value="26,1^"<?echo ($specabil[26] == 1) ? "checked" : "";?>>  Resist Ranged Spells<br/>
