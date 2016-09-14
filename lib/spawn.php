@@ -210,6 +210,7 @@ switch ($action) {
     $body->set('spawngroupID', $sid);
     $body->set('suggestedid', suggest_spawnpoint_id());
     $body->set('animations', $animations);
+    $body->set('yesno', $yesno);
     break;
   case 15:  // Add Spawnpoint
     check_authorization();
