@@ -42,7 +42,13 @@
                       <option value="1"<?echo ($dragaggro == 1) ? " selected" : ""?>>Yes</option>
                     </select>
                   </td>
-                  <td align="left" width="25%">&nbsp;</td>
+                   <td align="left" width="25%">
+                    Never Idle:<br>
+                    <select name="never_idle">
+                      <option value="0"<?echo ($never_idle == 0) ? " selected" : ""?>>No</option>
+                      <option value="1"<?echo ($never_idle == 1) ? " selected" : ""?>>Yes</option>
+                    </select>
+                  </td>
                 </tr>
                 <tr>
                   <td align="left" width="25%">Walkspeed:<br><input type="text" name="walkspeed" size="7" value="<?=$walkspeed?>"></td>

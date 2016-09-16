@@ -395,6 +395,7 @@ function update_zone () {
   if ($skylock != $_POST['skylock']) $fields .= "skylock=\"" . $_POST['skylock'] . "\", ";
   if ($random_loc != $_POST['random_loc']) $fields .= "random_loc=\"" . $_POST['random_loc'] . "\", ";
   if ($dragaggro != $_POST['dragaggro']) $fields .= "dragaggro=\"" . $_POST['dragaggro'] . "\", ";
+  if ($never_idle != $_POST['never_idle']) $fields .= "never_idle=\"" . $_POST['never_idle'] . "\", ";
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
