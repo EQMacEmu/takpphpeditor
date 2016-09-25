@@ -439,7 +439,7 @@ function update_zonepoints() {
   $target_instance = $_POST['target_instance'];
   $client_version_mask = $_POST['client_version_mask'];
 
-  $query = "UPDATE zone_points SET zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", zoneinst=\"$zoneinst\", target_zone_id=\"$target_zone_id\", version=\"$version\", target_instance=\"$target_instance\", client_version_mask=\"$client_version_mask\" WHERE id=\"$zpid\"";
+  $query = "UPDATE zone_points SET zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", zoneinst=0, target_zone_id=\"$target_zone_id\", version=\"$version\", target_instance=\"$target_instance\", client_version_mask=\"$client_version_mask\" WHERE id=\"$zpid\"";
   $mysql->query_no_result($query);
 }
 
@@ -566,7 +566,7 @@ function add_zonepoints() {
   $target_instance = $_POST['target_instance'];
   $client_version_mask = $_POST['client_version_mask'];
 
-  $query = "INSERT INTO zone_points SET id=\"$zpid\", zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", zoneinst=\"$zoneinst\", target_zone_id=\"$target_zone_id\", buffer=0, version=\"$version\", target_instance=\"$target_instance\", client_version_mask=\"$client_version_mask\"";
+  $query = "INSERT INTO zone_points SET id=\"$zpid\", zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", zoneinst=0, target_zone_id=\"$target_zone_id\", buffer=0, version=\"$version\", target_instance=\"$target_instance\", client_version_mask=\"$client_version_mask\"";
   $mysql->query_no_result($query);
 }
 

@@ -53,7 +53,7 @@
           <tr>
             <td><input type="text" size="7" name="effectvalue" value="0"></td>
             <td><input type="text" size="10" name="effectvalue2" value="0"></td>
-            <td><input type="text" size="7" name="chance" value="100""></td>
+            <td><input type="text" size="7" name="chance" value="100"></td>
             <td><input type="text" size="7" name="skill" value="1"></td>
             <td><input type="text" size="7" name="level" value="1"></td>
             <td><input type="text" size="7" name="respawn_time" value="600"></td>
@@ -64,18 +64,24 @@
 <?$x++; endforeach;?>
            </td> 
             <td><input type="text" size="7" name="version" value="<?=$suggestver?>"></td>
-          </tr>      
+          </tr>    
           </table>
-          <table width=100%>
+          <table width="100%">   
             <tr>
             <th>message</th>
             <th>despawn when triggered</th>
-           </tr>      
+            <th>undetectable</th>
+           </tr>       
           <tr>
              <td><input type="text" size="75" name="message" value=""></td>  
              <td><select class="left" name="despawn_when_triggered">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $despawn_when_triggered) ? " selected" : ""?>><?=$v?></option>
+<?$x++; endforeach;?>
+           </td> 
+          <td><select class="left" name="undetectable">
+<?foreach($yesno as $k => $v):?>
+              <option value="<?=$k?>"<? echo ($k == $undetectable) ? " selected" : ""?>><?=$v?></option>
 <?$x++; endforeach;?>
            </td> 
           </tr>

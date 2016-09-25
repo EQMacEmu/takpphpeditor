@@ -58,18 +58,24 @@
 <?endforeach;?>       
            </select></td>
             <td><input type="text" size="7" name="version" value="<?=$version?>"></td> 
-          </tr>            
-             </table>
-             <table width=100%>
+          </tr>     
+          </table>
+          <table width="100%">       
             <tr>
             <th>message</th>
             <th>despawn when triggered</th>
+            <th>undetectable</th>
            </tr>      
           <tr>
              <td><input type="text" size="75" name="message" value="<?=$message?>"></td>  
              <td><select class="left" name="despawn_when_triggered">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $despawn_when_triggered) ? " selected" : ""?>><?=$v?></option>
+<?$x++; endforeach;?>
+           </td> 
+           <td><select class="left" name="undetectable">
+<?foreach($yesno as $k => $v):?>
+              <option value="<?=$k?>"<? echo ($k == $undetectable) ? " selected" : ""?>><?=$v?></option>
 <?$x++; endforeach;?>
            </td> 
           </tr>
