@@ -730,7 +730,7 @@ function updateActionForRank($aaid, $rank, $vars) {
   if(isset($vars['target']) && $old['target'] != $vars['target']) $fields .= "target={$vars['target']}, ";
   if(isset($vars['spell_id']) && $old['spell_id'] != $vars['spell_id']) $fields .= "spell_id={$vars['spell_id']}, ";
   if(isset($vars['reuse_time']) && $old['reuse_time'] != $vars['reuse_time']) $fields .= "reuse_time={$vars['reuse_time']}, ";
-  if(isset($vars['nonspell_acttion']) && $old['nonspell_action'] != $vars['nonspell_action']) $fields .= "nonspell_action={$vars['nonspell_action']}, ";
+  if(isset($vars['nonspell_action']) && $old['nonspell_action'] != $vars['nonspell_action']) $fields .= "nonspell_action={$vars['nonspell_action']}, ";
   if(isset($vars['nonspell_mana']) && $old['nonspell_mana'] != $vars['nonspell_mana']) $fields .= "nonspell_mana={$vars['nonspell_mana']}, ";
   if(isset($vars['nonspell_duration']) && $old['nonspell_duration'] != $vars['nonspell_duration']) $fields .= "nonspell_duration={$vars['nonspell_duration']}, ";
   if(isset($vars['redux_aa']) && $old['redux_aa'] != $vars['redux_aa']) $fields .= "redux_aa={$vars['redux_aa']}, ";

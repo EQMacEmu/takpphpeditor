@@ -1,3 +1,3 @@
 <?php
-    $current_revision = "28 September 2016";
+    $current_revision = "1 October 2016";
 ?>
