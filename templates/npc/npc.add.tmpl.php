@@ -180,6 +180,8 @@
                   <input type="checkbox" name="8" value="8,1^"/>  Do Not Equip Items<br>
                   <input type="checkbox" name="11" value="11,1^"/>  Ranged Attack<br>
                   <input type="checkbox" name="12" value="12,1^"/>  Unslowable<br>
+                  <input type="checkbox" name="50" value="50,1^"/>  Reverse Slow<br>
+                  <input type="checkbox" name="51" value="51,1^"/>  Immune to Haste<br>
                   <input type="checkbox" name="13" value="13,1^"/>  Unmezable<br>
                   <input type="checkbox" name="14" value="14,1^"/>  Uncharmable<br>
                   <input type="checkbox" name="15" value="15,1^"/>  Unstunable<br>

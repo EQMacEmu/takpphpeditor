@@ -135,7 +135,7 @@
   $specabil = array();
   $specabilcont = array();
 
-  for ($i = 1; $i <= 49; $i++) {
+  for ($i = 1; $i <= 51; $i++) {
     if (preg_match("/^$i,/", $special_abilities) == 1) {
       $specabil[$i] = 1;
       // Leading special ability
@@ -189,6 +189,8 @@
                   <input type="checkbox" name="8" value="8,1^"<?echo ($specabil[8] == 1) ? "checked" : "";?>>  Do Not Equip Items<br/>
                   <input type="checkbox" name="11" value="11,1^"<?echo ($specabil[11] == 1) ? "checked" : "";?>>  Ranged Attack<br/>
                   <input type="checkbox" name="12" value="12,1^"<?echo ($specabil[12] == 1) ? "checked" : "";?>>  Unslowable<br/>
+                  <input type="checkbox" name="50" value="50,1^"<?echo ($specabil[50] == 1) ? "checked" : "";?>>  Reverse Slow<br/>
+                  <input type="checkbox" name="51" value="51,1^"<?echo ($specabil[51] == 1) ? "checked" : "";?>>  Immune to Haste<br/>
                   <input type="checkbox" name="13" value="13,1^"<?echo ($specabil[13] == 1) ? "checked" : "";?>>  Unmezable<br/>
                   <input type="checkbox" name="14" value="14,1^"<?echo ($specabil[14] == 1) ? "checked" : "";?>>  Uncharmable<br/>
                   <input type="checkbox" name="15" value="15,1^"<?echo ($specabil[15] == 1) ? "checked" : "";?>>  Unstunable<br/>

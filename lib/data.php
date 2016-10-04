@@ -529,6 +529,8 @@ $specialattacks = array(
  "47" => "Block handins if KOS",
  "48" => "PC Deathblow Creates Corpse",
  "49" => "Corpse Camper",
+ "50" => "Reverse Slow",
+ "51" => "Immune to Haste",
 );
 
 $tradeskills = array(
