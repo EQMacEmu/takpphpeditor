@@ -237,7 +237,7 @@ function update_player() {
 function get_player_location() {
   global $mysql, $playerid;
 
-  $query = "SELECT zone_id, zone_instance, x, y, z FROM character_data WHERE id=$playerid";
+  $query = "SELECT zone_id, x, y, z FROM character_data WHERE id=$playerid";
   $result = $mysql->query_assoc($query);
 
   return $result;
@@ -248,29 +248,27 @@ function update_player_location() {
   $playerid = $_POST['playerid'];
   $zoneid_token = strtok($_POST['zoneid'], ".");
   $zoneid = $zoneid_token;
-  $zoneversion_token = strtok(".");
-  $version = $zoneversion_token;
   $safe = $_POST['safe'];
   $new_x = $_POST['x'];
   $new_y = $_POST['y'];
   $new_z = $_POST['z'];
 
   if ($safe) {
-    $query = "SELECT safe_x, safe_y, safe_z FROM zone WHERE zoneidnumber=$zoneid AND version=$version";
+    $query = "SELECT safe_x, safe_y, safe_z FROM zone WHERE zoneidnumber=$zoneid";
     $result = $mysql->query_assoc($query);
     $new_x = $result['safe_x'];
     $new_y = $result['safe_y'];
     $new_z = $result['safe_z'];
   }
 
-  $query = "UPDATE character_data SET zone_id=$zoneid, zone_instance=$version, x=$new_x, y=$new_y, z=$new_z WHERE id=$playerid";
+  $query = "UPDATE character_data SET zone_id=$zoneid, x=$new_x, y=$new_y, z=$new_z WHERE id=$playerid";
   $mysql->query_no_result($query);
 }
 
 function get_zones() {
   global $mysql;
 
-  $query = "SELECT zoneidnumber, short_name, version FROM zone ORDER BY short_name ASC";
+  $query = "SELECT zoneidnumber, short_name FROM zone ORDER BY short_name ASC";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;

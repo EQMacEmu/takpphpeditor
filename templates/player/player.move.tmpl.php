@@ -8,7 +8,7 @@
           New Zone:<br/>
           <select name="zoneid" onChange="clear_coords();">
 <? foreach ($zonelist as $zone): ?>
-            <option value="<?=$zone['zoneidnumber'] . "." . $zone['version']?>"<?echo (($cur_loc['zone_id'] == $zone['zoneidnumber']) && ($cur_loc['zone_instance'] == $zone['version'])) ? " selected" : "";?>><?=$zone['short_name']?> (<?=$zone['version']?>)</option>
+            <option value="<?=$zone['zoneidnumber']?>"<?echo (($cur_loc['zone_id'] == $zone['zoneidnumber'])) ? " selected" : "";?>><?=$zone['short_name']?></option>
 <? endforeach; ?>
           </select><br/><br/>
           Use Safe Zone Coords: <input type="checkbox" id="safe" name="safe" onChange="toggle_safe();" checked><br/><br/>

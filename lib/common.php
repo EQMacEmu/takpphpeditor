@@ -243,15 +243,6 @@ function getGuildName($guildid) {
   return $result['name'];
 }
 
-function suggest_version() {
-  global $mysql, $zoneid;
-
-  $query = "SELECT version from zone where id=$zoneid";
-  $result = $mysql->query_assoc($query);
-  
-  return $result['version'];
-}
-
 function search_spell_by_id() {
   global $mysql;
   $id = $_GET['id'];
@@ -468,8 +459,6 @@ function delete_player($playerid) {
   $query = "DELETE FROM guild_members WHERE char_id=$playerid";
   $mysql->query_no_result($query);
   //hackers?
-  $query = "DELETE FROM instance_lockout_player WHERE charid=$playerid";
-  $mysql->query_no_result($query);
   $query = "DELETE FROM inventory WHERE charid=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM keyring WHERE char_id=$playerid";

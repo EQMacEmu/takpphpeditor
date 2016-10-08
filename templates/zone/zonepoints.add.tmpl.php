@@ -25,26 +25,19 @@
             <td><input type="text" size="7" name="heading" value="0"></td>
            </tr>
            <tr>
-            <th>Tar Instance</th>
             <th>Client</th>
             <th>Target X</th>
             <th>Target Y</th>
             <th>Target Z</th>
             <th>Tar Heading</th>
-            <th>Version</th>
+            <th>Target Zone</th>
           </tr>
            <tr>
-            <td><input type="text" size="7" name="target_instance" value="0"></td>
             <td><input type="text" size="10" name="client_version_mask" value="4294967295"></td>
             <td><input type="text" size="7" name="target_x" value="0"></td>
             <td><input type="text" size="7" name="target_y" value="0"></td>
             <td><input type="text" size="7" name="target_z" value="0"></td>
             <td><input type="text" size="7" name="target_heading" value="0"></td>
-            <td><input type="text" size="7" name="version" value="<?=$suggestver?>"></td>
-          </tr>
-          <th>Target Zone</th>
-          </tr>
-           <tr>
             <td><input type="text" size="7" name="target_zone_id" value="<?=$zid?>"></td>
           </tr>
          </table><br><br>

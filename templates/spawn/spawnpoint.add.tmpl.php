@@ -51,14 +51,10 @@
           </tr>
           <tr>
             <td width="33%">
-              version:<br/>
-              <input type="text" name="version" value="0">
-            </td>
-            <td width="33%">
               enabled:<br/>
               <input type="text" name="enabled" value="1">
             </td>
-            <td align="left" width="34%">
+            <td align="left" width="33%">
               animation:<br/>
               <select name="animation">
 <?foreach($animations as $k => $v):?>
@@ -66,6 +62,7 @@
 <?endforeach;?>
               </select>
             </td>
+            <td width="34%">&nbsp;</td>
           </tr>
           <tr>
             <td width="33%">

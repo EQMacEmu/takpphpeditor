@@ -27,25 +27,16 @@
             <th>Target Y</th>
             <th>Target Z</th>
             <th>Tar Heading</th>
-            <th>Version</th>
             <th>Target Zone</th>
+            <th>Client</th>
           </tr>
            <tr>
             <td><input type="text" size="10" name="target_x" value="<?=$target_x?>"></td>
             <td><input type="text" size="7" name="target_y" value="<?=$target_y?>"></td>
             <td><input type="text" size="7" name="target_z" value="<?=$target_z?>"></td>
             <td><input type="text" size="7" name="target_heading" value="<?=$target_heading?>"></td>
-            <td><input type="text" size="7" name="version" value="<?=$version?>"></td>
             <td><input type="text" size="7" name="target_zone_id" value="<?=$target_zone_id?>"></td>
-          </tr>
-          <tr>
-            <th>Client</th>
-            <th>Tar Instance</th> 
-          </tr>
-           <tr>
             <td><input type="text" size="10" name="client_version_mask" value="<?=$client_version_mask?>"></td>
-            <td><input type="text" size="7" name="target_instance" value="<?=$target_instance?>"></td>
-            
           </tr>
          </table><br><br>
         <center>

@@ -29,8 +29,6 @@
             <input class="indented" id="id" type="text" name="max_allowed" size="7" value="<?=$max_allowed?>"><br><br>
             <strong>Respawn</strong><br>
             <input class="indented" id="id" type="text" name="respawn_timer" size="7" value="<?=$respawn_timer?>"><br><br>
-            <strong>Version</strong><br>
-            <input class="indented" id="id" type="text" name="version" size="7" value="<?=$version?>"><br><br>
             <strong>Name</strong><br>
             <input class="indented" id="id" type="text" name="name" size="20" value="<?=$name?>"><br><br>
             <strong>Comment</strong><br>

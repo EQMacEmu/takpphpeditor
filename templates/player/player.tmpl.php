@@ -37,7 +37,6 @@
                 <fieldset>
                   <legend><strong>Location Info</strong></legend>
                   Zone: <?=getZoneName($zone_id)?> (<?=$zone_id?>)<br/>
-                  Instance: <?echo ($zone_instance > 0) ? $zone_instance : "None";?><br/>
                   X: <?=$x?><br/>
                   Y: <?=$y?><br/>
                   Z: <?=$z?><br/>

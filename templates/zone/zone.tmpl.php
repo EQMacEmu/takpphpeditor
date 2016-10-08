@@ -4,9 +4,6 @@
           <a href="index.php?editor=zone&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=8"><img src="images/add.gif" border="0" title="Add a graveyard to <?=$short_name?>"></a>
           <a href="index.php?editor=zone&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=2"><img src="images/c_table.gif" border=0 title="Edit this Zone"></a>
           <a onClick="return confirm('Really Copy Zone <?=$currzone?>?');" href="index.php?editor=zone&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=24"><img src="images/next.gif" border=0 title="Copy this Zone"></a>
-<?if($version > 0):?>
-          <a onClick="return confirm('Really Delete Zone <?=$currzone?>?');" href="index.php?editor=zone&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=25"><img src="images/remove2.gif" border=0 title="Delete this Zone"></a>
-<?endif;?>
         </div>
         <?=$zoneidnumber?> - <?=$long_name?> <?echo ($short_name != '' ? "($short_name)" : '');?>
       </div>
@@ -61,24 +58,19 @@
                     <td align="left" width="34%">Walkspeed: <?=$walkspeed?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">Version: <?=$version?></td>
                     <td align="left" width="33%">Ruleset: <a href="index.php?editor=server&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&ruleset_id=<?=$ruleset?>&action=28"> <?=$ruleset?></td>
                     <td align="left" width="34%">Skip LoS: <?=$yesno[$skip_los]?></td>
+                    <td align="left" width="34%">Drag Aggro: <?=$yesno[$dragaggro]?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Note: <?=$note?></td>
-                    <td align="left" width="33%">Global: <?=$yesno[$global]?></td>
-                    <td align="left" width="34%">Suspend Buffs: <?=$yesno[$suspendbuffs]?></td>
+                    <td align="left" width="33%">Suspend Buffs: <?=$yesno[$suspendbuffs]?></td>
+                    <td align="left" width="34%">Never Idle: <?=$yesno[$never_idle]?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Music: <?=$music?></td>
                     <td align="left" width="33%">RandomLoc: <?=$random_loc?></td>
-                    <td align="left" width="34%">Drag Aggro: <?=$yesno[$dragaggro]?></td>
-                  </tr>
-                  <tr>
-                    <td align="left" width="33%">Never Idle: <?=$yesno[$never_idle]?></td>
-                    <td align="left" width="33%">&nbsp;</td>
-                    <td align="left" width="34%">&nbsp;</td>
+                    <td width="34%">&nbsp;</td>
                   </tr>
                 </table>
               </fieldset>

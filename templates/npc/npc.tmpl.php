@@ -274,17 +274,12 @@
                   <tr>
                     <td align="left" width="33%">Pet: <?=$yesno[$pet]?></td>
                     <td align="left" width="33%">Private Corpse: <?=$yesno[$private_corpse]?></td>
-                    <td align="left" width="34%">Version: <?=$version?></td>
+                    <td align="left" width="33%">Ignore Despawn: <?=$yesno[$ignore_despawn]?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">No Target Hotkey: <?=$yesno[$no_target_hotkey]?></td>
                     <td align="left" width="33%">Raid Target: <?=$yesno[$raid_target]?></td>
                     <td align="left" width="34%">Encounter: <?=$yesno[$encounter]?></td>
-                  </tr>
-                  <tr>
-                    <td align="left" width="33%">Ignore Despawn: <?=$yesno[$ignore_despawn]?></td>
-                    <td align="left" width="33%">&nbsp;</td>
-                    <td align="left" width="34%">&nbsp;</td>
                   </tr>
                 </table>
               </fieldset>
@@ -372,7 +367,6 @@
         <input type="hidden" name="Accuracy" value="<?=$Accuracy?>">
         <input type="hidden" name="Avoidance" value="<?=$Avoidance?>">
         <input type="hidden" name="slow_mitigation" value="<?=$slow_mitigation?>">
-        <input type="hidden" name="version" value="<?=$version?>">
         <input type="hidden" name="maxlevel" value="<?=$maxlevel?>">
         <input type="hidden" name="scalerate" value="<?=$scalerate?>">
         <input type="hidden" name="private_corpse" value="<?=$private_corpse?>">

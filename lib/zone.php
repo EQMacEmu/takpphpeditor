@@ -42,7 +42,6 @@ switch ($action) {
     $body->set("eqexpansions", $eqexpansions);
     $body->set("bindallowed", $bindallowed);
     $body->set("zonetype", $zonetype);
-    $body->set('global', get_isglobal());
     $zone = get_zone();
     if ($zone) {
       foreach ($zone as $key=>$value) {
@@ -60,7 +59,6 @@ switch ($action) {
     $body->set("eqexpansions", $eqexpansions);
     $body->set("bindallowed", $bindallowed);
     $body->set("zonetype", $zonetype);
-    $body->set('global', get_isglobal());
     $zone = get_zone();
     if ($zone) {
       foreach ($zone as $key=>$value) {
@@ -191,7 +189,6 @@ switch ($action) {
     $body->set('zid', getZoneID($z));
     $body->set('suggestzpid', suggest_zonepoint_id());
     $body->set('suggestnum', suggest_zonepoint_number());
-    $body->set('suggestver', suggest_version());
     break;
    case 17: // Add zonepoint
     check_authorization();
@@ -368,7 +365,6 @@ function update_zone () {
   if ($fog_red4 != $_POST['fog_red4']) $fields .= "fog_red4=\"" . $_POST['fog_red4'] . "\", ";
   if ($fog_green4 != $_POST['fog_green4']) $fields .= "fog_green4=\"" . $_POST['fog_green4'] . "\", ";
   if ($ruleset != $_POST['ruleset']) $fields .= "ruleset=\"" . $_POST['ruleset'] . "\", ";
-  if ($version != $_POST['version']) $fields .= "version=\"" . $_POST['version'] . "\", ";
   if ($map_file_name != $_POST['map_file_name']) $fields .= "map_file_name=\"" . $_POST['map_file_name'] . "\", ";
   if ($fog_density != $_POST['fog_density']) $fields .= "fog_density=\"" . $_POST['fog_density'] . "\", ";
   if ($expansion != $_POST['expansion']) $fields .= "expansion=\"" . $_POST['expansion'] . "\", ";
@@ -433,13 +429,10 @@ function update_zonepoints() {
   $target_y = $_POST['target_y'];
   $target_z = $_POST['target_z']; 
   $target_heading = $_POST['target_heading'];
-  $zoneinst = $_POST['zoneinst'];
   $target_zone_id = $_POST['target_zone_id'];
-  $version = $_POST['version'];
-  $target_instance = $_POST['target_instance'];
   $client_version_mask = $_POST['client_version_mask'];
 
-  $query = "UPDATE zone_points SET zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", zoneinst=0, target_zone_id=\"$target_zone_id\", version=\"$version\", target_instance=\"$target_instance\", client_version_mask=\"$client_version_mask\" WHERE id=\"$zpid\"";
+  $query = "UPDATE zone_points SET zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", target_zone_id=\"$target_zone_id\",  client_version_mask=\"$client_version_mask\" WHERE id=\"$zpid\"";
   $mysql->query_no_result($query);
 }
 
@@ -560,13 +553,11 @@ function add_zonepoints() {
   $target_y = $_POST['target_y']; 
   $target_z = $_POST['target_z']; 
   $target_heading = $_POST['target_heading'];
-  $zoneinst = $_POST['zoneinst'];
   $target_zone_id = $_POST['target_zone_id'];
-  $version = $_POST['version'];
-  $target_instance = $_POST['target_instance'];
   $client_version_mask = $_POST['client_version_mask'];
 
-  $query = "INSERT INTO zone_points SET id=\"$zpid\", zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", zoneinst=0, target_zone_id=\"$target_zone_id\", buffer=0, version=\"$version\", target_instance=\"$target_instance\", client_version_mask=\"$client_version_mask\"";
+  $query = "INSERT INTO zone_points SET id=\"$zpid\", zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\",
+   target_zone_id=\"$target_zone_id\", buffer=0, client_version_mask=\"$client_version_mask\"";
   $mysql->query_no_result($query);
 }
 
@@ -608,15 +599,11 @@ function zonepoints_info() {
   global $mysql, $z, $zoneid;
   $array = array();
 
-  $query = "SELECT version AS zversion FROM zone where id=$zoneid";
-  $result = $mysql->query_assoc($query);
-  $zversion = $result['zversion'];
-
-  $query = "SELECT * FROM zone_points WHERE zone=\"$z\" AND version=$zversion";
+  $query = "SELECT * FROM zone_points WHERE zone=\"$z\"";
   $result = $mysql->query_mult_assoc($query);
   if ($result) {
     foreach ($result as $result) {
-    $array['zonepoints'][$result['id']] = array("zpid"=>$result['id'], "zone"=>$result['zone'], "number"=>$result['number'], "x_coord"=>$result['x'], "y_coord"=>$result['y'], "z_coord"=>$result['z'], "heading"=>$result['heading'], "target_x"=>$result['target_x'], "target_y"=>$result['target_y'], "target_z"=>$result['target_z'], "target_heading"=>$result['target_heading'], "zoneinst"=>$result['zoneinst'], "target_zone_id"=>$result['target_zone_id'], "version"=>$result['version'], "target_instance"=>$result['target_instance'], "client_version_mask"=>$result['client_version_mask']);
+    $array['zonepoints'][$result['id']] = array("zpid"=>$result['id'], "zone"=>$result['zone'], "number"=>$result['number'], "x_coord"=>$result['x'], "y_coord"=>$result['y'], "z_coord"=>$result['z'], "heading"=>$result['heading'], "target_x"=>$result['target_x'], "target_y"=>$result['target_y'], "target_z"=>$result['target_z'], "target_heading"=>$result['target_heading'], "target_zone_id"=>$result['target_zone_id'], "client_version_mask"=>$result['client_version_mask']);
          }
        }
   return $array;
@@ -648,31 +635,6 @@ function get_graveyard_zone() {
   return $result['short_name'];
 }
 
-function copy_zone() {
-  check_authorization();
-  global $mysql, $zoneid, $z;
-
-  $query = "DELETE FROM zone WHERE id=0";
-  $mysql->query_no_result($query);
-
-  $query = "INSERT INTO zone (`short_name`, `file_name`, `long_name`, `map_file_name`, `safe_x`, `safe_y`, `safe_z`, `graveyard_id`, `min_level`, `min_status`, `zoneidnumber`, `version`, `timezone`, `maxclients`, `ruleset`, `note`, `underworld`, `minclip`, `maxclip`, `fog_minclip`, `fog_maxclip`, `fog_blue`, `fog_red`, `fog_green`, `sky`, `ztype`, `zone_exp_multiplier`, `walkspeed`, `time_type`, `fog_red1`, `fog_green1`, `fog_blue1`, `fog_minclip1`, `fog_maxclip1`, `fog_red2`, `fog_green2`, `fog_blue2`, `fog_minclip2`, `fog_maxclip2`, `fog_red3`, `fog_green3`, `fog_blue3`, `fog_minclip3`, `fog_maxclip3`, `fog_red4`, `fog_green4`, `fog_blue4`, `fog_minclip4`, `fog_maxclip4`, `fog_density`, `flag_needed`, `canbind`, `cancombat`, `canlevitate`, `castoutdoor`, `hotzone`, `insttype`, `shutdowndelay`, `peqzone`, `expansion`, `suspendbuffs`, `skip_los`, `type`, `weather_rate`, `rain_chance1`, `rain_chance2`, `rain_chance3`, `rain_chance4`, `rain_duration1`, `rain_duration2`, `rain_duration3`, `rain_duration4`, `snow_chance1`, `snow_chance2`, `snow_chance3`, `snow_chance4`, `snow_duration1`, `snow_duration2`, `snow_duration3`, `snow_duration4`)
-            SELECT `short_name`, `file_name`, `long_name`, `map_file_name`, `safe_x`, `safe_y`, `safe_z`, `graveyard_id`, `min_level`, `min_status`, `zoneidnumber`, `version`, `timezone`, `maxclients`, `ruleset`, `note`, `underworld`, `minclip`, `maxclip`, `fog_minclip`, `fog_maxclip`, `fog_blue`, `fog_red`, `fog_green`, `sky`, `ztype`, `zone_exp_multiplier`, `walkspeed`, `time_type`, `fog_red1`, `fog_green1`, `fog_blue1`, `fog_minclip1`, `fog_maxclip1`, `fog_red2`, `fog_green2`, `fog_blue2`, `fog_minclip2`, `fog_maxclip2`, `fog_red3`, `fog_green3`, `fog_blue3`, `fog_minclip3`, `fog_maxclip3`, `fog_red4`, `fog_green4`, `fog_blue4`, `fog_minclip4`, `fog_maxclip4`, `fog_density`, `flag_needed`, `canbind`, `cancombat`, `canlevitate`, `castoutdoor`, `hotzone`, `insttype`, `shutdowndelay`, `peqzone`, `expansion`, `suspendbuffs`, `skip_los`, `type`, `weather_rate`, `rain_chance1`, `rain_chance2`, `rain_chance3`, `rain_chance4`, `rain_duration1`, `rain_duration2`, `rain_duration3`, `rain_duration4`, `snow_chance1`, `snow_chance2`, `snow_chance3`, `snow_chance4`, `snow_duration1`, `snow_duration2`, `snow_duration3`, `snow_duration4` FROM zone where id=$zoneid";
-  $mysql->query_no_result($query);
-
-  $query = "SELECT MAX(id) as zid FROM zone";
-  $result = $mysql->query_assoc($query);
-  $nzone = $result['zid'];
-
-  $query2 = "SELECT MAX(version+1) as zver FROM zone WHERE short_name=\"$z\"";
-  $result2 = $mysql->query_assoc($query2);
-  $nver = $result2['zver'];
-
-  $query = "UPDATE zone set version=$nver where id=$nzone";
-  $mysql->query_no_result($query);
-   
-  return $nzone;
-}
-
 function delete_zone() {
   check_authorization();
   global $mysql, $zoneid;
@@ -680,49 +642,5 @@ function delete_zone() {
   $query = "DELETE FROM zone WHERE id=$zoneid";
   $mysql->query_no_result($query);
 }
-   
-function get_isglobal () {
-  global $mysql, $z, $zoneid;
-
-  $zid = getZoneID($z);
-
-  $query1 = "SELECT version AS zversion FROM zone where id=$zoneid";
-  $result1 = $mysql->query_assoc($query1);
-  $zversion = $result1['zversion'];
-
-  $query = "SELECT count(*) FROM instance_list WHERE zone=$zid AND version=$zversion";
-  $result = $mysql->query_assoc($query);
-
-  return $result['count(*)'];
-}
-
-function update_global () {
-  global $mysql, $z, $zoneid;
-
-  $zid = getZoneID($z);
-
-  $query1 = "SELECT version AS zversion FROM zone where id=$zoneid";
-  $result1 = $mysql->query_assoc($query1);
-  $zversion = $result1['zversion'];
-
-  $query2 = "SELECT id AS currid from instance_list WHERE zone=$zid AND version=$zversion AND id < 30";
-  $result2 = $mysql->query_assoc($query2);
-  $currid = $result2['currid'];
-
-  $query = "REPLACE INTO instance_list SET id=$currid, zone=$zid, version=$zversion, is_global=1, never_expires=1";
-  $mysql->query_no_result($query);
-  }
-
-function delete_global () {
-  global $mysql, $z, $zoneid;
-
-  $zid = getZoneID($z);
-
-  $query1 = "SELECT version AS zversion FROM zone where id=$zoneid";
-  $result1 = $mysql->query_assoc($query1);
-  $zversion = $result1['zversion'];
-
-  $query = "DELETE FROM instance_list WHERE zone=$zid AND version=$zversion AND id < 30";
-  $mysql->query_no_result($query);
-}
+  
 ?>

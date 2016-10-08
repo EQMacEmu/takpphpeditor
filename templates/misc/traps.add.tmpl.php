@@ -48,7 +48,6 @@
             <th>respawn</th>
             <th>variance</th>
             <th>effect</th>
-            <th>version</th>
           </tr>
           <tr>
             <td><input type="text" size="7" name="effectvalue" value="0"></td>
@@ -63,7 +62,6 @@
               <option value="<?=$k?>"<? echo ($k == $effect) ? " selected" : ""?>><?=$v?></option>
 <?$x++; endforeach;?>
            </td> 
-            <td><input type="text" size="7" name="version" value="<?=$suggestver?>"></td>
           </tr>    
           </table>
           <table width="100%">   

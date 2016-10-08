@@ -25,14 +25,12 @@
             <th>item</th>
             <th>charges</th>
             <th>icon</th> 
-            <th>version</th>
             <th>type</th>              
           </tr>
           <tr>
             <td><input type="text" size="7" name="itemid" value="<?=$itemid?>"></td>
             <td><input type="text" size="7" name="charges" value="<?=$charges?>"></td> 
             <td><input type="text" size="7" name="icon" value="<?=$icon?>"></td>     
-            <td><input type="text" size="7" name="version" value="<?=$version?>"></td>
                  <td><select class="left" name="type">
 <?foreach($world_containers as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $type) ? " selected" : ""?>><?=$v?></option>

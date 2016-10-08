@@ -4,9 +4,7 @@
             <tr>
              <td>Objects</td>
              <td align="right">    
-            <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=53"><img src="images/last.gif" border="0" title="Copy objects by version"></a>
             <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=45"><img src="images/add.gif" border="0" title="Add an entry to this zone"></a>
-            <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=61"><img src="images/remove3.gif" border="0" title="Delete objects by version"></a>
               </td>
              </tr>        
            </table>
@@ -25,7 +23,6 @@
             <td align="center" width="2%"><strong>Name</strong></td>
             <td align="center" width="2%"><strong>Type</strong></td>
             <td align="center" width="2%"><strong>Icon</strong></td>
-            <td align="center" width="2%"><strong>Version</strong></td>
             <th width="5%"></th>
            </tr>
   <?$x=0; foreach($objects as $objects=>$v):?>
@@ -45,7 +42,6 @@
             <td align="center" width="2%"><?=$v['objectname']?></td>   
             <td align="center" width="2%"><?=$world_containers[$v['type']]?></td>
             <td align="center" width="2%"><?=$v['icon']?></td>
-            <td align="center" width="2%"><?=$v['version']?></td>
             <td align="right">      
               <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&objid=<?=$v['objid']?>&action=42"><img src="images/edit2.gif" border="0" title="Edit Entry"></a>          
               <a onClick="return confirm('Really Delete Object <?=$v['objid']?>?');" href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&objid=<?=$v['objid']?>&action=44"><img src="images/remove3.gif" border="0" title="Delete this entry"></a>

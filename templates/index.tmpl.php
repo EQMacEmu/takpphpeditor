@@ -13,7 +13,7 @@
 
 <?if (isset($javascript)) echo $javascript;?>
 
-    <title>PEQ Database Editor</title>
+    <title>TAKP Database Editor</title>
 
     <link rel="stylesheet" href="css/peq.css" type="text/css">
   </head>
@@ -21,7 +21,7 @@
   <body>
     <div id="container">
       <div id="header">
-        <center><a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="PEQ Editor Banner"></a></center>
+        <center><a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="TAKP Editor Banner"></a></center>
       </div>
         <?php
             global $server, $server_name;

@@ -1348,9 +1348,8 @@ function delete_spawnconditionvalue() {
   check_authorization();
   global $mysql, $z;
   $scid = $_GET['scid'];
-  $instance_id = $_GET['instance_id'];
 
-  $query = "DELETE FROM spawn_condition_values WHERE id=$scid AND zone=\"$z\" AND instance_id = $instance_id";
+  $query = "DELETE FROM spawn_condition_values WHERE id=$scid AND zone=\"$z\"";
   $mysql->query_no_result($query);
 }
 
@@ -1490,7 +1489,6 @@ function add_spawnpoint() {
   $pathgrid = $_POST['pathgrid'];
   $condition = $_POST['_condition'];
   $cond_value = $_POST['cond_value'];
-  $version = $_POST['version'];
   $enabled = $_POST['enabled'];
   $animation = $_POST['animation'];
   $boot_respawntime = $_POST['boot_respawntime'];
@@ -1498,7 +1496,7 @@ function add_spawnpoint() {
   $clear_timer_onboot = $_POST['clear_timer_onboot'];
   $force_z = $_POST['force_z'];
   
-  $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation, force_z=$force_z";
+  $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z";
   $mysql->query_no_result($query);
 }
 
@@ -1599,11 +1597,11 @@ function is_spawned() {
   $spid = intval($_GET['spid']);
 
   $array['id'] = $spid;
-  $query = "SELECT * FROM respawn_times where id=$spid and instance_id = 0";
+  $query = "SELECT * FROM respawn_times where id=$spid";
   $result = $mysql->query_mult_assoc($query);
   if ($result) {
     foreach ($result as $result) {
-      $array['spawned'][$result['id']] = array("start"=>$result['start'], "duration"=>$result['duration'], "instance_id"=>$result['instance_id']);
+      $array['spawned'][$result['id']] = array("start"=>$result['start'], "duration"=>$result['duration']);
     }
   }
 
@@ -1614,7 +1612,7 @@ function view_respawn() {
   global $mysql;
   $spid = intval($_GET['spid']);
 
-  $query = "SELECT * FROM respawn_times where id=$spid and instance_id = 0";
+  $query = "SELECT * FROM respawn_times where id=$spid";
   $result = $mysql->query_assoc($query);
 
   return $result;
@@ -1623,9 +1621,8 @@ function view_respawn() {
 function force_spawn() {
   global $mysql;
   $spid = intval($_GET['spid']);
-  $instance_id = intval($_GET['instance_id']);
 
-  $query = "DELETE FROM respawn_times where id=$spid and instance_id=$instance_id";
+  $query = "DELETE FROM respawn_times where id=$spid";
   $mysql->query_no_result($query);
 }
 
@@ -1667,11 +1664,11 @@ function get_spawn_condition_value() {
 
   $scid = $_GET['scid'];
 
-  $query = "SELECT id AS scvid, zone, value, instance_id FROM spawn_condition_values WHERE zone=\"$z\" AND id=$scid";
+  $query = "SELECT id AS scvid, zone, value FROM spawn_condition_values WHERE zone=\"$z\" AND id=$scid";
   $results = $mysql->query_mult_assoc($query);
   if ($results) {
     foreach ($results as $result) {
-      $array['spawncv'][$result['instance_id']] = array("zone"=>$result['zone'], "value"=>$result['value'], "instance_id"=>$result['instance_id']);
+      $array['spawncv'][$result['scvid']] = array("zone"=>$result['zone'], "value"=>$result['value']);
     }
   }
 
@@ -1773,7 +1770,7 @@ function add_spawncondition() {
   $query = "INSERT INTO spawn_conditions SET id=\"$scid\", zone=\"$z\", value=\"$value\", onchange=\"$onchange\", name=\"$name\"";
   $mysql->query_no_result($query);
 
-  $query = "INSERT INTO spawn_condition_values SET id=\"$scid\", zone=\"$z\", value=\"$value\", instance_id=0";
+  $query = "INSERT INTO spawn_condition_values SET id=\"$scid\", zone=\"$z\", value=\"$value\"";
   $mysql->query_no_result($query);
 }
 
@@ -1783,12 +1780,7 @@ function add_spawnconditionvalue() {
 
   $scid = $_GET['scid'];
 
-  $query = "SELECT MAX(instance_id) AS scvinst FROM spawn_condition_values WHERE zone=\"$z\" AND id=$scid";
-  $result = $mysql->query_assoc($query);
-
-  $instance_id = ($result['scvinst'] + 1);
-
-  $query = "INSERT INTO spawn_condition_values SET id=\"$scid\", zone=\"$z\", value=0, instance_id=\"$instance_id\"";
+  $query = "INSERT INTO spawn_condition_values SET id=\"$scid\", zone=\"$z\", value=0";
   $mysql->query_no_result($query);
 }
 
@@ -1805,7 +1797,6 @@ function copy_spawnpoint() {
   $pathgrid = $_POST['pathgrid'];
   $condition = $_POST['condition'];
   $cond_value = $_POST['cond_value'];
-  $version = $_POST['version'];
   $enabled = $_POST['enabled'];
   $animation = $_POST['animation'];
   $sgid = $_POST['sgid'];
@@ -1814,7 +1805,7 @@ function copy_spawnpoint() {
   $clear_timer_onboot = $_POST['clear_timer_onboot'];
   $force_z = $_POST['force_z'];
 
-  $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, version=$version, enabled=$enabled, animation=$animation, force_z=$force_z";
+  $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z";
   $mysql->query_no_result($query);
 }
 

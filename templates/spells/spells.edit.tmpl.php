@@ -161,18 +161,10 @@
                       <td width="17%">Desc Num:<br/><input type="text" name="descnum" value="<?=$descnum?>" size="6"></td>
                       <td width="17%">Type Desc Num:<br/><input type="text" name="typedescnum" value="<?=$typedescnum?>" size="6"></td>
                       <td width="16%">Effect Desc Num:<br/><input type="text" name="effectdescnum" value="<?=$effectdescnum?>" size="6"></td>
-                      <td width="17%">Effect Desc Num2:<br/><input type="text" name="effectdescnum2" value="<?=$effectdescnum2?>" size="6"></td>
                       <td width="17%">Spell Affect Index:<br/><input type="text" name="SpellAffectIndex" value="<?=$SpellAffectIndex?>" size="6"></td>
-                    </tr>
-                    <tr>
-                      <td width="16%">Nimbus Effect:<br/><input type="text" name="nimbuseffect" value="<?=$nimbuseffect?>" size="6"></td>
-                      <td width="17%">Disallow Sitting:<br/><input type="text" name="disallow_sit" value="<?=$disallow_sit?>" size="6"></td>
-                      <td width="17%">Sneaking:<br/><input type="text" name="sneaking" value="<?=$sneaking?>" size="6"></td>
-                      <td width="16%">LDoN Trap:<br/><input type="text" name="ldon_trap" value="<?=$ldon_trap?>" size="6"></td>
-                      <td width="17%">No Block:<br/><input type="text" name="no_block" value="<?=$no_block?>" size="6"></td>
                       <td width="17%">&nbsp;</td>
                     </tr>
-                  </table>
+                  </table><br>
                 </td>
               </tr>
             </table>

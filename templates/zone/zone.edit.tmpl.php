@@ -29,7 +29,6 @@
                 <tr>
                   <td align="left" width="30%">Map:<br><input type="text" name="map_file_name" size="20" value="<?=$map_file_name?>"></td>
                   <td align="left" width="23%">Ruleset:<br><input type="text" name="ruleset" size="7" value="<?=$ruleset?>"></td>
-                  <td align="left" width="23%">Version:<br><input type="text" name="version" size="7" value="<?=$version?>"></td>
                   <td align="left" width="25%">Exp Multiplier:<br><input type="text" name="zone_exp_multiplier" size="7" value="<?=$zone_exp_multiplier?>"></td>
                 </tr>
                 <tr>
@@ -57,13 +56,6 @@
                     <select name="hotzone">
                       <option value="0"<?echo ($hotzone == 0) ? " selected" : ""?>>No</option>
                       <option value="1"<?echo ($hotzone == 1) ? " selected" : ""?>>Yes</option>
-                    </select>
-                  </td>
-                  <td align="left" width="25%">
-                    Global Instance:<br>
-                    <select name="global">
-                      <option value="0"<?echo ($global == 0) ? " selected" : ""?>>No</option>
-                      <option value="1"<?echo ($global == 1) ? " selected" : ""?>>Yes</option>
                     </select>
                   </td>
                  <td align="left" width="25%">

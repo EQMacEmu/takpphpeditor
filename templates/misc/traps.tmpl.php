@@ -4,9 +4,7 @@
           <tr>
            <td>Traps</td>
            <td align="right">    
-          <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=51"><img src="images/last.gif" border="0" title="Copy traps by version"></a>
           <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=23"><img src="images/add.gif" border="0" title="Add an entry to this zone"></a>
-          <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=59"><img src="images/remove3.gif" border="0" title="Delete traps by version"></a>
             </td>
            </tr>        
          </table>

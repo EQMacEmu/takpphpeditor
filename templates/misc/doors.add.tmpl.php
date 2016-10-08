@@ -67,17 +67,13 @@
 
          </tr>
          <tr>
-            <th>dest instance</th>
             <th>client</th>
-            <th>version</th>
             <th>nokeyring</th>
             <th>islift</th>
             <th>close_time</th>
             <th>can_open</th>
          </tr>
           <tr>
-          	<td><input type="text" size="7" name="version" value="<?=$suggestver?>"></td>
-            <td><input type="text" size="7" name="dest_instance" value="0"></td>
             <td><input type="text" size="10" name="client_version_mask" value="4294967295"></td>
             <td><select class="left" name="nokeyring">
 <?foreach($yesno as $k => $v):?>

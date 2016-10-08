@@ -49,18 +49,22 @@
           </tr>
           <tr>
             <td width="33%">
-              version:<br/>
-             <input type="text" name="version" value="<?=$version?>">
-            </td>
-            <td width="33%">
               enabled:<br/>
              <input type="text" name="enabled" value="<?=$enabled?>">
             </td>
-            <td align="left" width="34%">
+            <td align="left" width="33%">
               animation:<br/>
               <select name="animation">
 <?foreach($animations as $k => $v):?>
                 <option value="<?=$k?>"<? echo ($k == $animation) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
+<?endforeach;?>
+              </select>
+            </td>
+            <td align="left" width="33%">
+              force_z:<br/>
+              <select name="force_z">
+<?foreach($yesno as $k => $v):?>
+                <option value="<?=$k?>"<? echo ($k == $force_z) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
 <?endforeach;?>
               </select>
             </td>
@@ -78,18 +82,6 @@
               clear on boot:<br/>
               <input type="text" name="clear_timer_onboot" value="<?=$clear_timer_onboot?>">
             </td>
-            </tr>
-           <tr>
-            <td align="left" width="33%">
-              force_z:<br/>
-              <select name="force_z">
-<?foreach($yesno as $k => $v):?>
-                <option value="<?=$k?>"<? echo ($k == $force_z) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
-<?endforeach;?>
-              </select>
-            </td>
-            <td width="33%">&nbsp;</td>
-            <td width="34%">&nbsp;</td>
             </tr>
         </table><br/><br/>
         <center>

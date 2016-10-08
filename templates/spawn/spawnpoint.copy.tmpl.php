@@ -18,7 +18,6 @@
             <input type="hidden" name="pathgrid" value="<?=$pathgrid?>">
             <input type="hidden" name="condition" value="<?=$_condition?>">
             <input type="hidden" name="cond_value" value="<?=$cond_value?>">
-            <input type="hidden" name="version" value="<?=$version?>">
             <input type="hidden" name="enabled" value="<?=$enabled?>">
 	          <input type="hidden" name="animation" value="<?=$animation?>">
             <input type="hidden" name="boot_respawntime" value="<?=$boot_respawntime?>">

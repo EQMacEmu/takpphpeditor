@@ -4,10 +4,8 @@
           <tr>
            <td>Doors</td>
            <td align="right">
-          <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=63"><img src="images/contents.png" border="0" title="View door objects"></a>
-          <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=47"><img src="images/last.gif" border="0" title="Copy doors by version"></a>
+          <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=47"><img src="images/contents.png" border="0" title="View door objects"></a>
           <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=39"><img src="images/add.gif" border="0" title="Add an entry to this zone"></a>
-          <a href="index.php?editor=misc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=55"><img src="images/remove3.gif" border="0" title="Delete doors by version"></a>
             </td>
            </tr>
          </table>

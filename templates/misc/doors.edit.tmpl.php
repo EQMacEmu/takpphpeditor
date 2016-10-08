@@ -54,7 +54,6 @@
             <th>doorisopen</th>
             <th>invert</th>
             <th>incline</th>
-            <th>version</th>
          </tr>
           <tr>
             <td><input type="text" size="7" name="size" value="<?=$size?>"></td>
@@ -64,10 +63,8 @@
             <td><input type="text" size="7" name="doorisopen" value="<?=$doorisopen?>"></td>
             <td><input type="text" size="7" name="invert_state" value="<?=$invert_state?>"></td>
             <td><input type="text" size="7" name="incline" value="<?=$incline?>"></td>
-            <td><input type="text" size="7" name="version" value="<?=$version?>"></td>
          </tr>
           <tr>
-            <th>dest instance</th>
             <th>client</th>
             <th>nokeyring</th>
             <th>islift</th>
@@ -75,7 +72,6 @@
             <th>can_open</th>
          </tr>
           <tr>
-            <td><input type="text" size="7" name="dest_instance" value="<?=$dest_instance?>"></td>
             <td><input type="text" size="10" name="client_version_mask" value="<?=$client_version_mask?>"></td>
             <td><select class="left" name="nokeyring">
 <?foreach($yesno as $k => $v):?>

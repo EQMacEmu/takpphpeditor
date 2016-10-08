@@ -299,7 +299,7 @@ function build_tabs () {
 function zones() {
   global $mysql;
 
-  $query = "SELECT id, short_name, version, expansion FROM zone ORDER BY short_name ASC";
+  $query = "SELECT id, short_name, expansion FROM zone ORDER BY short_name ASC";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
@@ -308,7 +308,7 @@ function zones() {
 function zones2() {
   global $mysql;
 
-  $query = "SELECT id, short_name, long_name, version, expansion FROM zone ORDER BY long_name ASC";
+  $query = "SELECT id, short_name, long_name, expansion FROM zone ORDER BY long_name ASC";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
@@ -316,7 +316,6 @@ function zones2() {
 
 function npcs() {
   global $mysql, $z, $zoneid, $npc_list;
-  $version = 0;
   $zid = "___";
   $results = array();
 
@@ -325,54 +324,28 @@ function npcs() {
 
   if($z) {
     $zid = getZoneID($z) . "___";
-    $query = "SELECT version FROM zone WHERE id = \"$zoneid\"";
-    $result = $mysql->query_assoc($query);
-    $version = $result['version'];
   }
 
   if($npc_list == 1) {
-    if ($version > 0) {
-      $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND version = $version GROUP BY id ORDER BY name ASC";
-      $results = $mysql->query_mult_assoc($query);
-    }
-    if ($version < 1) {
       $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" GROUP BY id ORDER BY name ASC";
       $results = $mysql->query_mult_assoc($query);
-    }
   }
   if($npc_list == 2) {
-    if ($version > 0) {
-      $query = "SELECT npc_types.id AS id, npc_types.name AS name FROM npc_types,spawnentry,spawn2 WHERE (spawn2.spawngroupid=spawnentry.spawngroupid AND npc_types.id=spawnentry.npcid) AND spawn2.zone = '$z' AND spawn2.version = $version GROUP BY npc_types.id ORDER BY npc_types.name ASC";
-      $results = $mysql->query_mult_assoc($query);
-    }
-    if ($version < 1){
       $query = "SELECT npc_types.id AS id, npc_types.name AS name FROM npc_types,spawnentry,spawn2 WHERE (spawn2.spawngroupid=spawnentry.spawngroupid AND npc_types.id=spawnentry.npcid) AND spawn2.zone = '$z' GROUP BY npc_types.id ORDER BY npc_types.name ASC";
       $results = $mysql->query_mult_assoc($query);
-    }
   }
   return $results;
 }
 
 function npcs_by_merchantid() {
   global $mysql, $z, $zoneid;
-  $version = 0;
   $zid = "___";
   $results = array();
 
   if($z) {
     $zid = getZoneID($z) . "___";
-    $query = "SELECT version FROM zone WHERE id = \"$zoneid\"";
-    $result = $mysql->query_assoc($query);
-    $version = $result['version'];
-
-    if ($version > 0) {
-      $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND version = $version AND merchant_id != 0 GROUP BY id ORDER BY name ASC";
-      $results = $mysql->query_mult_assoc($query);
-    }
-    if ($version == 0) {
-      $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND merchant_id != 0 GROUP BY id ORDER BY name ASC";
-      $results = $mysql->query_mult_assoc($query);
-    }
+    $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND merchant_id != 0 GROUP BY id ORDER BY name ASC";
+    $results = $mysql->query_mult_assoc($query);
   }
   else {
     $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND merchant_id != 0 GROUP BY id ORDER BY name ASC";
@@ -404,24 +377,14 @@ function recipes() {
 
 function npcs_by_spellid() {
   global $mysql, $z, $zoneid;
-  $version = 0;
   $zid = "___";
   $results = array();
 
   if($z) {
     $zid = getZoneID($z) . "___";
-    $query = "SELECT version FROM zone WHERE id = $zoneid";
-    $result = $mysql->query_assoc($query);
-    $version = $result['version'];
 
-    if ($version > 0) {
-      $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND version = $version AND npc_spells_id != 0 GROUP BY id ORDER BY name ASC";
-      $results = $mysql->query_mult_assoc($query);
-    }
-    if ($version == 0) {
-      $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND npc_spells_id != 0 GROUP BY id ORDER BY name ASC";
-      $results = $mysql->query_mult_assoc($query);
-    }
+    $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND npc_spells_id != 0 GROUP BY id ORDER BY name ASC";
+    $results = $mysql->query_mult_assoc($query);
   }
   else {
     $query = "SELECT id, name FROM npc_types WHERE id like \"$zid\" AND npc_spells_id != 0 GROUP BY id ORDER BY name ASC";
