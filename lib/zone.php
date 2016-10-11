@@ -69,11 +69,7 @@ switch ($action) {
    case 3: // Update zone data
     check_authorization();
     update_zone();
-    if (isset($_POST['global']) && $_POST['global'] == 1){
-      update_global();
-    }
-    else delete_global();
-      header("Location: index.php?editor=zone&z=$z&zoneid=$zoneid&action=1");
+    header("Location: index.php?editor=zone&z=$z&zoneid=$zoneid&action=1");
     exit;
    case 4: // View graveyard data
     $breadcrumbs .= " >> Graveyard Data";
