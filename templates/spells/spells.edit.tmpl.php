@@ -637,6 +637,20 @@
               </tr>
             </table>
           </fieldset><br/>
+          <fieldset style="text-align:left;">
+            <legend><strong><font size="4">Spell Guide</font></strong></legend>
+            <table width="100%" border="0" cellpadding="3" cellspacing="0">
+             <tr>
+                <td>Custom Icon:<br/><input type="text" name="custom_icon" size="3" value="<?=$custom_icon?>"></td>
+                <td align="left" width="50%">Don't Display:<br/>
+                <select name="not_player_spell">
+                  <option value="0"<?echo ($not_player_spell == 0) ? " selected" : ""?>>No</option>
+                  <option value="1"<?echo ($not_player_spell == 1) ? " selected" : ""?>>Yes</option>
+                </select>
+              </td>
+             </tr>
+          </table>
+          </fieldset><br/>
           <center>
             <input type="submit" value="Submit Changes">
           </center>
