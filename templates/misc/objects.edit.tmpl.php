@@ -1,4 +1,4 @@
-<div class="edit_form" style="width: 500px">
+<div class="edit_form" style="width: 550px">
       <div class="edit_form_header">
         Object: <?=$id?>
       </div>
@@ -11,7 +11,6 @@
             <th>y</th>
             <th>z</th>
             <th>heading</th>
-            
             <th>name</th>           
           </tr>
           <tr>

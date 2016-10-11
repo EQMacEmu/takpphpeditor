@@ -26,7 +26,6 @@
             <td><input type="text" size="7" name="opentype" value="0"></td>
            </tr>
           <tr>
-            <th>guild</th>
             <th>size</th>
             <th>dest zone</th>
             <th>dest x</th>
@@ -34,9 +33,9 @@
             <th>dest z</th>
             <th>dest heading</th>
             <th>lockpick</th>
+            <th>client</th>
           </tr>
           <tr>
-            <td><input type="text" size="7" name="guild" value="0"></td>
             <td><input type="text" size="7" name="size" value="100"></td>
             <td><input type="text" size="15" name="dest_zone" value="NONE"></td>
             <td><input type="text" size="7" name="dest_x" value="0"></td>
@@ -44,6 +43,7 @@
             <td><input type="text" size="7" name="dest_z" value="0"></td>
             <td><input type="text" size="7" name="dest_heading" value="0"></td>
             <td><input type="text" size="7" name="lockpick" value="0"></td>
+            <td><input type="text" size="10" name="client_version_mask" value="4294967295"></td>
           </tr>
           <tr>
             <th>triggerdoor</th>
@@ -67,14 +67,12 @@
 
          </tr>
          <tr>
-            <th>client</th>
             <th>nokeyring</th>
             <th>islift</th>
             <th>close_time</th>
             <th>can_open</th>
          </tr>
           <tr>
-            <td><input type="text" size="10" name="client_version_mask" value="4294967295"></td>
             <td><select class="left" name="nokeyring">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $nokeyring) ? " selected" : ""?>><?=$v?></option>

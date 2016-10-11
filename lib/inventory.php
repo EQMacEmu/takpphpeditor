@@ -569,15 +569,10 @@ function update_inv_item() {
   $itemid = $_POST['itemid'];
   $charges = $_POST['charges'];
   $color = $_POST['color'];
-  $augslot1 = $_POST['augslot1'];
-  $augslot2 = $_POST['augslot2'];
-  $augslot3 = $_POST['augslot3'];
-  $augslot4 = $_POST['augslot4'];
-  $augslot5 = $_POST['augslot5'];
   $instnodrop = ($_POST['instnodrop'] == 'on') ? 1 : 0;
   $custom_data = $_POST['custom_data'];
 
-  $query = "UPDATE character_inventory SET itemid=$itemid, charges=$charges, color=$color, augslot1=$augslot1, augslot2=$augslot2, augslot3=$augslot3, augslot4=$augslot4, augslot5=$augslot5, instnodrop=$instnodrop, custom_data=\"$custom_data\" WHERE id=$charid AND slotid=$slotid";
+  $query = "UPDATE character_inventory SET itemid=$itemid, charges=$charges, color=$color, instnodrop=$instnodrop, custom_data=\"$custom_data\" WHERE id=$charid AND slotid=$slotid";
   $mysql->query_no_result($query);
 }
 
@@ -589,15 +584,10 @@ function insert_inv_item() {
   $itemid = $_POST['itemid'];
   $charges = $_POST['charges'];
   $color = $_POST['color'];
-  $augslot1 = $_POST['augslot1'];
-  $augslot2 = $_POST['augslot2'];
-  $augslot3 = $_POST['augslot3'];
-  $augslot4 = $_POST['augslot4'];
-  $augslot5 = $_POST['augslot5'];
   $instnodrop = ($_POST['instnodrop'] == 'on') ? 1 : 0;
   $custom_data = $_POST['custom_data'];
 
-  $query = "INSERT INTO character_inventory SET id=$charid, slotid=$slotid, itemid=$itemid, charges=$charges, color=$color, augslot1=$augslot1, augslot2=$augslot2, augslot3=$augslot3, augslot4=$augslot4, augslot5=$augslot5, instnodrop=$instnodrop, custom_data=\"$custom_data\"";
+  $query = "INSERT INTO character_inventory SET id=$charid, slotid=$slotid, itemid=$itemid, charges=$charges, color=$color, instnodrop=$instnodrop, custom_data=\"$custom_data\"";
   $mysql->query_no_result($query);
 }
 ?>

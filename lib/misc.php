@@ -516,7 +516,7 @@ function get_doors($open) {
   $result = $mysql->query_mult_assoc($query);
   if ($result) {
     foreach ($result as $result) {
-     $array['doors'][$result['id']] = array("drid"=>$result['id'], "doorid"=>$result['doorid'], "name"=>$result['name'], "pos_x"=>$result['pos_x'], "pos_y"=>$result['pos_y'], "pos_z"=>$result['pos_z'], "heading"=>$result['heading'], "opentype"=>$result['opentype'], "guild"=>$result['guild'], "lockpick"=>$result['lockpick'], "keyitem"=>$result['keyitem'], "altkeyitem"=>$result['altkeyitem'], "triggerdoor"=>$result['triggerdoor'], "triggertype"=>$result['triggertype'], "doorisopen"=>$result['doorisopen'], "door_param"=>$result['door_param'], "dest_zone"=>$result['dest_zone'], "dest_x"=>$result['dest_x'], "dest_y"=>$result['dest_y'], "dest_z"=>$result['dest_z'], "dest_heading"=>$result['dest_heading'], "invert_state"=>$result['invert_state'], "incline"=>$result['incline'], "size"=>$result['size'], "client_version_mask"=>$result['client_version_mask'], "nokeyring"=>$result['nokeyring'], "islift"=>$result['islift'], "close_time"=>$result['close_time'], "can_open"=>$result['can_open']);
+     $array['doors'][$result['id']] = array("drid"=>$result['id'], "doorid"=>$result['doorid'], "name"=>$result['name'], "pos_x"=>$result['pos_x'], "pos_y"=>$result['pos_y'], "pos_z"=>$result['pos_z'], "heading"=>$result['heading'], "opentype"=>$result['opentype'], "lockpick"=>$result['lockpick'], "keyitem"=>$result['keyitem'], "altkeyitem"=>$result['altkeyitem'], "triggerdoor"=>$result['triggerdoor'], "triggertype"=>$result['triggertype'], "doorisopen"=>$result['doorisopen'], "door_param"=>$result['door_param'], "dest_zone"=>$result['dest_zone'], "dest_x"=>$result['dest_x'], "dest_y"=>$result['dest_y'], "dest_z"=>$result['dest_z'], "dest_heading"=>$result['dest_heading'], "invert_state"=>$result['invert_state'], "incline"=>$result['incline'], "size"=>$result['size'], "client_version_mask"=>$result['client_version_mask'], "nokeyring"=>$result['nokeyring'], "islift"=>$result['islift'], "close_time"=>$result['close_time'], "can_open"=>$result['can_open']);
 
     }
   }
@@ -720,7 +720,6 @@ function update_doors() {
   $pos_z = $_POST['pos_z'];
   $heading = $_POST['heading'];
   $opentype = $_POST['opentype'];
-  $guild = $_POST['guild'];
   $lockpick = $_POST['lockpick'];
   $keyitem = $_POST['keyitem'];
   $altkeyitem = $_POST['altkeyitem'];
@@ -742,7 +741,7 @@ function update_doors() {
   $close_time = $_POST['close_time'];
   $can_open = $_POST['can_open'];
 
-  $query = "UPDATE doors SET doorid=\"$doorid\", name=\"$name\", pos_x=\"$pos_x\", pos_y=\"$pos_y\", pos_z=\"$pos_z\", heading=\"$heading\", opentype=\"$opentype\", guild=\"$guild\", lockpick=\"$lockpick\", keyitem=\"$keyitem\", altkeyitem=\"$altkeyitem\", triggerdoor=\"$triggerdoor\", triggertype=\"$triggertype\", doorisopen=\"$doorisopen\", door_param=\"$door_param\", dest_zone=\"$dest_zone\", dest_x=\"$dest_x\", dest_y=\"$dest_y\", dest_z=\"$dest_z\", dest_heading=\"$dest_heading\", invert_state=\"$invert_state\", incline=\"$incline\", size=\"$size\", client_version_mask=\"$client_version_mask\", nokeyring=\"$nokeyring\", islift=\"$islift\", close_time=\"$close_time\", can_open=\"$can_open\" WHERE id=\"$drid\"";
+  $query = "UPDATE doors SET doorid=\"$doorid\", name=\"$name\", pos_x=\"$pos_x\", pos_y=\"$pos_y\", pos_z=\"$pos_z\", heading=\"$heading\", opentype=\"$opentype\", lockpick=\"$lockpick\", keyitem=\"$keyitem\", altkeyitem=\"$altkeyitem\", triggerdoor=\"$triggerdoor\", triggertype=\"$triggertype\", doorisopen=\"$doorisopen\", door_param=\"$door_param\", dest_zone=\"$dest_zone\", dest_x=\"$dest_x\", dest_y=\"$dest_y\", dest_z=\"$dest_z\", dest_heading=\"$dest_heading\", invert_state=\"$invert_state\", incline=\"$incline\", size=\"$size\", client_version_mask=\"$client_version_mask\", nokeyring=\"$nokeyring\", islift=\"$islift\", close_time=\"$close_time\", can_open=\"$can_open\" WHERE id=\"$drid\"";
   $mysql->query_no_result($query);
 }
 
@@ -994,7 +993,6 @@ function add_doors() {
   $pos_z = $_POST['pos_z'];
   $heading = $_POST['heading'];
   $opentype = $_POST['opentype'];
-  $guild = $_POST['guild'];
   $lockpick = $_POST['lockpick'];
   $keyitem = $_POST['keyitem'];
   $altkeyitem = $_POST['altkeyitem'];
@@ -1016,7 +1014,7 @@ function add_doors() {
   $close_time = $_POST['close_time'];
   $can_open = $_POST['can_open'];
 
-  $query = "INSERT INTO doors SET id=\"$drid\", zone=\"$z\", doorid=\"$doorid\", name=\"$name\", pos_x=\"$pos_x\", pos_y=\"$pos_y\", pos_z=\"$pos_z\", heading=\"$heading\", opentype=\"$opentype\", guild=\"$guild\", lockpick=\"$lockpick\", keyitem=\"$keyitem\", altkeyitem=\"$altkeyitem\", triggerdoor=\"$triggerdoor\", triggertype=\"$triggertype\", doorisopen=\"$doorisopen\", door_param=\"$door_param\", dest_zone=\"$dest_zone\", dest_x=\"$dest_x\", dest_y=\"$dest_y\", dest_z=\"$dest_z\", dest_heading=\"$dest_heading\", invert_state=\"$invert_state\", incline=\"$incline\", size=\"$size\", client_version_mask=\"$client_version_mask\", nokeyring=\"$nokeyring\", islift=\"$islift\", close_time=\"$close_time\", can_open=\"$can_open\"";
+  $query = "INSERT INTO doors SET id=\"$drid\", zone=\"$z\", doorid=\"$doorid\", name=\"$name\", pos_x=\"$pos_x\", pos_y=\"$pos_y\", pos_z=\"$pos_z\", heading=\"$heading\", opentype=\"$opentype\", lockpick=\"$lockpick\", keyitem=\"$keyitem\", altkeyitem=\"$altkeyitem\", triggerdoor=\"$triggerdoor\", triggertype=\"$triggertype\", doorisopen=\"$doorisopen\", door_param=\"$door_param\", dest_zone=\"$dest_zone\", dest_x=\"$dest_x\", dest_y=\"$dest_y\", dest_z=\"$dest_z\", dest_heading=\"$dest_heading\", invert_state=\"$invert_state\", incline=\"$incline\", size=\"$size\", client_version_mask=\"$client_version_mask\", nokeyring=\"$nokeyring\", islift=\"$islift\", close_time=\"$close_time\", can_open=\"$can_open\"";
   $mysql->query_no_result($query);
 }
 

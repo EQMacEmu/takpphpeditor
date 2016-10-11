@@ -14,7 +14,7 @@
             <th>z</th>
             <th>heading</th>
             <th>opentype</th>
-            <th>guild</th>
+            <th>client</th>
           </tr>
           <tr>
             <td><input type="text" size="7" name="doorid" value="<?=$doorid?>"></td>
@@ -24,7 +24,7 @@
             <td><input type="text" size="7" name="pos_z" value="<?=$pos_z?>"></td>
             <td><input type="text" size="7" name="heading" value="<?=$heading?>"></td>
             <td><input type="text" size="7" name="opentype" value="<?=$opentype?>"></td>
-            <td><input type="text" size="7" name="guild" value="<?=$guild?>"></td>
+            <td><input type="text" size="10" name="client_version_mask" value="<?=$client_version_mask?>"></td>
            </tr>
           <tr>
           	<th>lockpick</th>
@@ -54,6 +54,7 @@
             <th>doorisopen</th>
             <th>invert</th>
             <th>incline</th>
+            <th>close_time</th>
          </tr>
           <tr>
             <td><input type="text" size="7" name="size" value="<?=$size?>"></td>
@@ -63,16 +64,14 @@
             <td><input type="text" size="7" name="doorisopen" value="<?=$doorisopen?>"></td>
             <td><input type="text" size="7" name="invert_state" value="<?=$invert_state?>"></td>
             <td><input type="text" size="7" name="incline" value="<?=$incline?>"></td>
+            <td><input type="text" size="7" name="close_time" value="<?=$close_time?>"></td>
          </tr>
           <tr>
-            <th>client</th>
             <th>nokeyring</th>
             <th>islift</th>
-            <th>close_time</th>
             <th>can_open</th>
          </tr>
           <tr>
-            <td><input type="text" size="10" name="client_version_mask" value="<?=$client_version_mask?>"></td>
             <td><select class="left" name="nokeyring">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $nokeyring) ? " selected" : ""?>><?=$v?></option>
@@ -83,7 +82,6 @@
               <option value="<?=$k?>"<? echo ($k == $islift) ? " selected" : ""?>><?=$v?></option>
 <?$x++; endforeach;?>
            </td> 
-           <td><input type="text" size="7" name="close_time" value="<?=$close_time?>"></td>
           <td><select class="left" name="can_open">
 <?foreach($yesno as $k => $v):?>
               <option value="<?=$k?>"<? echo ($k == $can_open) ? " selected" : ""?>><?=$v?></option>

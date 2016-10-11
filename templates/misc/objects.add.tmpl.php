@@ -1,4 +1,4 @@
-<div class="edit_form" style="width: 550px">
+<div class="edit_form" style="width: 650px">
       <div class="edit_form_header">
         Add Object
       </div>

@@ -34,28 +34,6 @@
                 </tr>
                 <tr>
                   <td>
-                    Aug Slot 1:<br/>
-                    <input type="text" size="3" name="augslot1" value="0">
-                  </td>
-                  <td>
-                    Aug Slot 2:<br/>
-                    <input type="text" size="3" name="augslot2" value="0">
-                  </td>
-                  <td>
-                    Aug Slot 3:<br/>
-                    <input type="text" size="3" name="augslot3" value="0">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Aug Slot 4:<br/>
-                    <input type="text" size="3" name="augslot4" value="0">
-                  </td>
-                  <td>
-                    Aug Slot 5:<br/>
-                    <input type="text" size="3" name="augslot5" value="0">
-                  </td>
-                  <td>
                     Inst NoDrop:<br/>
                     <input type="checkbox" name="instnodrop">
                   </td>
