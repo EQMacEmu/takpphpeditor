@@ -14,3 +14,5 @@ $playerid   = (isset($_GET['playerid']) ? $_GET['playerid'] : null);
 $acctid     = (isset($_GET['acctid']) ? $_GET['acctid'] : null);
 $guildid    = (isset($_GET['guildid']) ? $_GET['guildid'] : null);
 $aaid       = (isset($_GET['aaid']) ? $_GET['aaid'] : null);
+
+?>

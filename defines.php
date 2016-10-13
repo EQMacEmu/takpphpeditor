@@ -5,3 +5,5 @@ $body = '';
 $javascript = '';
 $breadcrumbs = '';
 $headbar = '';
+
+?>

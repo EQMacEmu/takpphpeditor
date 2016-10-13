@@ -1,4 +1,5 @@
 config.php
 .idea/
 files/
-perl/Loot.pl
+logs/
+/perl/Loot.pl

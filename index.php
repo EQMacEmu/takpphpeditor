@@ -106,3 +106,5 @@ $tmpl->set('breadcrumbs', $breadcrumbs);
 $tmpl->set('body', $body);
 
 echo $tmpl->fetch('templates/index.tmpl.php');
+
+?>

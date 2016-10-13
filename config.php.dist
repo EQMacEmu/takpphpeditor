@@ -6,7 +6,7 @@ $dbuser = 'username';
 $dbpass = 'password';
 $db = 'database_name';
 $mysql_class = 'mysql'; // Use mysql or mysqli
-$server_name = 'localhost';
+$server_name = 'www.takproject.org';
 $server = $_SERVER['SERVER_NAME'];
 
 /*  Limit zone lists to a specified expansion
@@ -61,3 +61,5 @@ $enable_guest_mode = 1;
 
 // Path for quests without trailing slash.
 $quest_path = "/path/to/quests"
+
+?>

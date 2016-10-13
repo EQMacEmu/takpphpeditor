@@ -123,3 +123,5 @@ function quote_smart($value) {
 	}
 	return $value;
 }
+
+?>
