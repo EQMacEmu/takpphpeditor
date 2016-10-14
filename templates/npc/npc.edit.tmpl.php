@@ -135,7 +135,7 @@
   $specabil = array();
   $specabilcont = array();
 
-  for ($i = 1; $i <= 51; $i++) {
+  for ($i = 1; $i <= $max_special_ability; $i++) {
     if (preg_match("/^$i,/", $special_abilities) == 1) {
       $specabil[$i] = 1;
       // Leading special ability
@@ -179,7 +179,7 @@
                   Tethered (33):<br/><input type="text" name="33" size="10" value="<?=$specabilcont[33]?>"><br/>
                   Flee Percent (37):<br/><input type="text" name="37" size="10" value="<?=$specabilcont[37]?>"><br/>
                   Chase Distance (40):<br/><input type="text" name="40" size="10" value="<?=$specabilcont[40]?>"><br/>
-                  Corpse Camper (49):<br/><input type="text" name="40" size="10" value="<?=$specabilcont[49]?>"><br/>
+                  Corpse Camper (49):<br/><input type="text" name="49" size="10" value="<?=$specabilcont[49]?>"><br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="6" value="6,1^"<?echo ($specabil[6] == 1) ? "checked" : "";?>>  Triple Attack<br/>
@@ -216,6 +216,7 @@
                   <input type="checkbox" name="25" value="25,1^"<?echo ($specabil[25] == 1) ? "checked" : "";?>>  Immune to Aggro<br/>
                   <input type="checkbox" name="27" value="27,1^"<?echo ($specabil[27] == 1) ? "checked" : "";?>>  See through Feign Death<br/>
                   <input type="checkbox" name="npc_aggro" value="1"<?echo ($npc_aggro == 1) ? "checked" : "";?>>  Can Aggro NPCs<br/>
+                  <input type="checkbox" name="aggro_pc" value="1"<?echo ($aggro_pc == 1) ? "checked" : "";?>>  Always Aggro Players<br/>
                   <input type="checkbox" name="30" value="30,1^"<?echo ($specabil[30] == 1) ? "checked" : "";?>>  Does NOT buff/heal friends<br/>
                   <input type="checkbox" name="36" value="36,1^"<?echo ($specabil[36] == 1) ? "checked" : "";?>>  Always Flee<br/>
                   <input type="checkbox" name="45" value="45,1^"<?echo ($specabil[45] == 1) ? "checked" : "";?>>  Always Flee if Low Con<br/>

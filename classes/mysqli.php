@@ -24,6 +24,20 @@ class mysql extends mysqli {
     }
   }
 
+  function query_no_result_no_log($query) {
+    global $log_error;
+    if (mysqli_query($this, $query)) {
+      return true;
+    }
+    else {
+      if ($log_error == 1) {
+        logSQL($query . " - Error: " . mysqli_error($this));
+      }
+      die ($query . " - " . mysqli_error($this));
+      return false;
+    }
+  }
+
   function query_assoc($query) {
     global $log_all, $log_error;
     if ($result = mysqli_query($this, quote_smart($query))) {

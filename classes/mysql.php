@@ -22,6 +22,20 @@ class mysql {
 		}
 	}
 
+	function query_no_result_no_log($query) {
+		global $log_error;
+		if (mysql_query($query)) {
+			return true;
+		}
+		else {
+			if ($log_error == 1) {
+				logSQL($query . " - Error: " . mysql_error());
+			}
+			mysql::error($query . " - " . mysql_error());
+			return false;
+		}
+	}
+
 	function query_assoc($query) {
 		global $log_all, $log_error;
 		if ($result = mysql_query(quote_smart($query))) {

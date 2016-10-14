@@ -1,5 +1,7 @@
 <?php
 
+$max_special_ability = 51;
+
 $factions = faction_list();
 $faction_values = array(
  -1 => "Aggressive",
@@ -110,6 +112,19 @@ $columns = array(
   4 => 'text'
 );
 
+$satype = array(
+  0 => 'Choose an option',
+  1 => 'ADD',
+  2 => 'REMOVE',
+  3 => 'CUSTOM'
+);
+
+$valueadjust = array (
+  0 => '=',
+  1 => '>',
+  2 => '<'
+);
+
 switch ($action) {
   case 0:
     if ($npcid) {  // View NPC
@@ -129,6 +144,7 @@ switch ($action) {
       $body->set('faction_values', $faction_values);
       $body->set('tmpfacshort', $tmpfacshort);
       $body->set('pet', get_ispet());
+      $body->set('max_special_ability', $max_special_ability);
       $vars = npc_info();
       if ($vars) {
         foreach ($vars as $key=>$value) {
@@ -163,6 +179,7 @@ switch ($action) {
     $body->set('specialattacks', $specialattacks);
     $body->set('faction_values', $faction_values);
     $body->set('pet', get_ispet());
+    $body->set('max_special_ability', $max_special_ability);
     $vars = npc_info();
     if ($vars) {
       foreach ($vars as $key=>$value) {
@@ -360,6 +377,7 @@ switch ($action) {
     $body->set('races', $races);
     $body->set('classes', $classes);
     $body->set('specialattacks', $specialattacks);
+    $body->set('max_special_ability', $max_special_ability);
     $vars = get_stats();
     if ($vars) {
       foreach ($vars as $key=>$value) {
@@ -507,6 +525,7 @@ switch ($action) {
     $body->set('specialattacks', $specialattacks);
     $body->set('faction_values', $faction_values);
     $body->set('pet', get_ispet());
+    $body->set('max_special_ability', $max_special_ability);
     $vars = npc_info();
     if ($vars) {
       foreach ($vars as $key=>$value) {
@@ -899,6 +918,49 @@ switch ($action) {
     move_down_factionhit();
     header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
     exit;
+   case 85: // Mess edit options
+    check_authorization();
+    $body = new Template("templates/npc/npc.stats.tmpl.php");
+    $body->set('currzone', $z);
+    $body->set('currzoneid', $zoneid);
+    $body->set('npcid', $npcid);
+    break;
+   case 86:
+    check_authorization();
+    $body = new Template("templates/npc/npc.massstats.tmpl.php");
+    $body->set('currzone', $z);
+    $body->set('currzoneid', $zoneid);
+    $body->set('npcid', $npcid);
+    $body->set('races', $races);
+    $body->set('classes', $classes);
+    $body->set('bodytypes', $bodytypes);
+    $body->set('npcfields', $npcfields);
+    $body->set('valueadjust', $valueadjust);
+    break;
+    case 87: // Mass update NPCs
+    check_authorization();
+    mass_update_npcs();
+    header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
+    exit;
+    case 88: // Change Special Abilites
+    check_authorization();
+    $body = new Template("templates/npc/npc.specialabilities.tmpl.php");
+    $body->set('currzone', $z);
+    $body->set('currzoneid', $zoneid);
+    $body->set('npcid', $npcid);
+    $body->set('races', $races);
+    $body->set('classes', $classes);
+    $body->set('bodytypes', $bodytypes);
+    $body->set('specialattacks', $specialattacks);
+    $body->set('satype', $satype);
+    $body->set('custom', get_special_ability());
+    $body->set('valueadjust', $valueadjust);
+    break;
+  case 89:  // Special Ability script
+    check_authorization();
+    change_special_abilitities();
+    header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
+    exit;
 }
 
 function npc_info () {
@@ -1207,6 +1269,7 @@ function update_npc () {
   if (!isset($_POST['underwater'])) $_POST['underwater'] = 0;
   if (!isset($_POST['isquest'])) $_POST['isquest'] = 0;
   if (!isset($_POST['ignore_despawn'])) $_POST['ignore_despawn'] = 0;
+  if (!isset($_POST['aggro_pc'])) $_POST['aggro_pc'] = 0;
 
   // Check for special attacks change
   $new_specialattks = '';
@@ -1301,8 +1364,6 @@ function update_npc () {
   if ($see_hide != $_POST['see_hide']) $fields .= "see_hide=\"" . $_POST['see_hide'] . "\", ";
   if ($see_improved_hide != $_POST['see_improved_hide']) $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   if ($trackable != $_POST['trackable']) $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
-  //isbot
-  //exclude
   if ($ATK != $_POST['ATK']) $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   if ($Accuracy != $_POST['Accuracy']) $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
   //Avoidance
@@ -1322,10 +1383,8 @@ function update_npc () {
   if ($ignore_distance != $_POST['ignore_distance']) $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   if ($encounter != $_POST['encounter']) $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
   if ($ignore_despawn != $_POST['ignore_despawn']) $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
+  if ($aggro_pc != $_POST['aggro_pc']) $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
 
-  //peqid
-  //unique_
-  //fixed
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
@@ -1350,6 +1409,7 @@ function add_npc () {
   if ($_POST['underwater'] != 1) $_POST['underwater'] = 0;
   if ($_POST['isquest'] != 1) $_POST['isquest'] = 0;
   if ($_POST['ignore_despawn'] != 1) $_POST['ignore_despawn'] = 0;
+  if ($_POST['aggro_pc'] != 1) $_POST['aggro_pc'] = 0;
 
   foreach ($specialattacks as $k => $v) {
     if (isset($_POST["$k"])) {
@@ -1436,8 +1496,6 @@ function add_npc () {
   $fields .= "see_hide=\"" . $_POST['see_hide'] . "\", ";
   $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
-  //isbot
-  //exclude
   $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
   //Avoidance
@@ -1456,10 +1514,8 @@ function add_npc () {
   $fields .= "light=\"" . $_POST['light'] . "\", ";
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
-  $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\" ";
-  //peqid
-  //unique_
-  //fixed
+  $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
+  $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\" ";
 
   if ($fields != '') {
     $query = "INSERT INTO npc_types SET $fields";
@@ -1551,8 +1607,6 @@ function copy_npc () {
   $fields .= "see_hide=\"" . $_POST['see_hide'] . "\", ";
   $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
-  //isbot
-  //exclude
   $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
   //Avoidance
@@ -1571,10 +1625,8 @@ function copy_npc () {
   $fields .= "light=\"" . $_POST['light'] . "\", ";
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
-  $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\"";
-  //peqid
-  //unique_
-  //fixed
+  $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
+  $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\"";
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
@@ -1718,6 +1770,9 @@ function update_npc_bytier() {
 
 function get_faction_name ($id) {
   global $mysql;
+
+  if($id == '')
+  	$id = 0;
 
   $query = "SELECT name FROM faction_list WHERE id=$id";
   $result = $mysql->query_assoc($query);
@@ -2414,6 +2469,373 @@ function move_down_factionhit() {
     $mysql->query_no_result($query);
     
   }
+}
+
+function mass_update_npcs() 
+{
+  global $mysql, $z, $npcid, $npcfields;
+
+  $zid = getZoneID($z);
+  $min_id = $zid*1000-1;
+  $max_id = $zid*1000+1000;
+  $class = $_POST['class_selected'];
+  $race = $_POST['race_selected'];
+  $bodytype = $_POST['body_selected'];
+  $name = $_POST['npcname'];
+  $level = $_POST['npclevel'];
+  $hp = $_POST['npchp'];
+  $change_all = $_POST['change_all'];
+  $hp_value = $_POST['hp_value'];
+  $level_value = $_POST['level_value'];
+
+  $raw_stat1 = $_POST['npctype_selected1'];
+  $stat1 = $npcfields[$raw_stat1];
+  $value1 = $_POST['npcvalue1'];
+
+  $raw_stat2 = $_POST['npctype_selected2'];
+  $stat2= $npcfields[$raw_stat2];
+  $value2= $_POST['npcvalue2'];
+
+  $raw_stat3 = $_POST['npctype_selected3'];
+  $stat3 = $npcfields[$raw_stat3];
+  $value3 = $_POST['npcvalue3'];
+
+  $raw_stat4 = $_POST['npctype_selected4'];
+  $stat4 = $npcfields[$raw_stat4];
+  $value4 = $_POST['npcvalue4'];
+
+  $raw_stat5 = $_POST['npctype_selected5'];
+  $stat5 = $npcfields[$raw_stat5];
+  $value5 = $_POST['npcvalue5'];
+
+  $raw_stat6 = $_POST['npctype_selected6'];
+  $stat6 = $npcfields[$raw_stat6];
+  $value6 = $_POST['npcvalue6'];
+
+  $final_string = '';
+  if($stat1 && $value1 != '')
+  {
+    $final_string .= "`$stat1`=\"$value1\"";
+  }
+  if($stat2 && $value2 != '')
+  {
+    if($stat1 && $value1 != '')
+      $final_string .= ", `$stat2`=\"$value2\"";
+    else
+      $final_string .= "`$stat2`=\"$value2\"";
+  }
+  if($stat3 && $value3 != '')
+  {
+    if(($stat1 && $value1 != '') || ($stat2 && $value2 != ''))
+      $final_string .= ", `$stat3`=\"$value3\"";
+    else
+      $final_string .= "`$stat3`=\"$value3\"";
+  }
+  if($stat4 && $value4 != '')
+  {
+    if(($stat1 && $value1 != '') || ($stat2 && $value2 != '') || ($stat3 && $value3 != ''))
+     $final_string .= ", `$stat4`=\"$value4\"";
+    else
+      $final_string .= "`$stat4`=\"$value4\"";
+  }
+  if($stat5 && $value5 != '')
+  {
+    if(($stat1 && $value1 != '') || ($stat2 && $value2 != '') || ($stat3 && $value3 != '') || ($stat4 && $value4 != ''))
+      $final_string .= ", `$stat5`=\"$value5\"";
+    else
+      $final_string .= "`$stat5`=\"$value5\"";
+  }
+  if($stat6 && $value6 != '')
+  {
+    if(($stat1 && $value1 != '') || ($stat2 && $value2 != '') || ($stat3 && $value3 != '') || ($stat4 && $value4 != '') || ($stat5 && $value5 != ''))
+      $final_string .= ", `$stat6`=\"$value6\"";
+    else
+      $final_string .= "`$stat6`=\"$value6\"";
+  }
+
+  if($race == 0){ $nrace = "race"; }
+  if($race > 0){ $nrace = $race; }
+  if($class == 0){ $nclass = "class"; }
+  if($class > 0){ $nclass = $class; }
+  if($name == ''){ $nname = "name"; }
+  if($name != ''){ $nname = $name; }
+  if($bodytype == 0){ $nbodytype = "bodytype"; }
+  if($bodytype > 0){ $nbodytype = $bodytype; }
+
+  $where_string = "";
+  if($level != '' && $level > 0)
+  { 
+    $sign = "=";
+    if($level_value == 1)
+    {
+      $sign = ">";
+    }
+    elseif($level_value == 2)
+    {
+      $sign = "<";
+    }
+    $where_string .= " AND level $sign $level";
+  }
+  if($hp != '')
+  { 
+    $sign = "=";
+    if($hp_value == 1)
+    {
+      $sign = ">";
+    }
+    elseif($hp_value == 2)
+    {
+      $sign = "<";
+    }
+    $where_string .= " AND hp $sign $hp";
+  }
+
+  if($final_string != '')
+  {
+    if($change_all == 1)
+    {
+      $query = "UPDATE npc_types SET $final_string WHERE id > $min_id AND id < $max_id";
+      $mysql->query_no_result($query);
+    }
+    elseif($name == '' && $class == 0 && $race == 0 && $bodytype == 0 && ($level == '' || $level == 0) && $hp == '') 
+    {
+      $query = "UPDATE npc_types SET $final_string WHERE id=$npcid";
+      $mysql->query_no_result($query);
+    }
+    elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodtype > 0)) 
+    {
+      $query = "UPDATE npc_types SET $final_string WHERE name=$nname $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
+      $mysql->query_no_result($query);
+    }
+    else 
+    {
+      $query = "UPDATE npc_types SET $final_string WHERE name like \"$nname\" $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
+      $mysql->query_no_result($query);
+    }
+  }
+}
+
+function change_special_abilitities() {
+  check_authorization();
+  global $mysql, $z, $npcid, $specialattacks, $max_special_ability;
+
+  $zid = getZoneID($z);
+  $min_id = $zid*1000-1;
+  $max_id = $zid*1000+1000;
+  $class = $_POST['class_selected'];
+  $race = $_POST['race_selected'];
+  $bodytype = $_POST['body_selected'];
+  $name = $_POST['npcname'];
+  $level = $_POST['npclevel'];
+  $hp = $_POST['npchp'];
+  $special_ability = $_POST['special_ability'];
+  $sa_type = $_POST['sa_type'];
+  $parameter = $_POST['parameter'];
+  $custom = $_POST['custom'];
+  $change_all = $_POST['change_all'];
+  $hp_value = $_POST['hp_value'];
+  $level_value = $_POST['level_value'];
+
+  if($race == 0){ $nrace = "race"; }
+  if($race > 0){ $nrace = $race; }
+  if($class == 0){ $nclass = "class"; }
+  if($class > 0){ $nclass = $class; }
+  if($name == ''){ $nname = "name"; }
+  if($name != ''){ $nname = $name; }
+  if($bodytype == 0){ $nbodytype = "bodytype"; }
+  if($bodytype > 0){ $nbodytype = $bodytype; }
+  if($parameter == ''){ $nparameter = "1"; }
+  if($parameter != ''){ $nparameter = $parameter; }
+  
+  $where_string = "";
+  if($level != '' && $level > 0)
+  { 
+    $sign = "=";
+    if($level_value == 1)
+    {
+      $sign = ">";
+    }
+    elseif($level_value == 2)
+    {
+      $sign = "<";
+    }
+    $where_string .= " AND level $sign $level";
+  }
+  if($hp != '')
+  { 
+    $sign = "=";
+    if($hp_value == 1)
+    {
+      $sign = ">";
+    }
+    elseif($hp_value == 2)
+    {
+      $sign = "<";
+    }
+    $where_string .= " AND hp $sign $hp";
+  }
+
+  if($sa_type > 0 && $sa_type != 3 && $special_ability > 0)
+  {
+    if($sa_type == 1 || $sa_type == 2)
+    {
+        if($change_all == 1)
+        {
+          $query = "SELECT id AS currentid, `special_abilities` from npc_types WHERE id > $min_id AND id < $max_id";
+        } 
+        elseif($name == '' && $class == 0 && $race == 0 && $bodytype == 0 && ($level == '' || $level == 0) && $hp == '') 
+        {
+          $query = "SELECT id AS currentid, `special_abilities` from npc_types WHERE id=$npcid";
+        }
+        elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodtype > 0)) 
+        {
+          $query = "SELECT id AS currentid, `special_abilities` from npc_types WHERE name=$nname $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
+        }
+        else
+        {
+          $query = "SELECT id AS currentid, `special_abilities` from npc_types WHERE name like \"$nname\" $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
+        }
+        $result = $mysql->query_mult_assoc($query);
+        if ($result) 
+        {
+          $count = 0;
+          foreach ($result as $result) 
+          {
+            $currentid = $result['currentid'];
+            $special_abilities = $result['special_abilities'];
+            $new_special_abilities = '';
+            $sa = array();
+				    for ($i = 1; $i <= $max_special_ability; $i++)
+            {
+				        if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1)
+                {
+				          $match[0] = ltrim($match[0], "^");
+				          $new_special_abilities = $match[0];
+                  $new_special_abilities = rtrim($new_special_abilities, ",");
+                  if($new_special_abilities != '')
+                  {
+                    $sa[$i] = 1;
+                  }
+                  else
+                  {
+                    $sa[$i] = 0;
+                  }
+				        }
+				    }
+				    
+            if($sa_type == 1)
+            {
+              if($sa[$special_ability] == 0)
+              {
+                $special_abilities .= "^$special_ability,$nparameter";
+                $query = "UPDATE npc_types SET special_abilities = \"$special_abilities\" WHERE id=$currentid";
+                $mysql->query_no_result_no_log($query);
+                ++$count;
+              }
+            }
+            if($sa_type == 2)
+            {
+              if($sa[$special_ability] == 1)
+              {
+                  $specabil = array();
+                  $specabilcont = array();
+
+                  for ($i = 1; $i <= $max_special_ability; $i++) 
+                  {
+                    if (preg_match("/^$i,/", $special_abilities) == 1) 
+                    {
+                      $specabil[$i] = 1;
+                      // Leading special ability
+                      if (preg_match("/^$i,.+?\^/", $special_abilities, $match) == 1)
+                      {
+                        $specabilcont[$i] = $match[0];
+                        $specabilcont[$i] = rtrim($specabilcont[$i], "^");
+                      }
+                      // Only special ability
+                      else 
+                      {
+                        preg_match("/^$i,.+?\$/", $special_abilities, $match);
+                        $specabilcont[$i] = $match[0];
+                      }
+                    }
+                    elseif (preg_match("/\^$i,/", $special_abilities) == 1)
+                    {
+                      $specabil[$i] = 1;
+                      // Middle special ability
+                      if (preg_match("/\^$i,.+?\^/", $special_abilities, $match) == 1)
+                      {
+                        $specabilcont[$i] = $match[0];
+                        $specabilcont[$i] = trim($specabilcont[$i], "^");
+                      }
+                      // Trailing special ability
+                      else 
+                      {
+                        preg_match("/\^$i,.+?\$/", $special_abilities, $match);
+                        $specabilcont[$i] = $match[0];
+                        $specabilcont[$i] = trim($specabilcont[$i], "^");
+                      }
+                    }
+                    else 
+                    {
+                      $specabil[$i] = 0;
+                    }
+                }
+                
+                $special_abilities = "";
+                for ($i = 1; $i <= $max_special_ability; $i++) 
+                {
+                  if($specabilcont[$i] != '' && $i != $special_ability)
+                  {
+                    $special_abilities .= "$specabilcont[$i]^";
+                  }
+                }
+                $query = "UPDATE npc_types SET special_abilities = \"$special_abilities\" WHERE id=$currentid";
+                $mysql->query_no_result_no_log($query);
+                $query2 = "UPDATE npc_types SET special_abilities = TRIM(TRAILING '^' FROM special_abilities)";
+                $mysql->query_no_result_no_log($query2);
+                ++$count;
+             }
+            }
+        }
+        $added = "ADDED";
+        if($sa_type == 2)
+          $added = "REMOVED";
+        $string = "$count NPCs had Special Ability $special_ability $added in zone $zid.";
+        logPerl($string);
+      }
+    }
+  }
+  if($sa_type == 3)
+  {
+    if($change_all == 1)
+    {
+      $query = "UPDATE npc_types SET special_abilities = \"$custom\" WHERE id > $min_id AND id < $max_id";
+      $mysql->query_no_result($query);
+    }
+    elseif($name == '' && $class == 0 && $race == 0 && $bodytype == 0 && ($level == '' || $level == 0) && $hp == '') 
+    {
+      $query = "UPDATE npc_types SET special_abilities = \"$custom\" WHERE id=$npcid";
+      $mysql->query_no_result($query);
+    }
+    elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodtype > 0)) 
+    {
+      $query = "UPDATE npc_types SET special_abilities = \"$custom\" WHERE name=$nname $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
+      $mysql->query_no_result($query);
+    }
+    else 
+    {
+      $query = "UPDATE npc_types SET special_abilities = \"$custom\" WHERE name like \"$nname\" $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
+      $mysql->query_no_result($query);
+    }
+  }
+}
+
+function get_special_ability() {
+  global $mysql, $npcid;
+
+  $query = "SELECT special_abilities FROM npc_types WHERE id=$npcid";
+  $result = $mysql->query_assoc($query);
+  return $result['special_abilities'];
 }
 
 ?>

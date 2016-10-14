@@ -170,7 +170,7 @@
                   Tethered (33): <br><input type="text" name="33" size="10"><br>
 		              Flee Percent (37): <br><input type="text" name="37" size="10"><br>
 		              Chase Distance (40): <br><input type="text" name="40" size="10"><br>
-                  Corpse Camper (49):<br/><input type="text" name="40" size="10"><br/>
+                  Corpse Camper (49):<br/><input type="text" name="49" size="10"><br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="6" value="6,1^"/>  Triple Attack<br>
@@ -207,6 +207,7 @@
                   <input type="checkbox" name="25" value="25,1^"/>  Immune to Aggro<br>
                   <input type="checkbox" name="27" value="27,1^"/>  See through Feign Death<br>
                   <input type="checkbox" name="npc_aggro" value="1"/> Can Aggro NPCs<br>
+                  <input type="checkbox" name="pc_aggro" value="1"/> Always Aggro PCs<br>
                   <input type="checkbox" name="30" value="30,1^"/>  Does NOT buff/heal friends<br>
 		              <input type="checkbox" name="36" value="36,1^"/>  Always Flee<br>
                   <input type="checkbox" name="45" value="45,1^"/>  Always Flee if Low Con<br/>

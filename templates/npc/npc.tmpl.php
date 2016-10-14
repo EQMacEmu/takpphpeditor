@@ -17,7 +17,7 @@
           <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&action=42"><img src="images/add.gif" border="0" title="Add an NPC"></a>
           <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=1"><img src="images/c_table.gif" border="0" title="Edit this NPC"></a>
           <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=43"><img src="images/upgrade.gif" border="0" title="Change NPC's Level"></a>
-          <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=52"><img src="images/create.gif" border="0" title="Change NPC's AC/Resists"></a>
+          <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=85"><img src="images/create.gif" border="0" title="Mass Edit Stats"></a>
           <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=40"><img src="images/zone.gif" border="0" title="Get next npcid for a zone"></a>
           <a onClick="return confirm('Really delete npcid <?=$npcid?>?');" href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=24"><img src="images/table.gif" border="0" title="Delete this NPC"></a>
         </div>
@@ -198,12 +198,12 @@
                  </tr>
                   <tr>
                     <td align="left" width="34%">NPC Aggro: <?=$npc_aggro?></td>
-                   <td align="left" width="34%">Ignore Distance: <?=$ignore_distance?></td>
-                   <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="34%">Always Aggro PCs: <?=$aggro_pc?></td>
+                   <td align="left" width="33%">Ignore Distance: <?=$ignore_distance?></td>
                   </tr>
                   <?
 				    $new_special_abilities = '';
-				      for ($i = 1; $i <= 51; $i++){
+				      for ($i = 1; $i <= $max_special_ability; $i++){
 				        if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1){
 				          $match[0] = ltrim($match[0], "^");
 				          $new_special_abilities .= $match[0];
@@ -384,6 +384,7 @@
         <input type="hidden" name="ignore_distance" value="<?=$ignore_distance?>">
         <input type="hidden" name="encounter" value="<?=$encounter?>">
         <input type="hidden" name="ignore_despawn" value="<?=$ignore_despawn?>">
+        <input type="hidden" name="aggro_pc" value="<?=$aggro_pc?>">
         <center>
           NEW ID:<input type="text" name="id" size="10" value="<?=$suggestedid?>">
           <input type="submit" value="Copy NPC">
