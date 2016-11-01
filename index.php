@@ -35,6 +35,9 @@ switch ($editor) {
 	case 'npc':
 		require_once(dirname(__FILE__) . '/lib/npc.php');
 		break;
+	case 'npcmultiedit':
+		require_once(dirname(__FILE__) . '/lib/npcmultiedit.php');
+		break;
 	case 'spawn':
 		require_once(dirname(__FILE__) . '/lib/spawn.php');
 		break;

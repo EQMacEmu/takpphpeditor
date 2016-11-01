@@ -89,6 +89,7 @@ switch ($editor) {
     $searchbar = new Template("templates/searchbar/searchbar.spellsed.tmpl.php");
     $searchbar->set('curreditor', $editor);
     break;
+  case 'npcmultiedit':
   case 'zone':
     $zonelist = zones();
     $zonelist2 = zones2();

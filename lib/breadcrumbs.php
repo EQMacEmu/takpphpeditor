@@ -6,6 +6,9 @@ switch ($editor) {
   case 'npc':
     $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>NPC Editor</a>";
     break;
+  case 'npcmultiedit':
+    $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>NPC Multi-Edit</a>";
+    break;
   case 'loot':
     $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>Loot Editor</a>";
     break;
