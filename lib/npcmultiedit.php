@@ -100,8 +100,8 @@ $statsArr = array(
 		"max" => 100
 	),
 	13 => array(
-		"label" => "See Hide",
-		"field" => "see_hide",
+		"label" => "See Sneak",
+		"field" => "see_sneak",
 		"type" => "int",
 		"size" => 10,
 		"min" => 0,

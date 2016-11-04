@@ -76,8 +76,8 @@
                 </select>
               </td>
               <td align="left">
-                See Hide:<br/>
-                <select name="see_hide">
+                See Sneak:<br/>
+                <select name="see_sneak">
                   <option value="0">No</option>
                   <option value="1">Yes</option>
                 </select>

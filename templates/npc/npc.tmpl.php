@@ -121,7 +121,7 @@
                     <td align="left" width="34%">See ITU: <?=$see_invis_undead?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">See Hide: <?=$see_hide?></td>
+                    <td align="left" width="33%">See Sneak: <?=$see_sneak?></td>
                     <td align="left" width="33%">See Imp Hide: <?=$see_improved_hide?></td>
                     <td align="left" width="34%">Scalerate: <?=$scalerate?></td>
                   </tr>
@@ -361,7 +361,7 @@
         <input type="hidden" name="_INT" value="<?=$_INT?>">
         <input type="hidden" name="WIS" value="<?=$WIS?>">
         <input type="hidden" name="CHA" value="<?=$CHA?>">
-        <input type="hidden" name="see_hide" value="<?=$see_hide?>">
+        <input type="hidden" name="see_sneak" value="<?=$see_sneak?>">
         <input type="hidden" name="see_improved_hide" value="<?=$see_improved_hide?>">
         <input type="hidden" name="trackable" value="<?=$trackable?>">
         <input type="hidden" name="ATK" value="<?=$ATK?>">

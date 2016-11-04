@@ -60,7 +60,7 @@
                 <td align="left">Accuracy: <br/><input type="text" name="Accuracy" size="10" value="<?=$Accuracy?>"></td>
                 <td align="left">See Invis:<br/><input type="text" name="see_invis" size="10" value="<?=$see_invis?>"></td>
                 <td align="left">See ITU:  <br/><input type="text" name="see_invis_undead" size="10" value="<?=$see_invis_undead?>"></td>
-                <td align="left">See Hide: <br/><input type="text" name="see_hide" size="10" value="<?=$see_hide?>"></td>
+                <td align="left">See Sneak: <br/><input type="text" name="see_sneak" size="10" value="<?=$see_sneak?>"></td>
                 <td align="left">See IH:   <br/><input type="text" name="see_improved_hide" size="10" value="<?=$see_improved_hide?>"></td>
               </tr>
             </table>

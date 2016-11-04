@@ -1361,7 +1361,7 @@ function update_npc () {
   if ($_INT != $_POST['_INT']) $fields .= "_INT=\"" . $_POST['_INT'] . "\", ";
   if ($WIS != $_POST['WIS']) $fields .= "WIS=\"" . $_POST['WIS'] . "\", ";
   if ($CHA != $_POST['CHA']) $fields .= "CHA=\"" . $_POST['CHA'] . "\", ";
-  if ($see_hide != $_POST['see_hide']) $fields .= "see_hide=\"" . $_POST['see_hide'] . "\", ";
+  if ($see_sneak != $_POST['see_sneak']) $fields .= "see_sneak=\"" . $_POST['see_sneak'] . "\", ";
   if ($see_improved_hide != $_POST['see_improved_hide']) $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   if ($trackable != $_POST['trackable']) $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
   if ($ATK != $_POST['ATK']) $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
@@ -1493,7 +1493,7 @@ function add_npc () {
   $fields .= "_INT=\"" . $_POST['_INT'] . "\", ";
   $fields .= "WIS=\"" . $_POST['WIS'] . "\", ";
   $fields .= "CHA=\"" . $_POST['CHA'] . "\", ";
-  $fields .= "see_hide=\"" . $_POST['see_hide'] . "\", ";
+  $fields .= "see_sneak=\"" . $_POST['see_sneak'] . "\", ";
   $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
   $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
@@ -1604,7 +1604,7 @@ function copy_npc () {
   $fields .= "_INT=\"" . $_POST['_INT'] . "\", ";
   $fields .= "WIS=\"" . $_POST['WIS'] . "\", ";
   $fields .= "CHA=\"" . $_POST['CHA'] . "\", ";
-  $fields .= "see_hide=\"" . $_POST['see_hide'] . "\", ";
+  $fields .= "see_sneak=\"" . $_POST['see_sneak'] . "\", ";
   $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
   $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
