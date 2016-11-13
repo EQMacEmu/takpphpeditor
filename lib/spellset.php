@@ -1,21 +1,23 @@
 <?php
 
 $spelltypes = array(
-  1   => "Nuke",
-  2   => "Heal",
-  4   => "Root",
-  8   => "Buff",
-  16  => "Escape",
-  32  => "Pet",
-  64  => "Lifetap",
-  128 => "Snare",
-  256 => "DOT",
-  512 => "Dispel",
-  1024 => "In-Combat Buff",
-  2048 => "Mez",
-  4096 => "Charm",
-  8192 => "Slow",
-  16384 => "Debuff",
+    1    => "Nuke",
+    2    => "Heal",
+    4    => "Root",
+    8    => "Buff",
+    16   => "Escape",
+    32   => "Pet",
+    64   => "Lifetap",
+    128  => "Snare",
+    256  => "DoT",
+    512  => "Dispel",
+    1024 => "In Combat Buff",
+    2048 => "Mez",
+    4096 => "Charm",
+    8192 => "Slow",
+    16384 => "Debuff",
+    32768 => "Cure",
+    65536 => "Resurrect"
 );
 
 switch($action) {

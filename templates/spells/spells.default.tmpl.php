@@ -10,7 +10,7 @@
              <center>
                <a href="index.php?editor=spellset">Edit Spell Sets</a><br>
                <a href="index.php?editor=spells">Edit Spells</a><br>
-               <a href="genspells.php" target="_blank">Generate spells_us.txt</a>
+               <a href="genspells.php" target="_blank">Generate spells_en.txt</a>
              </center>
            </td>
          </tr>

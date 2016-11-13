@@ -150,6 +150,14 @@
                       <td width="17%">Casting Anim:<br/><input type="text" name="CastingAnim" value="<?=$CastingAnim?>" size="6"></td>
                       <td width="17%">Target Anim:<br/><input type="text" name="TargetAnim" value="<?=$TargetAnim?>" size="6"></td>
                     </tr>
+                    <tr>
+                      <td width="16%">Persistent Particles:<br/><input type="text" name="use_persistent_particles" value="<?=$use_persistent_particles?>" size="6"></td>
+                      <td width="16%">Recourse Link:<br/><input type="text" name="RecourseLink" value="<?=$RecourseLink?>" size="6"></td>
+                      <td width="16%">Small Targets:<br/><input type="text" name="small_targets_only" value="<?=$small_targets_only?>" size="6"></td>
+                      <td width="17%">NPC No Cast:<br/><input type="text" name="npc_no_cast" value="<?=$npc_no_cast?>" size="5"></td>
+                      <td width="17%">&nbsp;</td>
+                      <td width="17%">&nbsp;</td>
+                    </tr> 
                   </table>
                 </td>
               </tr>
@@ -157,10 +165,10 @@
                 <td colspan="2">
                   <table border="0" cellspacing="0" cellpadding="2" width="100%">
                     <tr>
-                      <td width="16%">Recourse Link:<br/><input type="text" name="RecourseLink" value="<?=$RecourseLink?>" size="6"></td>
-                      <td width="17%">Desc Num:<br/><input type="text" name="descnum" value="<?=$descnum?>" size="6"></td>
+                      <td width="16%">Desc Num:<br/><input type="text" name="descnum" value="<?=$descnum?>" size="6"></td>
                       <td width="17%">Type Desc Num:<br/><input type="text" name="typedescnum" value="<?=$typedescnum?>" size="6"></td>
                       <td width="16%">Effect Desc Num:<br/><input type="text" name="effectdescnum" value="<?=$effectdescnum?>" size="6"></td>
+                      <td width="16%">Effect Desc Num2:<br/><input type="text" name="effectdescnum2" value="<?=$effectdescnum2?>" size="6"></td>
                       <td width="17%">Spell Affect Index:<br/><input type="text" name="SpellAffectIndex" value="<?=$SpellAffectIndex?>" size="6"></td>
                       <td width="17%">&nbsp;</td>
                     </tr>
@@ -178,6 +186,10 @@
                   </select>
                 </td>
                 <td>NPC Usefulness:<br/><input type="text" name="npc_usefulness" value="<?=$npc_usefulness?>" size="6"></td>
+                </tr>
+                </table><br>
+                <table border="0" cellspacing="0" cellpadding="2" width="100%">
+                <tr>
                 <td>
                   No Partial Resist:<br/>
                   <select name="no_partial_resist" style="width:80px;">
@@ -195,29 +207,11 @@
                   </select>
                 </td>
                 <td>
-                  Reflectable:<br/>
-                  <select name="reflectable" style="width:80px;">
-                    <option value="-1"<?echo ($reflectable == -1) ? " selected" : "";?>>-1</option>
-                    <option value="0"<?echo ($reflectable == 0) ? " selected" : "";?>>0</option>
-                    <option value="1"<?echo ($reflectable == 1) ? " selected" : "";?>>1</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>
                   Is Discipline:<br/>
                   <select name="IsDiscipline" style="width:80px;">
                     <option value="-1"<?echo ($IsDiscipline == -1) ? " selected" : "";?>>-1</option>
                     <option value="0"<?echo ($IsDiscipline == 0) ? " selected" : "";?>>0</option>
                     <option value="1"<?echo ($IsDiscipline == 1) ? " selected" : "";?>>1</option>
-                  </select>
-                </td>
-                <td>
-                  Not Extendable:<br/>
-                  <select name="not_extendable" style="width:80px;">
-                    <option value="-1"<?echo ($not_extendable == -1) ? " selected" : "";?>>-1</option>
-                    <option value="0"<?echo ($not_extendable == 0) ? " selected" : "";?>>0</option>
-                    <option value="1"<?echo ($not_extendable == 1) ? " selected" : "";?>>1</option>
                   </select>
                 </td>
                 <td>
@@ -228,6 +222,38 @@
                     <option value="1"<?echo ($suspendable == 1) ? " selected" : "";?>>1</option>
                   </select>
                 </td>
+                 <td>
+                  Allow Scribe:<br/>
+                  <select name="allow_spellscribe" style="width:80px;">
+                    <option value="0"<?echo ($allow_spellscribe == 0) ? " selected" : "";?>>No</option>
+                    <option value="1"<?echo ($allow_spellscribe == 1) ? " selected" : "";?>>Yes</option>
+                  </select>
+                </td>
+                </tr>
+                <tr>
+                 <td>
+                  Reflectable:<br/>
+                  <select name="reflectable" style="width:80px;">
+                    <option value="-1"<?echo ($reflectable == -1) ? " selected" : "";?>>-1</option>
+                    <option value="0"<?echo ($reflectable == 0) ? " selected" : "";?>>0</option>
+                    <option value="1"<?echo ($reflectable == 1) ? " selected" : "";?>>1</option>
+                  </select>
+                </td>
+                <td>
+                  Not Standing:<br/>
+                  <select name="cast_not_standing" style="width:80px;">
+                    <option value="-1"<?echo ($cast_not_standing == -1) ? " selected" : "";?>>-1</option>
+                    <option value="0"<?echo ($cast_not_standing == 0) ? " selected" : "";?>>0</option>
+                    <option value="1"<?echo ($cast_not_standing == 1) ? " selected" : "";?>>1</option>
+                  </select>
+                </td>
+                 <td>
+                  Disallow Sit:<br/>
+                  <select name="disallow_sit" style="width:80px;">
+                    <option value="0"<?echo ($disallow_sit == 0) ? " selected" : "";?>>No</option>
+                    <option value="1"<?echo ($disallow_sit == 1) ? " selected" : "";?>>Yes</option>
+                  </select>
+                </td>
                 <td>
                   Allow Rest:<br/>
                   <select name="allowrest" style="width:80px;">
@@ -236,28 +262,11 @@
                     <option value="1"<?echo ($allowrest == 1) ? " selected" : "";?>>1</option>
                   </select>
                 </td>
-                <td>
-                  Not Out of Combat:<br/>
-                  <select name="NotOutofCombat" style="width:80px;">
-                    <option value="-1"<?echo ($NotOutofCombat == -1) ? " selected" : "";?>>-1</option>
-                    <option value="0"<?echo ($NotOutofCombat == 0) ? " selected" : "";?>>0</option>
-                    <option value="1"<?echo ($NotOutofCombat == 1) ? " selected" : "";?>>1</option>
-                  </select>
-                </td>
-                <td>
-                  Not In Combat:<br/>
-                  <select name="NotInCombat" style="width:80px;">
-                    <option value="-1"<?echo ($NotInCombat == -1) ? " selected" : "";?>>-1</option>
-                    <option value="0"<?echo ($NotInCombat == 0) ? " selected" : "";?>>0</option>
-                    <option value="1"<?echo ($NotInCombat == 1) ? " selected" : "";?>>1</option>
-                  </select>
-                </td>
-                <td>
-                  Persist Death:<br/>
-                  <select name="persistdeath" style="width:80px;">
-                    <option value="-1"<?echo ($persistdeath == -1) ? " selected" : "";?>>-1</option>
-                    <option value="0"<?echo ($persistdeath == 0) ? " selected" : "";?>>0</option>
-                    <option value="1"<?echo ($persistdeath == 1) ? " selected" : "";?>>1</option>
+                 <td>
+                  Wear-Off Message:<br/>
+                  <select name="wear_off_message" style="width:80px;">
+                    <option value="0"<?echo ($wear_off_message == 0) ? " selected" : "";?>>No</option>
+                    <option value="1"<?echo ($wear_off_message == 1) ? " selected" : "";?>>Yes</option>
                   </select>
                 </td>
               </tr>
@@ -268,43 +277,43 @@
             <table width="100%" border="0" cellpadding="3" cellspacing="0">
               <tr>
                 <td>Range:<br/><input type="text" name="range" size="5" value="<?=$range?>"></td>
-                <td>Mana:<br/><input type="text" name="mana" size="5" value="<?=$mana?>"></td>
-                <td>AoE Range:<br/><input type="text" name="aoerange" size="5" value="<?=$aoerange?>"></td>
-                <td>Push Back:<br/><input type="text" name="pushback" size="5" value="<?=$pushback?>"></td>
-                <td>Push Up:<br/><input type="text" name="pushup" size="5" value="<?=$pushup?>"></td>
-                <td>Recovery Time (ms):<br/><input type="text" name="recovery_time" size="5" value="<?=$recovery_time?>"></td>
-              </tr>
-              <tr>
+                <td>AoE Range:<br/><input type="text" name="aoerange" size="5" value="<?=$aoerange?>"></td>        
                 <td>Cast Time (ms):<br/><input type="text" name="cast_time" size="5" value="<?=$cast_time?>"></td>
                 <td>Recast Time (ms):<br/><input type="text" name="recast_time" size="5" value="<?=$recast_time?>"></td>
+                <td>Recovery Time (ms):<br/><input type="text" name="recovery_time" size="5" value="<?=$recovery_time?>"></td>
                 <td>AE Duration (ms):<br/><input type="text" name="AEDuration" size="5" value="<?=$AEDuration?>"></td>
-                <td>Base Difficulty:<br/><input type="text" name="basediff" size="5" value="<?=$basediff?>"></td>
-                <td>Resist Difficulty:<br/><input type="text" name="ResistDiff" size="5" value="<?=$ResistDiff?>"></td>
-                <td>Endurance Cost:<br/><input type="text" name="EndurCost" size="5" value="<?=$EndurCost?>"></td>
               </tr>
               <tr>
+                <td>Mana:<br/><input type="text" name="mana" size="5" value="<?=$mana?>"></td> 
+                <td>Push Back:<br/><input type="text" name="pushback" size="5" value="<?=$pushback?>"></td>
+                <td>Push Up:<br/><input type="text" name="pushup" size="5" value="<?=$pushup?>"></td>
+                <td>Base Difficulty:<br/><input type="text" name="basediff" size="5" value="<?=$basediff?>"></td>
+                <td>Resist Difficulty:<br/><input type="text" name="ResistDiff" size="5" value="<?=$ResistDiff?>"></td>
+                <td>Hate Added:<br/><input type="text" name="HateAdded" value="<?=$HateAdded?>" size="5"></td>
+              </tr>
+              <tr>
+                <td width="16%">Endurance Cost:<br/><input type="text" name="EndurCost" size="5" value="<?=$EndurCost?>"></td>
                 <td width="17%">Endurance Upkeep:<br/><input type="text" name="EndurUpkeep" value="<?=$EndurUpkeep?>" size="5"></td>
                 <td width="17%">Endurance Timer:<br/><input type="text" name="EndurTimerIndex" value="<?=$EndurTimerIndex?>" size="5"></td>
-                <td width="16%">Hate Added:<br/><input type="text" name="HateAdded" value="<?=$HateAdded?>" size="5"></td>
-                <td width="17%">Bonus Hate:<br/><input type="text" name="bonushate" value="<?=$bonushate?>" size="5"></td>
                 <td width="17%">Number of Hits:<br/><input type="text" name="numhits" value="<?=$numhits?>" size="5"></td>
                 <td width="16%">NumHits Type:<br/><input type="text" name="numhitstype" value="<?=$numhitstype?>" size="5"></td>
+                <td width="17%">AI Point Bonus:<br/><input type="text" name="ai_pt_bonus" value="<?=$ai_pt_bonus?>" size="5"></td>
               </tr>
               <tr>
                 <td width="17%">PVP Resist Base:<br/><input type="text" name="pvpresistbase" value="<?=$pvpresistbase?>" size="5"></td>
                 <td width="17%">PVP Resist Calc:<br/><input type="text" name="pvpresistcalc" value="<?=$pvpresistcalc?>" size="5"></td>
                 <td width="16%">PVP Resist Cap:<br/><input type="text" name="pvpresistcap" value="<?=$pvpresistcap?>" size="5"></td>
-                <td width="17%">Song Cap:<br/><input type="text" name="songcap" value="<?=$songcap?>" size="5"></td>
-                <td width="17%">Min Resist:<br/><input type="text" name="MinResist" value="<?=$MinResist?>" size="5"></td>
-                <td width="16%">Max Resist:<br/><input type="text" name="MaxResist" value="<?=$MaxResist?>" size="5"></td>
+                <td width="17%">PVP Duration:<br/><input type="text" name="pvp_duration" value="<?=$pvp_duration?>" size="5"></td>
+                <td width="16%">PVP Duration Cap:<br/><input type="text" name="pvp_duration_cap" value="<?=$pvp_duration_cap?>" size="5"></td>
+                <td width="17%">&nbsp;</td>
               </tr>
               <tr>
-                <td width="17%">Cone Start Angle:<br/><input type="text" name="ConeStartAngle" value="<?=$ConeStartAngle?>" size="5"></td>
-                <td width="17%">Cone Stop Angle:<br/><input type="text" name="ConeStopAngle" value="<?=$ConeStopAngle?>" size="5"></td>
-                <td width="16%">Rank:<br/><input type="text" name="rank" value="<?=$rank?>" size="5"></td>
-                <td width="17%">Cast Restriction:<br/><input type="text" name="CastRestriction" value="<?=$CastRestriction?>" size="5"></td>
-                <td width="17%">Max Targets:<br/><input type="text" name="maxtargets" value="<?=$maxtargets?>" size="5"></td>
+                <td width="17%">Resist Per Level:<br/><input type="text" name="resist_per_level" value="<?=$resist_per_level?>" size="5"></td>
+                <td width="17%">Resist Cap:<br/><input type="text" name="resist_cap" value="<?=$resist_cap?>" size="5"></td>
                 <td width="16%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
+                <td width="16%">&nbsp;</td>
+                <td width="17%">&nbsp;</td>
               </tr>
             </table>
           </fieldset><br/>
@@ -599,7 +608,6 @@
                 <td>Magician:<br/><input type="text" name="classes13" size="3" value="<?=$classes13?>"></td>
                 <td>Enchanter:<br/><input type="text" name="classes14" size="3" value="<?=$classes14?>"></td>
                 <td>Beastlord:<br/><input type="text" name="classes15" size="3" value="<?=$classes15?>"></td>
-                <td>Berserker:<br/><input type="text" name="classes16" size="3" value="<?=$classes16?>"></td>
               </tr>
             </table>
           </fieldset><br/>
@@ -633,7 +641,7 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="4" align="center"><input type="checkbox" name="deities0" <? echo $deities0 ? "checked" : "" ?>> Deities0</td>
+                <td colspan="4" align="center"><input type="checkbox" name="deities0" <? echo $deities0 ? "checked" : "" ?>> Agnostic</td>
               </tr>
             </table>
           </fieldset><br/>
