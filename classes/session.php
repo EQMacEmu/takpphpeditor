@@ -2,9 +2,13 @@
 
 class session {
 
-  public static function start() {
-    session_start();
-  }
+	public static function start() {
+		global $SessionTimeout;
+		session_start();
+		ini_set('session.gc_maxlifetime', $SessionTimeout);
+		ini_set('session.gc_probability', 1);
+		session_set_cookie_params($SessionTimeout);
+	}
   
   public static function login($login, $pw) {
     global $mysql, $password;
