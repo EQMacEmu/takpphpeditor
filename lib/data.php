@@ -511,7 +511,8 @@ $specialattacks = array(
  "48" => "PC Deathblow Creates Corpse",
  "49" => "Corpse Camper",
  "50" => "Reverse Slow",
- "51" => "Immune to Haste"
+ "51" => "Immune to Haste",
+ "52" => "Immune to Disarm"
 );
 
 $tradeskills = array(
@@ -737,16 +738,16 @@ $skilltypes = array (
 );
 
 $itemmaterial= array(
--1  => "Unknown-1",
  0  => "Cloth",
  1  => "Leather",
  2  => "Ringmail",
  3  => "Plate",
  4  => "Cured Silk",
  5  => "Chitin",
- 6  => "Unknown06",
+ 6  => "Unused06",
  7  => "Scale/BlackIron",
- 8  => "Unknown08",
+ 8  => "Unused08",
+ 9  => "Unused09",
  10 => "Red Robe",
  11 => "Element Robe",
  12 => "Blighted Robe",
@@ -760,9 +761,7 @@ $itemmaterial= array(
  20 => "Pog Plate",
  21 => "Ulthork/Tizmak",
  22 => "Ry`Gorr",
- 23 => "Kael/Guardian",
- 24 => "Velious Monk",
- 50 => "VS Commoner"
+ 23 => "Kael/Guardian"
 );
 
 $itemtypes= array(

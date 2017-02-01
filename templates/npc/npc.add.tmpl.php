@@ -203,6 +203,7 @@
                   <input type="checkbox" name="21" value="21,1^"/>  Immune to Fleeing<br>
                   <input type="checkbox" name="23" value="23,1^"/>  Immune to non-Magical Melee<br>
                   <input type="checkbox" name="22" value="22,1^"/>  Immune to non-Bane Melee<br>
+                  <input type="checkbox" name="52" value="52,1^"/>  Immune to Disarm<br>
                   <input type="checkbox" name="24" value="24,1^"/>  Will Not Aggro<br>
                   <input type="checkbox" name="25" value="25,1^"/>  Immune to Aggro<br>
                   <input type="checkbox" name="27" value="27,1^"/>  See through Feign Death<br>
