@@ -791,7 +791,6 @@ switch ($action) {
         $body->set($key, $value);
       }
     }
-    $body->set('existing', getExistingEmoteEvents($_GET['emoteid']));
     break;
   case 75: // Update emote
     check_authorization();
@@ -824,7 +823,6 @@ switch ($action) {
       $emoteid = suggest_emoteid();
     }
     $body->set('emoteid', $emoteid);
-    $body->set('existing', getExistingEmoteEvents($emoteid));
     break;
   case 77: // Insert emote
     check_authorization();
@@ -901,7 +899,6 @@ switch ($action) {
       $emoteid = suggest_emoteid();
     }
     $body->set('emoteid', $emoteid);
-    $body->set('existing', getExistingEmoteEvents($emoteid));
     break;
   case 82: // Drop emote set from NPC
     check_authorization();
@@ -2326,22 +2323,6 @@ function getNPCsByEmote() {
 
   if ($result)
     return $result;
-}
-
-function getExistingEmoteEvents($emoteid) {
-  global $mysql;
-  $events = array();
-
-  $query = "SELECT event_ FROM npc_emotes WHERE emoteid=$emoteid";
-  $result = $mysql->query_mult_assoc($query);
-
-  if ($result) {
-    foreach ($result as $result) {
-      array_push($events, $result['event_']);
-    }
-  }
-
-  return $events;
 }
 
 function setExistingEmote($npcid, $emoteid) {
