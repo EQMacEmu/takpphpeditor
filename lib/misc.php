@@ -422,7 +422,7 @@ function get_fishing() {
   $zid = getZoneID($z);
   $array = array();
 
-  $query = "SELECT fishing.id,Itemid AS fiid,zoneid,skill_level,chance,npc_id,npc_chance, items.name AS name
+  $query = "SELECT fishing.id,Itemid AS fiid,zoneid,skill_level,chance, items.name AS name
                 FROM fishing, items
                 WHERE fishing.zoneid=$zid
                 AND fishing.Itemid=items.id
@@ -431,7 +431,7 @@ function get_fishing() {
   $result = $mysql->query_mult_assoc($query);
   if ($result) {
     foreach ($result as $result) {
-     $array['fishing'][$result['id']] = array("fsid"=>$result['id'], "fiid"=>$result['fiid'], "zoneid"=>$result['zoneid'], "skill_level"=>$result['skill_level'], "chance"=>$result['chance'], "npc_id"=>$result['npc_id'], "npc_chance"=>$result['npc_chance'], "name"=>$result['name']);
+     $array['fishing'][$result['id']] = array("fsid"=>$result['id'], "fiid"=>$result['fiid'], "zoneid"=>$result['zoneid'], "skill_level"=>$result['skill_level'], "chance"=>$result['chance'], "name"=>$result['name']);
          }
        }
   return $array;
@@ -544,7 +544,7 @@ function fishing_info() {
 
   $fsid = $_GET['fsid'];
 
-  $query = "SELECT id AS fsid,Itemid AS fiid,zoneid,skill_level,chance,npc_id,npc_chance FROM fishing WHERE id=\"$fsid\"";
+  $query = "SELECT id AS fsid,Itemid AS fiid,zoneid,skill_level,chance FROM fishing WHERE id=\"$fsid\"";
   $result = $mysql->query_assoc($query);
 
   return $result;
@@ -624,10 +624,8 @@ function update_fishing() {
   $zoneid = $_POST['zoneid'];
   $skill_level = $_POST['skill_level'];
   $chance = $_POST['chance'];
-  $npc_id = $_POST['npc_id'];
-  $npc_chance = $_POST['npc_chance'];
 
-  $query = "UPDATE fishing SET Itemid=\"$fiid\", zoneid=\"$zoneid\", skill_level=\"$skill_level\", chance=\"$chance\", npc_id=\"$npc_id\", npc_chance=\"$npc_chance\" WHERE id=\"$fsid\"";
+  $query = "UPDATE fishing SET Itemid=\"$fiid\", zoneid=\"$zoneid\", skill_level=\"$skill_level\", chance=\"$chance\" WHERE id=\"$fsid\"";
   $mysql->query_no_result($query);
 }
 
@@ -899,10 +897,8 @@ function add_fishing() {
   $zoneid = $_POST['zoneid'];
   $skill_level = $_POST['skill_level'];
   $chance = $_POST['chance'];
-  $npc_id = $_POST['npc_id'];
-  $npc_chance = $_POST['npc_chance'];
 
-  $query = "INSERT INTO fishing SET id=\"fsid\", Itemid=\"$fiid\", zoneid=\"$zoneid\", skill_level=\"$skill_level\", chance=\"$chance\", npc_id=\"$npc_id\", npc_chance=\"$npc_chance\"";
+  $query = "INSERT INTO fishing SET id=\"fsid\", Itemid=\"$fiid\", zoneid=\"$zoneid\", skill_level=\"$skill_level\", chance=\"$chance\"";
   $mysql->query_no_result($query);
 }
 
