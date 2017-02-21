@@ -29,28 +29,16 @@
                 <tr>
                   <td align="left" width="30%">Map:<br><input type="text" name="map_file_name" size="20" value="<?=$map_file_name?>"></td>
                   <td align="left" width="23%">Ruleset:<br><input type="text" name="ruleset" size="7" value="<?=$ruleset?>"></td>
-                  <td align="left" width="25%">Exp Multiplier:<br><input type="text" name="zone_exp_multiplier" size="7" value="<?=$zone_exp_multiplier?>"></td>
+                  <td align="left" width="23%">Exp Multiplier:<br><input type="text" name="zone_exp_multiplier" size="7" value="<?=$zone_exp_multiplier?>"></td>
+                  <td align="left" width="24%">Walkspeed:<br><input type="text" name="walkspeed" size="7" value="<?=$walkspeed?>"></td>
                 </tr>
                 <tr>
-                  <td align="left" width="25%">Music:<br><input type="text" name="music" size="7" value="<?=$music?>"></td>
-                  <td align="left" width="25%">RandomLoc:<br><input type="text" name="random_loc" size="7" value="<?=$random_loc?>"></td>
-                  <td align="left" width="25%">
-                    Drag Aggro:<br>
-                    <select name="dragaggro">
-                      <option value="0"<?echo ($dragaggro == 0) ? " selected" : ""?>>No</option>
-                      <option value="1"<?echo ($dragaggro == 1) ? " selected" : ""?>>Yes</option>
-                    </select>
-                  </td>
-                   <td align="left" width="25%">
-                    Never Idle:<br>
-                    <select name="never_idle">
-                      <option value="0"<?echo ($never_idle == 0) ? " selected" : ""?>>No</option>
-                      <option value="1"<?echo ($never_idle == 1) ? " selected" : ""?>>Yes</option>
-                    </select>
-                  </td>
+                  <td align="left" width="30%">Music:<br><input type="text" name="music" size="7" value="<?=$music?>"></td>
+                  <td align="left" width="23%">RandomLoc:<br><input type="text" name="random_loc" size="7" value="<?=$random_loc?>"></td>
+                  <td align="left" width="23%">&nbsp;</td>
+                  <td align="left" width="24%">&nbsp;</td>
                 </tr>
                 <tr>
-                  <td align="left" width="25%">Walkspeed:<br><input type="text" name="walkspeed" size="7" value="<?=$walkspeed?>"></td>
                   <td align="left" width="25%">
                     Hotzone:<br>
                     <select name="hotzone">
@@ -64,7 +52,21 @@
                       <option value="0"<?echo ($skip_los == 0) ? " selected" : ""?>>No</option>
                       <option value="1"<?echo ($skip_los == 1) ? " selected" : ""?>>Yes</option>
                     </select>
-                  </td>			  
+                  </td>			 
+                  <td align="left" width="25%">
+                    Never Idle:<br>
+                    <select name="never_idle">
+                      <option value="0"<?echo ($never_idle == 0) ? " selected" : ""?>>No</option>
+                      <option value="1"<?echo ($never_idle == 1) ? " selected" : ""?>>Yes</option>
+                    </select>
+                  </td> 
+                  <td align="left" width="25%">
+                    Drag Aggro:<br>
+                    <select name="dragaggro">
+                      <option value="0"<?echo ($dragaggro == 0) ? " selected" : ""?>>No</option>
+                      <option value="1"<?echo ($dragaggro == 1) ? " selected" : ""?>>Yes</option>
+                    </select>
+                  </td>
                 </tr>
                 <tr>
                   <td align="left" width="25%">

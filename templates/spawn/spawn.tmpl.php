@@ -91,6 +91,24 @@
           </tr>
         </table>
       </div>
+        <div class="table_header">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="25%">
+              rand_spawns: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$rand_spawns?></a>
+            </td>
+             <td width="25%">
+              rand_respawntime: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$rand_respawntime?></a>
+            </td>
+             <td width="25%">
+              rand_variance: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$rand_variance?></a>
+            </td>
+             <td width="25%">
+              rand_condition: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$rand_condition_?></a>
+            </td>
+          </tr>
+        </table>
+      </div>
 <?if($npcs != ''):?>
       <div class="table_content2" style="padding: 0px;">
         <table width="100%" cellspacing="0">

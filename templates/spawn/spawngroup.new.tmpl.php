@@ -36,6 +36,14 @@
 		<?endforeach;?></select><br><br>
 		despawn timer:<br>
 		<input type="text" name="despawn_timer" size="5" value="0"><br><br>
+    rand_spawns:<br>
+		<input type="text" name="rand_spawns" size="5" value="0"><br><br>
+    rand_respawntime:<br>
+		<input type="text" name="rand_respawntime" size="5" value="1200"><br><br>
+		rand_variance:<br>
+		<input type="text" name="rand_variance" size="5" value="0"><br><br>
+		rand_condition:<br>
+		<input type="text" name="rand_condition_" size="5" value="0"><br><br>
               <input type="submit" value="Submit">
             </center>
           </form>

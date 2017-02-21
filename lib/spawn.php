@@ -886,7 +886,7 @@ function get_spawngroups($search) {
   for ($x=0; $x<count($results); $x++) {
     $id = $results[$x]['spawngroupID'];
 
-    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer FROM spawngroup WHERE id=$id";
+    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$id";
     $result = $mysql->query_assoc($query);
     $results[$x]['name'] = $result['name'];
     $results[$x]['spawn_limit'] = $result['spawn_limit'];
@@ -899,6 +899,10 @@ function get_spawngroups($search) {
     $results[$x]['mindelay'] = $result['mindelay'];
     $results[$x]['despawn'] = $result['despawn'];
     $results[$x]['despawn_timer'] = $result['despawn_timer'];
+    $results[$x]['rand_spawns'] = $result['rand_spawns'];
+    $results[$x]['rand_respawntime'] = $result['rand_respawntime'];
+    $results[$x]['rand_variance'] = $result['rand_variance'];
+    $results[$x]['rand_condition_'] = $result['rand_condition_'];
 
     $query = "SELECT count(*) AS count FROM spawn2 WHERE spawngroupID=$id";
     $result = $mysql->query_assoc($query);
@@ -1138,10 +1142,10 @@ function get_spawngroup_info() {
   $new_sid = $_POST['new_sid'];
 
   if ($new_sid > 0) {
-    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer FROM spawngroup WHERE id=$new_sid";
+    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$new_sid";
   }
   else {
-    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer FROM spawngroup WHERE id=$sid";
+    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$sid";
   }
   $result = $mysql->query_assoc($query);
 
@@ -1163,8 +1167,12 @@ function update_spawngroup_name() {
   $mindelay = $_POST['mindelay'];
   $despawn = $_POST['despawn'];
   $despawn_timer = $_POST['despawn_timer'];
+  $rand_spawns = $_POST['rand_spawns'];
+  $rand_respawntime = $_POST['rand_respawntime'];
+  $rand_variance = $_POST['rand_variance'];
+  $rand_condition_ = $_POST['rand_condition_'];
 
-  $query = "UPDATE spawngroup SET name=\"$name\", spawn_limit=\"$spawn_limit\", dist=\"$dist\", max_x=\"$max_x\", min_x=\"$min_x\", max_y=\"$max_y\", min_y=\"$min_y\", delay=\"$delay\", mindelay=\"$mindelay\",despawn=\"$despawn\", despawn_timer=\"$despawn_timer\" WHERE id=$sid";
+  $query = "UPDATE spawngroup SET name=\"$name\", spawn_limit=\"$spawn_limit\", dist=\"$dist\", max_x=\"$max_x\", min_x=\"$min_x\", max_y=\"$max_y\", min_y=\"$min_y\", delay=\"$delay\", mindelay=\"$mindelay\",despawn=\"$despawn\", despawn_timer=\"$despawn_timer\", rand_spawns=\"$rand_spawns\", rand_respawntime=\"$rand_respawntime\", rand_variance=\"$rand_variance\", rand_condition_=\"$rand_condition_\" WHERE id=$sid";
   $mysql->query_no_result($query);
 }
 
@@ -1518,7 +1526,11 @@ function add_spawngroup() {
   $mindelay = intval($_POST['mindelay']);
   $despawn = $_POST['despawn'];
   $despawn_timer = $_POST['despawn_timer'];
-  $query = "INSERT INTO spawngroup VALUES($id, \"$name\", \"$spawn_limit\", \"$dist\", \"$max_x\", \"$min_x\", \"$max_y\", \"$min_y\", \"$delay\", \"$mindelay\", \"$despawn\", \"$despawn_timer\")";
+  $rand_spawns = $_POST['rand_spawns'];
+  $rand_respawntime = $_POST['rand_respawntime'];
+  $rand_variance = $_POST['rand_variance'];
+  $rand_condition_ = $_POST['rand_condition_'];
+  $query = "INSERT INTO spawngroup VALUES($id, \"$name\", \"$spawn_limit\", \"$dist\", \"$max_x\", \"$min_x\", \"$max_y\", \"$min_y\", \"$delay\", \"$mindelay\", \"$despawn\", \"$despawn_timer\", \"$rand_spawns\", \"$rand_respawntime\", \"$rand_variance\", \"$rand_condition_\")";
   $mysql->query_no_result($query);
 
   if($npcID == "")
