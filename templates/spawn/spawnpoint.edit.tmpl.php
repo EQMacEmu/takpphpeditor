@@ -48,9 +48,13 @@
             </td>
           </tr>
           <tr>
-            <td width="33%">
+            <td align="left" width="33%">
               enabled:<br/>
-             <input type="text" name="enabled" value="<?=$enabled?>">
+              <select name="enabled">
+<?foreach($yesno as $k => $v):?>
+                <option value="<?=$k?>"<? echo ($k == $enabled) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
+<?endforeach;?>
+              </select>
             </td>
             <td align="left" width="33%">
               animation:<br/>

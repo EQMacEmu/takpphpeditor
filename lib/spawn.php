@@ -7,7 +7,8 @@ $wandertype = array(
   3 => "Patrol",
   4 => "One Way Respawn",
   5 => "Random 5 LoS",
-  6 => "One Way"
+  6 => "One Way",
+  7 => "Random Center Point"
 );
 
 $pausetype = array(

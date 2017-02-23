@@ -56,7 +56,7 @@
             <td width="34%">cond_value: <?=$cond_value?></td>
           </tr>
           <tr>
-           <td width="33%">enabled: <?=$enabled?></td>
+           <td width="33%">enabled: <?=$yesno[$enabled]?></td>
            <td width="33%">animation: <?=$animations[$animation]?></td>
            <td width="33%">force_z: <?=$yesno[$force_z]?></td>
           </tr>
