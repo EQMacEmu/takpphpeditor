@@ -15,7 +15,7 @@
     </table>
     <br />
   </div>
-  <div class="table_container" style="width: 200px">
+  <div class="table_container" style="width: 300px">
     <div class="table_header">
       <div style="float: right">
         <a onClick="document.getElementById('sql_block').style.display='block';"><img src="images/sql.gif" border="0" title="Show SQL"></a>
@@ -33,7 +33,7 @@
     </div>
   </div>
   <br>
-  <div class="table_container" style="width: 500px">
+  <div class="table_container" style="width: 550px">
     <div class="table_header">
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
@@ -55,6 +55,7 @@
           <td align="center" width="10%"><strong>Z</strong></td>
           <td align="center" width="10%"><strong>Heading</strong></td>
           <td align="center" width="10%"><strong>Pause</strong></td>
+          <td align="center" width="10%"><strong>Centerpoint</strong></td>
           <th width="8%"></th>
          </tr>
 <?$x=0; foreach($grids as $number=>$v):?>
@@ -65,6 +66,7 @@
           <td align="center" width="10%"><?=$v['z_coord']?></td>
           <td align="center" width="10%"><?=$v['heading']?></td>
           <td align="center" width="10%"><?=$v['pause']?></td>
+          <td align="center" width="10%"><?=$yesno[$v['centerpoint']]?></td>
           <td align="right">      
             <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&spid=<?=$spid?>&pathgrid=<?=$pathgrid?>&number=<?=$number?>&action=24"><img src="images/edit2.gif" border="0" title="Edit Grid Entry"></a>
 <?$copy_string = "&x_coord=" . $v['x_coord'] . "&y_coord=" . $v['y_coord'] . "&z_coord=" . $v['z_coord'] . "&heading=" . $v['heading'] . "&pause=" . $v['pause'];?>

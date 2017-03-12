@@ -8,7 +8,8 @@ $wandertype = array(
   4 => "One Way Respawn",
   5 => "Random 5 LoS",
   6 => "One Way",
-  7 => "Random Center Point"
+  7 => "Center Point",
+  8 => "Random Center Point"
 );
 
 $pausetype = array(
@@ -264,6 +265,7 @@ switch ($action) {
     $body->set('npcid', $npcid);
     $body->set('pathgrid', $_GET['pathgrid']);
     $body->set('spid', $_GET['spid']);
+    $body->set('yesno', $yesno);
     $vars = gridentry_info();
     if ($vars) {
       foreach ($vars as $key=>$value) {
@@ -318,6 +320,7 @@ switch ($action) {
     $body->set('npcid', $npcid);
     $body->set('pathgrid', $_GET['pathgrid']);
     $body->set('spid', $_GET['spid']);
+    $body->set('yesno', $yesno);
     $vars = gridpoint_info();
     if ($vars) {
       foreach ($vars as $key=>$value) {
@@ -351,6 +354,7 @@ switch ($action) {
     $body->set('pathgrid', $_GET['pathgrid']);
     $body->set('spid', $_GET['spid']);
     $body->set('suggestednum', suggest_grid_number());
+    $body->set('yesno', $yesno);
     break;
   case 28:  // Add Grid Entry
     check_authorization();
@@ -1240,11 +1244,11 @@ function gridentry_info () {
   $array = array();
 
   $array['id'] = $pathgrid;
-  $query = "SELECT number, x, y, z, heading, pause FROM grid_entries WHERE gridid=\"$pathgrid\" AND zoneid=$zid";
+  $query = "SELECT number, x, y, z, heading, pause, centerpoint FROM grid_entries WHERE gridid=\"$pathgrid\" AND zoneid=$zid";
   $results = $mysql->query_mult_assoc($query);
   if ($results) {
     foreach ($results as $result) {
-      $array['grids'][$result['number']] = array("x_coord"=>$result['x'], "y_coord"=>$result['y'], "z_coord"=>$result['z'], "heading"=>$result['heading'], "pause"=>$result['pause']);
+      $array['grids'][$result['number']] = array("x_coord"=>$result['x'], "y_coord"=>$result['y'], "z_coord"=>$result['z'], "heading"=>$result['heading'], "pause"=>$result['pause'], "centerpoint"=>$result['centerpoint']);
     }
   }
 
@@ -1257,7 +1261,7 @@ function gridpoint_info () {
   $pathgrid = intval($_GET['pathgrid']);
   $number = intval($_GET['number']);
 
-  $query = "SELECT number, x, y, z, heading, pause FROM grid_entries WHERE number=$number AND zoneid=$zid AND gridid=$pathgrid";
+  $query = "SELECT number, x, y, z, heading, pause, centerpoint FROM grid_entries WHERE number=$number AND zoneid=$zid AND gridid=$pathgrid";
   $result = $mysql->query_assoc($query);
 
   return $result;
@@ -1570,7 +1574,8 @@ function add_gridentry() {
   $z_coord = $_POST['z_coord'];
   $heading = $_POST['heading'];
   $pause = intval($_POST['pause']);
-  $query = "INSERT INTO grid_entries VALUES(\"$pathgrid\", \"$zoneid\", \"$number\", \"$x_coord\", \"$y_coord\", \"$z_coord\", \"$heading\", \"$pause\")";
+  $centerpoint = intval($_POST['centerpoint']);
+  $query = "INSERT INTO grid_entries VALUES(\"$pathgrid\", \"$zoneid\", \"$number\", \"$x_coord\", \"$y_coord\", \"$z_coord\", \"$heading\", \"$pause\", \$centerpoint\")";
   $mysql->query_no_result($query);
 }
 
@@ -1600,8 +1605,9 @@ function update_gridentry() {
   $z_coord = $_POST['z_coord'];
   $heading = $_POST['heading'];
   $pause = intval($_POST['pause']);
+  $centerpoint = intval($_POST['centerpoint']);
 
-  $query = "UPDATE grid_entries SET number=\"$number2\", x=\"$x_coord\", y=\"$y_coord\", z=\"$z_coord\", pause=\"$pause\", heading=\"$heading\" WHERE gridid=\"$pathgrid\" AND number=$number AND zoneid=$zid";
+  $query = "UPDATE grid_entries SET number=\"$number2\", x=\"$x_coord\", y=\"$y_coord\", z=\"$z_coord\", pause=\"$pause\", heading=\"$heading\", centerpoint=\"$centerpoint\" WHERE gridid=\"$pathgrid\" AND number=$number AND zoneid=$zid";
   $mysql->query_no_result($query);
 }
 
@@ -1953,8 +1959,9 @@ function copy_grid() {
       $z = $result['z'];
       $heading = $result['heading'];
       $pause = $result['pause'];
+      $centerpoint = $result['centerpoint'];
 
-      $query = "INSERT INTO grid_entries (gridid, zoneid, number, x, y, z, heading, pause) VALUES ($newid, $zoneid, $number, $x, $y, $z, $heading, $pause)";
+      $query = "INSERT INTO grid_entries (gridid, zoneid, number, x, y, z, heading, pause, centerpoint) VALUES ($newid, $zoneid, $number, $x, $y, $z, $heading, $pause, $centerpoint)";
       $mysql->query_no_result($query);
     }
   }

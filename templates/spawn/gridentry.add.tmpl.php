@@ -1,4 +1,4 @@
-  <div class="edit_form" style="width: 500px">
+  <div class="edit_form" style="width: 530px">
     <div class="edit_form_header">
       Add a Grid Entry <?=$pathgrid?>       
     </div>
@@ -12,6 +12,7 @@
             <th>Z:</th>
             <th>Heading:</th>
             <th>Pause:</th>
+            <th>Centerpoint:</th>
           </tr>
           <tr>
             <td><input type="text" size="7" name="number" value="<?=$suggestednum?>"></td>
@@ -20,6 +21,13 @@
             <td><input type="text" size="7" name="z_coord" value="<?echo ($z_coord) ? $z_coord : 0;?>"></td>
             <td><input type="text" size="7" name="heading" value="<?echo ($heading) ? $heading : -1;?>"></td>
             <td><input type="text" size="7" name="pause" value="<?echo ($pause) ? $pause : 0;?>"></td>
+            <td align="left" width="33%">
+            <select name="centerpoint">
+<?foreach($yesno as $k => $v):?>
+                <option value="<?=$k?>"<? echo ($k == $centerpoint) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
+<?endforeach;?>
+              </select>
+            </td>
           </tr>
         </table><br><br>
         <center>
