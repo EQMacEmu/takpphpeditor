@@ -1575,7 +1575,7 @@ function add_gridentry() {
   $heading = $_POST['heading'];
   $pause = intval($_POST['pause']);
   $centerpoint = intval($_POST['centerpoint']);
-  $query = "INSERT INTO grid_entries VALUES(\"$pathgrid\", \"$zoneid\", \"$number\", \"$x_coord\", \"$y_coord\", \"$z_coord\", \"$heading\", \"$pause\", \$centerpoint\")";
+  $query = "INSERT INTO grid_entries VALUES(\"$pathgrid\", \"$zoneid\", \"$number\", \"$x_coord\", \"$y_coord\", \"$z_coord\", \"$heading\", \"$pause\", \"$centerpoint\")";
   $mysql->query_no_result($query);
 }
 
