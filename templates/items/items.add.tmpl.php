@@ -61,13 +61,6 @@
             </tr>
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
-            <tr>
-              <td align="left" width="33%">Charmfile:<br/><input type="text" name="charmfile" size="20" value=""></td>
-              <td align="left" width="33%">Charmfile ID:<br/><input type="text" name="charmfileid" size="10" value="0"></td>
-              <td align="left" width="33%">Script File ID:<br/><input type="text" name="scriptfileid" size="10" value="0"></td>
-            </tr>
-          </table>
-          <table width="100%" border="0" cellpadding="3" cellspacing="0">
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>

@@ -74,13 +74,6 @@
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
-              <td align="left" width="33%"><?echo ($charmfile != '') ? '<a href="index.php?editor=items&id=' . $id . '&name=' . $charmfile . '&action=3">Charmfile:</a>' : 'Charmfile:'?><br/><input type="text" name="charmfile" size="25" value="<?=$charmfile?>"/></td>
-              <td align="left" width="33%">Charmfile ID:<br/><input type="text" name="charmfileid" size="10" value="<?=$charmfileid?>"></td>
-              <td align="left" width="33%">Script File ID:<br/><input type="text" name="scriptfileid" size="10" value="<?=$scriptfileid?>"></td>
-            </tr>
-          </table>
-          <table width="100%" border="0" cellpadding="3" cellspacing="0">
-            <tr>
               <td align="left" width="25%">Bag Size:<br/>
                 <select class="left" name="bagsize">
 <?foreach($itembagsize as $k => $v):?>
