@@ -1,5 +1,11 @@
 <?php
 
+$equiptit = array(
+  0 => "No",
+  1 => "Yes",
+  2 => "Force"
+);
+
 switch ($action) {
   case 0:  // View Loottable
     if ($npcid) {
@@ -8,6 +14,7 @@ switch ($action) {
       $body->set('currzoneid', $zoneid);
       $body->set('npcid', $npcid);
       $body->set('npc_name', getNPCName($npcid));
+      $body->set('equiptit', $equiptit);
       $vars = loottable_info();
       $usage = mobs_using_loottable();
       if ($vars) {

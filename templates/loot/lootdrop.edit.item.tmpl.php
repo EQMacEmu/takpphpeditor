@@ -11,7 +11,8 @@
             <strong>Item:</strong> <?=$itemid?><br><br>
             <strong>Equipped:</strong><br>
             <input type="radio" name="equip_item" value="0"<?echo ($equip_item == 0) ? " checked" : ""?>>no<br>
-            <input type="radio" name="equip_item" value="1"<?echo ($equip_item == 1) ? " checked" : ""?>>yes<br><br>
+            <input type="radio" name="equip_item" value="1"<?echo ($equip_item == 1) ? " checked" : ""?>>yes<br>
+            <input type="radio" name="equip_item" value="2"<?echo ($equip_item == 2) ? " checked" : ""?>>force<br><br>
             <strong>Item Charges:</strong> <br>
             <input class="indented" type="text" size="5" name="charges" value="<?=$item_charges?>"><br><br>
 	     <strong>Min Level:</strong> <br>

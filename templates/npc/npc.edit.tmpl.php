@@ -221,6 +221,7 @@
                   <input type="checkbox" name="30" value="30,1^"<?echo ($specabil[30] == 1) ? "checked" : "";?>>  Does NOT buff/heal friends<br/>
                   <input type="checkbox" name="36" value="36,1^"<?echo ($specabil[36] == 1) ? "checked" : "";?>>  Always Flee<br/>
                   <input type="checkbox" name="45" value="45,1^"<?echo ($specabil[45] == 1) ? "checked" : "";?>>  Always Flee if Low Con<br/>
+                  <input type="checkbox" name="34" value="34,1^"<?echo ($specabil[34] == 1) ? "checked" : "";?>>  Permaroot Flee<br/>
                   <input type="checkbox" name="46" value="46,1^"<?echo ($specabil[46] == 1) ? "checked" : "";?>>  No Loitering<br/>
 		              <input type="checkbox" name="38" value="38,1^"<?echo ($specabil[38] == 1) ? "checked" : "";?>>  Allow Beneficial<br/>
                   <input type="checkbox" name="41" value="41,1^"<?echo ($specabil[41] == 1) ? "checked" : "";?>>  Allow Tank<br/>
