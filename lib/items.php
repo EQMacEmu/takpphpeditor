@@ -355,10 +355,7 @@ function update_item () {
   if ($item['magic'] != $_POST['magic']) $fields .= "magic=\"" . $_POST['magic'] . "\", ";
   if ($item['tradeskills'] != $_POST['tradeskills']) $fields .= "tradeskills=\"" . $_POST['tradeskills'] . "\", ";
   if ($item['questitemflag'] != $_POST['questitemflag']) $fields .= "questitemflag=\"" . $_POST['questitemflag'] . "\", ";
-  if ($item['nopet'] != $_POST['nopet']) $fields .= "nopet=\"" . $_POST['nopet'] . "\", ";
   if ($item['fvnodrop'] != $_POST['fvnodrop']) $fields .= "fvnodrop=\"" . $_POST['fvnodrop'] . "\", ";
-  if ($item['notransfer'] != $_POST['notransfer']) $fields .= "notransfer=\"" . $_POST['notransfer'] . "\", ";
-  if ($item['benefitflag'] != $_POST['benefitflag']) $fields .= "benefitflag=\"" . $_POST['benefitflag'] . "\", ";
   if ($item['reqlevel'] != $_POST['reqlevel']) $fields .= "reqlevel=\"" . $_POST['reqlevel'] . "\", ";
   if ($item['reclevel'] != $_POST['reclevel']) $fields .= "reclevel=\"" . $_POST['reclevel'] . "\", ";
   if ($item['recskill'] != $_POST['recskill']) $fields .= "recskill=\"" . $_POST['recskill'] . "\", ";
@@ -388,8 +385,6 @@ function update_item () {
   if ($item['pr'] != $_POST['pr']) $fields .= "pr=\"" . $_POST['pr'] . "\", ";
   if ($item['elemdmgtype'] != $_POST['elemdmgtype']) $fields .= "elemdmgtype=\"" . $_POST['elemdmgtype'] . "\", ";
   if ($item['elemdmgamt'] != $_POST['elemdmgamt']) $fields .= "elemdmgamt=\"" . $_POST['elemdmgamt'] . "\", ";
-  if ($item['dsmitigation'] != $_POST['dsmitigation']) $fields .= "dsmitigation=\"" . $_POST['dsmitigation'] . "\", ";
-  if ($item['healamt'] != $_POST['healamt']) $fields .= "healamt=\"" . $_POST['healamt'] . "\", ";
   if ($item['skillmodtype'] != $_POST['skillmodtype']) $fields .= "skillmodtype=\"" . $_POST['skillmodtype'] . "\", ";
   if ($item['skillmodvalue'] != $_POST['skillmodvalue']) $fields .= "skillmodvalue=\"" . $_POST['skillmodvalue'] . "\", ";
   if ($item['bardvalue'] != $_POST['bardvalue']) $fields .= "bardvalue=\"" . $_POST['bardvalue'] . "\", ";
@@ -461,8 +456,8 @@ function copy_item () {
    $query = "DELETE FROM items where id=0";
    $mysql->query_no_result($query);
 
-   $query2 = "INSERT INTO items (minstatus, Name, aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, classes, color, price, cr, damage, deity, delay, augdistiller, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, range, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, benefitflag, booktype, recastdelay, recasttype, nopet, updated, comment, stacksize, notransfer, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, dsmitigation, created, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound)
-   SELECT minstatus, concat(Name, ' - Copy'), aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, classes, color, price, cr, damage, deity, delay, augdistiller, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, range, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, benefitflag, booktype, recastdelay, recasttype, nopet, updated, comment, stacksize, notransfer, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, dsmitigation, created, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound FROM items where id=$id";
+   $query2 = "INSERT INTO items (minstatus, Name, aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, classes, color, price, cr, damage, deity, delay, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, range, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, booktype, recastdelay, recasttype, updated, comment, stacksize, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, created, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound)
+   SELECT minstatus, concat(Name, ' - Copy'), aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, classes, color, price, cr, damage, deity, delay, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, range, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, booktype, recastdelay, recasttype, updated, comment, stacksize, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, created, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound FROM items where id=$id";
    $mysql->query_no_result($query2);
 
    $query3 = "SELECT max(id) AS iid FROM items";
@@ -590,10 +585,7 @@ function add_item () {
   $fields .= "magic=\"" . $_POST['magic'] . "\", ";
   $fields .= "tradeskills=\"" . $_POST['tradeskills'] . "\", ";
   $fields .= "questitemflag=\"" . $_POST['questitemflag'] . "\", ";
-  $fields .= "nopet=\"" . $_POST['nopet'] . "\", ";
   $fields .= "fvnodrop=\"" . $_POST['fvnodrop'] . "\", ";
-  $fields .= "notransfer=\"" . $_POST['notransfer'] . "\", ";
-  $fields .= "benefitflag=\"" . $_POST['benefitflag'] . "\", ";
   $fields .= "reqlevel=\"" . $_POST['reqlevel'] . "\", ";
   $fields .= "reclevel=\"" . $_POST['reclevel'] . "\", ";
   $fields .= "recskill=\"" . $_POST['recskill'] . "\", ";
@@ -621,7 +613,6 @@ function add_item () {
   $fields .= "pr=\"" . $_POST['pr'] . "\", ";
   $fields .= "elemdmgtype=\"" . $_POST['elemdmgtype'] . "\", ";
   $fields .= "elemdmgamt=\"" . $_POST['elemdmgamt'] . "\", ";
-  $fields .= "dsmitigation=\"" . $_POST['dsmitigation'] . "\", ";
   $fields .= "skillmodtype=\"" . $_POST['skillmodtype'] . "\", ";
   $fields .= "skillmodvalue=\"" . $_POST['skillmodvalue'] . "\", ";
   $fields .= "bardvalue=\"" . $_POST['bardvalue'] . "\", ";

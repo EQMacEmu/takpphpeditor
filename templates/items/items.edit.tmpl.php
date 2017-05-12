@@ -129,29 +129,10 @@
               </td>
             </tr>
             <tr>
-              <td align="left" width="16%">No Pet:<br/>
-                <select name="nopet">
-                  <option value="0"<?echo ($nopet == 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?echo ($nopet == 1) ? " selected" : ""?>>Yes</option>
-                </select>
-              </td>
               <td align="left" width="16%">FV No Drop:<br/>
                 <select name="fvnodrop">
                   <option value="0"<?echo ($fvnodrop== 0) ? " selected" : ""?>>No</option>
                   <option value="1"<?echo ($fvnodrop == 1) ? " selected" : ""?>>Yes</option>
-                </select>
-              </td>
-              <td align="left" width="16%">No Transfer:<br/>
-                <select name="notransfer">
-                  <option value="0"<?echo ($notransfer == 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?echo ($notransfer == 1) ? " selected" : ""?>>Yes</option>
-                </select>
-              </td>
-              <td align="left" width="16%">Benefit:<br/>
-                <select name="benefitflag">
-                  <option value="0"<?echo ($benefitflag == 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?echo ($benefitflag == 1) ? " selected" : ""?>>Yes</option>
-                  <option value="3"<?echo ($benefitflag == 3) ? " selected" : ""?>>3</option>
                 </select>
               </td>
               <td align="left" width="16%">GM Flag:<br/>
@@ -345,11 +326,10 @@
             <legend><font size="4">Base Stats</font></legend>
             <table width="100%" border="0" cellpadding="3" cellspacing="0">
               <tr>
-                <td align="left" width="20%">HP:<br/><input type="text" name="hp" size="5" value="<?=$hp?>"></td>
-                <td align="left" width="20%">Mana:<br/><input type="text" name="mana" size="5" value="<?=$mana?>"></td>
-                <td align="left" width="20%">AC:<br/><input type="text" name="ac" size="5" value="<?=$ac?>"></td>
-                <td align="left" width="20%">Light:<br/><input type="text" name="light" size="5" value="<?=$light?>"></td>
-                <td align="left" width="20%">Dmg Shield Mit:<br/><input type="text" name="dsmitigation" size="5" value="<?=$dsmitigation?>"></td>
+                <td align="left" width="25%">HP:<br/><input type="text" name="hp" size="5" value="<?=$hp?>"></td>
+                <td align="left" width="25%">Mana:<br/><input type="text" name="mana" size="5" value="<?=$mana?>"></td>
+                <td align="left" width="25%">AC:<br/><input type="text" name="ac" size="5" value="<?=$ac?>"></td>
+                <td align="left" width="25%">Light:<br/><input type="text" name="light" size="5" value="<?=$light?>"></td>
               </tr>
             </table>
           </fieldset><br/><br/>

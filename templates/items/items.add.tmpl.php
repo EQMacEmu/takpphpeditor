@@ -128,32 +128,10 @@
             </tr>
             <tr>
               <td align="left" width="16%">
-                No Pet:<br/>
-                <select name="nopet">
-                  <option value="0">No</option>
-                  <option value="1">Yes</option>
-                </select>
-              </td>
-              <td align="left" width="16%">
                 FV No Drop:<br/>
                 <select name="fvnodrop">
                   <option value="0">No</option>
                   <option value="1">Yes</option>
-                </select>
-              </td>
-              <td align="left" width="16%">
-                No Transfer:<br/>
-                <select name="notransfer">
-                  <option value="0">No</option>
-                  <option value="1">Yes</option>
-                </select>
-              </td>
-              <td align="left" width="16%">
-                Benefit:<br/>
-                <select name="benefitflag">
-                  <option value="0">No</option>
-                  <option value="1">Yes</option>
-                  <option value="3">3</option>
                 </select>
               </td>
               <td align="left" width="16%">
@@ -375,11 +353,10 @@
             <legend><font size="4">Base Stats</font></legend>
             <table width="100%" border="0" cellpadding="3" cellspacing="0">
               <tr>
-                <td align="left" width="14%">HP:<br/><input type="text" name="hp" size="5" value="0"></td>
-                <td align="left" width="14%">Mana:<br/><input type="text" name="mana" size="5" value="0"></td>
-                <td align="left" width="14%">AC:<br/><input type="text" name="ac" size="5" value="0"></td>
-                <td align="left" width="14%">Light:<br/><input type="text" name="light" size="5" value="0"></td>
-                <td align="left" width="14%">Dmg Shield Mit:<br/><input type="text" name="dsmitigation" size="5" value="0"></td>
+                <td align="left" width="25">HP:<br/><input type="text" name="hp" size="5" value="0"></td>
+                <td align="left" width="25%">Mana:<br/><input type="text" name="mana" size="5" value="0"></td>
+                <td align="left" width="25%">AC:<br/><input type="text" name="ac" size="5" value="0"></td>
+                <td align="left" width="25%">Light:<br/><input type="text" name="light" size="5" value="0"></td>
               </tr>
             </table>
           </fieldset><br/><br/>
