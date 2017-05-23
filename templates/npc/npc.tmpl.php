@@ -155,7 +155,6 @@
 <?($frper = $FR*0.5);?>
 <?($prper = $PR*0.5);?>
 <?($drper = $DR*0.5);?>
-<?($corper = $Corrup*0.5);?>
                   <tr>
                     <td align="left" width="33%">MR: <?=$MR?> (<?=$mrper?>%)</td>
                     <td align="left" width="33%">CR: <?=$CR?> (<?=$crper?>%)</td>
@@ -164,7 +163,7 @@
                   <tr>
                     <td align="left" width="33%">PR: <?=$PR?> (<?=$prper?>%)</td>
                     <td align="left" width="33%">DR: <?=$DR?> (<?=$drper?>%)</td>
-			<td align="left" width="34%">&nbsp;</td>
+		  	            <td align="left" width="34%">&nbsp;</td>
                   </tr>
                 </table>
               </fieldset>

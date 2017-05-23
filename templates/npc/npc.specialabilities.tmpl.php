@@ -2,7 +2,7 @@
        <table style="border: 1px solid black; background-color: #CCC;">
         <tr><td colspan=2><b>Reminders:</b></td></tr>
 
-         <tr><td align=center>Abilities 1,2,3,4,5,29,32,33,37,40,49 accept paramaters. For multiple parameters, please seperate with commas. <br>
+         <tr><td align=center>Abilities 1,2,3,4,5,11,29,32,33,37,40,49 accept paramaters. For multiple parameters, please seperate with commas. <br>
                              The special ability number should not be put in the parameter box.<br>
                              If no WHERE values are filled out, the current NPC will be the only one affected.<br>
                              CUSTOM will allow you to edit the raw database column. It does not provide any error checking!<br></td></tr>

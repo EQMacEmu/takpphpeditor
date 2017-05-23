@@ -102,7 +102,7 @@
                 <td align="left" width="14%">FR:  <br><input type="text" name="FR" size="5" value="<?=$resists?>"></td>
                 <td align="left" width="14%">PR:  <br><input type="text" name="PR" size="5" value="<?=$resists?>"></td>
                 <td align="left" width="14%">DR:  <br><input type="text" name="DR" size="5" value="<?=$resists?>"></td>
-                <td align="left" width="14%">Corrup:  <br><input type="text" name="Corrup" size="5" value="<?=$resists?>"></td>
+                <td align="left" width="14%">&nbsp;</td>
                 <td align="left" width="15%">&nbsp;</td>
               </tr>
             </table>
@@ -167,6 +167,7 @@
                   Rampage (3):<br/><input type="text" name="3" size="10" value="<?=$specabilcont[3]?>"><br/>
                   AE Rampage (4):<br/><input type="text" name="4" size="10" value="<?=$specabilcont[4]?>"><br/>
                   Flurry (5):<br/><input type="text" name="5" size="10" value="<?=$specabilcont[5]?>"><br/>
+                  Ranged Attack (11):<br/><input type="text" name="5" size="10" value="<?=$specabilcont[11]?>"><br/>
                   Tunnel Vision (29):<br/><input type="text" name="29" size="10" value="<?=$specabilcont[29]?>"><br/>
                   Leashed (32):<br/><input type="text" name="32" size="10" value="<?=$specabilcont[32]?>"><br/>
                   Tethered (33):<br/><input type="text" name="33" size="10" value="<?=$specabilcont[33]?>"><br/>
@@ -180,7 +181,6 @@
                   <input type="checkbox" name="10" value="10,1^"<?echo ($specabil[10] == 1) ? "checked" : "";?>>  Magic Attack<br/>
                   <input type="checkbox" name="9" value="9,1^"<?echo ($specabil[9] == 1) ? "checked" : "";?>>  Bane Attack<br/>
                   <input type="checkbox" name="8" value="8,1^"<?echo ($specabil[8] == 1) ? "checked" : "";?>>  Do Not Equip Items<br/>
-                  <input type="checkbox" name="11" value="11,1^"<?echo ($specabil[11] == 1) ? "checked" : "";?>>  Ranged Attack<br/>
                   <input type="checkbox" name="12" value="12,1^"<?echo ($specabil[12] == 1) ? "checked" : "";?>>  Unslowable<br/>
                   <input type="checkbox" name="50" value="50,1^"<?echo ($specabil[50] == 1) ? "checked" : "";?>>  Reverse Slow<br/>
                   <input type="checkbox" name="51" value="51,1^"<?echo ($specabil[51] == 1) ? "checked" : "";?>>  Immune to Haste<br/>
@@ -304,7 +304,8 @@
                </td>
            <td valign="top" align="left">
             <input type="checkbox" name="underwater" value="1"<?echo ($underwater == 1) ? "checked" : "";?>> Underwater NPC<br>
-           <input type="checkbox" name="34" value="34,1^"<?echo ($specabil[34] == 1) ? "checked" : "";?>>  Destructible Object<br>
+            <input type="checkbox" name="ignore_despawn" value="1"<?echo ($ignore_despawn == 1) ? " checked" : "";?>> Ignore Despawn<br/>
+            <input type="checkbox" name="isquest" value="1"<?echo ($isquest == 1) ? " checked" : "";?>> Has Quest File<br/>
                </td>
               </tr>
             </table>
