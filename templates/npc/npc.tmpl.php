@@ -263,8 +263,8 @@
                 <table width="100%" border="0" cellpadding="3" cellspacing="0">
                   <tr>
                     <td align="left" width="33%">Qglobal: <?=$yesno[$qglobal]?></td>
-                    <td align="left" width="33%">Findable: <?=$yesno[$findable]?></td>
-                    <td align="left" width="34%">Trackable: <?=$yesno[$trackable]?></td>
+                    <td align="left" width="33%">Pet: <?=$yesno[$pet]?></td>
+                    <td align="left" width="34%">Private Corpse: <?=$yesno[$private_corpse]?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Spawn Limit: <?echo ($spawn_limit > 0) ? $spawn_limit : "None";?></td>
@@ -272,14 +272,14 @@
                     <td align="left" width="34%">Underwater: <?=$yesno[$underwater]?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">Pet: <?=$yesno[$pet]?></td>
-                    <td align="left" width="33%">Private Corpse: <?=$yesno[$private_corpse]?></td>
                     <td align="left" width="33%">Ignore Despawn: <?=$yesno[$ignore_despawn]?></td>
+                    <td align="left" width="33%">No Target Hotkey: <?=$yesno[$no_target_hotkey]?></td>
+                    <td align="left" width="34%">Raid Target: <?=$yesno[$raid_target]?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">No Target Hotkey: <?=$yesno[$no_target_hotkey]?></td>
-                    <td align="left" width="33%">Raid Target: <?=$yesno[$raid_target]?></td>
-                    <td align="left" width="34%">Encounter: <?=$yesno[$encounter]?></td>
+                    <td align="left" width="33%">Encounter: <?=$yesno[$encounter]?></td>
+                    <td align="left" width="33%">&nbsp;</td>
+                    <td align="left" width="34%">&nbsp;</td>
                   </tr>
                 </table>
               </fieldset>
@@ -303,7 +303,6 @@
         <input type="hidden" name="legtexture" value="<?=$legtexture?>">
         <input type="hidden" name="feettexture" value="<?=$feettexture?>">
         <input type="hidden" name="chesttexture" value="<?=$feettexture?>">
-        <input type="hidden" name="herosforgemodel" value="<?=$herosforgemodel?>">
         <input type="hidden" name="size" value="<?=$size?>">
         <input type="hidden" name="hp_regen_rate" value="<?=$hp_regen_rate?>">
         <input type="hidden" name="mana_regen_rate" value="<?=$mana_regen_rate?>">
@@ -352,7 +351,6 @@
         <input type="hidden" name="npc_aggro" value="<?=$npc_aggro?>">
         <input type="hidden" name="spawn_limit" value="<?=$spawn_limit?>">
         <input type="hidden" name="attack_delay" value="<?=$attack_delay?>">
-        <input type="hidden" name="findable" value="<?=$findable?>">
         <input type="hidden" name="STR" value="<?=$STR?>">
         <input type="hidden" name="STA" value="<?=$STA?>">
         <input type="hidden" name="DEX" value="<?=$DEX?>">
@@ -362,7 +360,6 @@
         <input type="hidden" name="CHA" value="<?=$CHA?>">
         <input type="hidden" name="see_sneak" value="<?=$see_sneak?>">
         <input type="hidden" name="see_improved_hide" value="<?=$see_improved_hide?>">
-        <input type="hidden" name="trackable" value="<?=$trackable?>">
         <input type="hidden" name="ATK" value="<?=$ATK?>">
         <input type="hidden" name="Accuracy" value="<?=$Accuracy?>">
         <input type="hidden" name="Avoidance" value="<?=$Avoidance?>">

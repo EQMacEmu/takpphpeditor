@@ -305,17 +305,16 @@
               <tr>
                 <td valign="top" align="left">
                   <input type="checkbox" name="qglobal" value="1"/> Enable Quest Globals<br/>
-                  <input type="checkbox" name="findable" value="1"/> NPC is Findable<br/>
-                  <input type="checkbox" name="trackable" value="1" checked/> NPC is Trackable<br/>
-                </td>
-                <td valign="top" align="left">
                   <input type="checkbox" name="pet" value="1"/> NPC is a Pet<br/>
                   <input type="checkbox" name="private_corpse" value="1"/> Corpse does not Unlock<br/>
-                  <input type="checkbox" name="unique_spawn_by_name" value="1"/> Unique by Name<br/>
+
                 </td>
                 <td valign="top" align="left">
+                  <input type="checkbox" name="unique_spawn_by_name" value="1"/> Unique by Name<br/>
                   <input type="checkbox" name="underwater" value="1"/> Underwater NPC<br>
                   <input type="checkbox" name="ignore_despawn" value="1"/> Ignore Despawn<br>
+                </td>
+                <td valign="top" align="left">
                   <input type="checkbox" name="isquest" value="1"> Has Quest File<br/>
                 </td>
               </tr>

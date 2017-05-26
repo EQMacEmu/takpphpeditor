@@ -1258,8 +1258,6 @@ function update_npc () {
   // Define checkbox fields:
   if (!isset($_POST['qglobal'])) $_POST['qglobal'] = 0;
   if (!isset($_POST['npc_aggro'])) $_POST['npc_aggro'] = 0;
-  if (!isset($_POST['findable'])) $_POST['findable'] = 0;
-  if (!isset($_POST['trackable'])) $_POST['trackable'] = 0;
   if (!isset($_POST['pet'])) $_POST['pet'] = 0;
   if (!isset($_POST['private_corpse'])) $_POST['private_corpse'] = 0;
   if (!isset($_POST['unique_spawn_by_name'])) $_POST['unique_spawn_by_name'] = 0;
@@ -1350,7 +1348,6 @@ function update_npc () {
   if ($npc_aggro != $_POST['npc_aggro']) $fields .= "npc_aggro=\"" . $_POST['npc_aggro'] . "\", ";
   if ($spawn_limit != $_POST['spawn_limit']) $fields .= "spawn_limit=\"" . $_POST['spawn_limit'] . "\", ";
   if ($attack_delay != $_POST['attack_delay']) $fields .= "attack_delay=\"" . $_POST['attack_delay'] . "\", ";
-  if ($findable != $_POST['findable']) $fields .= "findable=\"" . $_POST['findable'] . "\", ";
   if ($STR != $_POST['STR']) $fields .= "STR=\"" . $_POST['STR'] . "\", ";
   if ($STA != $_POST['STA']) $fields .= "STA=\"" . $_POST['STA'] . "\", ";
   if ($DEX != $_POST['DEX']) $fields .= "DEX=\"" . $_POST['DEX'] . "\", ";
@@ -1360,7 +1357,6 @@ function update_npc () {
   if ($CHA != $_POST['CHA']) $fields .= "CHA=\"" . $_POST['CHA'] . "\", ";
   if ($see_sneak != $_POST['see_sneak']) $fields .= "see_sneak=\"" . $_POST['see_sneak'] . "\", ";
   if ($see_improved_hide != $_POST['see_improved_hide']) $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
-  if ($trackable != $_POST['trackable']) $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
   if ($ATK != $_POST['ATK']) $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   if ($Accuracy != $_POST['Accuracy']) $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
   //Avoidance
@@ -1399,8 +1395,6 @@ function add_npc () {
   // Define checkbox fields:
   if ($_POST['qglobal'] != 1) $_POST['qglobal'] = 0;
   if ($_POST['npc_aggro'] != 1) $_POST['npc_aggro'] = 0;
-  if ($_POST['findable'] != 1) $_POST['findable'] = 0;
-  if ($_POST['trackable'] != 1) $_POST['trackable'] = 0;
   if ($_POST['private_corpse'] != 1) $_POST['private_corpse'] = 0;
   if ($_POST['unique_spawn_by_name'] != 1) $_POST['unique_spawn_by_name'] = 0;
   if ($_POST['underwater'] != 1) $_POST['underwater'] = 0;
@@ -1482,7 +1476,6 @@ function add_npc () {
   $fields .= "npc_aggro=\"" . $_POST['npc_aggro'] . "\", ";
   $fields .= "spawn_limit=\"" . $_POST['spawn_limit'] . "\", ";
   $fields .= "attack_delay=\"" . $_POST['attack_delay'] . "\", ";
-  $fields .= "findable=\"" . $_POST['findable'] . "\", ";
   $fields .= "STR=\"" . $_POST['STR'] . "\", ";
   $fields .= "STA=\"" . $_POST['STA'] . "\", ";
   $fields .= "DEX=\"" . $_POST['DEX'] . "\", ";
@@ -1492,7 +1485,6 @@ function add_npc () {
   $fields .= "CHA=\"" . $_POST['CHA'] . "\", ";
   $fields .= "see_sneak=\"" . $_POST['see_sneak'] . "\", ";
   $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
-  $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
   $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
   //Avoidance
@@ -1593,7 +1585,6 @@ function copy_npc () {
   $fields .= "npc_aggro=\"" . $_POST['npc_aggro'] . "\", ";
   $fields .= "spawn_limit=\"" . $_POST['spawn_limit'] . "\", ";
   $fields .= "attack_delay=\"" . $_POST['attack_delay'] . "\", ";
-  $fields .= "findable=\"" . $_POST['findable'] . "\", ";
   $fields .= "STR=\"" . $_POST['STR'] . "\", ";
   $fields .= "STA=\"" . $_POST['STA'] . "\", ";
   $fields .= "DEX=\"" . $_POST['DEX'] . "\", ";
@@ -1603,7 +1594,6 @@ function copy_npc () {
   $fields .= "CHA=\"" . $_POST['CHA'] . "\", ";
   $fields .= "see_sneak=\"" . $_POST['see_sneak'] . "\", ";
   $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
-  $fields .= "trackable=\"" . $_POST['trackable'] . "\", ";
   $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
   //Avoidance
