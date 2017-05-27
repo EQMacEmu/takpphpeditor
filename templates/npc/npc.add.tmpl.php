@@ -115,13 +115,11 @@
                 <td colspan="7">1 Resist = 0.5%<br/>250 Resist = 100%</td>
               </tr>
               <tr>
-                <td align="left" width="14%">MR:      <br/><input type="text" name="MR" size="5" value="<?=$resists?>"/></td>
-                <td align="left" width="14%">CR:      <br/><input type="text" name="CR" size="5" value="<?=$resists?>"/></td>
-                <td align="left" width="14%">FR:      <br/><input type="text" name="FR" size="5" value="<?=$resists?>"/></td>
-                <td align="left" width="14%">PR:      <br/><input type="text" name="PR" size="5" value="<?=$resists?>"/></td>
-                <td align="left" width="14%">DR:      <br/><input type="text" name="DR" size="5" value="<?=$resists?>"/></td>
-		  <td align="left" width="15%">&nbsp;</td>
-	         <td align="left" width="15%">&nbsp;</td>
+                <td align="left" width="20%">MR:      <br/><input type="text" name="MR" size="5" value="<?=$resists?>"/></td>
+                <td align="left" width="20%">CR:      <br/><input type="text" name="CR" size="5" value="<?=$resists?>"/></td>
+                <td align="left" width="20%">FR:      <br/><input type="text" name="FR" size="5" value="<?=$resists?>"/></td>
+                <td align="left" width="20%">PR:      <br/><input type="text" name="PR" size="5" value="<?=$resists?>"/></td>
+                <td align="left" width="20%">DR:      <br/><input type="text" name="DR" size="5" value="<?=$resists?>"/></td>
               </tr>
             </table>
         </fieldset><br/>
@@ -129,31 +127,25 @@
           <legend><strong><font size="4">Combat</font></strong></legend>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
-              <td align="left" width="14%">Min Dmg:     <br/><input type="text" name="mindmg" size="5" value="<?=$mindmg?>"/></td>
-              <td align="left" width="14%">HP Regen:    <br/><input type="text" name="hp_regen_rate" size="5" value="0"/></td>
-              <td align="left" width="14%">Combat HP Regen: <br/><input type="text" name="combat_hp_regen" size="5" value="0"/></td>
-              <td align="left" width="14%">Attack Count:<br/><input type="text" name="attack_count" size="5" value="-1"/></td>
-              <td align="left" width="14%">Loot ID:     <br/><input type="text" name="loottable_id" size="5" value="0"/></td>
-              <td align="left" width="15%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="0"/></td>
-              <td align="left" width="15%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="100"/>%</td>
-            </tr>
-            <tr>
-              <td align="left" width="14%">Max Dmg:     <br/><input type="text" name="maxdmg" size="5" value="<?=$maxdmg?>"/></td>
-              <td align="left" width="14%">MP Regen:    <br/><input type="text" name="mana_regen_rate" size="5" value="0"/></td>
-              <td align="left" width="14%">Combat MP Regen:<br/><input type="text" name="combat_mana_regen" size="5" value="0"/></td>
-              <td align="left" width="14%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"/></td>
-              <td align="left" width="14%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="5" value="0"/></td>
-              <td align="left" width="15%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="100"/>%</td>
-              <td align="left" width="14%">Ignore Distance:  <br/><input type="text" name="ignore_distance" size="5" value="1000"/></td>
-            </tr>
-            <tr>
-              <td align="left" width="14%">Aggroradius: <br/><input type="text" name="aggroradius" size="5" value="70"/></td>
-              <td align="left" width="14%">Assistradius:<br/><input type="text" name="assistradius" size="5" value="0"/></td>
-              <td align="left" width="14%">&nbsp;</td>
-			  <td align="left" width="14%">&nbsp;</td>
-              <td align="left" width="14%">&nbsp;</td>
-			  <td align="left" width="15%">&nbsp;</td>
-              <td align="left" width="14%">&nbsp;</td>
+                <td align="left" width="20%">Min Dmg:     <br/><input type="text" name="mindmg" size="5" value="0"></td>
+                <td align="left" width="20%">HP Regen:    <br/><input type="text" name="hp_regen_rate" size="5" value="0"></td>
+                <td align="left" width="20%">Combat HP Regen:<br/><input type="text" name="combat_hp_regen" size="5" value="0"></td>
+				        <td align="left" width="20%">Aggroradius: <br/><input type="text" name="aggroradius" size="5" value="0"></td>
+                <td align="left" width="20%">Attack Count:<br/><input type="text" name="attack_count" size="5" value="0"></td>
+              </tr>
+              </tr>
+                <td align="left" width="20%">Max Dmg:     <br/><input type="text" name="maxdmg" size="5" value="0"></td>
+                <td align="left" width="20%">MP Regen:    <br/><input type="text" name="mana_regen_rate" size="5" value="0"></td>
+                <td align="left" width="20%">Combat MP Regen:<br/><input type="text" name="combat_mana_regen" size="5" value="0"></td>
+                <td align="left" width="20%">Assistradius:<br/><input type="text" name="assistradius" size="5" value="0"></td>
+                <td align="left" width="20%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="0"></td>
+               </tr>
+              </tr>
+                <td align="left" width="20%">Ignore Distance:     <br/><input type="text" name="ignore_distance" size="5" value="0"></td>
+                <td align="left" width="20%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="0">%</td>
+				        <td align="left" width="20%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="0">%</td>
+				        <td align="left" width="20%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="0"></td>
+                <td align="left" width="20%">&nbsp;</td>
              </tr>
           </table>
           <center>
@@ -240,7 +232,7 @@
               <td align="left" width="17%">Beardcolor:<br/><input type="text" name="luclin_beardcolor" size="10" value="0"></td>
               <td align="left" width="16%">Melee1:    <br/><input type="text" name="d_melee_texture1" size="10" value="0"></td>
               <td align="left" width="16%">Melee2:    <br/><input type="text" name="d_melee_texture2" size="10" value="0"></td>
-              <td align="left" width="17%">&nbsp;</td>
+              <td align="left" width="17%">Armor Tint ID:    <br/><input type="text" name="armortint_id" size="10" value="0"></td>
 		          <td align="left" width="17%">&nbsp;</td>
             </tr>
             <tr>
@@ -248,24 +240,16 @@
               <td align="left" width="17%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="0"></td>
               <td align="left" width="17%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="0"></td>
 			        <td align="left" width="17%">Light Source: <br/><input type="text" name="light" size="10" value="0"></td>
-              <td align="left" width="16%">&nbsp;</td>
-		          <td align="left" width="16%">&nbsp;</td>
-             </tr>
-             <tr>
               <td align="left" width="16%">Texture:    <br/><input type="text" name="texture" size="10" value="0"></td>
               <td align="left" width="16%">HelmTexture:<br/><input type="text" name="helmtexture" size="10" value="0"></td>
+             </tr>
+             <tr>
+              <td align="left" width="16%">FeetTexture:  <br/><input type="text" name="feettexture" size="10" value="0"></td>
+              <td align="left" width="16%">ChestTexture:  <br/><input type="text" name="chesttexture" size="10" value="0"></td>
               <td align="left" width="17%">ArmTexture:       <br/><input type="text" name="armtexture" size="10" value="0"></td>
               <td align="left" width="17%">BracerTexture:    <br/><input type="text" name="bracertexture" size="10" value="0"></td>
               <td align="left" width="17%">HandTexture:<br/><input type="text" name="handtexture" size="10" value="0"></td>
               <td align="left" width="17%">LegTexture:       <br/><input type="text" name="legtexture" size="10" value="0"></td>
-            </tr>
-             <tr>  
-              <td align="left" width="16%">FeetTexture:  <br/><input type="text" name="feettexture" size="10" value="0"></td>
-              <td align="left" width="16%">ChestTexture:  <br/><input type="text" name="chesttexture" size="10" value="0"></td>
-              <td align="left" width="16%">&nbsp;</td>
-		          <td align="left" width="16%">&nbsp;</td>
-              <td align="left" width="17%">&nbsp;</td>
-		          <td align="left" width="17%">&nbsp;</td>
             </tr>
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
@@ -286,6 +270,14 @@
 <?endforeach;?>
                 </select>
               </td>
+               <td align="left" width="50%">
+                Ranged Type:<br/>
+                <select name="ranged_type" style="width: 200px;">
+<?foreach($skilltypes as $key=>$value):?>
+                  <option value="<?=$key?>"<?echo ($key == 7)? " selected" : "";?>><?=$key?>: <?=$value?></option>
+<?endforeach;?>
+                </select>
+              </td>
             </tr>
           </table>
         </fieldset><br/>
@@ -293,11 +285,12 @@
           <legend><strong><font size="4">Misc</font></strong></legend>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
-              <td align="left" width="17%">Spawn Limit:     <br/><input type="text" name="spawn_limit" size="10" value="0"/></td>
-              <td align="left" width="17%">Emote:           <br/><input type="text" name="emoteid" size="10" value="0"/></td>
-              <td align="left" width="17%">No Target Hotkey:<br/><input type="text" name="no_target_hotkey" size="10" value="0"></td>
-              <td align="left" width="16%">Raid Target:     <br/><input type="text" name="raid_target" size="5" value="0"></td>
-              <td align="left" width="16%">Encounter:       <br/><input type="text" name="encounter" size="5" value="0"></td>
+              <td align="left" width="17%">Spawn Limit:     <br/><input type="text" name="spawn_limit" size="10" value="0"></td>
+              <td align="left" width="17%">Emote ID:           <br/><input type="text" name="emoteid" size="10" value="0"></td>
+              <td align="left" width="17%">Loot ID:     <br/><input type="text" name="loottable_id" size="10" value="0"></td>
+              <td align="left" width="17%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="10" value="0"></td>
+              <td align="left" width="17%">Spells Effcects ID:   <br/><input type="text" name="npc_spells_effects_id" size="10" value="0"></td>
+              <td align="left" width="16%">Faction ID:   <br/><input type="text" name="npc_faction_id" size="10" value="0"></td>
             </tr>
           </table><br/>
           <center>
@@ -305,9 +298,8 @@
               <tr>
                 <td valign="top" align="left">
                   <input type="checkbox" name="qglobal" value="1"/> Enable Quest Globals<br/>
-                  <input type="checkbox" name="pet" value="1"/> NPC is a Pet<br/>
-                  <input type="checkbox" name="private_corpse" value="1"/> Corpse does not Unlock<br/>
-
+                  <input type="checkbox" name="encounter" value="1"/> Enable Encounter Handins<br/>
+                  <input type="checkbox" name="isquest" value="1"> Has Quest File<br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="unique_spawn_by_name" value="1"/> Unique by Name<br/>
@@ -315,7 +307,9 @@
                   <input type="checkbox" name="ignore_despawn" value="1"/> Ignore Despawn<br>
                 </td>
                 <td valign="top" align="left">
-                  <input type="checkbox" name="isquest" value="1"> Has Quest File<br/>
+                  <input type="checkbox" name="pet" value="1"/> NPC is a Pet<br/>
+                  <input type="checkbox" name="private_corpse" value="1"/> Corpse does not Unlock<br/>
+                  <input type="checkbox" name="raid_target" value="1"/> Raid Target<br/>
                 </td>
               </tr>
             </table>

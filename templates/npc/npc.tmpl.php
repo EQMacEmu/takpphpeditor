@@ -42,7 +42,6 @@
                       <strong>Max Level:</strong> <?=$maxlevel?><br/>
                       <strong>Body Type:</strong> <?echo "<a title='Body Type: " . $bodytype . "'>" . $bodytypes[$bodytype] . "</a>";?><br/>
                       <strong>Vendor:</strong> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=22" title="View/Change"><?echo ($merchant_id != 0 ? $merchant_id : "no");?></a><br/>
-                      <strong>Trap:</strong> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=31" title="View/Change"><?echo ($trap_template != 0 ? $trap_template : "no");?></a><br/>
 <?if($armortint_id > 0) {?>
                       <strong>Tint:</strong> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&tint_id=<?=$armortint_id?>&action=33"><?=$armortint_id?></a><br>
 <?} else {?>
@@ -201,6 +200,11 @@
                     <td align="left" width="34%">Always Aggro PCs: <?=$aggro_pc?></td>
                    <td align="left" width="33%">Ignore Distance: <?=$ignore_distance?></td>
                   </tr>
+                   <tr>
+                     <td align="left" width="34%">Spells Effects ID: <?=$npc_spells_effects_id?></td>
+                    <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="34%">&nbsp;</td>
+                  </tr>
                   <?
 				    $new_special_abilities = '';
 				      for ($i = 1; $i <= $max_special_ability; $i++){
@@ -263,8 +267,8 @@
                 <table width="100%" border="0" cellpadding="3" cellspacing="0">
                   <tr>
                     <td align="left" width="33%">Qglobal: <?=$yesno[$qglobal]?></td>
-                    <td align="left" width="33%">Pet: <?=$yesno[$pet]?></td>
-                    <td align="left" width="34%">Private Corpse: <?=$yesno[$private_corpse]?></td>
+                    <td align="left" width="33%">Encounter: <?=$yesno[$encounter]?></td>
+                    <td align="left" width="34%">Pet: <?=$yesno[$pet]?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Spawn Limit: <?echo ($spawn_limit > 0) ? $spawn_limit : "None";?></td>
@@ -273,13 +277,8 @@
                   </tr>
                   <tr>
                     <td align="left" width="33%">Ignore Despawn: <?=$yesno[$ignore_despawn]?></td>
-                    <td align="left" width="33%">No Target Hotkey: <?=$yesno[$no_target_hotkey]?></td>
-                    <td align="left" width="34%">Raid Target: <?=$yesno[$raid_target]?></td>
-                  </tr>
-                  <tr>
-                    <td align="left" width="33%">Encounter: <?=$yesno[$encounter]?></td>
-                    <td align="left" width="33%">&nbsp;</td>
-                    <td align="left" width="34%">&nbsp;</td>
+                    <td align="left" width="33%">Raid Target: <?=$yesno[$raid_target]?></td>
+                    <td align="left" width="34%">Private Corpse: <?=$yesno[$private_corpse]?></td>
                   </tr>
                 </table>
               </fieldset>
@@ -308,12 +307,9 @@
         <input type="hidden" name="mana_regen_rate" value="<?=$mana_regen_rate?>">
         <input type="hidden" name="loottable_id" value="<?=$loottable_id?>">
         <input type="hidden" name="merchant_id" value="<?=$merchant_id?>">
-        <input type="hidden" name="alt_currency_id" value="<?=$alt_currency_id?>">
         <input type="hidden" name="npc_spells_id" value="<?=$npc_spells_id?>">
         <input type="hidden" name="npc_spells_effects_id" value="<?=$npc_spells_effects_id?>">
         <input type="hidden" name="npc_faction_id" value="<?=$npc_faction_id?>">
-        <input type="hidden" name="adventure_template_id" value="<?=$adventure_template_id?>">
-        <input type="hidden" name="trap_template" value="<?=$trap_template?>">
         <input type="hidden" name="mindmg" value="<?=$mindmg?>">
         <input type="hidden" name="maxdmg" value="<?=$maxdmg?>">
         <input type="hidden" name="attack_count" value="<?=$attack_count?>">
@@ -333,12 +329,11 @@
         <input type="hidden" name="armortint_blue" value="<?=$armortint_blue?>">
         <input type="hidden" name="d_melee_texture1" value="<?=$d_melee_texture1?>">
         <input type="hidden" name="d_melee_texture2" value="<?=$d_melee_texture2?>">
-        <input type="hidden" name="ammo_idfile" value="<?=$ammo_idfile?>">
         <input type="hidden" name="prim_melee_type" value="<?=$prim_melee_type?>">
         <input type="hidden" name="sec_melee_type" value="<?=$sec_melee_type?>">
         <input type="hidden" name="ranged_type" value="<?=$ranged_type?>">
         <input type="hidden" name="runspeed" value="<?=$runspeed?>">
-		<input type="hidden" name="walkspeed" value="<?=$walkspeed?>">
+		    <input type="hidden" name="walkspeed" value="<?=$walkspeed?>">
         <input type="hidden" name="MR" value="<?=$MR?>">
         <input type="hidden" name="CR" value="<?=$CR?>">
         <input type="hidden" name="DR" value="<?=$DR?>">
@@ -362,7 +357,6 @@
         <input type="hidden" name="see_improved_hide" value="<?=$see_improved_hide?>">
         <input type="hidden" name="ATK" value="<?=$ATK?>">
         <input type="hidden" name="Accuracy" value="<?=$Accuracy?>">
-        <input type="hidden" name="Avoidance" value="<?=$Avoidance?>">
         <input type="hidden" name="slow_mitigation" value="<?=$slow_mitigation?>">
         <input type="hidden" name="maxlevel" value="<?=$maxlevel?>">
         <input type="hidden" name="scalerate" value="<?=$scalerate?>">
@@ -373,7 +367,6 @@
         <input type="hidden" name="emoteid" value="<?=$emoteid?>">
         <input type="hidden" name="spellscale" value="<?=$spellscale?>">
         <input type="hidden" name="healscale" value="<?=$healscale?>">
-        <input type="hidden" name="no_target_hotkey" value="<?=$no_target_hotkey?>">
         <input type="hidden" name="raid_target" value="<?=$raid_target?>">
         <input type="hidden" name="light" value="<?=$light?>">
         <input type="hidden" name="combat_hp_regen" value="<?=$combat_hp_regen?>">

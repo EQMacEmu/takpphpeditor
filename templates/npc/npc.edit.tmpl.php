@@ -51,18 +51,26 @@
                 <td align="left" width="17%">HP:      <br/><input type="text" name="hp" size="10" value="<?=$hp?>"></td>
                 <td align="left" width="17%">Mana:    <br/><input type="text" name="mana" size="10" value="<?=$mana?>"></td>
                 <td align="left" width="17%">AC:      <br/><input type="text" name="AC" size="10" value="<?=$AC?>"></td>
-                <td align="left" width="17%">Scalerate:<br/><input type="text" name="scalerate" size="10" value="<?=$scalerate?>"></td>
+                <td align="left" width="17%">ATK:     <br/><input type="text" name="ATK" size="10" value="<?=$ATK?>"></td>
                 <td align="left" width="16%">Runspeed:<br/><input type="text" name="runspeed" size="10" value="<?=$runspeed?>"></td>
-				<td align="left" width="16%">Walkspeed:   <br><input type="text" name="walkspeed" size="10" value="<?=$walkspeed?>"></td>
+				        <td align="left" width="16%">Walkspeed:   <br><input type="text" name="walkspeed" size="10" value="<?=$walkspeed?>"></td>
               </tr>
               <tr>
-              	<td align="left">ATK:      <br/><input type="text" name="ATK" size="10" value="<?=$ATK?>"></td>
-                <td align="left">Accuracy: <br/><input type="text" name="Accuracy" size="10" value="<?=$Accuracy?>"></td>
+              	<td align="left">Scalerate:<br/><input type="text" name="scalerate" size="10" value="<?=$scalerate?>"></td>
                 <td align="left">See Invis:<br/><input type="text" name="see_invis" size="10" value="<?=$see_invis?>"></td>
                 <td align="left">See ITU:  <br/><input type="text" name="see_invis_undead" size="10" value="<?=$see_invis_undead?>"></td>
                 <td align="left">See Sneak: <br/><input type="text" name="see_sneak" size="10" value="<?=$see_sneak?>"></td>
                 <td align="left">See IH:   <br/><input type="text" name="see_improved_hide" size="10" value="<?=$see_improved_hide?>"></td>
+                <td align="left">&nbsp;</td>
               </tr>
+               </tr>
+                <td align="left">HP Regen:    <br/><input type="text" name="hp_regen_rate" size="10" value="<?=$hp_regen_rate?>"></td>
+                <td align="left">Combat HP Regen:<br/><input type="text" name="combat_hp_regen" size="10" value="<?=$combat_hp_regen?>"></td>
+                <td align="left">MP Regen:    <br/><input type="text" name="mana_regen_rate" size="10" value="<?=$mana_regen_rate?>"></td>
+                <td align="left">Combat MP Regen:<br/><input type="text" name="combat_mana_regen" size="10" value="<?=$combat_mana_regen?>"></td>
+                <td align="left">&nbsp;</td>
+                <td align="left">&nbsp;</td>
+               </tr>
             </table>
           </fieldset><br/>
           <fieldset>
@@ -86,13 +94,11 @@
                 <td colspan="7">1 Resist = 0.5%<br/>200 Resist = 100%</td>
               </tr>
               <tr>
-                <td align="left" width="14%">MR:      <br/><input type="text" name="MR" size="5" value="<?=$MR?>"></td>
-                <td align="left" width="14%">CR:      <br/><input type="text" name="CR" size="5" value="<?=$CR?>"></td>
-                <td align="left" width="14%">FR:      <br/><input type="text" name="FR" size="5" value="<?=$FR?>"></td>
-                <td align="left" width="14%">PR:      <br/><input type="text" name="PR" size="5" value="<?=$PR?>"></td>
-                <td align="left" width="14%">DR:      <br/><input type="text" name="DR" size="5" value="<?=$DR?>"></td>
-		  <td align="left" width="15%">&nbsp;</td>
-		  <td align="left" width="15%">&nbsp;</td>
+                <td align="left" width="20%">MR:      <br/><input type="text" name="MR" size="5" value="<?=$MR?>"></td>
+                <td align="left" width="20%">CR:      <br/><input type="text" name="CR" size="5" value="<?=$CR?>"></td>
+                <td align="left" width="20%">FR:      <br/><input type="text" name="FR" size="5" value="<?=$FR?>"></td>
+                <td align="left" width="20%">PR:      <br/><input type="text" name="PR" size="5" value="<?=$PR?>"></td>
+                <td align="left" width="20%">DR:      <br/><input type="text" name="DR" size="5" value="<?=$DR?>"></td>
               </tr>
             </table>
          </fieldset><br/>
@@ -100,34 +106,24 @@
            <legend><strong><font size="4">Combat</font></strong></legend>
              <table width="100%" border="0" cellpadding="3" cellspacing="0">
                <tr>
-                <td align="left" width="14%">Min Dmg:     <br/><input type="text" name="mindmg" size="5" value="<?=$mindmg?>"></td>
-                <td align="left" width="14%">HP Regen:    <br/><input type="text" name="hp_regen_rate" size="5" value="<?=$hp_regen_rate?>"></td>
-                <td align="left" width="14%">Combat HP Regen:<br/><input type="text" name="combat_hp_regen" size="5" value="<?=$combat_hp_regen?>"></td>
-				        <td align="left" width="14%">Aggroradius: <br/><input type="text" name="aggroradius" size="5" value="<?=$aggroradius?>"></td>
-                <td align="left" width="14%">Attack Count:<br/><input type="text" name="attack_count" size="5" value="<?=$attack_count?>"></td>
-              </tr>
-              </tr>
-                <td align="left" width="14%">Max Dmg:     <br/><input type="text" name="maxdmg" size="5" value="<?=$maxdmg?>"></td>
-                <td align="left" width="14%">MP Regen:    <br/><input type="text" name="mana_regen_rate" size="5" value="<?=$mana_regen_rate?>"></td>
-                <td align="left" width="14%">Combat MP Regen:<br/><input type="text" name="combat_mana_regen" size="5" value="<?=$combat_mana_regen?>"></td>
-                <td align="left" width="14%">Assistradius:<br/><input type="text" name="assistradius" size="5" value="<?=$assistradius?>"></td>
-                <td align="left" width="14%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"></td>
-               </tr>
-              </tr>
-                <td align="left" width="14%">Loot ID:     <br/><input type="text" name="loottable_id" size="5" value="<?=$loottable_id?>"></td>
-                <td align="left" width="14%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="5" value="<?=$npc_spells_id?>"></td>
-                <td align="left" width="15%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="<?=$healscale?>">%</td>
-				        <td align="left" width="15%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="<?=$spellscale?>">%</td>
-				        <td align="left" width="15%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="<?=$slow_mitigation?>"></td>
-              </tr>
-              </tr>
-                <td align="left" width="14%">Ignore Distance:     <br/><input type="text" name="ignore_distance" size="5" value="<?=$ignore_distance?>"></td>
-                <td align="left" width="14%">&nbsp;</td>
-                <td align="left" width="15%">&nbsp;</td>
-				        <td align="left" width="15%">&nbsp;</td>
-				        <td align="left" width="15%">&nbsp;</td>
+                <td align="left" width="17%">Min Dmg:     <br/><input type="text" name="mindmg" size="5" value="<?=$mindmg?>"></td>
+                <td align="left" width="17%">Max Dmg:     <br/><input type="text" name="maxdmg" size="5" value="<?=$maxdmg?>"></td>
+                <td align="left" width="17%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"></td>
+				        <td align="left" width="17%">Aggroradius: <br/><input type="text" name="aggroradius" size="5" value="<?=$aggroradius?>"></td>
+                <td align="left" width="16%">Assistradius:<br/><input type="text" name="assistradius" size="5" value="<?=$assistradius?>"></td>
+                <td align="left" width="16%">Ignore Distance:     <br/><input type="text" name="ignore_distance" size="5" value="<?=$ignore_distance?>"></td>
               </tr>
             </table>
+             <table width="100%" border="0" cellpadding="3" cellspacing="0">
+             </tr>
+                <td align="left" width="17%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="<?=$healscale?>">%</td>
+				        <td align="left" width="17%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="<?=$spellscale?>">%</td>
+				        <td align="left" width="17%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="<?=$slow_mitigation?>"></td>
+                <td align="left" width="17%">Accuracy: <br/><input type="text" name="Accuracy" size="5" value="<?=$Accuracy?>"></td>
+                <td align="left" width="16%">Attack Count:<br/><input type="text" name="attack_count" size="5" value="<?=$attack_count?>"></td>
+                <td align="left" width="16%">&nbsp;</td>
+              </tr>
+              </table>
             <center>
               <table cellpadding="20px">
                 <tr>
@@ -249,7 +245,7 @@
               <td align="left" width="17%">Beardcolor:<br/><input type="text" name="luclin_beardcolor" size="10" value="<?=$luclin_beardcolor?>"></td>
               <td align="left" width="16%">Melee1:    <br/><input type="text" name="d_melee_texture1" size="10" value="<?=$d_melee_texture1?>"></td>
               <td align="left" width="16%">Melee2:    <br/><input type="text" name="d_melee_texture2" size="10" value="<?=$d_melee_texture2?>"></td>
-              <td align="left" width="17%">&nbsp;</td>
+              <td align="left" width="17%">Armor Tint ID:    <br/><input type="text" name="armortint_id" size="10" value="<?=$armortint_id?>"></td>
 		          <td align="left" width="17%">&nbsp;</td>
             </tr>
             <tr>
@@ -257,24 +253,16 @@
               <td align="left" width="17%">Armor Green:<br/><input type="text" name="armortint_green" size="10" value="<?=$armortint_green?>"></td>
               <td align="left" width="17%">Armor Blue: <br/><input type="text" name="armortint_blue" size="10" value="<?=$armortint_blue?>"></td>
 			        <td align="left" width="17%">Light Source: <br/><input type="text" name="light" size="10" value="<?=$light?>"></td>
-              <td align="left" width="16%">&nbsp;</td>
-		          <td align="left" width="16%">&nbsp;</td>
-             </tr>
-             <tr>
               <td align="left" width="16%">Texture:    <br/><input type="text" name="texture" size="10" value="<?=$texture?>"></td>
               <td align="left" width="16%">HelmTexture:<br/><input type="text" name="helmtexture" size="10" value="<?=$helmtexture?>"></td>
+             </tr>
+             <tr>
+              <td align="left" width="16%">FeetTexture:  <br/><input type="text" name="feettexture" size="10" value="<?=$feettexture?>"></td>
+              <td align="left" width="16%">ChestTexture:  <br/><input type="text" name="chesttexture" size="10" value="<?=$chesttexture?>"></td>
               <td align="left" width="17%">ArmTexture:       <br/><input type="text" name="armtexture" size="10" value="<?=$armtexture?>"></td>
               <td align="left" width="17%">BracerTexture:    <br/><input type="text" name="bracertexture" size="10" value="<?=$bracertexture?>"></td>
               <td align="left" width="17%">HandTexture:<br/><input type="text" name="handtexture" size="10" value="<?=$handtexture?>"></td>
               <td align="left" width="17%">LegTexture:       <br/><input type="text" name="legtexture" size="10" value="<?=$legtexture?>"></td>
-            </tr>
-             <tr>  
-              <td align="left" width="16%">FeetTexture:  <br/><input type="text" name="feettexture" size="10" value="<?=$feettexture?>"></td>
-              <td align="left" width="16%">ChestTexture:  <br/><input type="text" name="chesttexture" size="10" value="<?=$chesttexture?>"></td>
-              <td align="left" width="16%">&nbsp;</td>
-		          <td align="left" width="16%">&nbsp;</td>
-              <td align="left" width="17%">&nbsp;</td>
-		          <td align="left" width="17%">&nbsp;</td>
             </tr>
           </table>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
@@ -294,6 +282,14 @@
                   <option value="<?=$key?>"<?echo ($key == $sec_melee_type)? " selected" : "";?>><?=$key?>: <?=$value?></option>
 <?endforeach;?>
                 </select>
+                </td>
+              <td align="left" width="50%">
+                Ranged Type:<br/>
+                <select name="ranged_type" style="width: 200px;">
+<?foreach($skilltypes as $key=>$value):?>
+                  <option value="<?=$key?>"<?echo ($key == $ranged_type)? " selected" : "";?>><?=$key?>: <?=$value?></option>
+<?endforeach;?>
+                </select>
               </td>
             </tr>
           </table>
@@ -303,10 +299,11 @@
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
               <td align="left" width="17%">Spawn Limit:     <br/><input type="text" name="spawn_limit" size="10" value="<?=$spawn_limit?>"></td>
-              <td align="left" width="17%">Emote:           <br/><input type="text" name="emoteid" size="10" value="<?=$emoteid?>"></td>
-              <td align="left" width="17%">No Target Hotkey:<br/><input type="text" name="no_target_hotkey" size="10" value="<?=$no_target_hotkey?>"></td>
-              <td align="left" width="16%">Raid Target:     <br/><input type="text" name="raid_target" size="5" value="<?=$raid_target?>"></td>
-              <td align="left" width="16%">Encounter:       <br/><input type="text" name="encounter" size="5" value="<?=$encounter?>"></td>
+              <td align="left" width="17%">Emote ID:           <br/><input type="text" name="emoteid" size="10" value="<?=$emoteid?>"></td>
+              <td align="left" width="17%">Loot ID:     <br/><input type="text" name="loottable_id" size="10" value="<?=$loottable_id?>"></td>
+              <td align="left" width="17%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="10" value="<?=$npc_spells_id?>"></td>
+              <td align="left" width="17%">Spells Effects ID:   <br/><input type="text" name="npc_spells_effects_id" size="10" value="<?=$npc_spells_effects_id?>"></td>
+              <td align="left" width="16%">Faction ID:   <br/><input type="text" name="npc_faction_id" size="10" value="<?=$npc_faction_id?>"></td>
             </tr>
           </table><br/>
           <center>
@@ -314,8 +311,8 @@
               <tr>
                 <td valign="top" align="left">
                   <input type="checkbox" name="qglobal" value="1"<?echo ($qglobal == 1) ? " checked" : "";?>> Enable Quest Globals<br/>
-                  <input type="checkbox" name="pet" value="1"<?echo ($pet == 1) ? " checked" : "";?>> NPC is a Pet<br/>
-                  <input type="checkbox" name="private_corpse" value="1"<?echo ($private_corpse == 1) ? " checked" : "";?>> Corpse does not Unlock<br/>
+                  <input type="checkbox" name="encounter" value="1"<?echo ($encounter == 1) ? " checked" : "";?>> Enable Encounter Handins<br/>  
+                  <input type="checkbox" name="isquest" value="1"<?echo ($isquest == 1) ? " checked" : "";?>> Has Quest File<br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="unique_spawn_by_name" value="1"<?echo ($unique_spawn_by_name == 1) ? " checked" : "";?>> Unique by Name<br/>
@@ -323,7 +320,9 @@
                   <input type="checkbox" name="ignore_despawn" value="1"<?echo ($ignore_despawn == 1) ? " checked" : "";?>> Ignore Despawn<br/>
                 </td>
                 <td valign="top" align="left">
-                  <input type="checkbox" name="isquest" value="1"<?echo ($isquest == 1) ? " checked" : "";?>> Has Quest File<br/>
+                  <input type="checkbox" name="pet" value="1"<?echo ($pet == 1) ? " checked" : "";?>> NPC is a Pet<br/>
+                  <input type="checkbox" name="private_corpse" value="1"<?echo ($private_corpse == 1) ? " checked" : "";?>> Corpse does not Unlock<br/>
+                  <input type="checkbox" name="raid_target" value="1"<?echo ($raid_target == 1) ? " checked" : "";?>> Raid Target<br/>
                 </td>
               </tr>
             </table>
