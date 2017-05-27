@@ -891,11 +891,10 @@ function get_spawngroups($search) {
   for ($x=0; $x<count($results); $x++) {
     $id = $results[$x]['spawngroupID'];
 
-    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$id";
+    $query = "SELECT name, spawn_limit, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$id";
     $result = $mysql->query_assoc($query);
     $results[$x]['name'] = $result['name'];
     $results[$x]['spawn_limit'] = $result['spawn_limit'];
-    $results[$x]['dist'] = $result['dist'];
     $results[$x]['max_x'] = $result['max_x'];
     $results[$x]['min_x'] = $result['min_x'];
     $results[$x]['max_y'] = $result['max_y'];
@@ -1147,10 +1146,10 @@ function get_spawngroup_info() {
   $new_sid = $_POST['new_sid'];
 
   if ($new_sid > 0) {
-    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$new_sid";
+    $query = "SELECT name, spawn_limit, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$new_sid";
   }
   else {
-    $query = "SELECT name, spawn_limit, dist, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$sid";
+    $query = "SELECT name, spawn_limit, max_x, min_x, max_y, min_y, delay, mindelay, despawn, despawn_timer, rand_spawns, rand_respawntime, rand_variance, rand_condition_ FROM spawngroup WHERE id=$sid";
   }
   $result = $mysql->query_assoc($query);
 
@@ -1163,7 +1162,6 @@ function update_spawngroup_name() {
   $sid = $_GET['sid'];
   $name = $_POST['name'];
   $spawn_limit = $_POST['spawn_limit'];
-  $dist = $_POST['dist'];
   $max_x = $_POST['max_x'];
   $min_x = $_POST['min_x'];
   $max_y = $_POST['max_y'];
@@ -1177,7 +1175,7 @@ function update_spawngroup_name() {
   $rand_variance = $_POST['rand_variance'];
   $rand_condition_ = $_POST['rand_condition_'];
 
-  $query = "UPDATE spawngroup SET name=\"$name\", spawn_limit=\"$spawn_limit\", dist=\"$dist\", max_x=\"$max_x\", min_x=\"$min_x\", max_y=\"$max_y\", min_y=\"$min_y\", delay=\"$delay\", mindelay=\"$mindelay\",despawn=\"$despawn\", despawn_timer=\"$despawn_timer\", rand_spawns=\"$rand_spawns\", rand_respawntime=\"$rand_respawntime\", rand_variance=\"$rand_variance\", rand_condition_=\"$rand_condition_\" WHERE id=$sid";
+  $query = "UPDATE spawngroup SET name=\"$name\", spawn_limit=\"$spawn_limit\", max_x=\"$max_x\", min_x=\"$min_x\", max_y=\"$max_y\", min_y=\"$min_y\", delay=\"$delay\", mindelay=\"$mindelay\",despawn=\"$despawn\", despawn_timer=\"$despawn_timer\", rand_spawns=\"$rand_spawns\", rand_respawntime=\"$rand_respawntime\", rand_variance=\"$rand_variance\", rand_condition_=\"$rand_condition_\" WHERE id=$sid";
   $mysql->query_no_result($query);
 }
 
@@ -1522,7 +1520,6 @@ function add_spawngroup() {
   $npcID = $_POST['npcID'];
   $chance = ($_POST['chance'] >= 0 && $_POST['chance'] <= 100) ? $_POST['chance'] : 100;
   $spawn_limit = intval($_POST['spawn_limit']);
-  $dist = intval($_POST['dist']);
   $max_x = $_POST['max_x'];
   $min_x = $_POST['min_x'];
   $max_y = $_POST['max_y'];
@@ -1535,7 +1532,7 @@ function add_spawngroup() {
   $rand_respawntime = $_POST['rand_respawntime'];
   $rand_variance = $_POST['rand_variance'];
   $rand_condition_ = $_POST['rand_condition_'];
-  $query = "INSERT INTO spawngroup VALUES($id, \"$name\", \"$spawn_limit\", \"$dist\", \"$max_x\", \"$min_x\", \"$max_y\", \"$min_y\", \"$delay\", \"$mindelay\", \"$despawn\", \"$despawn_timer\", \"$rand_spawns\", \"$rand_respawntime\", \"$rand_variance\", \"$rand_condition_\")";
+  $query = "INSERT INTO spawngroup VALUES($id, \"$name\", \"$spawn_limit\", \"$max_x\", \"$min_x\", \"$max_y\", \"$min_y\", \"$delay\", \"$mindelay\", \"$despawn\", \"$despawn_timer\", \"$rand_spawns\", \"$rand_respawntime\", \"$rand_variance\", \"$rand_condition_\")";
   $mysql->query_no_result($query);
 
   if($npcID == "")

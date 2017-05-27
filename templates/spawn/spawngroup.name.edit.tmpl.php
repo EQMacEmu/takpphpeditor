@@ -10,8 +10,6 @@
 		<input type="text" name="name" size="15" value="<?=$name?>"><br><br>
 	    	spawn_limit:<br>
              	<input type="text" name="spawn_limit" size="6" value="<?=$spawn_limit?>"><br><br>
-		dist:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-              <input type="text" name="dist" size="5" value="<?=$dist?>"><br><br>
 		mindelay:&nbsp;
               delay:<br>
 		<input type="text" name="mindelay" size="5" value="<?=$mindelay?>">

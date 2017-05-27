@@ -15,8 +15,6 @@
 		Chance:<br>
               <input type="text" name="npcID" size="5" value="<?=$npcid?>">
 		<input type="text" name="chance" size="2" value="100">%<br><br>
-              dist:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-              <input type="text" name="dist" size="5" value="0"><br><br>
 		mindelay:&nbsp;
               delay:<br>
 		<input type="text" name="mindelay" size="5" value="0">
