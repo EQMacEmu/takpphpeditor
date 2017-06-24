@@ -157,7 +157,7 @@
                   Rampage (3):  <br><input type="text" name="3" size="10"><br>
                   AE Rampage (4):  <br><input type="text" name="4" size="10"><br>
                   Flurry (5):  <br><input type="text" name="5" size="10"><br>
-                  Ranged Attack (11):  <br><input type="text" name="5" size="10"><br>
+                  Ranged Attack (11):  <br><input type="text" name="11" size="10"><br>
                   Tunnel Vision (29): <br><input type="text" name="29" size="10"><br>
                   Leashed (32): <br><input type="text" name="32" size="10"><br>
                   Tethered (33): <br><input type="text" name="33" size="10"><br>
