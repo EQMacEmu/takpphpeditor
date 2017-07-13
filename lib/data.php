@@ -512,7 +512,8 @@ $specialattacks = array(
  "49" => "Corpse Camper",
  "50" => "Reverse Slow",
  "51" => "Immune to Haste",
- "52" => "Immune to Disarm"
+ "52" => "Immune to Disarm",
+ "53" => "Immune to Ripsote"
 );
 
 $tradeskills = array(

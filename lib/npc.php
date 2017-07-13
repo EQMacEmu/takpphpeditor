@@ -1,6 +1,6 @@
 <?php
 
-$max_special_ability = 52;
+$max_special_ability = 53;
 
 $factions = faction_list();
 $faction_values = array(
