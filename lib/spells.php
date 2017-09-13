@@ -140,7 +140,8 @@ function update_spell () {
     "deities13",
     "deities14",
     "deities15",
-    "deities16"
+    "deities16",
+    "disabled"
     );
 
   //Sanitize checkboxes

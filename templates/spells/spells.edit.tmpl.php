@@ -135,6 +135,7 @@
                       <td><input type="checkbox" name="nodispell" <? echo ($nodispell) ? "checked" : "" ?>> No Dispell</td>
                       <td><input type="checkbox" name="can_mgb" <? echo ($can_mgb) ? "checked" : "" ?>> Can MGB</td>
                       <td><input type="checkbox" name="short_buff_box" <? echo ($short_buff_box) ? "checked" : "" ?>> Short Buff Box</td>
+                      <td><input type="checkbox" name="disabled" <? echo ($disabled) ? "checked" : "" ?>> Disabled</td>
                     </tr>
                   </table>
                 </td>

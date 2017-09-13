@@ -1165,6 +1165,7 @@ $sp_fields = array(
     "no_block",
     "powerful_flag",
     "allowrest",
-	"allow_spellscribe"
+	"allow_spellscribe",
+    "disabled"
 );
 ?>
