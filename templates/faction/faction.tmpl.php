@@ -12,7 +12,7 @@
       <tr><td align="right">-751 to -2000</td><td>&nbsp;</td><td align="left">Ready to attack</td></tr>
     </table><br/><br/>
   </center>
-  <div style="border: 1px solid black; width: 500px; margin: auto;">
+  <div style="border: 1px solid black; width: 600px; margin: auto;">
     <div class="edit_form_header" style="height: 16px; line-height: 16px;">
       <div style="float: right;">
 	    <a href="index.php?editor=faction&fid=<?=$faction_info['id']?>&action=16"><img src="images/view_all.gif" title="Search for NPCs using this faction" border="0" /></a>
@@ -20,25 +20,29 @@
       Faction Data for <?=$faction_info['name']?> (<?=$faction_info['id']?>)
     </div>
     <div class="edit_form_content">
-      <fieldset style="width: 450px; margin: auto;">
+      <fieldset style="width: 550px; margin: auto;">
         <legend><strong>Faction Info</strong></legend>
         <table width="100%">
           <tr>
-            <th width="15%">ID</th>
-            <th width="40%">Name</th>
+            <th width="10%">ID</th>
+            <th width="35%">Name</th>
             <th width="15%">Base</th>
             <th width="10%">See Illusion</th>
+            <th width="10%">MinCap</th>
+            <th width="10%">MaxCap</th>
           </tr>
           <tr>
-            <td width="15%" align="center"><?=$faction_info['id']?></td>
-            <td width="40%" align="center"><?=$faction_info['name']?></td>
+            <td width="10%" align="center"><?=$faction_info['id']?></td>
+            <td width="35%" align="center"><?=$faction_info['name']?></td>
             <td width="15%" align="center"><?=$faction_info['base']?></td>
-            <td width="15%" align="center"><?=$yesno[$faction_info['see_illusion']]?></td>
+            <td width="10%" align="center"><?=$yesno[$faction_info['see_illusion']]?></td>
+            <td width="10%" align="center"><?=$faction_info['min_cap']?></td>
+            <td width="10%" align="center"><?=$faction_info['max_cap']?></td>
             <td width="10%" align="right"><a href="index.php?editor=faction&fid=<?=$faction_info['id']?>&action=1"><img src="images/c_table.gif" title="Edit this Faction" border="0"></a>&nbsp;<a onClick="return confirm('Really delete faction <?=$faction_info['id']?>? This will also remove all faction mods.');" href="index.php?editor=faction&fid=<?=$faction_info['id']?>&action=6"><img src="images/remove3.gif" title="Delete this Faction" border="0"></a></td>
           </tr>
         </table>
       </fieldset>
-      <fieldset style="width: 450px; margin: auto;">
+      <fieldset style="width: 550px; margin: auto;">
         <legend><strong>Faction Mods</strong></legend>
 <?
   if (isset($faction_mods)) {

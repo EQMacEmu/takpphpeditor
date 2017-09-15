@@ -12,7 +12,7 @@
       <tr><td align="right">-751 to -2000</td><td>&nbsp;</td><td align="left">Ready to attack</td></tr>
     </table><br/><br/>
   </center>
-  <div style="width: 600px; margin: auto;">
+  <div style="width: 750px; margin: auto;">
     <form name="faction" method="post" action="index.php?editor=faction&fid=<?=$faction_info['id']?>&action=2">
       <div style="border: 1px solid black;">
         <div class="edit_form_header">
@@ -32,6 +32,8 @@
                   <option value="1"<?echo ($faction_info['see_illusion'] == 1) ? " selected" : ""?>>Yes</option>
                 </select>
                 </td>
+                <td width="25%">MinCap:<br/><input size="8" type="text" name="new_min_cap" value="<?=$faction_info['min_cap']?>"></td>
+                <td width="25%">MaxCap:<br/><input size="8" type="text" name="new_max_cap" value="<?=$faction_info['max_cap']?>"></td>
               </tr>
             </table>
           </fieldset><br/>
@@ -40,6 +42,8 @@
             <input type="hidden" name="old_name" value="<?=$faction_info['name']?>">
             <input type="hidden" name="old_base" value="<?=$faction_info['base']?>">
             <input type="hidden" name="old_illusion" value="<?=$faction_info['see_illusion']?>">
+            <input type="hidden" name="old_min_cap" value="<?=$faction_info['min_cap']?>">
+            <input type="hidden" name="old_max_cap" value="<?=$faction_info['max_cap']?>">
             <input type="submit" value="Submit Changes">&nbsp;<input type="button" value="Cancel Changes" onclick="history.back()">
           </center>
         </div>

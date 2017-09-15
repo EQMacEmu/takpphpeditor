@@ -12,7 +12,7 @@
       <tr><td align="right">-751 to -2000</td><td>&nbsp;</td><td align="left">Ready to attack</td></tr>
     </table><br/><br/>
   </center>
-  <div style="width: 500px; margin: auto;">
+  <div style="width: 650px; margin: auto;">
     <form name="faction" method="post" action="index.php?editor=faction&action=5">
       <div style="border: 1px solid black;">
         <div class="edit_form_header">
@@ -32,6 +32,8 @@
                   <option value="1">Yes</option>
                 </select>
                 </td>
+                <td width="25%">MinCap:<br/><input size="8" type="text" name="base" value="-2000"></td>
+                <td width="25%">MaxCap:<br/><input size="8" type="text" name="base" value="2000"></td>
               </tr>
             </table>
           </fieldset><br/>

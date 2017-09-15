@@ -299,8 +299,10 @@ function add_faction() {
   $name = $_POST['name'];
   $base = $_POST['base'];
   $illusion = $_POST['illusion'];
+  $min_cap = $_POST['min_cap'];
+  $max_cap = $_POST['max_cap'];
 
-  $query = "INSERT INTO faction_list SET id=$id, `name`=\"$name\", base=$base, see_illusion=$illusion";
+  $query = "INSERT INTO faction_list SET id=$id, `name`=\"$name\", base=$base, see_illusion=$illusion, min_cap=$min_cap, max_cap=$max_cap";
   $mysql->query_no_result($query);
 }
 
@@ -316,12 +318,16 @@ function update_faction() {
   $new_name = $_POST['new_name'];
   $new_base = $_POST['new_base'];
   $new_illusion = $_POST['new_illusion'];
+  $new_min_cap = $_POST['new_min_cap'];
+  $new_max_cap = $_POST['new_max_cap'];
   $fields = '';
 
   $fields .= ($old_id != $new_id) ? "id=$new_id" . ", " : '';
   $fields .= ($old_name != $new_name) ? "`name`=\"$new_name\"" . ", " : '';
   $fields .= ($old_base != $new_base) ? "base=$new_base" . ", " : '';
   $fields .= ($old_illusion != $new_illusion) ? "see_illusion=$new_illusion" . ", " : '';
+  $fields .= ($old_min_cap != $new_min_cap) ? "min_cap=$new_min_cap" . ", " : '';
+  $fields .= ($old_max_cap != $new_max_cap) ? "max_cap=$new_max_cap" . ", " : '';
   $fields = rtrim($fields, ", ");
 
   if ($fields != '') {
