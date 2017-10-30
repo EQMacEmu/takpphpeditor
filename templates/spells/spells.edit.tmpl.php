@@ -1,4 +1,4 @@
-  <form name="spell_edit" method="post" action="index.php?editor=spells&id=<?=$id?>&action=6">
+    <form name="spell_edit" method="post" action="index.php?editor=spells&id=<?=$id?>&action=6">
     <div class="edit_form">
       <div class="edit_form_header">
         Edit Spell <?=$id?> - <?=$spellname?> (<a href="http://lucy.allakhazam.com/spell.html?id=<?=$id?>" target="_blank">Lucy</a>)
@@ -152,11 +152,11 @@
                       <td width="17%">Target Anim:<br/><input type="text" name="TargetAnim" value="<?=$TargetAnim?>" size="6"></td>
                     </tr>
                     <tr>
+                      <td width="17%">Spell Affect Index:<br/><input type="text" name="SpellAffectIndex" value="<?=$SpellAffectIndex?>" size="6"></td>
                       <td width="16%">Persistent Particles:<br/><input type="text" name="use_persistent_particles" value="<?=$use_persistent_particles?>" size="6"></td>
                       <td width="16%">Recourse Link:<br/><input type="text" name="RecourseLink" value="<?=$RecourseLink?>" size="6"></td>
                       <td width="16%">Small Targets:<br/><input type="text" name="small_targets_only" value="<?=$small_targets_only?>" size="6"></td>
-                      <td width="17%">NPC No Cast:<br/><input type="text" name="npc_no_cast" value="<?=$npc_no_cast?>" size="5"></td>
-                      <td width="17%">&nbsp;</td>
+                      <td width="17%">NPC No Cast:<br/><input type="text" name="npc_no_cast" value="<?=$npc_no_cast?>" size="6"></td>
                       <td width="17%">&nbsp;</td>
                     </tr> 
                   </table>
@@ -166,12 +166,10 @@
                 <td colspan="2">
                   <table border="0" cellspacing="0" cellpadding="2" width="100%">
                     <tr>
-                      <td width="16%">Desc Num:<br/><input type="text" name="descnum" value="<?=$descnum?>" size="6"></td>
-                      <td width="17%">Type Desc Num:<br/><input type="text" name="typedescnum" value="<?=$typedescnum?>" size="6"></td>
-                      <td width="16%">Effect Desc Num:<br/><input type="text" name="effectdescnum" value="<?=$effectdescnum?>" size="6"></td>
-                      <td width="16%">Effect Desc Num2:<br/><input type="text" name="effectdescnum2" value="<?=$effectdescnum2?>" size="6"></td>
-                      <td width="17%">Spell Affect Index:<br/><input type="text" name="SpellAffectIndex" value="<?=$SpellAffectIndex?>" size="6"></td>
-                      <td width="17%">&nbsp;</td>
+                      <td width="25%">Desc Num:<br/><input type="text" name="descnum" value="<?=$descnum?>" size="6"></td>
+                      <td width="25%">Type Desc Num:<br/><input type="text" name="typedescnum" value="<?=$typedescnum?>" size="6"></td>
+                      <td width="25%">Effect Desc Num:<br/><input type="text" name="effectdescnum" value="<?=$effectdescnum?>" size="6"></td>
+                      <td width="25%">Effect Desc Num2:<br/><input type="text" name="effectdescnum2" value="<?=$effectdescnum2?>" size="6"></td>
                     </tr>
                   </table><br>
                 </td>
@@ -296,9 +294,9 @@
                 <td width="16%">Endurance Cost:<br/><input type="text" name="EndurCost" size="5" value="<?=$EndurCost?>"></td>
                 <td width="17%">Endurance Upkeep:<br/><input type="text" name="EndurUpkeep" value="<?=$EndurUpkeep?>" size="5"></td>
                 <td width="17%">Endurance Timer:<br/><input type="text" name="EndurTimerIndex" value="<?=$EndurTimerIndex?>" size="5"></td>
-                <td width="17%">Number of Hits:<br/><input type="text" name="numhits" value="<?=$numhits?>" size="5"></td>
-                <td width="16%">NumHits Type:<br/><input type="text" name="numhitstype" value="<?=$numhitstype?>" size="5"></td>
                 <td width="17%">AI Point Bonus:<br/><input type="text" name="ai_pt_bonus" value="<?=$ai_pt_bonus?>" size="5"></td>
+                <td width="16%">Resist Per Level:<br/><input type="text" name="resist_per_level" value="<?=$resist_per_level?>" size="5"></td>
+                <td width="16%">Resist Cap:<br/><input type="text" name="resist_cap" value="<?=$resist_cap?>" size="5"></td>
               </tr>
               <tr>
                 <td width="17%">PVP Resist Base:<br/><input type="text" name="pvpresistbase" value="<?=$pvpresistbase?>" size="5"></td>
@@ -306,14 +304,6 @@
                 <td width="16%">PVP Resist Cap:<br/><input type="text" name="pvpresistcap" value="<?=$pvpresistcap?>" size="5"></td>
                 <td width="17%">PVP Duration:<br/><input type="text" name="pvp_duration" value="<?=$pvp_duration?>" size="5"></td>
                 <td width="16%">PVP Duration Cap:<br/><input type="text" name="pvp_duration_cap" value="<?=$pvp_duration_cap?>" size="5"></td>
-                <td width="17%">&nbsp;</td>
-              </tr>
-              <tr>
-                <td width="17%">Resist Per Level:<br/><input type="text" name="resist_per_level" value="<?=$resist_per_level?>" size="5"></td>
-                <td width="17%">Resist Cap:<br/><input type="text" name="resist_cap" value="<?=$resist_cap?>" size="5"></td>
-                <td width="16%">&nbsp;</td>
-                <td width="17%">&nbsp;</td>
-                <td width="16%">&nbsp;</td>
                 <td width="17%">&nbsp;</td>
               </tr>
             </table>

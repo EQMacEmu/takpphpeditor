@@ -1145,8 +1145,6 @@ $sp_fields = array(
     "IsDiscipline",
     "HateAdded",
     "EndurUpkeep",
-    "numhitstype",
-    "numhits",
     "pvpresistbase",
     "pvpresistcalc",
     "pvpresistcap",
