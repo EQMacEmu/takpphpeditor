@@ -32,8 +32,8 @@
                   <option value="1">Yes</option>
                 </select>
                 </td>
-                <td width="25%">MinCap:<br/><input size="8" type="text" name="base" value="-2000"></td>
-                <td width="25%">MaxCap:<br/><input size="8" type="text" name="base" value="2000"></td>
+                <td width="25%">MinCap:<br/><input size="8" type="text" name="min_cap" value="-2000"></td>
+                <td width="25%">MaxCap:<br/><input size="8" type="text" name="max_cap" value="2000"></td>
               </tr>
             </table>
           </fieldset><br/>
