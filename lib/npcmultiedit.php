@@ -545,7 +545,13 @@ function formSelectNPCs()
 		
 		foreach($npcArr as $npcRow)
 		{
-			$body .= "<input type=\"checkbox\" name=\"npc$i\" value=\"{$npcRow['id']}\">{$npcRow['name']} <small>{$npcRow['level']} ".$races[$npcRow['race']]." ".$classes[$npcRow['class']]."</small><br/>\n";
+			$body .= "<input type=\"checkbox\" name=\"npc$i\" value=\"{$npcRow['id']}\">{$npcRow['name']} <small>{$npcRow['level']}";
+			if ( $npcRow['maxlevel'] > 0 )
+			{
+				$body .= "-".$npcRow['maxlevel'];
+			}
+			$body .= " ".$races[$npcRow['race']]." ".$classes[$npcRow['class']]."</small><br/>\n";
+
 			$i++;
 		}
 		
