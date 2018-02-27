@@ -513,6 +513,36 @@ function formSelectZone()
 }
 */
 
+function getSelectedNpcs()
+{
+	global $mysql, $body, $z, $zoneid, $zoneid2, $_POST;
+
+	$startId = $zoneid2 * 1000;
+	$endId = $startId + 1000 - 1;
+	
+	$query = "SELECT * FROM npc_types WHERE id>=$startId AND id<$endId GROUP BY id ORDER BY name ASC";
+	$npcArr = $mysql->query_mult_assoc($query);
+
+	$npcs = array();
+	
+	for ($i = 1; $i <= sizeof($npcArr); $i++)
+	{
+		$npckey = 'npc'.$i;
+
+		if ( isset($_POST[$npckey]) && is_numeric($_POST[$npckey]) )
+		{
+			$npcid = (int)$_POST[$npckey];
+			
+			if ( $npcid > 0 || $npcid < 224000 )
+			{
+				array_push($npcs, $npcid);
+			}
+		}
+	}
+	
+	return $npcs;
+}
+
 function formSelectNPCs()
 {
 	global $mysql, $body, $z, $zoneid, $zoneid2, $bodytypes, $races, $classes, $statsArr;
@@ -525,6 +555,23 @@ function formSelectNPCs()
 	
 	if ( $npcArr )
 	{
+		$selectedNpcs = array();
+		$i = 1;
+		$key = "editid$i";
+		while (isset($_POST[$key]))
+		{
+
+			$npcid = (int)$_POST[$key];
+			
+			if ( $npcid > 0 || $npcid < 224000 )
+			{
+				$selectedNpcs[$npcid] = true;
+			}			
+			
+			$i++;
+			$key = "editid$i";
+		}
+		
 		$body .= "<script>function checkAll() {
 			var cbs = document.getElementsByTagName('input');
 			for(var i=0; i < cbs.length; i++) {
@@ -545,12 +592,14 @@ function formSelectNPCs()
 		
 		foreach($npcArr as $npcRow)
 		{
-			$body .= "<input type=\"checkbox\" name=\"npc$i\" value=\"{$npcRow['id']}\">{$npcRow['name']} <small>{$npcRow['level']}";
+			$body .= "<input type=\"checkbox\" name=\"npc$i\" value=\"{$npcRow['id']}\"";
+			$body .= isset($selectedNpcs[$npcRow['id']]) ? " checked" : "";
+			$body .= ">{$npcRow['name']} <small>{$npcRow['level']}";
 			if ( $npcRow['maxlevel'] > 0 )
 			{
 				$body .= "-".$npcRow['maxlevel'];
 			}
-			$body .= " ".$races[$npcRow['race']]." ".$classes[$npcRow['class']]."</small><br/>\n";
+			$body .= " {$races[$npcRow['race']]} {$classes[$npcRow['class']]}</small><br/>\n";
 
 			$i++;
 		}
@@ -585,28 +634,7 @@ function formEditStat($stat)
 		return;
 	}
 	
-	$startId = $zoneid2 * 1000;
-	$endId = $startId + 1000 - 1;
-	
-	$query = "SELECT * FROM npc_types WHERE id>=$startId AND id<$endId GROUP BY id ORDER BY name ASC";
-	$npcArr = $mysql->query_mult_assoc($query);
-
-	$npcs = array();
-	
-	for ($i = 1; $i <= sizeof($npcArr); $i++)
-	{
-		$npckey = 'npc'.$i;
-
-		if ( isset($_POST[$npckey]) && is_numeric($_POST[$npckey]) )
-		{
-			$npcid = (int)$_POST[$npckey];
-			
-			if ( $npcid > 0 || $npcid < 224000 )
-			{
-				array_push($npcs, $npcid);
-			}
-		}
-	}
+	$npcs = getSelectedNpcs();
 	
 	if ( sizeof($npcs) == 0 )
 	{
@@ -645,11 +673,17 @@ function formEditStat($stat)
 	$i = 1;
 	foreach($npcs as $npc)
 	{
-		$query = "SELECT name, level, race, class, {$statsArr[$stat]['field']} FROM npc_types WHERE id=$npc";
+		$query = "SELECT name, level, maxlevel, race, class, {$statsArr[$stat]['field']} FROM npc_types WHERE id=$npc";
 		$npcRow = $mysql->query_assoc($query);
 		
 		$body .= "<tr><td>\n";
-		$body .= "{$npcRow['name']} <small>{$npcRow['level']} {$races[$npcRow['race']]} {$classes[$npcRow['class']]}</small>\n";
+		$body .= "{$npcRow['name']} <small>{$npcRow['level']}";
+		if ( $npcRow['maxlevel'] > 0 )
+		{
+			$body .= "-".$npcRow['maxlevel'];
+		}
+		$body .= " {$races[$npcRow['race']]} {$classes[$npcRow['class']]}</small>\n";
+
 		$body .= "</td><td>";
 		
 		$body .= "<input type=\"hidden\" name=\"editid$i\" value=\"$npc\">\n";
@@ -706,7 +740,7 @@ function formEditStat($stat)
 
 function processEdit($stat)
 {
-	global $mysql, $body, $zoneid, $zoneid2, $_POST, $statsArr, $races, $classes;
+	global $mysql, $body, $z, $zoneid, $zoneid2, $_POST, $statsArr, $races, $classes;
 
 	$startId = $zoneid2 * 1000;
 	$endId = $startId + 1000 - 1;
@@ -730,11 +764,16 @@ function processEdit($stat)
 		$npcid = (int)$_POST[$key];
 		$data = isset($_POST["editfield$i"]) ? $_POST["editfield$i"] : null;
 		
-		$query = "SELECT name, level, race, class, $field FROM npc_types WHERE id=$npcid";
+		$query = "SELECT name, level, maxlevel, race, class, $field FROM npc_types WHERE id=$npcid";
 		$npcRow = $mysql->query_assoc($query);
 		
 		$body .= "<tr><td>\n";
-		$body .= "{$npcRow['name']} <small>{$npcRow['level']} {$races[$npcRow['race']]} {$classes[$npcRow['class']]}</small>\n";
+		$body .= "{$npcRow['name']} <small>{$npcRow['level']}";
+		if ( $npcRow['maxlevel'] > 0 )
+		{
+			$body .= "-".$npcRow['maxlevel'];
+		}
+		$body .= " {$races[$npcRow['race']]} {$classes[$npcRow['class']]}</small>\n";
 		$body .= "</td><td>";
 		
 		if ( isset($data) && ($type == "int" || $type == "float") )
@@ -842,6 +881,24 @@ function processEdit($stat)
 	
 	$body .= "</td></tr></table><p/>\n";
 	$body .= "</div>\n";
+
+	$key = 'editid1';
+	$i = 1;
+	if ( isset($_POST[$key]) )
+	{
+		$body .= "<div class=\"edit_form_content\">\n";
+		$body .= "<form action=\"./index.php?editor=npcmultiedit&z=$z&zoneid=$zoneid\" method=\"post\">\n";
+		
+		while (isset($_POST[$key]))
+		{
+			$npcid = (int)$_POST[$key];
+			$body .= "<input type=\"hidden\" name=\"editid$i\" value=\"$npcid\">\n";
+			$i++;
+			$key = "editid$i";
+		}		
+		
+		$body .= "<input type=\"submit\" value=\"Edit Another Stat\"></form></div>\n";
+	}
 }
 
 // ----------------------------------------------------------------------------------------------
