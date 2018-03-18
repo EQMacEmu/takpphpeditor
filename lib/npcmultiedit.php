@@ -7,6 +7,7 @@ $stringStats = array(
 	3 => true,		// Rampage
 	4 => true,		// AE Rampage
 	5 => true,		// Flurry
+	11 => true,		// Ranged Attack
 	29 => true,		// Tunnel Vision
 	32 => true,		// Leashed
 	33 => true,		// Tethered
@@ -297,6 +298,20 @@ $statsArr = array(
 		"label" => "Ignore Distance",
 		"field" => "ignore_distance",
 		"type" => "float",
+		"size" => 5,
+		"min" => 0
+	),
+	43 => array(
+		"label" => "Emote ID",
+		"field" => "emoteid",
+		"type" => "int",
+		"size" => 5,
+		"min" => 0
+	),
+	44 => array(
+		"label" => "Faction ID",
+		"field" => "npc_faction_id",
+		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	)
