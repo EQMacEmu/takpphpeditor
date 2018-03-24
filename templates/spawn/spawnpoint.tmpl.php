@@ -37,8 +37,8 @@
           </tr>
           <tr>
             <td width="33%">heading: <?=$heading?></td>
-            <td width="33%">respawn: <?=$respawntime?></td> 
-            <td width="34%">variance: <?=$variance?></td>
+            <td width="33%">respawn: <?=timer_text($respawntime)?></td> 
+            <td width="34%">variance: <?=timer_text($variance)?></td>
           </tr>
           <tr>
           <?if($pathgrid > 0):?>  
@@ -60,8 +60,8 @@
            <td width="33%">animation: <?=$animations[$animation]?></td>
            <td width="33%">force_z: <?=$yesno[$force_z]?></td>
           </tr>
-           <td width="33%">boot respawn: <?=$boot_respawntime?></td>
-           <td width="33%">boot variance: <?=$boot_variance?></td>
+           <td width="33%">boot respawn: <?=timer_text($boot_respawntime)?></td>
+           <td width="33%">boot variance: <?=timer_text($boot_variance)?></td>
            <td width="33%">clear on boot: <?=$clear_timer_onboot?></td>
           </tr>
           <tr>

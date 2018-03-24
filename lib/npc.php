@@ -944,6 +944,24 @@ switch ($action) {
     change_special_abilitities();
     header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
     exit;
+  case 90: // Add emote entry
+    check_authorization();
+    $breadcrumbs .= " >> <a href='index.php?editor=npc&action=78'>Emotes</a>" . " >> Add Emote";
+    $body = new Template("templates/npc/emotes.addentry.tmpl.php");
+    $body->set('currzone', $z);
+    $body->set('currzoneid', $zoneid);
+    $body->set('npcid', $npcid);
+    $body->set('eventtype', $eventtype);
+    $body->set('emotetype', $emotetype);
+    $emoteid = 0;
+    if($_GET['emoteid'] != 0) {
+      $emoteid = $_GET['emoteid'];
+    }
+    else {
+      $emoteid = suggest_emoteid();
+    }
+    $body->set('emoteid', $emoteid);
+    break;
 }
 
 function npc_info () {

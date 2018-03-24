@@ -1992,4 +1992,26 @@ function magelo_import() {
   $output = exec("perl $perl_path/Coords.pl $npcid $insert $limit $spawnlimit $heading $respawntime $mincoord $maxcoord $forcedz 2>&1");
   logPerl($output);
 }
+
+function timer_text($seconds) {
+	
+	if (!is_numeric($seconds) || $seconds <= 0)
+		return $seconds;
+	
+	if ($seconds < 60)
+		return $seconds." seconds";
+	
+	$days = floor($seconds / 86400);
+	$hours = floor($seconds / 3600 % 24);
+	$mins = floor($seconds / 60 % 60);
+	$secs = floor($seconds % 60);
+	
+	$days > 0 ? $days = $days."d " : $days = "";
+	$hours > 0 ? $hours = $hours."h " : $hours = "";
+	$mins > 0 ?	$mins = $mins."m " : $mins = "";
+	$secs > 0 ?	$secs = $secs."s " : $secs = "";
+	$text = substr($days.$hours.$mins.$secs, 0, -1);
+	
+	return number_format($seconds)." (".$text.")";
+}
 ?>

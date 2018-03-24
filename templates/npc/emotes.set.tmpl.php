@@ -4,10 +4,10 @@
         <tr>
           <td>NPC Emotes</td>
           <td align="right">  
-            <a href="index.php?editor=npc&action=78"><img src="images/c_table.gif" border="0" title="View all emotes"></a>
-            <a href="index.php?editor=npc&emoteid=<?=$emoteid?>&action=79"><img src="images/view_all.gif" border="0" width="15" title="View NPCs using this emote set"></a>
-            <a href="index.php?editor=npc&emoteid=<?=$emoteid?>&action=76"><img src="images/add.gif" border="0" title="Add an entry to this emote set"></a>
-            <?echo ($npcid > 0) ? "<a href='index.php?editor=npc&emoteid=" . $emoteid . "&npcid=" . $npcid . "&action=82'><img src='images/minus2.gif' border='0' title='Drop emote set from this NPC'></a>" : "";?>
+            <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=78"><img src="images/c_table.gif" border="0" title="View all emotes"></a>
+            <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&emoteid=<?=$emoteid?>&action=79"><img src="images/view_all.gif" border="0" width="15" title="View NPCs using this emote set"></a>
+            <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&emoteid=<?=$emoteid?>&action=90"><img src="images/add.gif" border="0" title="Add an entry to this emote set"></a>
+            <?echo ($npcid > 0) ? "<a href='index.php?editor=npc&z=$currzone&zoneid=$currzoneid&npcid=$npcid&emoteid=$emoteid&npcid=$npcid&action=82'><img src='images/minus2.gif' border='0' title='Drop emote set from this NPC'></a>" : "";?>
           </td>
         </tr>        
       </table>
