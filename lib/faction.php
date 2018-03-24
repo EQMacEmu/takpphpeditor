@@ -41,6 +41,7 @@ switch ($action) {
       $body->set('faction_info', $faction_data['faction_info']);
     }
     $breadcrumbs .= " >> Edit Faction";
+	$pagetitle .= " - Edit Faction";
     break;
   case 2: // Update faction
     check_authorization();
@@ -67,6 +68,7 @@ switch ($action) {
     $body->set('currzone', $z);
     $body->set('suggested_id', suggest_faction_id());
     $breadcrumbs .= " >> Add New Faction";
+	$pagetitle .= " - Add New Faction";
     break;
   case 5: // Insert faction
     check_authorization();
@@ -90,6 +92,7 @@ switch ($action) {
   case 9: // View Player Factions
     check_authorization();
     $breadcrumbs .= " >> Player Factions";
+	$pagetitle .= " - Player Factions";
     $curr_page = (isset($_GET['page'])) ? $_GET['page'] : $default_page;
     $curr_size = (isset($_GET['size'])) ? $_GET['size'] : $default_size;
     $curr_sort = (isset($_GET['sort'])) ? $columns[$_GET['sort']] : $columns[$default_sort];
@@ -118,6 +121,7 @@ switch ($action) {
   case 10: // Edit Player Faction
     check_authorization();
     $breadcrumbs .= " >> Edit Player Faction";
+	$pagetitle .= " - Edit Player Faction";
     $body = new Template("templates/faction/faction.players.edit.tmpl.php");
     $body->set('factions', $factions);
     $player_faction = get_player_faction();
@@ -133,6 +137,7 @@ switch ($action) {
   case 12: // Create Player Faction
     check_authorization();
     $breadcrumbs .= " >> Add Player Faction";
+	$pagetitle .= " - Add Player Faction";
     $body = new Template("templates/faction/faction.players.add.tmpl.php");
     $body->set('factions', $factions);
     break;
@@ -193,6 +198,7 @@ switch ($action) {
     $body->set('classes', $classes);
     $body->set('deities', $deities);
     $breadcrumbs .= " >> Add Faction Mod";
+	$pagetitle .= " - Add Faction Mod";
     break;
   case 21: // Insert faction mod
     check_authorization();
@@ -224,6 +230,7 @@ switch ($action) {
     $body->set('classes', $classes);
     $body->set('deities', $deities);
     $breadcrumbs .= " >> Edit Faction Mod";
+	$pagetitle .= " - Edit Faction Mod";
     break;
   case 23: // Update faction mod
     check_authorization();

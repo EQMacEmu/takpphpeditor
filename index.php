@@ -17,6 +17,7 @@ require_once(dirname(__FILE__) . '/lib/data.php');
 require_once(dirname(__FILE__) . '/ajax.php');
 require_once(dirname(__FILE__) . '/lib/headbars.php');
 require_once(dirname(__FILE__) . '/lib/breadcrumbs.php');
+require_once(dirname(__FILE__) . '/lib/pagetitle.php');
 
 if (isset($_GET['admin'])) {
 	if (session::is_admin()) {
@@ -106,6 +107,7 @@ $tmpl->set('javascript', $javascript);
 $tmpl->set('headbar', $headbar);
 $tmpl->set('searchbar', $searchbar);
 $tmpl->set('breadcrumbs', $breadcrumbs);
+$tmpl->set('pagetitle', $pagetitle);
 $tmpl->set('body', $body);
 
 echo $tmpl->fetch('templates/index.tmpl.php');

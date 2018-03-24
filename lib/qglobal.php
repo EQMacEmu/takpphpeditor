@@ -45,6 +45,7 @@ switch ($action) {
   case 2: //Create QGlobal
     check_authorization();
     $breadcrumbs .= " >> Create Quest Global";
+	$pagetitle .= " - Create Quest Global";
     $body = new Template("templates/qglobal/qglobal.add.tmpl.php");
     break;
   case 3: //Insert QGlobal
@@ -57,6 +58,7 @@ switch ($action) {
     $qglobal = view_qglobal($_GET['name'], $_GET['charid'], $_GET['npcid'], $_GET['zoneid']);
     if ($qglobal) {
       $breadcrumbs .= " >> Edit Quest Global";
+	  $pagetitle .= " - Edit Quest Global";
       $body = new Template("templates/qglobal/qglobal.edit.tmpl.php");
       foreach ($qglobal as $key=>$value) {
         $body->set($key, $value);

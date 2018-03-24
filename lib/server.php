@@ -57,6 +57,7 @@ switch ($action) {
   case 1: // View Open Bugs
     check_authorization();
     $breadcrumbs .= " >> Open Bugs";
+	$pagetitle .= " - Open Bugs";
     $curr_page = (isset($_GET['page'])) ? $_GET['page'] : $default_page;
     $curr_size = (isset($_GET['size'])) ? $_GET['size'] : $default_size;
     $curr_sort = (isset($_GET['sort'])) ? $columns[$_GET['sort']] : $columns[$default_sort];
@@ -80,6 +81,7 @@ switch ($action) {
   case 2: // View Bug
     check_authorization();
     $breadcrumbs .= " >> Bug Details";
+	$pagetitle .= " - Bug Details";
     $javascript = new Template("templates/server/js.tmpl.php");
     $body = new Template("templates/server/bugs.view.tmpl.php");
     $body->set("bugstatus", $bugstatus);
@@ -102,6 +104,7 @@ switch ($action) {
    case 4: // View Resolved Bugs
     check_authorization();
     $breadcrumbs .= " >> Resolved Bugs";
+	$pagetitle .= " - Resolved Bugs";
     $curr_page = (isset($_GET['page'])) ? $_GET['page'] : $default_page;
     $curr_size = (isset($_GET['size'])) ? $_GET['size'] : $default_size;
     $curr_sort = (isset($_GET['sort'])) ? $columns[$_GET['sort']] : $columns[$default_sort];
@@ -130,6 +133,7 @@ switch ($action) {
    case 6: // Preview Hackers
     check_admin_authorization();
     $breadcrumbs .= " >> Hackers";
+	$pagetitle .= " - Hackers";
     $javascript = new Template("templates/server/js.tmpl.php");
     $curr_page = (isset($_GET['page'])) ? $_GET['page'] : $default_page;
     $curr_size = (isset($_GET['size'])) ? $_GET['size'] : $default_size;
@@ -167,6 +171,7 @@ switch ($action) {
    case 8: // View Hacker
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=6'>" . "Hackers</a> >> Hacker Details";
+	$pagetitle .= " - Hackers - Hacker Details";
     $body = new Template("templates/server/hackers.view.tmpl.php");
     $hackers = view_hackers();
     if ($hackers) {
@@ -178,6 +183,7 @@ switch ($action) {
    case 9: // Preview Reports
     check_admin_authorization();
     $breadcrumbs .= " >> Reports";
+	$pagetitle .= " - Reports";
     $body = new Template("templates/server/reports.tmpl.php");
     $reports = get_reports();
     if ($reports) {
@@ -194,6 +200,7 @@ switch ($action) {
    case 11: // View Report
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=9'>" . "Reports</a> >> Report Details";
+	$pagetitle .= " - Reports - Report Details";
     $body = new Template("templates/server/reports.view.tmpl.php");
     $reports = view_reports();
     if ($reports) {
@@ -205,6 +212,7 @@ switch ($action) {
   case 12: // View Petitions
     check_admin_authorization();
     $breadcrumbs .= " >> Petitions";
+	$pagetitle .= " - Petitions";
     $body = new Template("templates/server/petition.tmpl.php");
     $petitions = get_petitions();
     if ($petitions) {
@@ -216,6 +224,7 @@ switch ($action) {
   case 13: // View Petition
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=12'>" . "Petitions</a> >> Petition Details";
+	$pagetitle .= " - Petitions - Petition Details";
     $body = new Template("templates/server/petition.view.tmpl.php");
     $body->set('yesno', $yesno);
     $body->set('classes', $classes);
@@ -240,6 +249,7 @@ switch ($action) {
   case 16: // View Rules
     check_admin_authorization();
     $breadcrumbs .= " >> Rules";
+	$pagetitle .= " - Rules";
     $body = new Template("templates/server/rules.tmpl.php");
     $rules = get_rules();
     if ($rules) {
@@ -251,6 +261,7 @@ switch ($action) {
   case 17: // Edit Rules
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=16'>" . "Rules</a> >> Rule Editor";
+	$pagetitle .= " - Rules - Rule Editor";
     $body = new Template("templates/server/rules.edit.tmpl.php");
     $body->set('ruleset_id', $_GET['ruleset_id']);
     $rules = view_rule();
@@ -269,6 +280,7 @@ switch ($action) {
   case 19: // Add Rule
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=16'>" . "Rules</a> >> Add Rule";
+	$pagetitle .= " - Rules - Add Rule";
     $body = new Template("templates/server/rules.add.tmpl.php");
     $body->set('suggestruleset', $_GET['ruleset_id']);
     break;
@@ -287,6 +299,7 @@ switch ($action) {
   case 22: // Edit Ruleset
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=16'>" . "Rules</a> >> Ruleset Editor";
+	$pagetitle .= " - Rules - Ruleset Editor";
     $body = new Template("templates/server/ruleset.edit.tmpl.php");
     $body->set('ruleset_id', $_GET['ruleset_id']);
     $ruleset = view_ruleset();
@@ -309,6 +322,7 @@ switch ($action) {
   case 25: // Copy Ruleset
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=16'>" . "Rules</a> >> Copy Ruleset";
+	$pagetitle .= " - Rules - Copy Ruleset";
     $body = new Template("templates/server/ruleset.copy.tmpl.php");
     $body->set('suggestruleid', suggest_ruleset_id());
     $body->set('name', $_GET['name']);
@@ -321,6 +335,7 @@ switch ($action) {
   case 27: // Switch Ruleset
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=16'>" . "Rules</a> >> Switch Ruleset";
+	$pagetitle .= " - Rules - Switch Ruleset";
     $body = new Template("templates/server/ruleset.switch.tmpl.php");
     $ruleset = view_rulesets();
     if ($ruleset) {
@@ -332,6 +347,7 @@ switch ($action) {
   case 28: // View Rules from ruleset
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=16'>" . "Rules</a> >> Ruleset Rules";
+	$pagetitle .= " - Rules - Ruleset Rules";
     $body = new Template("templates/server/rules.tmpl.php");
     $body->set('ruleset_id', $_GET['ruleset_id']);
     $rules = get_rules_from_ruleset();
@@ -349,6 +365,7 @@ switch ($action) {
   case 30: // Add Ruleset
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=16'>" . "Rules</a> >> Add Ruleset";
+	$pagetitle .= " - Rules - Add Ruleset";
     $body = new Template("templates/server/ruleset.add.tmpl.php");
     $body->set('suggestruleid', suggest_ruleset_id());
     break;
@@ -360,6 +377,7 @@ switch ($action) {
   case 32: // View Zones
     check_admin_authorization();
     $breadcrumbs .= " >> Zone Launcher Setup";
+	$pagetitle .= " - Zone Launcher Setup";
     $body = new Template("templates/server/zones.tmpl.php");
     $zones = get_zones();
     if ($zones) {
@@ -377,6 +395,7 @@ switch ($action) {
   case 33: // Edit Zone
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=32'>" . "Zone Launcher Setup</a> >> Zone Launcher Editor";
+	$pagetitle .= " - Zone Launcher Setup - Zone Launcher Editor";
     $body = new Template("templates/server/zones.edit.tmpl.php");
     $body->set('zoneids', $zoneids);
     $zones = view_zone();
@@ -399,6 +418,7 @@ switch ($action) {
   case 36: // Add Zone
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=32'>" . "Zone Launcher Setup</a> >> Add Zone";
+	$pagetitle .= " - Zone Launcher Setup - Add Zone";
     $body = new Template("templates/server/zones.add.tmpl.php");
     $body->set('suggestlauncher', suggest_launcher());
     break;
@@ -410,6 +430,7 @@ switch ($action) {
   case 38: // Edit launcher
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=32'>" . "Zone Launcher Setup</a> >> Launcher Editor";
+	$pagetitle .= " - Zone Launcher Setup - Launcher Editor";
     $body = new Template("templates/server/launcher.edit.tmpl.php");
     $launchers = view_launcher();
     if ($launchers) {
@@ -431,6 +452,7 @@ switch ($action) {
   case 41: // Add launcher
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=32'>" . "Zone Launcher Setup</a> >> Add Launcher";
+	$pagetitle .= " - Zone Launcher Setup - Add Launcher";
     $body = new Template("templates/server/launcher.add.tmpl.php");
     break;
   case 42: // Add launcher
@@ -441,6 +463,7 @@ switch ($action) {
   case 43: // View Variables
     check_admin_authorization();
     $breadcrumbs .= " >> Variables";
+	$pagetitle .= " - Variables";
     $body = new Template("templates/server/variables.tmpl.php");
     $variables = get_variables();
     if ($variables) {
@@ -452,6 +475,7 @@ switch ($action) {
   case 44: // Edit Variable
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=43'>" . "Variables</a> >> Variable Editor";
+	$pagetitle .= " - Variables - Variable Editor";
     $body = new Template("templates/server/variables.edit.tmpl.php");
     $body->set('varname', $_GET['varname']);
     $variables = view_variable();
@@ -469,6 +493,7 @@ switch ($action) {
   case 46: // Create Variable
     check_admin_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=43'>" . "Variables</a> >> Create Variable";
+	$pagetitle .= " - Variables - Create Variable";
     $body = new Template("templates/server/variables.add.tmpl.php");
     break;
   case 47: // Add Variable
@@ -491,6 +516,7 @@ switch ($action) {
   case 50: // View Banned_IPs
     check_admin_authorization();
     $breadcrumbs .= " >> BannedIPs";
+	$pagetitle .= " - BannedIPs";
     $body = new Template("templates/server/bannedips.tmpl.php");
     $banned = get_bannedips();
     if ($banned) {
@@ -502,6 +528,7 @@ switch ($action) {
   case 51: // Add Banned IPs
     check_admin_authorization();
     $breadcrumbs .= " >> BannedIPs";
+	$pagetitle .= " - BannedIPs";
     $body = new Template("templates/server/bannedips.add.tmpl.php");
     break;
   case 52: // Add Banned IP
@@ -512,6 +539,7 @@ switch ($action) {
   case 53: // Edit Banned IP note
     check_admin_authorization();
     $breadcrumbs .= " >> BannedIPs";
+	$pagetitle .= " - BannedIPs";
     $body = new Template("templates/server/bannedips.edit.tmpl.php");
     $banned = view_bannedips();
     if ($banned) {
@@ -533,6 +561,7 @@ switch ($action) {
   case 56: // View Character Creation Combos
     check_admin_authorization();
     $breadcrumbs .= " >> Character Creation Combos";
+	$pagetitle .= " - Character Creation Combos";
     $body = new Template("templates/server/charcreatecombos.tmpl.php");
     $charcreatecombolist = getCharCreateComboList();
     if ($charcreatecombolist) {
@@ -547,6 +576,7 @@ switch ($action) {
    case 57: // View Key Ring Data
     check_authorization();
     $breadcrumbs .= " >> Key Ring Data";
+	$pagetitle .= " - Key Ring Data";
     $body = new Template("templates/server/keyring.tmpl.php");
     $keyring = get_keyringdata();
     if ($keyring) {
@@ -559,6 +589,7 @@ switch ($action) {
     check_authorization();
     $javascript .= file_get_contents("templates/iframes/js.tmpl.php");
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=57'>" . "Key Ring Data</a> >> Create Key Ring";
+	$pagetitle .= " - Key Ring Data - Create Key Ring";
     $body = new Template("templates/server/keyring.add.tmpl.php");
     break;
    case 59: // Create Key Ring
@@ -569,6 +600,7 @@ switch ($action) {
     case 60: // Edit Key Ring
     check_authorization();
     $breadcrumbs .= " >> " . "<a href='index.php?editor=server&action=57'>" . "Key Ring Data</a> >> Edit Key Ring";
+	$pagetitle .= " - Key Ring Data - Edit Key Ring";
     $body = new Template("templates/server/keyring.edit.tmpl.php");
     $body->set('key_item', $_GET['key_item']);
     $keyring = view_keyring();
@@ -590,6 +622,7 @@ switch ($action) {
     exit;
     case 63: // View Skill dificulty
     $breadcrumbs .= " >> Skills";
+	$pagetitle .= " - Skills";
     $body = new Template("templates/server/skills.tmpl.php");
     $skills = get_skills();
     if ($skills) {

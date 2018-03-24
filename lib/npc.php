@@ -737,6 +737,7 @@ switch ($action) {
     exit;
   case 72: // View emote set
     $breadcrumbs .= " >> Emote Set (" . $_GET['emoteid'] . ")";
+	$pagetitle .= " - Emote Set (" . $_GET['emoteid'] . ")";
     $body = new Template("templates/npc/emotes.set.tmpl.php");
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);
@@ -765,6 +766,7 @@ switch ($action) {
   case 74: // Edit emote
     check_authorization();
     $breadcrumbs .= " >> <a href='index.php?editor=npc&action=78'>Emotes</a>" . " >> Edit Emote (" . $_GET['id'] . ")";
+	$pagetitle .= " - Emotes - Edit Emote (" . $_GET['id'] . ")";
     $body = new Template("templates/npc/emotes.edit.tmpl.php");
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);
@@ -790,6 +792,7 @@ switch ($action) {
   case 76: // Add emote
     check_authorization();
     $breadcrumbs .= " >> <a href='index.php?editor=npc&action=78'>Emotes</a>" . " >> Add Emote";
+	$pagetitle .= " - Emotes - Add Emote";
     if ($npcid) {
       $body = new Template("templates/npc/emotes.add.tmpl.php");
     }
@@ -818,6 +821,7 @@ switch ($action) {
     exit;
   case 78: // View emote list
     $breadcrumbs .= " >> <a href='index.php?editor=npc&action=78'>Emotes</a>";
+	$pagetitle .= " - Emotes";
     $curr_page = (isset($_GET['page'])) ? $_GET['page'] : $default_page;
     $curr_size = (isset($_GET['size'])) ? $_GET['size'] : $default_size;
     $curr_sort = (isset($_GET['sort'])) ? $columns[$_GET['sort']] : $columns[$default_sort];
@@ -850,6 +854,7 @@ switch ($action) {
     break;
   case 79: //View NPCs using emote set
     $breadcrumbs .= " >> <a href='index.php?editor=npc&action=78'>Emotes</a>" . " >> NPC List";
+	$pagetitle .= " - Emotes - NPC List";
     $body = new Template("templates/npc/emotes.npcsbyemote.tmpl.php");
     $body->set('emoteid', $_GET['emoteid']);
     $npclist = getNPCsByEmote();
@@ -871,6 +876,7 @@ switch ($action) {
   case 81: // Create new emote
     check_authorization();
     $breadcrumbs .= " >> <a href='index.php?editor=npc&action=78'>Emotes</a>" . " >> Add Emote";
+	$pagetitle .= " - Emotes - Add Emote";
     $body = new Template("templates/npc/emotes.addentry.tmpl.php");
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);
@@ -947,6 +953,7 @@ switch ($action) {
   case 90: // Add emote entry
     check_authorization();
     $breadcrumbs .= " >> <a href='index.php?editor=npc&action=78'>Emotes</a>" . " >> Add Emote";
+	$pagetitle .= " - Emotes - Add Emote";
     $body = new Template("templates/npc/emotes.addentry.tmpl.php");
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);

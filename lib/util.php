@@ -11,6 +11,7 @@ switch ($action) {
   case 1: // View Old Characters
     check_admin_authorization();
     $breadcrumbs .= " >> Character Purge";
+	$pagetitle .= " - Character Purge";
     $javascript = new Template("templates/util/js.tmpl.php");
     $body = new Template("templates/util/util.charpurge.tmpl.php");
     $datetime = $default_datetime;
@@ -31,6 +32,7 @@ switch ($action) {
   case 3: // View Empty Accounts
     check_admin_authorization();
     $breadcrumbs .= " >> Account Purge";
+	$pagetitle .= " - Account Purge";
     $javascript = new Template("templates/util/js.tmpl.php");
     $body = new Template("templates/util/util.acctpurge.tmpl.php");
     $accounts = get_empty_accounts();
@@ -46,11 +48,13 @@ switch ($action) {
   case 5: // View Cash on Accounts
     check_admin_authorization();
     $breadcrumbs .= " >> Cash by Account";
+	$pagetitle .= " - Cash by Account";
     $body = new Template("templates/util/util.acctcash.tmpl.php");
     break;
   case 6: // View Recipe Activity
     check_authorization();
     $breadcrumbs .= " >> Recipe Activity";
+	$pagetitle .= " - Recipe Activity";
     $javascript = new Template("templates/util/js.tmpl.php");
     $body = new Template("templates/util/util.recipes.tmpl.php");
     $count = $default_count;
