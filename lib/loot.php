@@ -799,7 +799,7 @@ function search_loot_by_item() {
   $search = $_GET['search'];
 
 
-  $query = "SELECT npc_types.id,npc_types.name FROM lootdrop_entries
+  $query = "SELECT npc_types.id, npc_types.name, npc_types.level FROM lootdrop_entries
             INNER JOIN loottable_entries on lootdrop_entries.lootdrop_id = loottable_entries.lootdrop_id
             INNER JOIN npc_types on npc_types.loottable_id = loottable_entries.loottable_id
             INNER JOIN items on items.id = lootdrop_entries.item_id

@@ -20,8 +20,9 @@
   <?foreach($ldrop as $ldrop):?>
             <tr bgcolor="#<? echo ($x % 2 == 0) ? "BBBBBB" : "AAAAAA";?>">
             <td align="center" width="5%"> <a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$ldrop['npcid']?>"> <?=$ldrop['loottid']?></td>
-            <td align="center" width="50%"><?=$ldrop['loottname']?></td>
+            <td align="center" width="45%"><?=$ldrop['loottname']?></td>
 			<td align="center" width="50%"><?=$ldrop['npcname']?> (level <?=$ldrop['npclevel']?>)</td>
+			<?$x++;?>
            </tr>
  <?endforeach;?>
        </table>
