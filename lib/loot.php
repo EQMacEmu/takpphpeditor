@@ -448,7 +448,7 @@ function loottables_using_lootdrop () {
   $array = array();
   $ldid = $_GET['ldid'];
 
-  $query = "SELECT loottable_entries.loottable_id AS loottid, loottable.name AS loottname, npc_types.id AS npcid
+  $query = "SELECT loottable_entries.loottable_id AS loottid, loottable.name AS loottname, npc_types.id AS npcid, npc_types.name AS npcname, npc_types.level AS npclevel
             FROM loottable_entries
             INNER JOIN loottable ON loottable.id = loottable_entries.loottable_id
             INNER JOIN npc_types ON npc_types.loottable_id = loottable.id 
