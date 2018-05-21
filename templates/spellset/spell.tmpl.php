@@ -112,7 +112,7 @@
           <table width="100%" cellpadding="0" cellspacing="0">
 <? if ($parent['spells']):?>
             <tr bgcolor="#BBBBBB">
-              <th width="35%">Spell</th>
+              <th width="30%">Spell</th>
               <th width="9%" align="center">Type</th>
               <th width="9%" align="center">minlevel</th>
               <th width="9%" align="center">maxlevel</th>
