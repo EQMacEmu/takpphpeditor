@@ -1,4 +1,4 @@
-      <div class="table_container" style="width:250px;">
+      <div class="table_container" style="width:350px;">
         <div class="table_header">
           Spawngroups for <?=$currzone?>
         </div>

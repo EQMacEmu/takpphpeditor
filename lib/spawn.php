@@ -1845,8 +1845,27 @@ function search_spawngroups($search) {
 
 function get_spawngroups_by_zone($search) {
   global $mysql;
-  $query = "SELECT spawn2.spawngroupID, spawngroup.name, spawnentry.npcID FROM spawn2 LEFT JOIN spawnentry USING (spawngroupID) LEFT JOIN spawngroup ON (spawn2.spawngroupID = spawngroup.id) WHERE spawn2.zone = '$search'";
+  $query = "SELECT DISTINCT spawn2.spawngroupID, spawngroup.name, spawnentry.npcID FROM spawn2 LEFT JOIN spawnentry USING (spawngroupID) LEFT JOIN spawngroup ON (spawn2.spawngroupID = spawngroup.id) WHERE spawn2.zone = '$search'";
   $results = $mysql->query_mult_assoc($query);
+
+  // I'm sure there is some fancy SQL way to limit the query to one NPC per spawngroup, but I don't know how
+  if ($results)
+  {
+	$i = 0;
+
+    while (isset($results[$i]))
+	{
+		if ($lastResultID == $results[$i]['spawngroupID'])
+		{
+			array_splice($results, $i, 1);
+		}
+		else
+		{
+			$lastResultID = $results[$i]['spawngroupID'];
+			$i++;
+		}
+	}
+  }
 
   return $results;
 }
