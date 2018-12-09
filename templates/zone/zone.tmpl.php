@@ -92,6 +92,11 @@
                     <td align="left" width="33%">Combat: <?=$yesno[$cancombat]?></td>
                     <td align="left" width="34%">PEQZone: <?=$yesno[$peqzone]?></td>
                   </tr>
+                  <tr>
+                    <td align="left" width="33%">Pull Limit: <?=$pull_limit?></td>
+                    <td width="33%">&nbsp;</td>
+                    <td width="34%">&nbsp;</td>
+                  </tr>
                 </table>
               </fieldset>
               <fieldset>

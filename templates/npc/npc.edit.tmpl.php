@@ -51,26 +51,26 @@
                 <td align="left" width="17%">HP:      <br/><input type="text" name="hp" size="10" value="<?=$hp?>"></td>
                 <td align="left" width="17%">Mana:    <br/><input type="text" name="mana" size="10" value="<?=$mana?>"></td>
                 <td align="left" width="17%">AC:      <br/><input type="text" name="AC" size="10" value="<?=$AC?>"></td>
-                <td align="left" width="17%">ATK:     <br/><input type="text" name="ATK" size="10" value="<?=$ATK?>"></td>
+                <td align="left" width="17%">+ATK:    <br/><input type="text" name="ATK" size="10" value="<?=$ATK?>"></td>
                 <td align="left" width="16%">Runspeed:<br/><input type="text" name="runspeed" size="10" value="<?=$runspeed?>"></td>
-				        <td align="left" width="16%">Walkspeed:   <br><input type="text" name="walkspeed" size="10" value="<?=$walkspeed?>"></td>
+				<td align="left" width="16%">Walkspeed:   <br><input type="text" name="walkspeed" size="10" value="<?=$walkspeed?>"></td>
               </tr>
               <tr>
               	<td align="left">Scalerate:<br/><input type="text" name="scalerate" size="10" value="<?=$scalerate?>"></td>
                 <td align="left">See Invis:<br/><input type="text" name="see_invis" size="10" value="<?=$see_invis?>"></td>
                 <td align="left">See ITU:  <br/><input type="text" name="see_invis_undead" size="10" value="<?=$see_invis_undead?>"></td>
-                <td align="left">See Sneak: <br/><input type="text" name="see_sneak" size="10" value="<?=$see_sneak?>"></td>
+                <td align="left">See Sneak:<br/><input type="text" name="see_sneak" size="10" value="<?=$see_sneak?>"></td>
                 <td align="left">See IH:   <br/><input type="text" name="see_improved_hide" size="10" value="<?=$see_improved_hide?>"></td>
-                <td align="left">&nbsp;</td>
+                <td align="left">Exp %:    <br/><input type="text" name="exp_pct" size="10" value="<?=$exp_pct?>"></td>
               </tr>
-               </tr>
+              <tr>
                 <td align="left">HP Regen:    <br/><input type="text" name="hp_regen_rate" size="10" value="<?=$hp_regen_rate?>"></td>
                 <td align="left">Combat HP Regen:<br/><input type="text" name="combat_hp_regen" size="10" value="<?=$combat_hp_regen?>"></td>
                 <td align="left">MP Regen:    <br/><input type="text" name="mana_regen_rate" size="10" value="<?=$mana_regen_rate?>"></td>
                 <td align="left">Combat MP Regen:<br/><input type="text" name="combat_mana_regen" size="10" value="<?=$combat_mana_regen?>"></td>
                 <td align="left">&nbsp;</td>
                 <td align="left">&nbsp;</td>
-               </tr>
+              </tr>
             </table>
           </fieldset><br/>
           <fieldset>
@@ -109,21 +109,21 @@
                 <td align="left" width="17%">Min Dmg:     <br/><input type="text" name="mindmg" size="5" value="<?=$mindmg?>"></td>
                 <td align="left" width="17%">Max Dmg:     <br/><input type="text" name="maxdmg" size="5" value="<?=$maxdmg?>"></td>
                 <td align="left" width="17%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"></td>
-				        <td align="left" width="17%">Aggroradius: <br/><input type="text" name="aggroradius" size="5" value="<?=$aggroradius?>"></td>
+				<td align="left" width="17%">Aggroradius: <br/><input type="text" name="aggroradius" size="5" value="<?=$aggroradius?>"></td>
                 <td align="left" width="16%">Assistradius:<br/><input type="text" name="assistradius" size="5" value="<?=$assistradius?>"></td>
                 <td align="left" width="16%">Ignore Distance:     <br/><input type="text" name="ignore_distance" size="5" value="<?=$ignore_distance?>"></td>
               </tr>
             </table>
-             <table width="100%" border="0" cellpadding="3" cellspacing="0">
-             </tr>
+            <table width="100%" border="0" cellpadding="3" cellspacing="0">
+              <tr>
                 <td align="left" width="17%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="<?=$healscale?>">%</td>
-				        <td align="left" width="17%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="<?=$spellscale?>">%</td>
-				        <td align="left" width="17%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="<?=$slow_mitigation?>"></td>
-                <td align="left" width="17%">Accuracy: <br/><input type="text" name="Accuracy" size="5" value="<?=$Accuracy?>"></td>
+				<td align="left" width="17%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="<?=$spellscale?>">%</td>
+				<td align="left" width="17%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="<?=$slow_mitigation?>"></td>
+                <td align="left" width="17%">+Accuracy:   <br/><input type="text" name="Accuracy" size="5" value="<?=$Accuracy?>"></td>
+                <td align="left" width="16%">+Avoidance:  <br/><input type="text" name="avoidance" size="5" value="<?=$avoidance?>"></td>
                 <td align="left" width="16%">Attack Count:<br/><input type="text" name="attack_count" size="5" value="<?=$attack_count?>"></td>
-                <td align="left" width="16%">&nbsp;</td>
               </tr>
-              </table>
+            </table>
             <center>
               <table cellpadding="20px">
                 <tr>

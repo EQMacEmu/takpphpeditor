@@ -1259,7 +1259,7 @@ function remove_equipmentset () {
   $mysql->query_no_result($query);
 }
 
-function update_npc () {
+function update_npc() {
   check_authorization();
   global $mysql, $npcid, $specialattacks;
 
@@ -1347,6 +1347,7 @@ function update_npc () {
   if ($ranged_type != $_POST['ranged_type']) $fields .= "ranged_type=\"" . $_POST['ranged_type'] . "\", ";
   if ($runspeed != $_POST['runspeed']) $fields .= "runspeed=\"" . $_POST['runspeed'] . "\", ";
   if ($walkspeed != $_POST['walkspeed']) $fields .= "walkspeed=\"" . $_POST['walkspeed'] . "\", ";
+  if ($exp_pct != $_POST['exp_pct']) $fields .= "exp_pct=\"" . $_POST['exp_pct'] . "\", ";
   if ($MR != $_POST['MR']) $fields .= "MR=\"" . $_POST['MR'] . "\", ";
   if ($CR != $_POST['CR']) $fields .= "CR=\"" . $_POST['CR'] . "\", ";
   if ($DR != $_POST['DR']) $fields .= "DR=\"" . $_POST['DR'] . "\", ";
@@ -1370,6 +1371,7 @@ function update_npc () {
   if ($see_improved_hide != $_POST['see_improved_hide']) $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   if ($ATK != $_POST['ATK']) $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   if ($Accuracy != $_POST['Accuracy']) $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
+  if ($avoidance != $_POST['avoidance']) $fields .= "avoidance=\"" . $_POST['avoidance'] . "\", ";
   if ($slow_mitigation != $_POST['slow_mitigation']) $fields .= "slow_mitigation=\"" . $_POST['slow_mitigation'] . "\", ";
   if ($maxlevel != $_POST['maxlevel']) $fields .= "maxlevel=\"" . $_POST['maxlevel'] . "\", ";
   if ($scalerate != $_POST['scalerate']) $fields .= "scalerate=\"" . $_POST['scalerate'] . "\", ";
@@ -1474,6 +1476,7 @@ function add_npc () {
   $fields .= "ranged_type=\"" . $_POST['ranged_type'] . "\", ";
   $fields .= "runspeed=\"" . $_POST['runspeed'] . "\", ";
   $fields .= "walkspeed=\"" . $_POST['walkspeed'] . "\", ";
+  $fields .= "exp_pct=\"" . $_POST['exp_pct'] . "\", ";
   $fields .= "MR=\"" . $_POST['MR'] . "\", ";
   $fields .= "CR=\"" . $_POST['CR'] . "\", ";
   $fields .= "DR=\"" . $_POST['DR'] . "\", ";
@@ -1497,6 +1500,7 @@ function add_npc () {
   $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
+  $fields .= "avoidance=\"" . $_POST['avoidance'] . "\", ";
   $fields .= "slow_mitigation=\"" . $_POST['slow_mitigation'] . "\", ";
   $fields .= "maxlevel=\"" . $_POST['maxlevel'] . "\", ";
   $fields .= "scalerate=\"" . $_POST['scalerate'] . "\", ";
@@ -1579,6 +1583,7 @@ function copy_npc () {
   $fields .= "ranged_type=\"" . $_POST['ranged_type'] . "\", ";
   $fields .= "runspeed=\"" . $_POST['runspeed'] . "\", ";
   $fields .= "walkspeed=\"" . $_POST['walkspeed'] . "\", ";
+  $fields .= "exp_pct=\"" . $_POST['exp_pct'] . "\", ";
   $fields .= "MR=\"" . $_POST['MR'] . "\", ";
   $fields .= "CR=\"" . $_POST['CR'] . "\", ";
   $fields .= "DR=\"" . $_POST['DR'] . "\", ";
@@ -1602,6 +1607,7 @@ function copy_npc () {
   $fields .= "see_improved_hide=\"" . $_POST['see_improved_hide'] . "\", ";
   $fields .= "ATK=\"" . $_POST['ATK'] . "\", ";
   $fields .= "Accuracy=\"" . $_POST['Accuracy'] . "\", ";
+  $fields .= "avoidance=\"" . $_POST['avoidance'] . "\", ";
   $fields .= "slow_mitigation=\"" . $_POST['slow_mitigation'] . "\", ";
   $fields .= "maxlevel=\"" . $_POST['maxlevel'] . "\", ";
   $fields .= "scalerate=\"" . $_POST['scalerate'] . "\", ";

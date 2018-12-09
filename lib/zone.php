@@ -339,6 +339,7 @@ function update_zone () {
   if ($min_status != $_POST['min_status']) $fields .= "min_status=\"" . $_POST['min_status'] . "\", ";
   if ($maxclients != $_POST['maxclients']) $fields .= "maxclients=\"" . $_POST['maxclients'] . "\", ";
   if ($flag_needed != $_POST['flag_needed']) $fields .= "flag_needed=\"" . $_POST['flag_needed'] . "\", ";
+  if ($pull_limit != $_POST['pull_limit']) $fields .= "pull_limit=\"" . $_POST['pull_limit'] . "\", ";
   if ($canlevitate != $_POST['canlevitate']) $fields .= "canlevitate=\"" . $_POST['canlevitate'] . "\", ";
   if ($castoutdoor != $_POST['castoutdoor']) $fields .= "castoutdoor=\"" . $_POST['castoutdoor'] . "\", ";
   if ($cancombat != $_POST['cancombat']) $fields .= "cancombat=\"" . $_POST['cancombat'] . "\", ";

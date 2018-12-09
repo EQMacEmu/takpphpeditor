@@ -112,10 +112,10 @@
                   <tr>
                     <td align="left" width="33%">Run: <?=$runspeed?></td>
                     <td align="left" width="33%">Walk: <?=$walkspeed?></td>
-                    <td align="left" width="34%">Acy: <?=$Accuracy?></td>
+                    <td align="left" width="34%">Exp%: <?=$exp_pct?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="34%">ATK: <?=$ATK?></td>
+                    <td align="left" width="34%">+ATK: <?=$ATK?></td>
                     <td align="left" width="33%">See Invis: <?=$see_invis?></td>
                     <td align="left" width="34%">See ITU: <?=$see_invis_undead?></td>
                   </tr>
@@ -123,6 +123,11 @@
                     <td align="left" width="33%">See Sneak: <?=$see_sneak?></td>
                     <td align="left" width="33%">See Imp Hide: <?=$see_improved_hide?></td>
                     <td align="left" width="34%">Scalerate: <?=$scalerate?></td>
+                  </tr>
+                  <tr>
+                    <td align="left" width="34%">+Accuracy: <?=$Accuracy?></td>
+                    <td align="left" width="33%">+Avoidance: <?=$avoidance?></td>
+                    <td align="left" width="33%">&nbsp;</td>
                   </tr>
                 </table>
               </fieldset>

@@ -73,18 +73,30 @@ $statsArr = array(
 		"size" => 10
 	),
 	9 => array(
+		"label" => "Exp%",
+		"field" => "exp_pct",
+		"type" => "int",
+		"size" => 10
+	),
+	10 => array(
 		"label" => "ATK",
 		"field" => "ATK",
 		"type" => "int",
 		"size" => 10
 	),
-	10 => array(
+	11 => array(
 		"label" => "Accuracy",
 		"field" => "Accuracy",
 		"type" => "int",
 		"size" => 10
 	),
-	11 => array(
+	12 => array(
+		"label" => "Avoidance",
+		"field" => "avoidance",
+		"type" => "int",
+		"size" => 10
+	),
+	13 => array(
 		"label" => "See Invisible",
 		"field" => "see_invis",
 		"type" => "int",
@@ -92,7 +104,7 @@ $statsArr = array(
 		"min" => 0,
 		"max" => 100
 	),
-	12 => array(
+	14 => array(
 		"label" => "See Invisible to Undead",
 		"field" => "see_invis_undead",
 		"type" => "int",
@@ -100,7 +112,7 @@ $statsArr = array(
 		"min" => 0,
 		"max" => 100
 	),
-	13 => array(
+	15 => array(
 		"label" => "See Sneak",
 		"field" => "see_sneak",
 		"type" => "int",
@@ -108,7 +120,7 @@ $statsArr = array(
 		"min" => 0,
 		"max" => 100
 	),
-	14 => array(
+	16 => array(
 		"label" => "See Improved Hide",
 		"field" => "see_improved_hide",
 		"type" => "int",
@@ -116,177 +128,177 @@ $statsArr = array(
 		"min" => 0,
 		"max" => 100
 	),
-	15 => array(
+	17 => array(
 		"label" => "STR",
 		"field" => "STR",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	16 => array(
+	18 => array(
 		"label" => "STA",
 		"field" => "STA",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	17 => array(
+	19 => array(
 		"label" => "DEX",
 		"field" => "DEX",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	18 => array(
+	20 => array(
 		"label" => "AGI",
 		"field" => "AGI",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	19 => array(
+	21 => array(
 		"label" => "INT",
 		"field" => "_INT",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	20 => array(
+	22 => array(
 		"label" => "WIS",
 		"field" => "WIS",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	21 => array(
+	23 => array(
 		"label" => "CHA",
 		"field" => "CHA",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	22 => array(
+	24 => array(
 		"label" => "Magic Resist",
 		"field" => "MR",
 		"type" => "int",
 		"size" => 5
 	),
-	23 => array(
+	25 => array(
 		"label" => "Cold Resist",
 		"field" => "CR",
 		"type" => "int",
 		"size" => 5
 	),
-	24 => array(
+	26 => array(
 		"label" => "Fire Resist",
 		"field" => "FR",
 		"type" => "int",
 		"size" => 5
 	),
-	25 => array(
+	27 => array(
 		"label" => "Poison Resist",
 		"field" => "PR",
 		"type" => "int",
 		"size" => 5
 	),
-	26 => array(
+	28 => array(
 		"label" => "Disease Resist",
 		"field" => "DR",
 		"type" => "int",
 		"size" => 5
 	),
-	27 => array(
+	29 => array(
 		"label" => "Min Damage",
 		"field" => "mindmg",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	28 => array(
+	30 => array(
 		"label" => "Max Damage",
 		"field" => "maxdmg",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	29 => array(
+	31 => array(
 		"label" => "Out-of-combat HP Regen",
 		"field" => "hp_regen_rate",
 		"type" => "int",
 		"size" => 5
 	),
-	30 => array(
+	32 => array(
 		"label" => "In-combat HP Regen",
 		"field" => "combat_hp_regen",
 		"type" => "int",
 		"size" => 5
 	),
-	31 => array(
+	33 => array(
 		"label" => "Out-of-combat Mana Regen",
 		"field" => "mana_regen_rate",
 		"type" => "int",
 		"size" => 5
 	),
-	32 => array(
+	34 => array(
 		"label" => "In-combat Mana Regen",
 		"field" => "combat_mana_regen",
 		"type" => "int",
 		"size" => 5
 	),
-	33 => array(
+	35 => array(
 		"label" => "Aggro Radius",
 		"field" => "aggroradius",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	34 => array(
+	36 => array(
 		"label" => "Assist Radius",
 		"field" => "assistradius",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	35 => array(
+	37 => array(
 		"label" => "Attack Count",
 		"field" => "attack_count",
 		"type" => "int",
 		"size" => 5
 	),
-	36 => array(
+	38 => array(
 		"label" => "Atk Delay",
 		"field" => "attack_delay",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	37 => array(
+	39 => array(
 		"label" => "Loot Table ID",
 		"field" => "loottable_id",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	38 => array(
+	40 => array(
 		"label" => "Spells ID",
 		"field" => "npc_spells_id",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	39 => array(
+	41 => array(
 		"label" => "Heal Scale",
 		"field" => "healscale",
 		"type" => "float",
 		"size" => 5
 	),
-	40 => array(
+	42 => array(
 		"label" => "Spell Scale",
 		"field" => "spellscale",
 		"type" => "float",
 		"size" => 5
 	),
-	41 => array(
+	43 => array(
 		"label" => "Slow Mitigation",
 		"field" => "",
 		"type" => "int",
@@ -294,21 +306,21 @@ $statsArr = array(
 		"min" => 0,
 		"max" => 99
 	),
-	42 => array(
+	44 => array(
 		"label" => "Ignore Distance",
 		"field" => "ignore_distance",
 		"type" => "float",
 		"size" => 5,
 		"min" => 0
 	),
-	43 => array(
+	45 => array(
 		"label" => "Emote ID",
 		"field" => "emoteid",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
 	),
-	44 => array(
+	46 => array(
 		"label" => "Faction ID",
 		"field" => "npc_faction_id",
 		"type" => "int",
@@ -624,6 +636,10 @@ function formSelectNPCs()
 		foreach($statsArr as $statId => $stat)
 		{
 			$body .= "<input type=\"radio\" name=\"stat\" value=\"$statId\">{$stat['label']}<br>\n";
+			if ( $statId == 46 || $statId == 16 || $statId == 23 || $statId == 28 )
+			{
+				$body .= "<br/>";
+			}
 		}
 		
 		$body .= "</tr><tr>\n";
