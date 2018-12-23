@@ -338,7 +338,7 @@
         <input type="hidden" name="sec_melee_type" value="<?=$sec_melee_type?>">
         <input type="hidden" name="ranged_type" value="<?=$ranged_type?>">
         <input type="hidden" name="runspeed" value="<?=$runspeed?>">
-		    <input type="hidden" name="walkspeed" value="<?=$walkspeed?>">
+        <input type="hidden" name="walkspeed" value="<?=$walkspeed?>">
         <input type="hidden" name="MR" value="<?=$MR?>">
         <input type="hidden" name="CR" value="<?=$CR?>">
         <input type="hidden" name="DR" value="<?=$DR?>">
@@ -380,6 +380,8 @@
         <input type="hidden" name="encounter" value="<?=$encounter?>">
         <input type="hidden" name="ignore_despawn" value="<?=$ignore_despawn?>">
         <input type="hidden" name="aggro_pc" value="<?=$aggro_pc?>">
+        <input type="hidden" name="avoidance" value="<?=$avoidance?>">
+        <input type="hidden" name="exp_pct" value="<?=$exp_pct?>">
         <center>
           NEW ID:<input type="text" name="id" size="10" value="<?=$suggestedid?>">
           <input type="submit" value="Copy NPC">
