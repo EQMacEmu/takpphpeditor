@@ -3,7 +3,7 @@
       <div class="edit_form_header">
         Add an NPC to <?=$currzone?>
       </div>
-      <div class="edit_form_content">
+      <div class="edit_form_content_small">
         <center>
           <fieldset style="text-align: left;">
             <legend><strong><font size="4">General</font></strong></legend>

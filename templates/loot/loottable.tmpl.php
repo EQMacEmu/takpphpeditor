@@ -114,18 +114,19 @@
             <th width="13%"></th>
           </tr>
 <?
-	foreach ($lootdrop['items'] as $item): extract($item);
-	$total = (($chance/100) * ($lootdrop['probability']/100)) * 100;
-	$chance_total += $chance;
-	if ( $lootdrop['multiplier_min'] == 0 )
-	{
-		if($lootdrop['probability'] == 0)
-		  $chance = 0;
-		if($lootdrop['probability'] > 0 && $lootdrop['probability'] < 100)
-		  $chance = $total;
-		if($lootdrop['probability'] >= 100)
-		  $chance = $chance; // <- TRUE...
-	}
+	foreach ($lootdrop['items'] as $item):
+		extract($item);
+		$total = (($chance/100) * ($lootdrop['probability']/100)) * 100;
+		$chance_total += $chance;
+		if ( $lootdrop['multiplier_min'] == 0 )
+		{
+			if($lootdrop['probability'] == 0)
+			  $chance = 0;
+			if($lootdrop['probability'] > 0 && $lootdrop['probability'] < 100)
+			  $chance = $total;
+			if($lootdrop['probability'] >= 100)
+			  $chance = $chance; // <- TRUE...
+		}
 ?>
           <tr bgcolor="#<? echo ($x % 2 == 0) ? "BBBBBB" : "AAAAAA";?>">
             <td align="center"><a href="index.php?editor=items&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&id=<?=$item_id?>&action=2"><?=$item_id?></td>

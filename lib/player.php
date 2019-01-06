@@ -187,11 +187,6 @@ function player_info() {
   $result = $mysql->query_mult_assoc($query);
   $player_array['memmed_spells'] = $result;
 
-  //Load from character_material
-  $query = "SELECT * FROM character_material WHERE id = $playerid";
-  $result = $mysql->query_mult_assoc($query);
-  $player_array['material'] = $result;
-
   //Load from character_inspect_messages
   $query = "SELECT * FROM character_inspect_messages WHERE id = $playerid";
   $result = $mysql->query_assoc($query);

@@ -10,11 +10,16 @@
               <input type="text" name="id" size="6" value="<?=$suggestedid?>">
               <input class="indented" type="text" name="spawn_limit" size="5" value="0"><br><br>
               Spawngroup Name:
-              <input type="text" name="name" size="15" value="<?=$currzone?>_<?=$suggestedid?>"><br><br>
+              <input type="text" name="name" size="25" value="<?=$currzone?>_<?=$suggestedid?>"><br><br>
              	First NPCID:
 		Chance:<br>
               <input type="text" name="npcID" size="5" value="<?=$npcid?>">
 		<input type="text" name="chance" size="2" value="100">%<br><br>
+		Waypoint Spawning:
+		<select name="wp_spawns" style="width: 70px;">
+            <option value="0" selected>Off</option>
+			<option value="1">Enabled</option>
+		</select><br><br>
 		mindelay:&nbsp;
               delay:<br>
 		<input type="text" name="mindelay" size="5" value="0">

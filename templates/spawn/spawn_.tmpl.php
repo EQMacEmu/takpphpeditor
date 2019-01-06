@@ -32,8 +32,7 @@
         <table width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td>
-              Spawngroup: <?=$name?> - "<a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&sid=<?=$spawngroupID?>&action=4"><?=$spawngroupID?></a>"
-            </td>
+              Spawngroup <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$spawngroupID?></a> - <?=$name?>            </td>
             <td>
               spawn_limit: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&sid=<?=$spawngroupID?>&action=4"><?=$spawn_limit?></a>
             </td>
@@ -51,8 +50,7 @@
         <table width="100%" cellpadding="0" cellspacing="0">
           <tr>
             <td>
-              Spawngroup: <?=$name?> - "<a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$spawngroupID?></a>"
-            </td>
+              Spawngroup <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$spawngroupID?></a> - <?=$name?>
             <td>
               spawn_limit: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$spawn_limit?></a>
             </td>
@@ -69,21 +67,24 @@
         <div class="table_header">
         <table width="100%" cellpadding="0" cellspacing="0">
           <tr>
-	     <td width="25%">
-		min_x: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$min_x?></a>
-	     </td>
-	     <td width="25%">
-		max_x: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$max_x?></a>
-	     </td>
-	     <td width="25%">
-	       min_y: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$min_y?></a>
-	     </td>
-            <td width="25%">
-	       max_y: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$max_y?></a>
-	     </td>
-		          </tr>
-          </table>
-         </div>
+            <td width="20%">
+              WP Spawns: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?echo ($wp_spawns) ? "Enabled" : "Off";?></a>
+            </td>
+	        <td width="20%">
+	          min_x: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$min_x?></a>
+	        </td>
+	        <td width="20%">
+              max_x: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$max_x?></a>
+            </td>
+            <td width="20%">
+	          min_y: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$min_y?></a>
+            </td>
+            <td width="20%">
+              max_y: <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcID?>&sid=<?=$spawngroupID?>&action=4"><?=$max_y?></a>
+            </td>
+         </tr>
+       </table>
+       </div>
 	   <div class="table_header">
         <table width="100%" cellpadding="0" cellspacing="0">
           <tr>

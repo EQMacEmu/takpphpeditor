@@ -7,11 +7,17 @@
            <form method="post" action="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&sid=<?=$sid?>&action=5">
              <center>
              	Spawngroup Name:<br>  
-		<input type="text" name="name" size="15" value="<?=$name?>"><br><br>
-	    	spawn_limit:<br>
-             	<input type="text" name="spawn_limit" size="6" value="<?=$spawn_limit?>"><br><br>
+		<input type="text" name="name" size="25" value="<?=$name?>"><br><br>
+		spawn_limit:&nbsp;
+		WP Spawns:<br>
+             	<input type="text" name="spawn_limit" size="6" value="<?=$spawn_limit?>">&nbsp;
+		<select name="wp_spawns" style="width: 70px;">
+            <option value="0"<? echo (!$wp_spawns) ? " selected" : "" ?>>Off</option>
+			<option value="1"<? echo ($wp_spawns) ? " selected" : "" ?>>Enabled</option>
+		</select><br><br>
+	    	
 		mindelay:&nbsp;
-              delay:<br>
+              delay:&nbsp;&nbsp;&nbsp;&nbsp;<br>
 		<input type="text" name="mindelay" size="5" value="<?=$mindelay?>">
 		<input type="text" name="delay" size="5" value="<?=$delay?>"><br><br>
 		max_x:&nbsp;&nbsp; 

@@ -1,7 +1,7 @@
   <form name="npc_edit" method="post" action="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=2">
     <div class="edit_form">
       <div class="edit_form_header">Edit NPC <?=$npcid?></div>
-        <div class="edit_form_content">
+        <div class="edit_form_content_small">
           <center>
             <fieldset style="text-align: left;">
               <legend><strong><font size="4">General</font></strong></legend>

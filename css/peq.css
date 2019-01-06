@@ -186,10 +186,17 @@ table {
   padding: 0 5px 3px 5px;
   background-color: black;
   color: #FFF;
-  font-size: 10px
+  font-size: 12px
 }
 
 .edit_form_content {
+  padding: 10px;
+  color: #000;
+  font-size: 12px;
+  background-color: #CCC;
+}
+
+.edit_form_content_small {
   padding: 10px;
   color: #000;
   font-size: 10px;
