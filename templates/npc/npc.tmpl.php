@@ -174,7 +174,6 @@
               <fieldset>
                 <legend><strong>Combat</strong></legend>
                 <table width="100%" border="0" cellpadding="3" cellspacing="0">
-<?($slotmit = $slow_mitigation*100);?>
                   <tr>
                     <td align="left" width="33%">MinDmg: <?=$mindmg?></td>
                     <td align="left" width="33%">MaxDmg: <?=$maxdmg?></td>
@@ -186,18 +185,18 @@
                     <td align="left" width="33%">Atk Delay: <?=$attack_delay?></td>
                   </tr>
                   <tr>
-					          <td align="left" width="33%">HP Regen: <?=$hp_regen_rate?></td>
+					<td align="left" width="33%">HP Regen: <?=$hp_regen_rate?></td>
                     <td align="left" width="34%">MP Regen: <?=$mana_regen_rate?></td>
                     <td align="left" width="34%">NPC Spells ID: <?=$npc_spells_id?></td>
                   </tr>
                   <tr>
-					          <td align="left" width="33%">Combat HP Regen: <?=$combat_hp_regen?></td>
+					<td align="left" width="33%">Combat HP Regen: <?=$combat_hp_regen?></td>
                     <td align="left" width="34%">Combat MP Regen: <?=$combat_mana_regen?></td>
                     <td align="left" width="33%">Assist: <?=$assistradius?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Spell Scale: <?=$spellscale?>%</td>
-                    <td align="left" width="33%">Slow Mit: <?=$slow_mitigation?> (<?=$slotmit?>%)</td>
+                    <td align="left" width="33%">Slow Mit: <?=$slow_mitigation?>%</td>
                     <td align="left" width="33%">Heal Scale: <?=$healscale?>%</td>
                  </tr>
                   <tr>

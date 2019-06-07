@@ -130,7 +130,7 @@
                 <td align="left" width="20%">Min Dmg:     <br/><input type="text" name="mindmg" size="5" value="0"></td>
                 <td align="left" width="20%">HP Regen:    <br/><input type="text" name="hp_regen_rate" size="5" value="0"></td>
                 <td align="left" width="20%">Combat HP Regen:<br/><input type="text" name="combat_hp_regen" size="5" value="0"></td>
-				        <td align="left" width="20%">Aggroradius: <br/><input type="text" name="aggroradius" size="5" value="0"></td>
+				<td align="left" width="20%">Aggroradius: <br/><input type="text" name="aggroradius" size="5" value="0"></td>
                 <td align="left" width="20%">Attack Count:<br/><input type="text" name="attack_count" size="5" value="0"></td>
               </tr>
               </tr>
@@ -143,8 +143,8 @@
               </tr>
                 <td align="left" width="20%">Ignore Distance:     <br/><input type="text" name="ignore_distance" size="5" value="0"></td>
                 <td align="left" width="20%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="0">%</td>
-				        <td align="left" width="20%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="0">%</td>
-				        <td align="left" width="20%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="0"></td>
+				<td align="left" width="20%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="0">%</td>
+				<td align="left" width="20%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="0">%</td>
                 <td align="left" width="20%">&nbsp;</td>
              </tr>
           </table>
