@@ -145,12 +145,17 @@ switch ($action) {
       $body->set('tmpfacshort', $tmpfacshort);
       $body->set('pet', get_ispet());
       $body->set('max_special_ability', $max_special_ability);
+	  
       $vars = npc_info();
       if ($vars) {
         foreach ($vars as $key=>$value) {
           $body->set($key, $value);
         }
       }
+	  $body->set('see_invis_text', get_see_invis_text($vars['see_invis']));
+	  $body->set('see_invis_undead_text', get_see_invis_text($vars['see_invis_undead']));
+	  $body->set('see_sneak_text', get_see_invis_text($vars['see_sneak']));
+	  $body->set('see_improved_hide_text', get_see_invis_text($vars['see_improved_hide']));
     }
     else if ($z) {
       $body = new Template("templates/npc/npc.zdefault.tmpl.php");
@@ -2802,6 +2807,15 @@ function get_special_ability() {
   $query = "SELECT special_abilities FROM npc_types WHERE id=$npcid";
   $result = $mysql->query_assoc($query);
   return $result['special_abilities'];
+}
+
+function get_see_invis_text($invis_type_value) {
+	if ($invis_type_value == 0)
+		return "No";
+	elseif ($invis_type_value == 1 || $invis_type_value > 99)
+		return "Yes";
+	else
+		return "random $invis_type_value%";
 }
 
 ?>
