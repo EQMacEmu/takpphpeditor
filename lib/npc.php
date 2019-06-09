@@ -1327,7 +1327,7 @@ function update_npc() {
   //merchant_id
   if ($npc_spells_id != $_POST['npc_spells_id']) $fields .= "npc_spells_id=\"" . $_POST['npc_spells_id'] . "\", ";
   if ($npc_spells_id != $_POST['npc_spells_effects_id']) $fields .= "npc_spells_effects_id=\"" . $_POST['npc_spells_effects_id'] . "\", ";
-  //npc_faction_id
+  if ($npc_faction_id != $_POST['npc_faction_id']) $fields .= "npc_faction_id=\"" . $_POST['npc_faction_id'] . "\", ";
   if ($mindmg != $_POST['mindmg']) $fields .= "mindmg=\"" . $_POST['mindmg'] . "\", ";
   if ($maxdmg != $_POST['maxdmg']) $fields .= "maxdmg=\"" . $_POST['maxdmg'] . "\", ";
   if ($attack_count != $_POST['attack_count']) $fields .= "attack_count=\"" . $_POST['attack_count'] . "\", ";
@@ -1456,7 +1456,7 @@ function add_npc () {
   //merchant_id
   $fields .= "npc_spells_id=\"" . $_POST['npc_spells_id'] . "\", ";
   $fields .= "npc_spells_effects_id=\"" . $_POST['npc_spells_effects_id'] . "\", ";
-  //npc_faction_id
+  $fields .= "npc_faction_id=\"" . $_POST['npc_faction_id'] . "\", ";
   $fields .= "mindmg=\"" . $_POST['mindmg'] . "\", ";
   $fields .= "maxdmg=\"" . $_POST['maxdmg'] . "\", ";
   $fields .= "attack_count=\"" . $_POST['attack_count'] . "\", ";
