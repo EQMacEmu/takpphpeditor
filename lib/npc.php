@@ -145,6 +145,7 @@ switch ($action) {
       $body->set('tmpfacshort', $tmpfacshort);
       $body->set('pet', get_ispet());
       $body->set('max_special_ability', $max_special_ability);
+      $body->set('specialattacks', $specialattacks);
 	  
       $vars = npc_info();
       if ($vars) {

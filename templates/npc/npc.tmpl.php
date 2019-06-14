@@ -210,17 +210,28 @@
                     <td align="left" width="34%">&nbsp;</td>
                   </tr>
                   <?
-				    $new_special_abilities = '';
-				      for ($i = 1; $i <= $max_special_ability; $i++){
-				        if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1){
-				          $match[0] = ltrim($match[0], "^");
-				          $new_special_abilities .= $match[0];
-				        }
-				      }
-				      $new_special_abilities = rtrim($new_special_abilities, ",");
+					$new_special_abilities = '';
+					for ($i = 1; $i <= $max_special_ability; $i++)
+					{
+						if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1)
+						{
+							$match[0] = ltrim($match[0], "^");		// ability number with comma
+							$ability = rtrim($match[0], ",");		// remove comma
+							
+							if ( isset($specialattacks) && $specialattacks[$ability] )
+							{
+								$new_special_abilities .= " " . $specialattacks[$ability] . ",";
+							}
+							else
+							{
+								$new_special_abilities .= " " . $match[0];
+							}
+						}
+					}
+					$new_special_abilities = rtrim($new_special_abilities, ",");
 				  ?>
                   <tr>
-                    <td colspan="3">Special Atks: <?echo ($new_special_abilities) ? $new_special_abilities : "None";?></td>
+                    <td colspan="3"><div style="max-width:400px;">Special Abilities: <?echo ($new_special_abilities) ? $new_special_abilities : "None";?></div></td>
                   </tr>
                 </table>
               </fieldset>
