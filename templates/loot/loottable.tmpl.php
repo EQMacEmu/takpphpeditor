@@ -27,7 +27,7 @@
   if ($new_loottable_name != $loottable_name) 
     $new_loottable_name = "$new_loottable_name...";
 ?>
-          LootTable <?=$loottable_id?>: "<a href="index.php?editor=loot&action=1&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>"><?=$new_loottable_name?></a>"
+          LootTable <?=$loottable_id?>: "<a href="index.php?editor=loot&action=1&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>"<?echo ($new_loottable_name != $loottable_name) ? " title=\"$loottable_name\"" : ""?>><?=$new_loottable_name?></a>"
         </div>
         <div class="table_content">
           Cash loot [<a href="index.php?editor=loot&action=1&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>">edit</a>]:<br/>
@@ -72,7 +72,7 @@
     $newname = "$newname...";
 ?>
               <td>
-                "<a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ldid=<?=$lootdrop['id']?>&action=3"><?=$newname?></a>"
+                "<a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ldid=<?=$lootdrop['id']?>&action=3"<?echo ($newname != $lootdrop['name']) ? " title=\"{$lootdrop['name']}\"" : ""?>><?=$newname?></a>"
               </td>
               <td>
                 Mindrop: <a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ltid=<?=$loottable_id?>&ldid=<?=$lootdrop['id']?>&action=7"><?=$lootdrop['mindrop']?></a>
