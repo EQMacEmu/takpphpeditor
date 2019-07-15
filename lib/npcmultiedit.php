@@ -300,7 +300,7 @@ $statsArr = array(
 	),
 	43 => array(
 		"label" => "Slow Mitigation",
-		"field" => "",
+		"field" => "slow_mitigation",
 		"type" => "int",
 		"size" => 5,
 		"min" => 0,
