@@ -1,15 +1,22 @@
-      <div class="table_container" style="width:300px;">
-        <div class="table_header">
-          Loot Search Results
-        </div>
-        <div class="table_content">
 <?if($results != ''):?>
-<?foreach($results as $result): extract($result);?>
-          <a href="index.php?editor=loot&z=<?=get_zone_by_npcid($id)?>&npcid=<?=$id?>"><?=$name?> - (<?=get_zone_by_npcid($id)?>; level <?=$level?>)</a><br>
-<?endforeach;?>
+      <center><div class="table_container" style="display: inline-block">
+        <div class="table_header">
+			<b>NPCs That Drop <?=$results[0]["itemname"]?></b> (count: <?=count($results)?>)
+        </div>
+		<table class="table_content2">
+			<tr><td><b>NPC Name</b></td><td><b>Zone</b></td><td><b>Level</b></td><td><b>Drop %</b></td><td><b>Lootdrop</b></td></tr>
+<?$x=1; foreach($results as $result): extract($result);?>
+				<tr<?echo($x % 2 == 1) ? " bgcolor=\"#BBBBBB\"" : "";?>>
+					<td><a href="index.php?editor=loot&z=<?=get_zone_by_npcid($id)?>&zoneid=<?=get_zoneid_by_npcid($id)?>&npcid=<?=$id?>"><?=$name?></a>&nbsp;</td>
+					<td><?=get_zone_by_npcid($id)?>&nbsp;</td>
+					<td><?=$level?></td>
+					<td><?=($chance*$probability/100)?>%</td>
+					<td><?=$lootdropname?></td>
+				</tr>
+<?$x++; endforeach;?>
+		</table>
+      </div></center>
 <?endif;?>
 <?if($results == ''):?>
-          Your search produced no results!
+          <center>Your search produced no results!</center>
 <?endif;?>
-        </div>
-      </div>

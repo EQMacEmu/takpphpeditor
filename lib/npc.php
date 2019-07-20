@@ -145,12 +145,18 @@ switch ($action) {
       $body->set('tmpfacshort', $tmpfacshort);
       $body->set('pet', get_ispet());
       $body->set('max_special_ability', $max_special_ability);
+      $body->set('specialattacks', $specialattacks);
+	  
       $vars = npc_info();
       if ($vars) {
         foreach ($vars as $key=>$value) {
           $body->set($key, $value);
         }
       }
+	  $body->set('see_invis_text', get_see_invis_text($vars['see_invis']));
+	  $body->set('see_invis_undead_text', get_see_invis_text($vars['see_invis_undead']));
+	  $body->set('see_sneak_text', get_see_invis_text($vars['see_sneak']));
+	  $body->set('see_improved_hide_text', get_see_invis_text($vars['see_improved_hide']));
     }
     else if ($z) {
       $body = new Template("templates/npc/npc.zdefault.tmpl.php");
@@ -1322,7 +1328,7 @@ function update_npc() {
   //merchant_id
   if ($npc_spells_id != $_POST['npc_spells_id']) $fields .= "npc_spells_id=\"" . $_POST['npc_spells_id'] . "\", ";
   if ($npc_spells_id != $_POST['npc_spells_effects_id']) $fields .= "npc_spells_effects_id=\"" . $_POST['npc_spells_effects_id'] . "\", ";
-  //npc_faction_id
+  if ($npc_faction_id != $_POST['npc_faction_id']) $fields .= "npc_faction_id=\"" . $_POST['npc_faction_id'] . "\", ";
   if ($mindmg != $_POST['mindmg']) $fields .= "mindmg=\"" . $_POST['mindmg'] . "\", ";
   if ($maxdmg != $_POST['maxdmg']) $fields .= "maxdmg=\"" . $_POST['maxdmg'] . "\", ";
   if ($attack_count != $_POST['attack_count']) $fields .= "attack_count=\"" . $_POST['attack_count'] . "\", ";
@@ -1451,7 +1457,7 @@ function add_npc () {
   //merchant_id
   $fields .= "npc_spells_id=\"" . $_POST['npc_spells_id'] . "\", ";
   $fields .= "npc_spells_effects_id=\"" . $_POST['npc_spells_effects_id'] . "\", ";
-  //npc_faction_id
+  $fields .= "npc_faction_id=\"" . $_POST['npc_faction_id'] . "\", ";
   $fields .= "mindmg=\"" . $_POST['mindmg'] . "\", ";
   $fields .= "maxdmg=\"" . $_POST['maxdmg'] . "\", ";
   $fields .= "attack_count=\"" . $_POST['attack_count'] . "\", ";
@@ -2802,6 +2808,15 @@ function get_special_ability() {
   $query = "SELECT special_abilities FROM npc_types WHERE id=$npcid";
   $result = $mysql->query_assoc($query);
   return $result['special_abilities'];
+}
+
+function get_see_invis_text($invis_type_value) {
+	if ($invis_type_value == 0)
+		return "No";
+	elseif ($invis_type_value == 1 || $invis_type_value > 99)
+		return "Yes";
+	else
+		return "random $invis_type_value%";
 }
 
 ?>

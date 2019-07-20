@@ -112,16 +112,16 @@
                   <tr>
                     <td align="left" width="33%">Run: <?=$runspeed?></td>
                     <td align="left" width="33%">Walk: <?=$walkspeed?></td>
-                    <td align="left" width="34%">Exp%: <?=$exp_pct?></td>
+                    <td align="left" width="34%">Exp%: <?=$exp_pct?>%</td>
                   </tr>
                   <tr>
                     <td align="left" width="34%">+ATK: <?=$ATK?></td>
-                    <td align="left" width="33%">See Invis: <?=$see_invis?></td>
-                    <td align="left" width="34%">See ITU: <?=$see_invis_undead?></td>
+                    <td align="left" width="33%">See Invis: <?=$see_invis_text?></td>
+                    <td align="left" width="34%">See ITU: <?=$see_invis_undead_text?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">See Sneak: <?=$see_sneak?></td>
-                    <td align="left" width="33%">See Imp Hide: <?=$see_improved_hide?></td>
+                    <td align="left" width="33%">See Sneak: <?=$see_sneak_text?></td>
+                    <td align="left" width="33%">See Imp Hide: <?=$see_improved_hide_text?></td>
                     <td align="left" width="34%">Scalerate: <?=$scalerate?></td>
                   </tr>
                   <tr>
@@ -174,7 +174,6 @@
               <fieldset>
                 <legend><strong>Combat</strong></legend>
                 <table width="100%" border="0" cellpadding="3" cellspacing="0">
-<?($slotmit = $slow_mitigation*100);?>
                   <tr>
                     <td align="left" width="33%">MinDmg: <?=$mindmg?></td>
                     <td align="left" width="33%">MaxDmg: <?=$maxdmg?></td>
@@ -186,18 +185,18 @@
                     <td align="left" width="33%">Atk Delay: <?=$attack_delay?></td>
                   </tr>
                   <tr>
-					          <td align="left" width="33%">HP Regen: <?=$hp_regen_rate?></td>
+					<td align="left" width="33%">HP Regen: <?=$hp_regen_rate?></td>
                     <td align="left" width="34%">MP Regen: <?=$mana_regen_rate?></td>
                     <td align="left" width="34%">NPC Spells ID: <?=$npc_spells_id?></td>
                   </tr>
                   <tr>
-					          <td align="left" width="33%">Combat HP Regen: <?=$combat_hp_regen?></td>
+					<td align="left" width="33%">Combat HP Regen: <?=$combat_hp_regen?></td>
                     <td align="left" width="34%">Combat MP Regen: <?=$combat_mana_regen?></td>
                     <td align="left" width="33%">Assist: <?=$assistradius?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Spell Scale: <?=$spellscale?>%</td>
-                    <td align="left" width="33%">Slow Mit: <?=$slow_mitigation?> (<?=$slotmit?>%)</td>
+                    <td align="left" width="33%">Slow Mit: <?=$slow_mitigation?>%</td>
                     <td align="left" width="33%">Heal Scale: <?=$healscale?>%</td>
                  </tr>
                   <tr>
@@ -211,17 +210,28 @@
                     <td align="left" width="34%">&nbsp;</td>
                   </tr>
                   <?
-				    $new_special_abilities = '';
-				      for ($i = 1; $i <= $max_special_ability; $i++){
-				        if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1){
-				          $match[0] = ltrim($match[0], "^");
-				          $new_special_abilities .= $match[0];
-				        }
-				      }
-				      $new_special_abilities = rtrim($new_special_abilities, ",");
+					$new_special_abilities = '';
+					for ($i = 1; $i <= $max_special_ability; $i++)
+					{
+						if (preg_match("/^$i,/", $special_abilities, $match) == 1 || preg_match("/\^$i,/", $special_abilities, $match) == 1)
+						{
+							$match[0] = ltrim($match[0], "^");		// ability number with comma
+							$ability = rtrim($match[0], ",");		// remove comma
+							
+							if ( isset($specialattacks) && $specialattacks[$ability] )
+							{
+								$new_special_abilities .= " " . $specialattacks[$ability] . ",";
+							}
+							else
+							{
+								$new_special_abilities .= " " . $match[0];
+							}
+						}
+					}
+					$new_special_abilities = rtrim($new_special_abilities, ",");
 				  ?>
                   <tr>
-                    <td colspan="3">Special Atks: <?echo ($new_special_abilities) ? $new_special_abilities : "None";?></td>
+                    <td colspan="3"><div style="max-width:400px;">Special Abilities: <?echo ($new_special_abilities) ? $new_special_abilities : "None";?></div></td>
                   </tr>
                 </table>
               </fieldset>

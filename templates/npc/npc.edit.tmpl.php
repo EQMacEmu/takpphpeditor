@@ -118,7 +118,7 @@
               <tr>
                 <td align="left" width="17%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="<?=$healscale?>">%</td>
 				<td align="left" width="17%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="<?=$spellscale?>">%</td>
-				<td align="left" width="17%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="<?=$slow_mitigation?>"></td>
+				<td align="left" width="17%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="<?=$slow_mitigation?>">%</td>
                 <td align="left" width="17%">+Accuracy:   <br/><input type="text" name="Accuracy" size="5" value="<?=$Accuracy?>"></td>
                 <td align="left" width="16%">+Avoidance:  <br/><input type="text" name="avoidance" size="5" value="<?=$avoidance?>"></td>
                 <td align="left" width="16%">Attack Count:<br/><input type="text" name="attack_count" size="5" value="<?=$attack_count?>"></td>
