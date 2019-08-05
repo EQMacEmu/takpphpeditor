@@ -9,7 +9,8 @@ $wandertype = array(
   5 => "Random 5 LoS",
   6 => "One Way",
   7 => "Center Point",
-  8 => "Random Center Point"
+  8 => "Random Center Point",
+  9 => "Random Path"
 );
 
 $pausetype = array(
@@ -739,6 +740,7 @@ switch ($action) {
     $body = new Template("templates/spawn/grid.npcs.tmpl.php");
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);
+	$body->set('pathgrid', $_GET['pathgrid']);
     $grid_npcs = get_npcs_by_grid();
     $body->set('grid_npcs', $grid_npcs);
     break;
@@ -1992,7 +1994,7 @@ function get_npcs_by_grid() {
   $pathgrid = $_GET['pathgrid'];
   $zone = getZoneName(getZoneID($_GET['z']));
 
-  $query = "SELECT sg.name AS name, sp.spawngroupid AS spawngroupid, sp.zone AS zone, se.npcid AS npcid FROM spawngroup sg, spawn2 sp, spawnentry se WHERE sg.id = sp.spawngroupid AND sp.spawngroupid = se.spawngroupid AND pathgrid = $pathgrid AND zone = \"$zone\"";
+  $query = "SELECT sg.name AS name, sp.spawngroupid AS spawngroupid, sp.zone AS zone, sp.id AS spawn2id, se.npcid AS npcid FROM spawngroup sg, spawn2 sp, spawnentry se WHERE sg.id = sp.spawngroupid AND sp.spawngroupid = se.spawngroupid AND pathgrid = $pathgrid AND zone = \"$zone\"";
   $results = $mysql->query_mult_assoc($query);
 
   return $results;
