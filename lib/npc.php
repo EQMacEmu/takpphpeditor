@@ -1544,7 +1544,6 @@ function add_npc () {
      $mysql->query_no_result($query);
      $mysql->query_no_result($query2);
   }
-  echo $query;
 }
 
 function copy_npc () {
