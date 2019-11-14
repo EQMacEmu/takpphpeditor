@@ -22,7 +22,7 @@
           <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=40"><img src="images/zone.gif" border="0" title="Get next npcid for a zone"></a>
           <a onClick="return confirm('Really delete npcid <?=$npcid?>?');" href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=24"><img src="images/table.gif" border="0" title="Delete this NPC"></a>
         </div>
-        <?=$id?> - <?=$name?> <?echo ($lastname != '' ? "($lastname)" : '');?>
+        <?=$id?> - <?=$name?> <?echo ($lastname != '' ? "($lastname)" : '');?><?echo isset($notfound) ? '(NPC with this ID does not exist)' : ''?>
       </div>
       <div class="table_content">
         <table cellspacing="0" border="0" width="100%">

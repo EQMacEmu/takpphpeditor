@@ -326,6 +326,14 @@ $statsArr = array(
 		"type" => "int",
 		"size" => 5,
 		"min" => 0
+	),
+	47 => array(
+		"label" => "Greed",
+		"field" => "greed",
+		"type" => "int",
+		"size" => 3,
+		"min" => 0,
+		"max" => 255
 	)
 );
 

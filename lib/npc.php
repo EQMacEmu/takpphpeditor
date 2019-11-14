@@ -138,7 +138,7 @@ switch ($action) {
       $body->set('races', $races);
       $body->set('yesno', $yesno);
       $body->set('skilltypes', $skilltypes);
-      $body->set('suggestedid', ($_POST['selected_id'] > 0) ? $_POST['selected_id'] : suggest_npcid());
+      $body->set('suggestedid', (isset($_POST['selected_id']) && $_POST['selected_id'] > 0) ? $_POST['selected_id'] : suggest_npcid());
       $body->set('npc_name', getNPCName($npcid));
       $body->set('factions', $factions);
       $body->set('faction_values', $faction_values);
@@ -153,6 +153,7 @@ switch ($action) {
           $body->set($key, $value);
         }
       }
+	  
 	  $body->set('see_invis_text', get_see_invis_text($vars['see_invis']));
 	  $body->set('see_invis_undead_text', get_see_invis_text($vars['see_invis_undead']));
 	  $body->set('see_sneak_text', get_see_invis_text($vars['see_sneak']));
@@ -385,6 +386,7 @@ switch ($action) {
     $body->set('specialattacks', $specialattacks);
     $body->set('max_special_ability', $max_special_ability);
     $vars = get_stats();
+	
     if ($vars) {
       foreach ($vars as $key=>$value) {
         $body->set($key, $value);
@@ -982,6 +984,12 @@ function npc_info () {
 
   $query = "SELECT * FROM npc_types WHERE id=$npcid";
   $result = $mysql->query_assoc($query);
+  
+  // to prevent some 'Notice' warnings; all variables need initialization, really
+  if (!$result)
+	  $result = array("notfound" => true, "id" => '', "name" => '', "lastname" => '', "npc_faction_id" => 0, "see_invis" => 0,
+		"see_invis_undead" => 0, "see_sneak" => 0, "see_improved_hide" => 0);
+  
   $factionid = $result['npc_faction_id'];
 
   $result['factionname'] = '';
@@ -1394,6 +1402,7 @@ function update_npc() {
   if ($encounter != $_POST['encounter']) $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
   if ($ignore_despawn != $_POST['ignore_despawn']) $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   if ($aggro_pc != $_POST['aggro_pc']) $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
+  if ($greed != $_POST['greed']) $fields .= "greed=\"" . $_POST['greed'] . "\", ";
 
   $fields =  rtrim($fields, ", ");
 
@@ -1409,6 +1418,9 @@ function add_npc () {
   check_authorization();
   global $mysql, $specialattacks;
 
+  if (!isset($_POST['name']) || $_POST['name'] == '')
+	  return;
+  
   // Define checkbox fields:
   if ($_POST['qglobal'] != 1) $_POST['qglobal'] = 0;
   if ($_POST['npc_aggro'] != 1) $_POST['npc_aggro'] = 0;
@@ -1421,6 +1433,7 @@ function add_npc () {
   if ($_POST['encounter'] != 1) $_POST['encounter'] = 0;
   if ($_POST['pet'] != 1) $_POST['pet'] = 0;
   if ($_POST['raid_target'] != 1) $_POST['raid_target'] = 0;
+  if (!isset($_POST['avoidance'])) $_POST['avoidance'] = 0;		// this needs a form entry
 
   foreach ($specialattacks as $k => $v) {
     if (isset($_POST["$k"])) {
@@ -1522,7 +1535,8 @@ function add_npc () {
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
-  $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\" ";
+  $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
+  $fields .= "greed=\"" . $_POST['greed'] . "\"";
 
   if ($fields != '') {
     $query = "INSERT INTO npc_types SET $fields";
@@ -1530,6 +1544,7 @@ function add_npc () {
      $mysql->query_no_result($query);
      $mysql->query_no_result($query2);
   }
+  echo $query;
 }
 
 function copy_npc () {
@@ -1630,6 +1645,7 @@ function copy_npc () {
   $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\"";
+  $fields .= "greed=\"" . $_POST['greed'] . "\"";
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
@@ -2119,40 +2135,66 @@ function next_npcid() {
 }
 
 function get_stats() {
-  global $mysql;
+	global $mysql;
 
- $npc_level = $_POST['npc_level'];
+	$npc_level = $_POST['npc_level'];
+	if ($npc_level < 1)
+		$npc_level = 1;
+	
+	$results = array("level" => $npc_level);
+	
+	$results["hp"] = $npc_level * 25;
+	$results["mana"] = 35 * $npc_level;
+	$results["ac"] = round($npc_level * 4.1 - 15);
+	$results["stats"] = 70 + $npc_level;
+	$results["resists"] = 35;
+	$results["mindmg"] = max(round(($npc_level + 1) / 10), 1);
+	$results["maxdmg"] = ($npc_level + 1) * 2;
+	$results["attack_delay"] = 30;
+	$results["mana_regen"] = 5 + round($npc_level / 2);
+	$results["mana_combat_regen"] = 2 + round($npc_level / 5);
 
- if($npc_level < 11) {
- $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 1000 and race != 240 and str < 300 and id < 200000 group by level";
- $results = $mysql->query_assoc($query);
- return $results;
- }
- if($npc_level > 10 && $npc_level < 31) {
-  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 2500 and race != 240 and str < 300 and id < 200000 group by level";
- $results = $mysql->query_assoc($query);
- return $results;
- }
-  if($npc_level > 30 && $npc_level < 51) {
-  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 10000 and race != 240 and str < 300 and id < 200000 group by level";
- $results = $mysql->query_assoc($query);
- return $results;
- }
- if($npc_level > 50 && $npc_level < 61) {
-  $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 21000 and race != 240 and str < 300 group by level";
- $results = $mysql->query_assoc($query);
- return $results;
- }
- if($npc_level > 60 && $npc_level < 66) {
- $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 27000 and race != 240 group by level";
- $results = $mysql->query_assoc($query);
- return $results;
- }
- else {
- $query = "SELECT level, avg(hp) AS hp, avg(mana) AS mana, avg(ac) AS ac, avg(str) AS stats, avg(mr) AS resists, avg(mindmg) AS mindmg, avg(maxdmg) AS maxdmg, avg(attack_delay) AS attack_delay FROM npc_types WHERE level=\"$npc_level\" and name not like '#%' and bodytype < 35 and bodytype not in (10,11,17,18,33) and hp < 50000 and race != 240 group by level";
- $results = $mysql->query_assoc($query);
- return $results;
- }
+	if ($npc_level < 15)
+		$results["resists"] = 25;
+
+	if ($npc_level < 15)
+		$results["ac"] = $npc_level * 3;	
+	if ($npc_level < 3)
+		$results["ac"] += 2;
+	if ($results["ac"] > 200)
+		$results["ac"] = 200;
+	
+	if ($npc_level > 15)
+		$results["hp"] *= 1.25;
+	if ($npc_level > 30)
+		$results["hp"] *= 1.25;
+	if ($npc_level > 35)
+		$results["hp"] *= 1.25;
+	if ($npc_level > 40)
+	{
+		$results["hp"] *= 2;
+		$results["mindmg"] += 25;
+		$results["maxdmg"] += 25;
+	}
+	if ($npc_level > 49)
+	{
+		$results["hp"] *= 2;
+		$results["hp"] += ($npc_level - 50) * 500;
+		$results["mindmg"] = 45;
+		$results["maxdmg"] = 115 + $npc_level;
+		$results["attack_delay"] = 20;
+	}
+	if ($npc_level > 58)
+	{
+		$results["hp"] += ($npc_level - 50) * 500;
+		$results["mindmg"] = 50 + $npc_level;
+		$results["maxdmg"] = 400 + ($npc_level - 58) * 37;
+	}
+	
+	$results["hp"] = floor($results["hp"]);
+	$results["hp_regen"] = round($results["hp"] / 33);
+	
+	return $results;
 }
 
 function export_sql() {
@@ -2161,9 +2203,12 @@ function export_sql() {
 
   $query = "SELECT * FROM npc_types WHERE id = $npcid";
   $results = $mysql->query_assoc($query);
+  
+  if (!$results)
+	  return '';
 
   foreach ($results as $key=>$value) {
-    if($table_string) {
+    if(isset($table_string)) {
       $table_string .= ", " . $key;
       $value_string .= ", \"" . $value . "\"";
     }
@@ -2175,7 +2220,7 @@ function export_sql() {
   $export_array['insert'] = "INSERT INTO npc_types ($table_string) VALUES ($value_string);";
 
   foreach ($results as $key=>$value) {
-    if($update_string) {
+    if(isset($update_string)) {
       $update_string .= ", " . $key . "=\"" . $value . "\"";
     }
     else {

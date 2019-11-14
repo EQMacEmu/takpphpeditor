@@ -132,6 +132,8 @@
   $specabilcont = array();
 
   for ($i = 1; $i <= $max_special_ability; $i++) {
+	$specabilcont[$i] = '';
+	
     if (preg_match("/^$i,/", $special_abilities) == 1) {
       $specabil[$i] = 1;
       // Leading special ability
@@ -299,12 +301,13 @@
           <legend><strong><font size="4">Misc</font></strong></legend>
           <table width="100%" border="0" cellpadding="3" cellspacing="0">
             <tr>
-              <td align="left" width="17%">Spawn Limit:     <br/><input type="text" name="spawn_limit" size="10" value="<?=$spawn_limit?>"></td>
-              <td align="left" width="17%">Emote ID:           <br/><input type="text" name="emoteid" size="10" value="<?=$emoteid?>"></td>
-              <td align="left" width="17%">Loot ID:     <br/><input type="text" name="loottable_id" size="10" value="<?=$loottable_id?>"></td>
-              <td align="left" width="17%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="10" value="<?=$npc_spells_id?>"></td>
-              <td align="left" width="17%">Spells Effects ID:   <br/><input type="text" name="npc_spells_effects_id" size="10" value="<?=$npc_spells_effects_id?>"></td>
-              <td align="left" width="16%">Faction ID:   <br/><input type="text" name="npc_faction_id" size="10" value="<?=$npc_faction_id?>"></td>
+              <td align="left" width="14%">Spawn Limit:     <br/><input type="text" name="spawn_limit" size="6" value="<?=$spawn_limit?>"></td>
+              <td align="left" width="14%">Emote ID:           <br/><input type="text" name="emoteid" size="6" value="<?=$emoteid?>"></td>
+              <td align="left" width="16%">Loot ID:     <br/><input type="text" name="loottable_id" size="9" value="<?=$loottable_id?>"></td>
+              <td align="left" width="14%">Spells ID:   <br/><input type="text" name="npc_spells_id" size="6" value="<?=$npc_spells_id?>"></td>
+              <td align="left" width="16%">Spells Effects ID:   <br/><input type="text" name="npc_spells_effects_id" size="9" value="<?=$npc_spells_effects_id?>"></td>
+              <td align="left" width="14%">Faction ID:   <br/><input type="text" name="npc_faction_id" size="6" value="<?=$npc_faction_id?>"></td>
+              <td align="left" width="12%">Greed:   <br/><input type="text" name="greed" size="5" value="<?=$greed?>"></td>
             </tr>
           </table><br/>
           <center>
