@@ -392,6 +392,7 @@
         <input type="hidden" name="aggro_pc" value="<?=$aggro_pc?>">
         <input type="hidden" name="avoidance" value="<?=$avoidance?>">
         <input type="hidden" name="exp_pct" value="<?=$exp_pct?>">
+		<input type="hidden" name="greed" value="<?=$greed?>">
         <center>
           NEW ID:<input type="text" name="id" size="10" value="<?=$suggestedid?>">
           <input type="submit" value="Copy NPC">

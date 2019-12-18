@@ -141,7 +141,7 @@
                 <td align="left" width="20%">Atk Delay:   <br/><input type="text" name="attack_delay" size="5" value="<?=$attack_delay?>"></td>
                </tr>
               </tr>
-                <td align="left" width="20%">Ignore Distance:     <br/><input type="text" name="ignore_distance" size="5" value="0"></td>
+                <td align="left" width="20%">Ignore Distance:     <br/><input type="text" name="ignore_distance" size="5" value="600"></td>
                 <td align="left" width="20%">Heal Scale:  <br/><input type="text" name="healscale" size="5" value="100">%</td>
 				<td align="left" width="20%">Spell Scale: <br/><input type="text" name="spellscale" size="5" value="100">%</td>
 				<td align="left" width="20%">Slow Mit:    <br/><input type="text" name="slow_mitigation" size="5" value="0">%</td>

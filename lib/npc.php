@@ -1643,7 +1643,7 @@ function copy_npc () {
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
-  $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\"";
+  $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
   $fields .= "greed=\"" . $_POST['greed'] . "\"";
   $fields =  rtrim($fields, ", ");
 
