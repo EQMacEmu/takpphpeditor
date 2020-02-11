@@ -644,7 +644,7 @@ function formSelectNPCs()
 		foreach($statsArr as $statId => $stat)
 		{
 			$body .= "<input type=\"radio\" name=\"stat\" value=\"$statId\">{$stat['label']}<br>\n";
-			if ( $statId == 46 || $statId == 16 || $statId == 23 || $statId == 28 )
+			if ( $statId == 47 || $statId == 16 || $statId == 23 || $statId == 28 )
 			{
 				$body .= "<br/>";
 			}
