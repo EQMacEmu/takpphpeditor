@@ -39,8 +39,7 @@ $animations = array(
   1 => "Sitting",
   2 => "Crouching",
   3 => "Lying",
-  4 => "Kneeling",
-  5 => "Still"
+  4 => "Kneeling"
 );
 
 $despawntype = array(
