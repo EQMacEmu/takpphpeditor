@@ -7,6 +7,17 @@
     </center>
     <br/>
   </div>
+  <?$import_text = get_import_text();?>
+  <div id="import_text_div" style="display:none">
+    <center>
+	  <form name="import" method="post" action="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&pathgrid=<?=$pathgrid?>&action=74">
+        <textarea name="import_text" rows="10" cols="50"><?=$import_text?></textarea><br><br>
+	    <input type="submit" value="Replace Grid">
+	  </form>
+      <button type="button" id="hide_import_text" onClick="document.getElementById('import_text_div').style.display='none';">Hide Import</button>
+    </center>
+    <br/>
+  </div>
   <div>
     <table class="edit_form">
       <tr>
@@ -18,6 +29,7 @@
   <div class="table_container" style="width: 300px">
     <div class="table_header">
       <div style="float: right">
+	    <a onClick="document.getElementById('import_text_div').style.display='block';"><img src="images/edit.gif" border="0" title="Import grid from text box data"></a>
         <a onClick="document.getElementById('sql_block').style.display='block';"><img src="images/sql.gif" border="0" title="Show SQL"></a>
         <a href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&pathgrid=<?=$pathgrid?>&action=65"><img src="images/last.gif" border="0" title="Copy Grid <?=$pathgrid?> to next available id"></a>
         <a onClick="return confirm('Really Delete Grid <?=$pathgrid?>?');" href="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&spid=<?=$spid?>&pathgrid=<?=$pathgrid?>&action=29"><img src="images/remove3.gif" border="0" title="Delete Grid"></a>

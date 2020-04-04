@@ -841,6 +841,13 @@ switch ($action) {
       exit;
     }
     break;
+  case 74: // replace grid with text box data
+    check_authorization();
+	grid_replace();
+	$pathgrid = $_GET['pathgrid'];
+	header("Location: index.php?editor=spawn&z=$z&zoneid=$zoneid&pathgrid=$pathgrid&action=20");
+	break;
+	
   case 80: // Magelo import
     check_authorization();
     $body = new Template("templates/spawn/magelo.new.tmpl.php");
@@ -2038,5 +2045,122 @@ function timer_text($seconds) {
 	$text = substr($days.$hours.$mins.$secs, 0, -1);
 	
 	return number_format($seconds)." (".$text.")";
+}
+
+// this fills in the import text box with the current grid
+function get_import_text() {
+	global $mysql;
+	$gridid = $_GET['pathgrid'];
+	$zoneid = getZoneID($_GET['z']);
+	$coord_list = "";
+
+	if ( !is_numeric($gridid) || !is_numeric($zoneid) )
+		return;
+
+	$query = "SELECT * FROM grid_entries WHERE gridid = $gridid AND zoneid = $zoneid ORDER BY number";
+	$results = $mysql->query_mult_assoc($query);
+	$first = true;
+	if ($results)
+	{
+		foreach ($results as $result)
+		{
+			if ( !$first )
+				$coord_list .= "\n";
+			$coord_list .= "{$result['x']},{$result['y']},{$result['z']},{$result['heading']},{$result['pause']},{$result['centerpoint']}";
+			$first = false;
+		}
+	}
+	else
+		return;
+
+	return $coord_list;
+}
+
+// replace grid with coords from a text box with comma/tab/space delimitated coordinate data
+function grid_replace()
+{
+	global $mysql;
+	
+	$gridid = $_GET['pathgrid'];
+	$zoneid = getZoneID($_GET['z']);
+
+	if ( !is_numeric($gridid) || !is_numeric($zoneid) )
+		return;
+	
+	if ( !isset($_POST['import_text']) )
+		return;
+	
+	$text = $_POST['import_text'];
+	$lines = explode("\n", $text);
+	$gridArr = array();
+	
+	foreach ($lines as $line)
+	{
+		$arr = preg_split("/(,|:| |;|\t)/", trim($line));
+		
+		if ( is_numeric($arr[0]) && is_numeric($arr[1]) && is_numeric($arr[2]) )
+		{
+			$x = $arr[0];
+			$y = $arr[1];
+			$z = $arr[2];
+			if ( is_numeric($arr[3]) )
+				$h = $arr[3];
+			else
+				$h = -1;
+			
+			if ( is_numeric($arr[4]) )
+				$p = $arr[4];
+			else
+				$p = 0;
+			
+			if ( is_numeric($arr[5]) && $arr[5] == 1 )
+				$c = 1;
+			else
+				$c = 0;
+			
+			array_push($gridArr, array($x, $y, $z, $h, $p, $c));
+		}
+	}
+	
+	if ( count($gridArr) > 0 )
+	{
+		$i = 0;
+		$lastNum = 1;
+		$query = "SELECT * FROM grid_entries WHERE gridid = $gridid AND zoneid = $zoneid ORDER BY number";
+		$results = $mysql->query_mult_assoc($query);
+		if ($results)
+		{
+			foreach ($results as $result)
+			{
+				$lastNum = $result['number'];
+				if ( isset($gridArr[$i]) )
+				{
+					if ( $result['x'] != $gridArr[$i][0] || $result['y'] != $gridArr[$i][1] || $result['z'] != $gridArr[$i][2]
+					|| $result['heading'] != $gridArr[$i][3] || $result['pause'] != $gridArr[$i][4] || $result['centerpoint'] != $gridArr[$i][5])
+					{
+						$query = "UPDATE grid_entries SET x=\"{$gridArr[$i][0]}\", y=\"{$gridArr[$i][1]}\", z=\"{$gridArr[$i][2]}\", pause=\"{$gridArr[$i][4]}\", heading=\"{$gridArr[$i][3]}\", centerpoint=\"{$gridArr[$i][5]}\" WHERE gridid=\"$gridid\" AND number={$result['number']} AND zoneid=$zoneid";
+						$mysql->query_no_result($query);
+					}
+				}
+				else
+				{
+					$query = "DELETE FROM grid_entries WHERE number={$result['number']} AND zoneid=$zoneid AND gridid=$gridid";
+					$mysql->query_no_result($query);
+				}
+				$i++;
+			}
+		}
+		
+		$j = 1;
+		while (isset($gridArr[$i]))
+		{
+			$lastNum;
+			$number = $lastNum + $j;
+			$query = "INSERT INTO grid_entries (gridid, zoneid, number, x, y, z, heading, pause, centerpoint) VALUES ($gridid, $zoneid, $number, {$gridArr[$i][0]}, {$gridArr[$i][1]}, {$gridArr[$i][2]}, {$gridArr[$i][3]}, {$gridArr[$i][4]}, {$gridArr[$i][5]})";
+			$mysql->query_no_result($query);
+			$i++;
+			$j++;
+		}
+	}
 }
 ?>
