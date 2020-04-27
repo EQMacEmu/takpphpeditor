@@ -55,7 +55,7 @@
                   <tr>
                     <td align="left" width="33%">Zone Type: <?=$ztype?></td>
                     <td align="left" width="33%">Exp: <?=$zone_exp_multiplier?></td>
-                    <td align="left" width="34%">Walkspeed: <?=$walkspeed?></td>
+                    <td align="left" width="34%">Gravity: <?=$gravity?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Ruleset: <a href="index.php?editor=server&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&ruleset_id=<?=$ruleset?>&action=28"> <?=$ruleset?></td>

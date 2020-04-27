@@ -30,7 +30,7 @@
                   <td align="left" width="30%">Map:<br><input type="text" name="map_file_name" size="20" value="<?=$map_file_name?>"></td>
                   <td align="left" width="23%">Ruleset:<br><input type="text" name="ruleset" size="7" value="<?=$ruleset?>"></td>
                   <td align="left" width="23%">Exp Multiplier:<br><input type="text" name="zone_exp_multiplier" size="7" value="<?=$zone_exp_multiplier?>"></td>
-                  <td align="left" width="24%">Walkspeed:<br><input type="text" name="walkspeed" size="7" value="<?=$walkspeed?>"></td>
+                  <td align="left" width="24%">Gravity:<br><input type="text" name="gravity" size="7" value="<?=$gravity?>"></td>
                 </tr>
                 <tr>
                   <td align="left" width="30%">Music:<br><input type="text" name="music" size="7" value="<?=$music?>"></td>
