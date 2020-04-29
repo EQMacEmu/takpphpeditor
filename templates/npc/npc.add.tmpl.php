@@ -56,7 +56,7 @@
               <td align="left" width="17%">AC:       <br/><input type="text" name="AC" size="10" value="<?=$ac?>"/></td>
               <td align="left" width="17%">Scalerate:<br/><input type="text" name="scalerate" size="10" value="0"/></td>
               <td align="left" width="16%">Runspeed: <br/><input type="text" name="runspeed" size="10" value="1.25"/></td>
-			  <td align="left" width="16%">Walkspeed: <br/><input type="text" name="walkspeed" size="10" value="0.677"/></td>
+			  <td align="left" width="16%">Walkspeed: <br/><input type="text" name="walkspeed" size="10" value="0.5"/></td>
             </tr>
               <tr>
               <td align="left">Exp%:      <br/><input type="text" name="exp_pct" size="10" value="100"/></td>
