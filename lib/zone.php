@@ -401,6 +401,7 @@ function update_zone () {
   if ($random_loc != $_POST['random_loc']) $fields .= "random_loc=\"" . $_POST['random_loc'] . "\", ";
   if ($dragaggro != $_POST['dragaggro']) $fields .= "dragaggro=\"" . $_POST['dragaggro'] . "\", ";
   if ($never_idle != $_POST['never_idle']) $fields .= "never_idle=\"" . $_POST['never_idle'] . "\", ";
+  if ($graveyard_time != $_POST['graveyard_time']) $fields .= "graveyard_time=\"" . $_POST['graveyard_time'] . "\", ";
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {

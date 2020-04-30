@@ -48,7 +48,7 @@
                     <td align="left" width="34%">Time Type: <?=$time_type?></td>
                   </tr>
                   <tr>
-                    <td align="left" width="33%">Hotzone: <?=$yesno[$hotzone]?></td>
+                    <td align="left" width="33%">Graveyard Time: <?=$graveyard_time?></td>
                     <td align="left" width="33%">Shutdown: <?=$shutdowndelay?></td>
                     <td align="left" width="34%">Underworld: <?=$underworld?></td>
                   </tr>
@@ -70,7 +70,7 @@
                   <tr>
                     <td align="left" width="33%">Music: <?=$music?></td>
                     <td align="left" width="33%">RandomLoc: <?=$random_loc?></td>
-                    <td width="34%">&nbsp;</td>
+					<td align="left" width="33%">Hotzone: <?=$yesno[$hotzone]?></td>
                   </tr>
                 </table>
               </fieldset>
