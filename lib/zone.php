@@ -402,6 +402,7 @@ function update_zone () {
   if ($dragaggro != $_POST['dragaggro']) $fields .= "dragaggro=\"" . $_POST['dragaggro'] . "\", ";
   if ($never_idle != $_POST['never_idle']) $fields .= "never_idle=\"" . $_POST['never_idle'] . "\", ";
   if ($graveyard_time != $_POST['graveyard_time']) $fields .= "graveyard_time=\"" . $_POST['graveyard_time'] . "\", ";
+  if ($max_z != $_POST['max_z']) $fields .= "max_z=\"" . $_POST['max_z'] . "\", ";
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {

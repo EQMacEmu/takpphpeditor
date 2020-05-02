@@ -22,7 +22,7 @@
                 </tr> 
                 <tr>
                   <td align="left" width="30%">Note:<br><input type="text" name="note" size="20" value="<?=$note?>"></td>
-                  <td align="left" width="23%">Shutdown:<br><input type="text" name="shutdowndelay" size="7" value="<?=$shutdowndelay?>"></td>
+                  <td align="left" width="23%">Max Z::<br><input type="text" name="max_z" size="7" value="<?=$max_z?>"></td>
                   <td align="left" width="23%">Graveyard:<br><input type="text" name="graveyard_id" size="7" value="<?=$graveyard_id?>"></td>
                   <td align="left" width="24%">Graveyard Time:<br><input type="text" name="graveyard_time" size="7" value="<?=$graveyard_time?>"></td>
                 </tr>
@@ -36,7 +36,7 @@
                   <td align="left" width="30%">Music:<br><input type="text" name="music" size="7" value="<?=$music?>"></td>
                   <td align="left" width="23%">RandomLoc:<br><input type="text" name="random_loc" size="7" value="<?=$random_loc?>"></td>
                   <td align="left" width="23%">Zone Type:<br><input type="text" name="ztype" size="7" value="<?=$ztype?>"></td>
-                  <td align="left" width="24%">&nbsp;</td>
+                  <td align="left" width="24%">Shutdown:<br><input type="text" name="shutdowndelay" size="7" value="<?=$shutdowndelay?>"></td>
                 </tr>
                 <tr>
                   <td align="left" width="25%">
