@@ -821,16 +821,26 @@ function processEdit($stat)
 			{
 				$body .= "<font color='red'>unchanged; missing value</font>\n";
 			}
-			elseif ( $npcRow[$field] != $data )
-			{
-				$body .= "<font color='green'><b>old value: {$npcRow[$field]} new value: $data</b></font>\n";
-				
-				$query = "UPDATE npc_types SET $field=$data WHERE id=$npcid";
-				$mysql->query_no_result($query);				
-			}
 			else
 			{
-				$body .= "unchanged\n";
+				if ($type == "int")
+					$data = str_replace(",", "", $data);
+				
+				if ( !is_numeric($data) )
+				{
+					$body .= "<font color='red'>unchanged; value not numeric ($data)</font>\n";
+				}
+				elseif ( $npcRow[$field] != $data )
+				{
+					$body .= "<font color='green'><b>old value: {$npcRow[$field]} new value: $data</b></font>\n";
+					
+					$query = "UPDATE npc_types SET $field=$data WHERE id=$npcid";
+					$mysql->query_no_result($query);
+				}
+				else
+				{
+					$body .= "unchanged\n";
+				}
 			}
 		}
 		elseif ( $type == "specialBox" )
