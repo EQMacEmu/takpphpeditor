@@ -568,7 +568,7 @@ function add_zonepoints() {
   $client_version_mask = $_POST['client_version_mask'];
 
   $query = "INSERT INTO zone_points SET id=\"$zpid\", zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\",
-   target_zone_id=\"$target_zone_id\", buffer=0, client_version_mask=\"$client_version_mask\"";
+   target_zone_id=\"$target_zone_id\", client_version_mask=\"$client_version_mask\"";
   $mysql->query_no_result($query);
 }
 
