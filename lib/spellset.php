@@ -392,9 +392,10 @@ function search_spells() {
   global $mysql;
   $search = $_GET['search'];
 
-  $query = "SELECT npc_spells_entries.npc_spells_id, spells_new.name AS spellname
+  $query = "SELECT npc_spells_entries.npc_spells_id, spells_new.name AS spellname, npc_spells.name AS setname
   FROM npc_spells_entries
   INNER JOIN spells_new ON spells_new.id = npc_spells_entries.spellid
+  INNER JOIN npc_spells ON npc_spells.id = npc_spells_entries.npc_spells_id
   WHERE spells_new.name rlike \"$search\"";
   $results = $mysql->query_mult_assoc($query);
   return $results;
