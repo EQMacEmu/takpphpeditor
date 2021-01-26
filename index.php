@@ -4,12 +4,7 @@ require_once("revision.php");
 require_once(dirname(__FILE__) . '/config.php');
 require_once(dirname(__FILE__) . '/defines.php');
 require_once(dirname(__FILE__) . '/lib/logging.php');
-if ($mysql_class == 'mysqli') {
-	require_once(dirname(__FILE__) . '/classes/mysqli.php');
-}
-else {
-	require_once(dirname(__FILE__) . '/classes/mysql.php');
-}
+require_once(dirname(__FILE__) . '/classes/mysqli.php');
 require_once(dirname(__FILE__) . '/classes/template.php');
 require_once(dirname(__FILE__) . '/classes/session.php');
 require_once(dirname(__FILE__) . '/lib/common.php');
