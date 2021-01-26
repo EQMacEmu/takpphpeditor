@@ -15,7 +15,7 @@
             <tr>
               <td>
                 <center>
-                  <input type="submit" value="Submit"><br/><br/>
+                  <input type="submit" value="Submit"><br><br>
                 </center>
               </td>
             </tr>

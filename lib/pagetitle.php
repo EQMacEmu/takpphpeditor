@@ -1,6 +1,6 @@
 <?php
 
-$pagetitle = "TAKP Database Editor";
+$pagetitle = 'TAKP Database Editor';
 
 switch ($editor) {
   case '':

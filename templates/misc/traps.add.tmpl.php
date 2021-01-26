@@ -6,7 +6,7 @@
       <tr><td align="right"><b>Mystics:</b></td><td>&nbsp;</td><td><i>Value1:</i>  NPCID</td><td align="left"><i>Value2:</i>  Number of NPCs</td><td>&nbsp;</td></tr>
       <tr><td align="right"><b>Bandits:</b></td><td>&nbsp;</td><td><i>Value1:</i>  NPCID</td><td align="left"><i>Value2:</i>  Number of NPCs</td><td>&nbsp;</td></tr>
       <tr><td align="right"><b>Damage:</b></td><td>&nbsp;</td><td><i>Value1:</i>  MinDmg</td><td align="left"><i>Value2:</i>  MaxDmg</td><td>&nbsp;</td></tr>
-    </table><br/><br/>
+    </table><br><br>
   </center>
 <div class="edit_form" style="width: 750px">
       <div class="edit_form_header">

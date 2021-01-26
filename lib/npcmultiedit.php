@@ -634,7 +634,7 @@ function formSelectNPCs()
 			{
 				$body .= "-".$npcRow['maxlevel'];
 			}
-			$body .= " {$races[$npcRow['race']]} {$classes[$npcRow['class']]}</small><br/>\n";
+			$body .= " {$races[$npcRow['race']]} {$classes[$npcRow['class']]}</small><br>\n";
 
 			$i++;
 		}
@@ -646,7 +646,7 @@ function formSelectNPCs()
 			$body .= "<input type=\"radio\" name=\"stat\" value=\"$statId\">{$stat['label']}<br>\n";
 			if ( $statId == 47 || $statId == 16 || $statId == 23 || $statId == 28 )
 			{
-				$body .= "<br/>";
+				$body .= "<br>";
 			}
 		}
 		

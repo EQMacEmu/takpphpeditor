@@ -15,20 +15,20 @@
               <td width="35%">
                 <fieldset>
                   <legend><strong>Guild Info</strong></legend>
-                  Name: <?=$name?><br/>
-                  Guild ID: <?=$id?><br/>
-                  Leader: <?=getPlayerName($leader)?><br/>
-                  Min Status: <?=$minstatus?><br/>
-                  URL: <?=$url?><br/>
-                  Tribute: <?=$tribute?><br/>
-                  Channel: <?=$channel?><br/>
+                  Name: <?=$name?><br>
+                  Guild ID: <?=$id?><br>
+                  Leader: <?=getPlayerName($leader)?><br>
+                  Min Status: <?=$minstatus?><br>
+                  URL: <?=$url?><br>
+                  Tribute: <?=$tribute?><br>
+                  Channel: <?=$channel?><br>
                 </fieldset>
               </td>
               <td width="65%">
                 <fieldset>
                   <legend><strong>Message of the Day</strong></legend>
-                  Set By: <?=$motd_setter?><br/>
-                  Message: <?=$motd?><br/>
+                  Set By: <?=$motd_setter?><br>
+                  Message: <?=$motd?><br>
                 </fieldset>
               </td>
             </tr>

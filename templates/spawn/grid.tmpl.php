@@ -5,7 +5,7 @@
       <button type="button" id="copy_sql" onClick="clipboardData.setData('Text', sql_text.value);">Copy SQL to Clipboard</button>&nbsp;
       <button type="button" id="hide_sql" onClick="document.getElementById('sql_block').style.display='none';">Hide SQL</button>
     </center>
-    <br/>
+    <br>
   </div>
   <?$import_text = get_import_text();?>
   <div id="import_text_div" style="display:none">
@@ -16,7 +16,7 @@
 	  </form>
       <button type="button" id="hide_import_text" onClick="document.getElementById('import_text_div').style.display='none';">Hide Import</button>
     </center>
-    <br/>
+    <br>
   </div>
   <div>
     <table class="edit_form">

@@ -10,37 +10,37 @@
               <table width="100%" cellpadding="3" cellspacing="0">
                 <tr>
                   <td>
-                    Player ID:<br/>
+                    Player ID:<br>
                     <input type="text" size="5" name="charid" value="<?=$playerid?>" readonly="true">
                   </td>
                   <td>
-                    <a title="22-29: Main Inventory Slots">Slot ID:</a><br/>
+                    <a title="22-29: Main Inventory Slots">Slot ID:</a><br>
                     <input type="text" size="3" name="slotid" value="">
                   </td>
                   <td>
-                    Item ID:<br/>
+                    Item ID:<br>
                     <input type="text" size="5" name="itemid" value="">
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    Charges:<br/>
+                    Charges:<br>
                     <input type="text" size="3" name="charges" value="0">
                   </td>
                   <td colspan="2">
-                    Color:<br/>
+                    Color:<br>
                     <input type="text" size="10" name="color" value="4278190080">
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    Inst NoDrop:<br/>
+                    Inst NoDrop:<br>
                     <input type="checkbox" name="instnodrop">
                   </td>
                 </tr>
                 <tr>
                   <td colspan="3">
-                    Custom Data:<br/>
+                    Custom Data:<br>
                     <input type="text" size="37" name="custom_data" value="">
                   </td>
                 </tr>

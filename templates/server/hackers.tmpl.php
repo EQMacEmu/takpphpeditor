@@ -16,32 +16,32 @@
           <table class="table_content" width="100%">
             <tr>
               <td width="25%">
-                Account:<br/>
+                Account:<br>
                 <input type="text" name="filter1" id="filter1" value="<?=$filter['filter1']?>"/>
               </td>
               <td width="25%">
-                Name:<br/>
+                Name:<br>
                 <input type="text" name="filter2" id="filter2" value="<?=$filter['filter2']?>"/>
               </td>
               <td width="25%">
-                Zone:<br/>
+                Zone:<br>
                 <input type="text" name="filter3" id="filter3" value="<?=$filter['filter3']?>"/>
               </td>
               <td width="25%">
-                Hack:<br/>
+                Hack:<br>
                 <input type="text" name="filter4" id="filter4" value="<?=$filter['filter4']?>"/>
               </td>
             </tr>
             <tr>
-              <td colspan="4" align="center"><br/><input type="submit" value="Apply Filters"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Remove Filters" onClick="document.getElementById('filter1').value='';document.getElementById('filter2').value='';document.getElementById('filter3').value='';document.getElementById('filter4').value='';document.getElementById('filter_status').value='';"/></td>
+              <td colspan="4" align="center"><br><input type="submit" value="Apply Filters"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Remove Filters" onClick="document.getElementById('filter1').value='';document.getElementById('filter2').value='';document.getElementById('filter3').value='';document.getElementById('filter4').value='';document.getElementById('filter_status').value='';"/></td>
             </tr>
           </table>
         </form>
       </div>
-    </div><br/>
+    </div><br>
     <form name="deleteHacks" id="deleteHacks" method="post" action="index.php?editor=server&action=49">
       <div id="action_buttons_top" style="display:none;">
-        <center><input onClick="return confirm('Really delete these entries?');" type="submit" value="Delete Marked">&nbsp;<input type="button" value="Cancel" onClick="location.reload();"></center><br/>
+        <center><input onClick="return confirm('Really delete these entries?');" type="submit" value="Delete Marked">&nbsp;<input type="button" value="Cancel" onClick="location.reload();"></center><br>
       </div>
       <div class="table_container" style="width: 750px;">
         <div class="table_header">
@@ -92,6 +92,6 @@
         </table>
       </div>
       <div id="action_buttons_bottom" style="display:none;">
-        <br/><center><input onClick="return confirm('Really delete these entries?');" type="submit" value="Delete Marked">&nbsp;<input type="button" value="Cancel" onClick="location.reload();"></center>
+        <br><center><input onClick="return confirm('Really delete these entries?');" type="submit" value="Delete Marked">&nbsp;<input type="button" value="Cancel" onClick="location.reload();"></center>
       </div>
     </form>

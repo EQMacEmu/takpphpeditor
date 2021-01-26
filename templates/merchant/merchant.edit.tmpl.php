@@ -6,14 +6,14 @@
       <form name="merchantlist" method="post" action="index.php?editor=merchant&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=2">
         <table width="100%">
           <tr>
-            <th>Curr<br/>Slot</th>
-            <th>New<br/>Slot</th>
+            <th>Curr<br>Slot</th>
+            <th>New<br>Slot</th>
             <th>Item ID</th>
             <th>Item Name</th>
-            <th>Fact<br/>Req</th>
-            <th>Lvl<br/>Req</th>
-            <th>Alt<br/>Curr</th>
-            <th>Class<br/>Req</th>
+            <th>Fact<br>Req</th>
+            <th>Lvl<br>Req</th>
+            <th>Alt<br>Curr</th>
+            <th>Class<br>Req</th>
             <th>Qty</th>
           </tr>
 <?$x=1; foreach ($slots as $slot => $v):?>
@@ -30,7 +30,7 @@
             <input type="hidden" name="slot<?=$x?>" value="<?=$slot?>">
           </tr>
 <?$x++; endforeach?>
-        </table><br/><br/>
+        </table><br><br>
         <center>
           <input type="hidden" name="mid" value="<?=$id?>">
           <input type="hidden" name="count" value="<?=($x - 1)?>">

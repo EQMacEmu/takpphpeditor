@@ -7,49 +7,49 @@
         <table width="100%" cellspacing="0">
           <tr>
             <td width="33%">
-              x:<br/>
+              x:<br>
               <input type="text" name="x" value="<?=$x?>">
             </td>
             <td width="33%">
-              y:<br/>
+              y:<br>
               <input type="text" name="y" value="<?=$y?>">
             </td>
             <td width="34%">
-              z:<br/>
+              z:<br>
               <input type="text" name="z" value="<?=$z?>">
             </td>
           </tr>
           <tr>
             <td width="33%">
-              heading:<br/>
+              heading:<br>
               <input type="text" name="heading" value="<?=$heading?>">
             </td>
             <td width="33%">
-              respawn:<br/>
+              respawn:<br>
               <input type="text" name="respawntime" value="<?=$respawntime?>">
             </td>
             <td width="34%">
-              variance:<br/>
+              variance:<br>
               <input type="text" name="variance" value="<?=$variance?>">
             </td>
           </tr>
           <tr>
             <td width="33%">
-              pathgrid:<br/>
+              pathgrid:<br>
               <input type="text" name="pathgrid" value="<?=$pathgrid?>">
             </td>
             <td width="33%">
-              condition:<br/>
+              condition:<br>
               <input type="text" name="_condition" value="<?=$_condition?>">
             </td>
             <td width="34%">
-              cond_value:<br/>
+              cond_value:<br>
               <input type="text" name="cond_value" value="<?=$cond_value?>">
             </td>
           </tr>
           <tr>
             <td align="left" width="33%">
-              enabled:<br/>
+              enabled:<br>
               <select name="enabled">
 <?foreach($yesno as $k => $v):?>
                 <option value="<?=$k?>"<? echo ($k == $enabled) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
@@ -57,7 +57,7 @@
               </select>
             </td>
             <td align="left" width="33%">
-              animation:<br/>
+              animation:<br>
               <select name="animation">
 <?foreach($animations as $k => $v):?>
                 <option value="<?=$k?>"<? echo ($k == $animation) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
@@ -65,7 +65,7 @@
               </select>
             </td>
             <td align="left" width="33%">
-              force_z:<br/>
+              force_z:<br>
               <select name="force_z">
 <?foreach($yesno as $k => $v):?>
                 <option value="<?=$k?>"<? echo ($k == $force_z) ? " selected" : ""?>><?=$v?>&nbsp;&nbsp;</option>
@@ -75,19 +75,19 @@
           </tr>
           <tr>
             <td width="33%">
-              boot respawn:<br/>
+              boot respawn:<br>
               <input type="text" name="boot_respawntime" value="<?=$boot_respawntime?>">
             </td>
             <td width="33%">
-              boot variance:<br/>
+              boot variance:<br>
               <input type="text" name="boot_variance" value="<?=$boot_variance?>">
             </td>
               <td width="34%">
-              clear on boot:<br/>
+              clear on boot:<br>
               <input type="text" name="clear_timer_onboot" value="<?=$clear_timer_onboot?>">
             </td>
             </tr>
-        </table><br/><br/>
+        </table><br><br>
         <center>
           <input type="hidden" name="zone" value="<?=$zone?>">
           <input type="hidden" name="id" value="<?=$id?>">

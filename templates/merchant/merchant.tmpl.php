@@ -24,15 +24,15 @@
       <table width="100%">
         <tr bgcolor="#BBBBBB">
           <th align="center">Slot</th>
-          <th align="center">Item<br/>ID</th>
-          <th>Item<br/>Name</th>
+          <th align="center">Item<br>ID</th>
+          <th>Item<br>Name</th>
           <th>&nbsp;</th>
-          <th>Buy<br/>Price</th>
-          <th>Sell<br/>Price</th>
-          <th>Fact<br/>Req</th>
-          <th>Lvl<br/>Req</th>
+          <th>Buy<br>Price</th>
+          <th>Sell<br>Price</th>
+          <th>Fact<br>Req</th>
+          <th>Lvl<br>Req</th>
           <th>Qty</th>
-          <th>Class<br/>Req</th>
+          <th>Class<br>Req</th>
           <th>&nbsp;</th>
         </tr>
 <?
@@ -124,7 +124,7 @@ $round_sells = round($sells,3);
     </tr>
     <tr>
       <td class="edit_form_content">
-        No Merchantlist currently assigned.<br/><br/>
+        No Merchantlist currently assigned.<br><br>
         <center><a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=22">Click here to change</a></center>
       </td>
     </tr>

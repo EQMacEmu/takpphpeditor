@@ -1,12 +1,12 @@
 <?$export_sql_array = export_sql();?>
   <div id="sql_block" style="display:none;">
     <center>
-      <textarea id="insert_sql" rows="3" cols="90"><?=$export_sql_array['insert']?></textarea><br/><br/>
-      <textarea id="update_sql" rows="3" cols="90"><?=$export_sql_array['update']?></textarea><br/><br/>
+      <textarea id="insert_sql" rows="3" cols="90"><?=$export_sql_array['insert']?></textarea><br><br>
+      <textarea id="update_sql" rows="3" cols="90"><?=$export_sql_array['update']?></textarea><br><br>
       <button type="button" id="copy_insert" onClick="clipboardData.setData('Text', insert_sql.value);">Copy INSERT to Clipboard</button>&nbsp;
       <button type="button" id="copy_update" onClick="clipboardData.setData('Text', update_sql.value);">Copy UPDATE to Clipboard</button>&nbsp;
       <button type="button" id="hide_sql" onClick="document.getElementById('sql_block').style.display='none';document.getElementById('sql_image').style.display='inline';">Hide SQL</button>
-    </center><br/>
+    </center><br>
   </div>
   <form name="npc" method="post" action="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=28">
     <div class="table_container">
@@ -29,19 +29,19 @@
           <tr>
             <td>
               <center>
-                <h1><?=$name?><br/>(<?echo ($lastname != '' ? "$lastname" : 'no title');?>)</h1><br/>
+                <h1><?=$name?><br>(<?echo ($lastname != '' ? "$lastname" : 'no title');?>)</h1><br>
                 <table style="font-size: 12px; margin-bottom: 80px;">
                   <tr>
                     <td>
 <?if($isquest == 1) {?>
-                      <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=71"><center><strong>Is Quest NPC</strong></center><br/> </a>
+                      <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=71"><center><strong>Is Quest NPC</strong></center><br> </a>
 <?}?>
-                      <strong>Race:</strong> <?echo "<a title='Race: " . $race . "'>" . $races[$race] . "</a>";?><br/>
-                      <strong>Class:</strong> <?echo "<a title='Class: " . $class . "'>" . $classes[$class] . "</a>";?><br/>
-                      <strong>Level:</strong> <?=$level?><br/>
-                      <strong>Max Level:</strong> <?=$maxlevel?><br/>
-                      <strong>Body Type:</strong> <?echo "<a title='Body Type: " . $bodytype . "'>" . $bodytypes[$bodytype] . "</a>";?><br/>
-                      <strong>Vendor:</strong> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=22" title="View/Change"><?echo ($merchant_id != 0 ? $merchant_id : "no");?></a><br/>
+                      <strong>Race:</strong> <?echo "<a title='Race: " . $race . "'>" . $races[$race] . "</a>";?><br>
+                      <strong>Class:</strong> <?echo "<a title='Class: " . $class . "'>" . $classes[$class] . "</a>";?><br>
+                      <strong>Level:</strong> <?=$level?><br>
+                      <strong>Max Level:</strong> <?=$maxlevel?><br>
+                      <strong>Body Type:</strong> <?echo "<a title='Body Type: " . $bodytype . "'>" . $bodytypes[$bodytype] . "</a>";?><br>
+                      <strong>Vendor:</strong> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=22" title="View/Change"><?echo ($merchant_id != 0 ? $merchant_id : "no");?></a><br>
 <?if($armortint_id > 0) {?>
                       <strong>Tint:</strong> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&tint_id=<?=$armortint_id?>&action=33"><?=$armortint_id?></a><br>
 <?} else {?>
@@ -63,13 +63,13 @@
                 </table>
                 <div style="padding: 10px; border: 1px solid grey; margin-right: 10px;">
                   <b>NPC Faction ID</b>: <?=$npc_faction_id?> [<a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=3">edit</a>]
-                  [<a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&npcfid=<?=$npc_faction_id?>&action=47">update</a>]<br/>
+                  [<a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&npcfid=<?=$npc_faction_id?>&action=47">update</a>]<br>
 <?if ($npc_faction_id > 0) {?>
-                  "<a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=10"><?=$factionname?></a>"<br/><br/>
+                  "<a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=10"><?=$factionname?></a>"<br><br>
 <?}?>
-                  <b>Primary Faction</b>: [<a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=12">edit</a>]<br/>
-                  <?echo ($primaryfactionname != '') ? "<a title='Faction: " . $primaryfaction . "'>" . $primaryfactionname . "</a>" : "None";?><br/><br/>
-                  <b>Faction Hits:</b> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=15"><img src="images/add.gif" border="0" title="Add Faction Hit"></a><br/>
+                  <b>Primary Faction</b>: [<a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=12">edit</a>]<br>
+                  <?echo ($primaryfactionname != '') ? "<a title='Faction: " . $primaryfaction . "'>" . $primaryfactionname . "</a>" : "None";?><br><br>
+                  <b>Faction Hits:</b> <a href="index.php?editor=npc&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=15"><img src="images/add.gif" border="0" title="Add Faction Hit"></a><br>
 <?if ($faction_hits != '') {?>
                   <table width="100%">
 <?$temp_ = 0;?>
@@ -95,7 +95,7 @@
 <?endforeach;?>
                   </table>
 <?} else {?>
-                None<br/>
+                None<br>
 <?}?>
                 </div>
               </center>
@@ -299,7 +299,7 @@
               </fieldset>
             </td>
           </tr>
-        </table><br/><br/>
+        </table><br><br>
         <input type="hidden" name="name" value="<?=$name?>">
         <input type="hidden" name="lastname" value="<?=$lastname?>">
         <input type="hidden" name="level" value="<?=$level?>">
