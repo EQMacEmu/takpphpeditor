@@ -6,92 +6,92 @@ switch ($editor) {
   case '':
     break;
   case 'npc':
-    $pagetitle .= " - NPC Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>NPC Editor</a>";
     break;
   case 'npcmultiedit':
-    $pagetitle .= " - NPC Multi-Edit";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>NPC Multi-Edit</a>";
     break;
   case 'loot':
-    $pagetitle .= " - Loot Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Loot Editor</a>";
     break;
   case 'spawn':
-    $pagetitle .= " - Spawn Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Spawn Editor</a>";
     break;
   case 'merchant':
-    $pagetitle .= " - Merchant Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Merchant Editor</a>";
     break;
   case 'spellops':
-    $pagetitle .= " - Spell Options";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Spell Options</a>";
     break;
   case 'spells':
-    $pagetitle .= " - Spell Editor";
+    $pagetitle = "<a href='index.php?editor=spellops'>Spell Options</a>" . " >> " . "<a href='index.php?editor=" . $editor . "'>Spell Editor</a>";
     break;
   case 'spellset':
-    $pagetitle .= " - Spellset Editor";
+    $pagetitle = "<a href='index.php?editor=spellops'>Spell Options</a>" . " >> " . "<a href='index.php?editor=" . $editor . "'>Spellset Editor</a>";
     break;
   case 'faction':
-    $pagetitle .= " - Faction Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Faction Editor</a>";
     break;
   case 'tradeskill':
-    $pagetitle .= " - Tradeskill Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Tradeskill Editor</a>";
     break;
   case 'zone':
-    $pagetitle .= " - Zone Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Zone Editor</a>";
     break;
   case 'misc':
-    $pagetitle .= " - Miscellaneous Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Miscellaneous Editor</a>";
     break;
   case 'server':
-    $pagetitle .= " - Server Config";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Server Config</a>";
     break;
   case 'items':
-    $pagetitle .= " - Item Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Item Editor</a>";
     break;
   case 'player':
-    $pagetitle .= " - Players";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Players</a>";
     break;
   case 'account':
-    $pagetitle .= " - Accounts";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Accounts</a>";
     break;
   case 'guild':
-    $pagetitle .= " - Guilds";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Guilds</a>";
     break;
   case 'mail':
-    $pagetitle .= " - Mail";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Mail</a>";
     break;
   case 'aa':
-    $pagetitle .= " - AAs";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>AAs</a>";
     break;
   case 'qglobal':
-    $pagetitle .= " - Quest Globals";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Quest Globals</a>";
     break;
   case 'util':
-    $pagetitle .= " - Utilities";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Utilities</a>";
     break;
   case 'altcur':
-    $pagetitle .= " - Alternate Currency";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Alternate Currency</a>";
     break;
   case 'quest':
-    $pagetitle .= " - Quest Editor";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Quest Editor</a>";
     break;
   case 'inv':
-    $pagetitle .= " - Player Inventory";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Player Inventory</a>";
     break;
   case 'keys':
-    $pagetitle .= " - Player Keys";
+    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Player Keys</a>";
     break;
 }
 
-if ($z != '') $pagetitle .= " - ".getZoneLongName($z);
-if ($npcid != '' && $npcid !='ID' && $editor != 'altcur' && $editor != 'qglobal') $pagetitle .= " - ".getNPCName($npcid);
-if ($fid != '') $pagetitle .= " - " . getFactionName($fid);
-if ($tskid != '') $pagetitle .= " - " . getTaskTitle($tskid);
-if ($ts != '') $pagetitle .= " - " . $tradeskills[$ts];
-if ($rec != '0') $pagetitle .= " - " . getRecipeName($rec);
-if ($spellset != '') $pagetitle .= " - " . getSpellsetName($spellset);
-if (($playerid != '') && ($playerid != 'Player ID')) $pagetitle .= " - " . getPlayerName($playerid);
-if ($acctid != '') $pagetitle .= " - " . getAccountName($acctid) . " ($acctid)";
-if ($guildid != '') $pagetitle .= " - " . getGuildName($guildid) . " ($guildid)";
-if ($aaid != '') $pagetitle .= " - " . getAAName($aaid) . " ($aaid)";
+if (isset($z) && $z != '') $pagetitle .= " >> " . "<a href='index.php?editor=" . $editor . "&z=" . $z . "&zoneid=" . getZoneIDByName($z) . "'>" . getZoneLongName($z) . "</a>";
+if (isset($npcid) && intval($npcid) > 0 && $editor != 'altcur' && $editor != 'qglobal') $pagetitle .= " >> " . getNPCName($npcid) . " ($npcid)";
+if (isset($fid) && intval($fid) > 0) $pagetitle .= " >> " . getFactionName($fid);
+if (isset($tskid) && intval($tskid) > 0) $pagetitle .= " >> " . getTaskTitle($tskid);
+if (isset($ts) && intval($ts) > 0) $pagetitle .= " >> " . "<a href='index.php?editor=" . $editor . "&ts=" . $ts . "'>" . $tradeskills[$ts] . "</a>";
+if (isset($rec) && intval($rec) > 0) $pagetitle .= " >> " . getRecipeName($rec);
+if (isset($spellset) && intval($spellset) > 0) $pagetitle .= " >> " . getSpellsetName($spellset);
+if (isset($playerid) && intval($playerid) > 0) $pagetitle .= " >> <a href='index.php?editor=" . $editor . "&playerid=" . $playerid . "'>" . getPlayerName($playerid) . " ($playerid)</a>";
+if (isset($acctid) && intval($acctid) > 0) $pagetitle .= " >> " . getAccountName($acctid) . " ($acctid)";
+if (isset($guildid) && intval($guildid) > 0) $pagetitle .= " >> " . getGuildName($guildid) . " ($guildid)";
+if (isset($aaid) && intval($aaid) > 0) $pagetitle .= " >> " . getAAName($aaid) . " ($aaid)";
 
 ?>
