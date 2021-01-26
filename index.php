@@ -30,13 +30,13 @@ $searchbar = '';
 $body = '';
 $javascript = '';
 $breadcrumbs = '';
-$pagetitle = '';
+$pagetitle = 'TAKP Database Editor';
 $headbar = '';
 $SessionTimeout = 604800;
 
-require_once('lib/headbars.php');
-require_once('lib/breadcrumbs.php');
-require_once('lib/pagetitle.php');
+require_once("lib/headbars.php");
+require_once("lib/breadcrumbs.php");
+require_once("lib/pagetitle.php");
 
 if (isset($_GET['admin'])) {
 	if (session::is_admin()) {
