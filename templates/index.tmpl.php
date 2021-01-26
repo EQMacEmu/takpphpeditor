@@ -13,7 +13,7 @@
 
 <?if (isset($javascript)) echo $javascript;?>
 
-    <title><?if(isset($pagetitle) && ($pagetitle != '')) echo $pagetitle; else echo "TAKP Database Editor"; ?></title>
+    <title>TAKP Database Editor</title>
 
     <link rel="stylesheet" href="css/peq.css" type="text/css">
   </head>

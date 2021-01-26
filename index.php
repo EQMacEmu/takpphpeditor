@@ -30,7 +30,7 @@ $searchbar = '';
 $body = '';
 $javascript = '';
 $breadcrumbs = '';
-$pagetitle = 'TAKP Database Editor';
+$pagetitle = '';
 $headbar = '';
 $SessionTimeout = 604800;
 
