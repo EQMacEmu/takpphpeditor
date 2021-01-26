@@ -35,7 +35,7 @@
                 $color = 'style="color:green"';
             }
             echo '<center><H1 '. $color .'>'. $server .'</H1></center>';
-        ?>
+        <?php exit; ?>
 <?if (isset($headbar)) echo $headbar;?>
 <?if (isset($searchbar)) echo $searchbar;?>
       <div id="content">
