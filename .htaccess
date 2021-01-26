@@ -3,22 +3,6 @@
 
 Options -Indexes
 
-#Apache 2.2 and earlier
-#<Files ~ "\.(php|sql)$">
-#  Order deny,allow
-#  Deny from all
-#</Files>
-
-#<Files index.php>
-#  Order allow,deny
-#  Allow from all
-#</Files>
-
-#<Files aasearch.php>
-#  Order allow,deny
-#  Allow from all
-#</Files>
-
 #Apache 2.4 and later
 <Files ~ "\.(php|sql)$">
   Require all denied
