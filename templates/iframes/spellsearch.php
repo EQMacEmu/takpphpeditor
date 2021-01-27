@@ -4,10 +4,7 @@
 
 if(isset($_GET['name']) && ($_GET['name'] != '')) {
   require("../../config.php");
-  if($mysql_class = "mysqli")
-    require("../../classes/mysqli.php");
-  else
-    require("../../classes/mysql.php");
+  require("../../classes/mysqli.php");
   $name = $_GET['name'];
   $query = "SELECT id, name FROM spells_new WHERE name rlike \"$name\" ORDER BY id";
   $results = $mysql->query_mult_assoc($query);
