@@ -1,97 +1,97 @@
 <?php
 
-$pagetitle = 'TAKP Database Editor';
+$pagetitle = "TAKP Database Editor";
 
 switch ($editor) {
   case '':
     break;
   case 'npc':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>NPC Editor</a>";
+    $pagetitle .= " - NPC Editor";
     break;
   case 'npcmultiedit':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>NPC Multi-Edit</a>";
+    $pagetitle .= " - NPC Multi-Edit";
     break;
   case 'loot':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Loot Editor</a>";
+    $pagetitle .= " - Loot Editor";
     break;
   case 'spawn':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Spawn Editor</a>";
+    $pagetitle .= " - Spawn Editor";
     break;
   case 'merchant':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Merchant Editor</a>";
+    $pagetitle .= " - Merchant Editor";
     break;
   case 'spellops':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Spell Options</a>";
+    $pagetitle .= " - Spell Options";
     break;
   case 'spells':
-    $pagetitle = "<a href='index.php?editor=spellops'>Spell Options</a>" . " >> " . "<a href='index.php?editor=" . $editor . "'>Spell Editor</a>";
+    $pagetitle .= " - Spell Editor";
     break;
   case 'spellset':
-    $pagetitle = "<a href='index.php?editor=spellops'>Spell Options</a>" . " >> " . "<a href='index.php?editor=" . $editor . "'>Spellset Editor</a>";
+    $pagetitle .= " - Spellset Editor";
     break;
   case 'faction':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Faction Editor</a>";
+    $pagetitle .= " - Faction Editor";
     break;
   case 'tradeskill':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Tradeskill Editor</a>";
+    $pagetitle .= " - Tradeskill Editor";
     break;
   case 'zone':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Zone Editor</a>";
+    $pagetitle .= " - Zone Editor";
     break;
   case 'misc':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Miscellaneous Editor</a>";
+    $pagetitle .= " - Miscellaneous Editor";
     break;
   case 'server':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Server Config</a>";
+    $pagetitle .= " - Server Config";
     break;
   case 'items':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Item Editor</a>";
+    $pagetitle .= " - Item Editor";
     break;
   case 'player':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Players</a>";
+    $pagetitle .= " - Players";
     break;
   case 'account':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Accounts</a>";
+    $pagetitle .= " - Accounts";
     break;
   case 'guild':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Guilds</a>";
+    $pagetitle .= " - Guilds";
     break;
   case 'mail':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Mail</a>";
+    $pagetitle .= " - Mail";
     break;
   case 'aa':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>AAs</a>";
+    $pagetitle .= " - AAs";
     break;
   case 'qglobal':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Quest Globals</a>";
+    $pagetitle .= " - Quest Globals";
     break;
   case 'util':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Utilities</a>";
+    $pagetitle .= " - Utilities";
     break;
   case 'altcur':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Alternate Currency</a>";
+    $pagetitle .= " - Alternate Currency";
     break;
   case 'quest':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Quest Editor</a>";
+    $pagetitle .= " - Quest Editor";
     break;
   case 'inv':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Player Inventory</a>";
+    $pagetitle .= " - Player Inventory";
     break;
   case 'keys':
-    $pagetitle = "<a href='index.php?editor=" . $editor . "'>Player Keys</a>";
+    $pagetitle .= " - Player Keys";
     break;
 }
 
-if (isset($z) && $z != '') $pagetitle .= " >> " . "<a href='index.php?editor=" . $editor . "&z=" . $z . "&zoneid=" . getZoneIDByName($z) . "'>" . getZoneLongName($z) . "</a>";
-if (isset($npcid) && intval($npcid) > 0 && $editor != 'altcur' && $editor != 'qglobal') $pagetitle .= " >> " . getNPCName($npcid) . " ($npcid)";
-if (isset($fid) && intval($fid) > 0) $pagetitle .= " >> " . getFactionName($fid);
-if (isset($tskid) && intval($tskid) > 0) $pagetitle .= " >> " . getTaskTitle($tskid);
-if (isset($ts) && intval($ts) > 0) $pagetitle .= " >> " . "<a href='index.php?editor=" . $editor . "&ts=" . $ts . "'>" . $tradeskills[$ts] . "</a>";
-if (isset($rec) && intval($rec) > 0) $pagetitle .= " >> " . getRecipeName($rec);
-if (isset($spellset) && intval($spellset) > 0) $pagetitle .= " >> " . getSpellsetName($spellset);
-if (isset($playerid) && intval($playerid) > 0) $pagetitle .= " >> <a href='index.php?editor=" . $editor . "&playerid=" . $playerid . "'>" . getPlayerName($playerid) . " ($playerid)</a>";
-if (isset($acctid) && intval($acctid) > 0) $pagetitle .= " >> " . getAccountName($acctid) . " ($acctid)";
-if (isset($guildid) && intval($guildid) > 0) $pagetitle .= " >> " . getGuildName($guildid) . " ($guildid)";
-if (isset($aaid) && intval($aaid) > 0) $pagetitle .= " >> " . getAAName($aaid) . " ($aaid)";
+if ($z != '') $pagetitle .= " - ".getZoneLongName($z);
+if ($npcid != '' && $npcid !='ID' && $editor != 'altcur' && $editor != 'qglobal') $pagetitle .= " - ".getNPCName($npcid);
+if ($fid != '') $pagetitle .= " - " . getFactionName($fid);
+if ($tskid != '') $pagetitle .= " - " . getTaskTitle($tskid);
+if ($ts != '') $pagetitle .= " - " . $tradeskills[$ts];
+if ($rec != '0') $pagetitle .= " - " . getRecipeName($rec);
+if ($spellset != '') $pagetitle .= " - " . getSpellsetName($spellset);
+if (($playerid != '') && ($playerid != 'Player ID')) $pagetitle .= " - " . getPlayerName($playerid);
+if ($acctid != '') $pagetitle .= " - " . getAccountName($acctid) . " ($acctid)";
+if ($guildid != '') $pagetitle .= " - " . getGuildName($guildid) . " ($guildid)";
+if ($aaid != '') $pagetitle .= " - " . getAAName($aaid) . " ($aaid)";
 
 ?>

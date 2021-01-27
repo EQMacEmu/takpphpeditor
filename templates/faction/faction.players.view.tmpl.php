@@ -16,21 +16,21 @@
           <table class="table_content" width="100%">
             <tr>
               <td width="50%">
-                Character Name:<br>
+                Character Name:<br/>
                 <input type="text" name="filter1" id="filter1" value="<?=$filter['filter1']?>"/>
               </td>
               <td width="50%">
-                Faction ID:<br>
+                Faction ID:<br/>
                 <input type="text" name="filter2" id="filter2" value="<?=$filter['filter2']?>"/>
               </td>
             </tr>
             <tr>
-              <td colspan="2" align="center"><br><input type="submit" value="Apply Filters"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Remove Filters" onClick="document.getElementById('filter1').value='';document.getElementById('filter2').value='';document.getElementById('filter_status').value='';"/></td>
+              <td colspan="2" align="center"><br/><input type="submit" value="Apply Filters"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Remove Filters" onClick="document.getElementById('filter1').value='';document.getElementById('filter2').value='';document.getElementById('filter_status').value='';"/></td>
             </tr>
           </table>
         </form>
       </div>
-    </div><br>
+    </div><br/>
         <div class="table_container" style="width: 500px;">
           <div class="table_header">
             <table width="100%" cellpadding="0" cellspacing="0">

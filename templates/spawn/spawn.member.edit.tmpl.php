@@ -7,11 +7,11 @@
         <strong>NPC:</strong> <?=$npcname?><br><br>
         <form method="post" action="index.php?editor=spawn&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=2">
           <strong>MinTime:</strong><br>
-          <input class="indented" type="text" size="5" name="mintime" value="<?=$mintime?>"><br><br>
+          <input class="indented" type="text" size="5" name="mintime" value="<?=$mintime?>"><br/><br/>
           <strong>MaxTime:</strong><br>
-          <input class="indented" type="text" size="5" name="maxtime" value="<?=$maxtime?>"><br><br>
+          <input class="indented" type="text" size="5" name="maxtime" value="<?=$maxtime?>"><br/><br/>
           <strong>Chance:</strong><br>
-          <input class="indented" type="text" size="5" name="chance" value="<?=$chance?>">%<br><br>
+          <input class="indented" type="text" size="5" name="chance" value="<?=$chance?>">%<br/><br/>
           <center>
             <input type="hidden" name="sgnpcid" value="<?=$sgnpcid?>">
             <input type="hidden" name="spawngroupID" value="<?=$spawngroupID?>">

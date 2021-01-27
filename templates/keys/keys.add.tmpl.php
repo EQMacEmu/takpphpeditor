@@ -10,11 +10,11 @@
               <table width="100%" cellpadding="3" cellspacing="0">
                 <tr>
                   <td>
-                    Player ID:<br>
+                    Player ID:<br/>
                     <input type="text" size="5" name="id" value="<?=$playerid?>" readonly="true">
                   </td>
                   <td>
-                    Item ID:<br>
+                    Item ID:<br/>
                     <input type="text" size="5" name="item_id" value="">
                   </td>
                 </tr>

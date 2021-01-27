@@ -277,7 +277,7 @@ function build_tabs () {
         <div class=\"$tabstatus7\"><a href=\"index.php?editor=tradeskill\">Tradeskills</a></div>
         <div class=\"$tabstatus8\"><a href=\"index.php?editor=zone$zoneurl\">Zones</a></div>
         <div class=\"$tabstatus9\"><a href=\"index.php?editor=misc$zoneurl\">Misc</a></div>
-        <div class=\"$tabstatus10\"><a href=\"index.php?editor=server\">Server</a></div><br><br>
+        <div class=\"$tabstatus10\"><a href=\"index.php?editor=server\">Server</a></div><br/><br/>
         <div class=\"$tabstatus11\"><a href=\"index.php?editor=items\">Items</a></div>
         <div class=\"$tabstatus12\"><a href=\"index.php?editor=player\">Players</a></div>
         <div class=\"$tabstatus13\"><a href=\"index.php?editor=account\">Accounts</a></div>
@@ -286,8 +286,8 @@ function build_tabs () {
         <div class=\"$tabstatus16\"><a href=\"index.php?editor=qglobal\">QGlobals</a></div>
         <div class=\"$tabstatus17\"><a href=\"index.php?editor=util\">Utilities</a></div>
         <div class=\"$tabstatus18\"><a href=\"index.php?editor=inv\">Inventory</a></div>
-        <div class=\"$tabstatus19\"><a href=\"index.php?editor=keys\">Keys</a></div><br>
-        <div style=\"float: right;\">$admin<a href=\"index.php?logout\">Logout</a></div><br><br>
+        <div class=\"$tabstatus19\"><a href=\"index.php?editor=keys\">Keys</a></div><br/>
+        <div style=\"float: right;\">$admin<a href=\"index.php?logout\">Logout</a></div><br/><br/>
       </div>
 ";
 

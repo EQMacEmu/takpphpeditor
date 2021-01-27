@@ -18,56 +18,56 @@
               <td>
                 <fieldset>
                   <legend><strong>Character Name</strong></legend>
-                  First Name: <?=trim($name)?><br>
-                  Last Name: <?=trim($last_name)?><br>
-                  Title: <?=trim($title)?><br>
-                  Suffix: <?=trim($suffix)?><br>
+                  First Name: <?=trim($name)?><br/>
+                  Last Name: <?=trim($last_name)?><br/>
+                  Title: <?=trim($title)?><br/>
+                  Suffix: <?=trim($suffix)?><br/>
                 </fieldset>
                 <fieldset>
                   <legend><strong>Account Info</strong></legend>
-                  Account ID: <a href="index.php?editor=account&acctid=<?=$account_id?>"><?=$account_id?></a><br>
-                  Character ID: <?=$id?><br>
-                  LS Name: <a href="index.php?editor=account&acctid=<?=$account_id?>"><?=$lsname?></a><br>
-                  LS ID: <?=$lsaccount?><br>
-                  Last On: <?=get_real_time($last_login)?><br>
-                  Time Played: <?=$time_played?> minutes<br>
-                  GM: <?=$yesno[$gm]?><br>
-                  Status: <?=$status?><br>
+                  Account ID: <a href="index.php?editor=account&acctid=<?=$account_id?>"><?=$account_id?></a><br/>
+                  Character ID: <?=$id?><br/>
+                  LS Name: <a href="index.php?editor=account&acctid=<?=$account_id?>"><?=$lsname?></a><br/>
+                  LS ID: <?=$lsaccount?><br/>
+                  Last On: <?=get_real_time($last_login)?><br/>
+                  Time Played: <?=$time_played?> minutes<br/>
+                  GM: <?=$yesno[$gm]?><br/>
+                  Status: <?=$status?><br/>
                 </fieldset>
                 <fieldset>
                   <legend><strong>Location Info</strong></legend>
-                  Zone: <?=getZoneName($zone_id)?> (<?=$zone_id?>)<br>
-                  X: <?=$x?><br>
-                  Y: <?=$y?><br>
-                  Z: <?=$z?><br>
-                  Heading: <?=$heading?><br>
+                  Zone: <?=getZoneName($zone_id)?> (<?=$zone_id?>)<br/>
+                  X: <?=$x?><br/>
+                  Y: <?=$y?><br/>
+                  Z: <?=$z?><br/>
+                  Heading: <?=$heading?><br/>
                   <center>[<a href="index.php?editor=player&playerid=<?=$id?>&action=5">Move Player</a>]</center>
                 </fieldset>
                 <fieldset>
                   <legend><strong>Guild Info</strong></legend>
-                  Guild: <?echo ($guild_id > 0) ? '<a href="index.php?editor=guild&guildid=' . $guild_id . '">' . getGuildName($guild_id) . '</a>' : "None";?><br>
-                  Guild Rank: <?echo ($guild_id > 0) ? $guild_rank : "N/A";?><br>
+                  Guild: <?echo ($guild_id > 0) ? '<a href="index.php?editor=guild&guildid=' . $guild_id . '">' . getGuildName($guild_id) . '</a>' : "None";?><br/>
+                  Guild Rank: <?echo ($guild_id > 0) ? $guild_rank : "N/A";?><br/>
                 </fieldset>
                 <fieldset>
                   <legend><strong>Vitals</strong></legend>
-                  HP: <?=$cur_hp?><br>
-                  Mana: <?=$mana?><br>
-                  Endurance: <?=$endurance?><br>
-                  Air: <?=$air_remaining?><br>
-                  Hunger: <?=$hunger_level?><br>
-                  Thirst: <?=$thirst_level?><br>
+                  HP: <?=$cur_hp?><br/>
+                  Mana: <?=$mana?><br/>
+                  Endurance: <?=$endurance?><br/>
+                  Air: <?=$air_remaining?><br/>
+                  Hunger: <?=$hunger_level?><br/>
+                  Thirst: <?=$thirst_level?><br/>
                 </fieldset>
                 <fieldset>
                   <legend><strong>Consent Info</strong></legend>
-                  Group Consent: <?=$yesno[$group_auto_consent]?><br>
-                  Raid Consent: <?=$yesno[$raid_auto_consent]?><br>
-                  Guild Consent: <?=$yesno[$guild_auto_consent]?><br>
+                  Group Consent: <?=$yesno[$group_auto_consent]?><br/>
+                  Raid Consent: <?=$yesno[$raid_auto_consent]?><br/>
+                  Guild Consent: <?=$yesno[$guild_auto_consent]?><br/>
                 </fieldset>
                 <fieldset>
                   <legend><strong>Other Info</strong></legend>
-                  Birth: <?=get_real_time($birthday)?><br>
-                  Anonymous: <?=$anonymity[$anon]?><br>
-                  Drunkness: <?=$intoxication?><br>
+                  Birth: <?=get_real_time($birthday)?><br/>
+                  Anonymous: <?=$anonymity[$anon]?><br/>
+                  Drunkness: <?=$intoxication?><br/>
                   Autosplit: <?=$yesno[$autosplit_enabled]?>
                 </fieldset>
               </td>
@@ -90,7 +90,7 @@
                       <td align="left">Deity: <?=$deities[$deity]?></td>
                     </tr>
                     <tr>
-                      <td>Experience: <?=$exp?><br></td>
+                      <td>Experience: <?=$exp?><br/></td>
                       <td>Practice Points: <?=$points?></td>
                     </tr>
                   </table>
@@ -250,69 +250,69 @@
                         <td width="50%">
 <?
   for ($x = 0; $x <= 3; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
   for ($x = 6; $x <= 11; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
   for ($x = 15; $x <= 17; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
   for ($x = 19; $x <= 23; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
   for ($x = 25; $x <= 30; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
 ?>
                         </td>
                         <td width="50%" valign="top">
 <?
   for ($x = 32; $x <= 40; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
-  echo "48 - " . $skilltypes[48] . ": " . $skills[48] . "<br>";
+  echo "48 - " . $skilltypes[48] . ": " . $skills[48] . "<br/>";
   for ($x = 50; $x <= 53; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
-  echo "55 - " . $skilltypes[55] . ": " . $skills[55] . "<br>";
-  echo "62 - " . $skilltypes[62] . ": " . $skills[62] . "<br>";
+  echo "55 - " . $skilltypes[55] . ": " . $skills[55] . "<br/>";
+  echo "62 - " . $skilltypes[62] . ": " . $skills[62] . "<br/>";
   for ($x = 66; $x <= 67; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
   for ($x = 71; $x <= 74; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
 ?>
                         </td>
                       </tr>
                     </table>
-                  </fieldset><br>
+                  </fieldset><br/>
                   <fieldset>
                     <legend><strong>Magic/Music</strong></legend>
                     <table width="100%">
                       <tr>
                         <td width="50%">
 <?
-  echo "4 - " . $skilltypes[4] . ": " . $skills[4] . "<br>";
-  echo "5 - " . $skilltypes[5] . ": " . $skills[5] . "<br>";
-  echo "13 - " . $skilltypes[13] . ": " . $skills[13] . "<br>";
-  echo "14 - " . $skilltypes[14] . ": " . $skills[14] . "<br>";
-  echo "18 - " . $skilltypes[18] . ": " . $skills[18] . "<br>";
-  echo "24 - " . $skilltypes[24] . ": " . $skills[24] . "<br>";
-  echo "31 - " . $skilltypes[31] . ": " . $skills[31] . "<br>";
+  echo "4 - " . $skilltypes[4] . ": " . $skills[4] . "<br/>";
+  echo "5 - " . $skilltypes[5] . ": " . $skills[5] . "<br/>";
+  echo "13 - " . $skilltypes[13] . ": " . $skills[13] . "<br/>";
+  echo "14 - " . $skilltypes[14] . ": " . $skills[14] . "<br/>";
+  echo "18 - " . $skilltypes[18] . ": " . $skills[18] . "<br/>";
+  echo "24 - " . $skilltypes[24] . ": " . $skills[24] . "<br/>";
+  echo "31 - " . $skilltypes[31] . ": " . $skills[31] . "<br/>";
   for ($x = 43; $x <= 47; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
 ?>
                         </td>
                         <td width="50%" valign="top">
 <?
-  echo "12 - " . $skilltypes[12] . ": " . $skills[12] . "<br>";
-  echo "41 - " . $skilltypes[41] . ": " . $skills[41] . "<br>";
-  echo "49 - " . $skilltypes[49] . ": " . $skills[49] . "<br>";
-  echo "54 - " . $skilltypes[54] . ": " . $skills[54] . "<br>";
-  echo "70 - " . $skilltypes[70] . ": " . $skills[70] . "<br>";
+  echo "12 - " . $skilltypes[12] . ": " . $skills[12] . "<br/>";
+  echo "41 - " . $skilltypes[41] . ": " . $skills[41] . "<br/>";
+  echo "49 - " . $skilltypes[49] . ": " . $skills[49] . "<br/>";
+  echo "54 - " . $skilltypes[54] . ": " . $skills[54] . "<br/>";
+  echo "70 - " . $skilltypes[70] . ": " . $skills[70] . "<br/>";
 ?>
                         </td>
                       </tr>
@@ -324,21 +324,21 @@
                     <legend><strong>Languages</strong></legend>
 <?
   for ($x = 0; $x <= 27; $x++) {
-    echo $x . " - " . $langtypes[$x] . ": " . $languages[$x] . "<br>";
+    echo $x . " - " . $langtypes[$x] . ": " . $languages[$x] . "<br/>";
   }
 ?>
-                  </fieldset><br>
+                  </fieldset><br/>
                   <fieldset>
                     <legend><strong>Tradeskills</strong></legend>
 <?
   for ($x = 56; $x <= 61; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
   for ($x = 63; $x <= 65; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
   for ($x = 68; $x <= 69; $x++) {
-    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br>";
+    echo $x . " - " . $skilltypes[$x] . ": " . $skills[$x] . "<br/>";
   }
 ?>
                   </fieldset>

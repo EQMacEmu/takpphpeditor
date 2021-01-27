@@ -14,7 +14,7 @@
                     <input type="text" size="5" name="charid" value="<?=$inv_item['id']?>" readonly="true">
                   </td>
                   <td>
-                    <a title="22-29: Main Inventory Slots">Slot ID:</a><br>
+                    <a title="22-29: Main Inventory Slots">Slot ID:</a><br/>
                     <input type="text" size="3" name="slotid" value="<?=$inv_item['slotid']?>" readonly="true">
                   </td>
                   <td>

@@ -91,7 +91,7 @@ Stat6:<br>
 Value6:<br>
 <input type="text" size="5" name="npcvalue6" value=""></td> 
    </tr>
-    </table><br>
+    </table><br/>
 
 <center><B>WHERE:<B><br><br></center>
 
@@ -165,7 +165,7 @@ HP:<br>
            <tr>
 <td align="center">  
 Change ALL in zone:<br>
-<input type="checkbox" name="change_all" value="1"<?echo ($change_all == 1) ? " checked" : "";?>><br>
+<input type="checkbox" name="change_all" value="1"<?echo ($change_all == 1) ? " checked" : "";?>><br/>
             </td>
              </tr>
              </table><br><br>

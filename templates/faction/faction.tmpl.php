@@ -10,7 +10,7 @@
       <tr><td align="right">-500 to -101</td><td>&nbsp;</td><td align="left">Dubiously</td></tr>
       <tr><td align="right">-750 to -501</td><td>&nbsp;</td><td align="left">Threateningly</td></tr>
       <tr><td align="right">-751 to -2000</td><td>&nbsp;</td><td align="left">Ready to attack</td></tr>
-    </table><br><br>
+    </table><br/><br/>
   </center>
   <div style="border: 1px solid black; width: 600px; margin: auto;">
     <div class="edit_form_header" style="height: 16px; line-height: 16px;">
@@ -54,8 +54,8 @@
             <th width="30%">Name</th>
             <th width="10%">Model</th>
             <th width="10%">Mod</th>
-            <th width="10%">Effective<br>Faction</th>
-            <th width="10%"><a href="index.php?editor=faction&fid=<?=$faction_info['id']?>&action=20"><img src="images/add.gif" border="0" title="Create a new faction mod" /></a><br></th>
+            <th width="10%">Effective<br/>Faction</th>
+            <th width="10%"><a href="index.php?editor=faction&fid=<?=$faction_info['id']?>&action=20"><img src="images/add.gif" border="0" title="Create a new faction mod" /></a><br/></th>
           </tr>
 <?
     foreach ($faction_mods as $mod) {

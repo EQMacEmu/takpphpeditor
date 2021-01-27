@@ -19,29 +19,29 @@
           <table class="table_content" width="100%">
             <tr>
               <td width="10%">
-                EmoteID:<br>
+                EmoteID:<br/>
                 <input type="text" name="filter1" id="filter1" size="5" value="<?=$filter['filter1']?>"/>
               </td>
               <td width="10%">
-                Type:<br>
+                Type:<br/>
                 <input type="text" name="filter2" id="filter2" size="5" value="<?=$filter['filter2']?>"/>
               </td>
               <td width="10%">
-                Event:<br>
+                Event:<br/>
                 <input type="text" name="filter3" id="filter3" size="5" value="<?=$filter['filter3']?>"/>
               </td>
               <td width="65%">
-                Text:<br>
+                Text:<br/>
                 <input type="text" name="filter4" id="filter4" size="50" value="<?=$filter['filter4']?>"/>
               </td>
             </tr>
             <tr>
-              <td colspan="4" align="center"><br><input type="submit" value="Apply Filters"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Remove Filters" onClick="document.getElementById('filter1').value='';document.getElementById('filter2').value='';document.getElementById('filter3').value='';document.getElementById('filter4').value='';document.getElementById('filter_status').value='';"/></td>
+              <td colspan="4" align="center"><br/><input type="submit" value="Apply Filters"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Remove Filters" onClick="document.getElementById('filter1').value='';document.getElementById('filter2').value='';document.getElementById('filter3').value='';document.getElementById('filter4').value='';document.getElementById('filter_status').value='';"/></td>
             </tr>
           </table>
         </form>
       </div>
-    </div><br>
+    </div><br/>
     <div class="table_container" style="width: 750px;">
       <div class="table_header">
         <table width="100%" cellpadding="0" cellspacing="0">

@@ -71,10 +71,10 @@
 <? if($aaref) {?>
                     <div style="text-align:right;">
                       Reference: <a href="index.php?editor=aa&aaid=<?=$aaref?>" target="_blank"><?echo "$aaref - $aarefname";?></a>
-                      <img src="images/minus2.gif" onclick="document.aa_list_insert.aa_add.value=<?=$aaref?>;" title="Set as what to be inserted"><br>
+                      <img src="images/minus2.gif" onclick="document.aa_list_insert.aa_add.value=<?=$aaref?>;" title="Set as what to be inserted"><br/>
                     </div>
 <? } ?>
-                    Prerequisite AA: <? if($aa_vars['prereq_skill'] != 0 && $aa_vars['prereq_skill'] != 4294967295) echo "{$aa_vars['prereq_skill']} - (<a href=\"index.php?editor=aa&aaid={$aa_vars['prereq_skill']}\">". ((isset($prereq_name) && $prereq_name != null)?$prereq_name['name'] : "<span style=\"color:red;\"><b>Not Found</b></span>")."</a>) at Rank: {$aa_vars['prereq_minpoints']}<br>"; else echo "None<br>";?>
+                    Prerequisite AA: <? if($aa_vars['prereq_skill'] != 0 && $aa_vars['prereq_skill'] != 4294967295) echo "{$aa_vars['prereq_skill']} - (<a href=\"index.php?editor=aa&aaid={$aa_vars['prereq_skill']}\">". ((isset($prereq_name) && $prereq_name != null)?$prereq_name['name'] : "<span style=\"color:red;\"><b>Not Found</b></span>")."</a>) at Rank: {$aa_vars['prereq_minpoints']}<br/>"; else echo "None<br/>";?>
                     Classes: <?=getClasses($aa_vars['classes'])?>
 <?
   if ($aa_vars['prereq_skill'] != 0 && $aa_vars['prereq_skill'] != 0xffffffff && $prereq_name != null) {
@@ -82,8 +82,8 @@
     $classcheck = (((int)$aa_vars['classes'] & (int)$prereq_name['classes']) == 0);
     if ($rankcheck || $classcheck) {
 ?>
-                    <br>
-                    <font color="red"><b>Prerequisite Mismatch:</b><br>
+                    <br/>
+                    <font color="red"><b>Prerequisite Mismatch:</b><br/>
 <?
       if($classcheck) {
 ?>
@@ -96,7 +96,7 @@
       }
       if ($rankcheck) {
 ?>
-                      Max Rank: <?=$prereq_name['max_level']?><br>
+                      Max Rank: <?=$prereq_name['max_level']?><br/>
 <?
       }
 ?>                  </font>
@@ -104,7 +104,7 @@
     }
   }
 ?>
-                    <br><br>
+                    <br/><br/>
                     <table>
                       <tr>
                         <td>
@@ -168,7 +168,7 @@
   }
   else {
 ?>
-                                  <a href="index.php?editor=spells&id=<?=$aa_vars['spellid']?>&action=2" target="_blank"><?=$aa_vars['spellid']?> - <?=getSpellName($aa_vars['spellid'])?></a> [<a href='http://lucy.allakhazam.com/spell.html?id=<?=$aa_vars['spellid']?>' target='_blank'>Lucy</a>]<br>
+                                  <a href="index.php?editor=spells&id=<?=$aa_vars['spellid']?>&action=2" target="_blank"><?=$aa_vars['spellid']?> - <?=getSpellName($aa_vars['spellid'])?></a> [<a href='http://lucy.allakhazam.com/spell.html?id=<?=$aa_vars['spellid']?>' target='_blank'>Lucy</a>]<br/>
 <?
   }
 ?>
@@ -235,8 +235,8 @@
                   <div style="float:left; width:200px;">
                     <fieldset>
                       <legend>Calculated</legend>
-                      Level required: <?=$aa_vars['class_type']+($aa_vars['level_inc']*$i)?><br>
-                      Cost: <?=$aa_vars['cost']+($aa_vars['cost_inc']*$i)?><br>
+                      Level required: <?=$aa_vars['class_type']+($aa_vars['level_inc']*$i)?><br/>
+                      Cost: <?=$aa_vars['cost']+($aa_vars['cost_inc']*$i)?><br/>
                     </fieldset>
                   </div>
                   <div style="float:left; width:200px;">
@@ -247,14 +247,14 @@
   if ($aa_cost) {
     foreach ($aa_cost as $aac) {
       if ($aac['skill_id'] == $aaid+$i) {
-        echo "Level required: ".$aac['level']."<br>";
-        echo "Cost: ".$aac['cost']."<br>";
+        echo "Level required: ".$aac['level']."<br/>";
+        echo "Cost: ".$aac['cost']."<br/>";
         $found = 1;
       }
     }
   }
   if(!$found) {
-    echo "Not set<br><br>";
+    echo "Not set<br/><br/>";
   }
 ?>
                     </fieldset>
@@ -265,7 +265,7 @@
   if ($found) {
     echo "<a href=\"index.php?editor=aa&aaid=$aaid&rank=$aarank&action=21\"><button type=\"button\">Delete Specific</button></a>";
   }
-  echo "<br>";
+  echo "<br/>";
 ?>
                   </div>
                   <div style="clear:both;"></div>
@@ -275,7 +275,7 @@
     foreach ($aa_actions as $aa_action) {
       if ($aa_action['rank'] == $i) {
 ?>
-                  <br>
+                  <br/>
                   <div class="table_container">
                     <div class="table_header">
                       <table width="100%" cellpadding="0" cellspacing="0">
@@ -291,19 +291,19 @@
                     <table class="table_content2" width="100%">
                       <tr>
                         <td>
-                          Spell ID: <a href="index.php?editor=spells&id=<?=$aa_action['spell_id']?>&action=2" target="_blank"><?=$aa_action['spell_id']?> - <?=getSpellName($aa_action['spell_id'])?></a> [<a href='http://lucy.allakhazam.com/spell.html?id=<?=$aa_action['spell_id']?>' target='_blank'>Lucy</a>]<br>
-                          Target Override: <?echo (isset($aa_action_target[$aa_action['target']]) ? "{$aa_action_target[$aa_action['target']]} - " : "");?>(raw:<?=$aa_action['target']?>)<br>
+                          Spell ID: <a href="index.php?editor=spells&id=<?=$aa_action['spell_id']?>&action=2" target="_blank"><?=$aa_action['spell_id']?> - <?=getSpellName($aa_action['spell_id'])?></a> [<a href='http://lucy.allakhazam.com/spell.html?id=<?=$aa_action['spell_id']?>' target='_blank'>Lucy</a>]<br/>
+                          Target Override: <?echo (isset($aa_action_target[$aa_action['target']]) ? "{$aa_action_target[$aa_action['target']]} - " : "");?>(raw:<?=$aa_action['target']?>)<br/>
                           Reuse Time: <?=$aa_action['reuse_time']?>
                         </td>
                         <td>
-                          Non-Spell Action: <?=$aa_action['nonspell_action']?><br>
-                          Non-Spell Mana: <?=$aa_action['nonspell_mana']?><br>
+                          Non-Spell Action: <?=$aa_action['nonspell_action']?><br/>
+                          Non-Spell Mana: <?=$aa_action['nonspell_mana']?><br/>
                           Non-Spell Duration: <?=$aa_action['nonspell_duration']?>
                         </td>
                         <td>
-                          Redux AA 1: <?=$aa_action['redux_aa']?><br>
-                          Redux Rate 1: <?=$aa_action['redux_rate']?><br>
-                          Redux AA 2: <?=$aa_action['redux_aa2']?><br>
+                          Redux AA 1: <?=$aa_action['redux_aa']?><br/>
+                          Redux Rate 1: <?=$aa_action['redux_rate']?><br/>
+                          Redux AA 2: <?=$aa_action['redux_aa2']?><br/>
                           Redux Rate 2: <?=$aa_action['redux_rate2']?>
                         </td>
                       </tr>
@@ -317,8 +317,8 @@
   }
   if ($found == 0) {
 ?>
-                  <br><b>AA Action</b> - None<br>
-                  <a href="index.php?editor=aa&aaid=<?=$aaid?>&rank=<?=$aarank?>&action=5"><button type="button">Add Action</button></a><br>
+                  <br/><b>AA Action</b> - None<br/>
+                  <a href="index.php?editor=aa&aaid=<?=$aaid?>&rank=<?=$aarank?>&action=5"><button type="button">Add Action</button></a><br/>
 <?
   }
   $showcopy = 1;
@@ -330,7 +330,7 @@
         if ($found == 0) {
           // Only show the table head if we actually have data
 ?>
-                  <br>
+                  <br/>
                   <div class="table_container">
                     <div class="table_header">
                       <table width="100%" cellpadding="0" cellspacing="0">
@@ -383,8 +383,8 @@
   }
   if ($showcopy) {
 ?>
-                    <br>
-                    <b>AA Effect</b><br>
+                    <br/>
+                    <b>AA Effect</b><br/>
                     <table>
                       <tr>
                         <td>

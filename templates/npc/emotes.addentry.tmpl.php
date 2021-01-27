@@ -7,11 +7,11 @@
         <table cellpadding="5" cellspacing="0" width="100%">
           <tr>
             <td>
-              EmoteID:<br>
+              EmoteID:<br/>
               <input id="id" type="text" name="emoteid" size="7" value="<?=$emoteid?>">
             </td>
             <td>
-              Event:<br>
+              Event:<br/>
               <select name="event_">
 <?foreach($eventtype as $key=>$value):?>
                 <option value="<?=$key?>"><?=$key?>: <?=$value?></option>
@@ -19,7 +19,7 @@
               </select>
             </td>
             <td>
-              Type:<br>
+              Type:<br/>
               <select name="type">
 <?foreach($emotetype as $key=>$value):?>
                 <option value="<?=$key?>"><?=$key?>: <?=$value?></option>
@@ -29,7 +29,7 @@
           </tr>
           <tr>
             <td colspan="3">
-              Emote:<br>
+              Emote:<br/>
               <textarea name="text" rows="6" cols="62"></textarea>
             </td>
           </tr>
