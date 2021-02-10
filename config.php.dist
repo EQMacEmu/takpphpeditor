@@ -23,7 +23,6 @@ $dbuser = env('DB_USER', 'username');
 $dbpass = env('DB_PASSWORD', 'password');
 $db     = env('DB_NAME', 'database_name');
 $dbport = env('DB_PORT', 3306);
-$mysql_class = env('MYSQL_CLASS', 'mysqli'); // Use mysqli as mysql class is deprecated as of PHP 7
 
 /**
  * Limit editor listings to a specified expansion
