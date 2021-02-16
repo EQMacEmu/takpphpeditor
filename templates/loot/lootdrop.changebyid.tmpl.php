@@ -16,7 +16,9 @@
                <input type="text" name="droplimit" size="5" value="0"><br><br>
                Multiplier: <br>
                <input type="text" name="multiplier" size="5" value="1"><br><br>
-		 Probability: <br>
+               Multiplier Min: <br>
+               <input type="text" name="multiplier_min" size="5" value="0"><br><br>
+               Probability: <br>
                <input type="text" name="probability" size="5" value="100"><br><br>
                <center>
                  <input type="submit">

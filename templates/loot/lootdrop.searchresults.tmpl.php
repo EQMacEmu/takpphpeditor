@@ -14,7 +14,7 @@
 <?if ($results == ''):?>
             <center>
               Your search produced no results!<br><br>
-              <a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=22">Try again</a>
+              <a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ltid=<?=$ltid?>&action=22">Try again</a>
             </center>
 <?endif;?>
            </td>

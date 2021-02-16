@@ -738,13 +738,28 @@ function assign_lootdrop () {
   check_authorization();
   global $mysql;
   
-  $ltid = $_POST['ltid'];
-  $ldid = $_POST['ldid'];
-  $droplimit = $_POST['droplimit'];
-  $mindrop = $_POST['mindrop'];
-  $multiplier = $_POST['multiplier'];
-  $probability = $_POST['probability'];
-  $multiplier_min = $_POST['multiplier_min'];
+  $ltid = $_POST['ltid'] ?? 0;
+  $ldid = $_POST['ldid'] ?? 0;
+  $droplimit = $_POST['droplimit'] ?? 0;
+  $mindrop = $_POST['mindrop'] ?? 0;
+  $multiplier = $_POST['multiplier'] ?? 1;
+  $probability = $_POST['probability'] ?? 100;
+  $multiplier_min = $_POST['multiplier_min'] ?? 0;
+  
+  if ($ltid == 0 || $ldid == 0)
+  {
+    // this should never happen.  need to ensure tables with id 0 do not get drops else it screws up searches and requires SQL sourcing to fix
+    die("error: loot table ID and/or loot drop ID is 0");
+    return;
+  }
+  
+  $query = "SELECT * FROM lootdrop WHERE id='$ldid'";
+  $result = mysqli_query($mysql, $query);
+  if(mysqli_num_rows($result) == 0)
+  {
+    die("loot drop ID $ldid does not exist");
+  }
+  
   $query = "INSERT INTO loottable_entries SET loottable_id='$ltid', lootdrop_id='$ldid', droplimit='$droplimit', mindrop='$mindrop', multiplier='$multiplier', probability='$probability', multiplier_min='$multiplier_min'";
   $mysql->query_no_result($query);
 }
