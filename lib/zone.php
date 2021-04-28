@@ -326,6 +326,7 @@ function update_zone () {
   if ($safe_x != $_POST['safe_x']) $fields .= "safe_x=\"" . $_POST['safe_x'] . "\", ";
   if ($safe_y != $_POST['safe_y']) $fields .= "safe_y=\"" . $_POST['safe_y'] . "\", ";
   if ($safe_z != $_POST['safe_z']) $fields .= "safe_z=\"" . $_POST['safe_z'] . "\", ";
+  if ($safe_heading != $_POST['safe_heading']) $fields .= "safe_heading=\"" . $_POST['safe_heading'] . "\", ";
   if ($underworld != $_POST['underworld']) $fields .= "underworld=\"" . $_POST['underworld'] . "\", ";
   if ($timezone != $_POST['timezone']) $fields .= "timezone=\"" . $_POST['timezone'] . "\", ";
   if ($time_type != $_POST['time_type']) $fields .= "time_type=\"" . $_POST['time_type'] . "\", ";

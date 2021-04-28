@@ -9,11 +9,12 @@
               <legend><strong><font size="3">General</font></strong></legend>
               <table width="100%" border="0" cellpadding="3" cellspacing="0">
                 <tr>
-                  <td align="left" width="30%">Long Name:<br><input type="text" name="long_name" size="20" value="<?=$long_name?>"></td>
-                  <td align="left" width="23%">Safe X:<br><input type="text" name="safe_x" size="7" value="<?=$safe_x?>"></td>
-                  <td align="left" width="23%">Safe Y:<br><input type="text" name="safe_y" size="7" value="<?=$safe_y?>"></td>
-                  <td align="left" width="24%">Safe Z:<br><input type="text" name="safe_z" size="7" value="<?=$safe_z?>"></td>
-                </tr>
+                  <td align="left" width="28%">Long Name:<br><input type="text" name="long_name" size="20" value="<?=$long_name?>"></td>
+                  <td align="left" width="18%">Safe X:<br><input type="text" name="safe_x" size="4" value="<?=$safe_x?>"></td>
+                  <td align="left" width="18%">Safe Y:<br><input type="text" name="safe_y" size="4" value="<?=$safe_y?>"></td>
+                  <td align="left" width="18%">Safe Z:<br><input type="text" name="safe_z" size="4" value="<?=$safe_z?>"></td>
+                  <td align="left" width="18%">Safe Heading:<br><input type="text" name="safe_z" size="7" value="<?=$safe_heading?>"></td>
+				</tr>
                 <tr>
                   <td align="left" width="30%">File Name:<br><input type="text" name="file_name" size="20" value="<?=$file_name?>"></td>
                   <td align="left" width="23%">Underworld:<br><input type="text" name="underworld" size="7" value="<?=$underworld?>"></td>
