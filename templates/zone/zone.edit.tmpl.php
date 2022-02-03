@@ -13,7 +13,7 @@
                   <td align="left" width="18%">Safe X:<br><input type="text" name="safe_x" size="4" value="<?=$safe_x?>"></td>
                   <td align="left" width="18%">Safe Y:<br><input type="text" name="safe_y" size="4" value="<?=$safe_y?>"></td>
                   <td align="left" width="18%">Safe Z:<br><input type="text" name="safe_z" size="4" value="<?=$safe_z?>"></td>
-                  <td align="left" width="18%">Safe Heading:<br><input type="text" name="safe_z" size="7" value="<?=$safe_heading?>"></td>
+                  <td align="left" width="18%">Safe Heading:<br><input type="text" name="safe_heading" size="7" value="<?=$safe_heading?>"></td>
 				</tr>
                 <tr>
                   <td align="left" width="30%">File Name:<br><input type="text" name="file_name" size="20" value="<?=$file_name?>"></td>
