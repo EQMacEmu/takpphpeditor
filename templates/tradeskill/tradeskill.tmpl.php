@@ -35,8 +35,7 @@
           <strong>No Fail:</strong> <?=$yesno[$nofail]?><br/>
           <strong>Replace Container:</strong> <?=$yesno[$replace_container]?><br/>
           <strong>Quest Controlled:</strong> <?=$yesno[$quest]?><br/>
-          <strong>Learn Flag:</strong> <?echo ($must_learn) ? "Yes" : "No";?><br/>
-          <strong>Enabled:</strong> <?=$yesno[$enabled]?><br/>
+           <strong>Enabled:</strong> <?=$yesno[$enabled]?><br/>
           <strong>Notes:</strong> <?=$notes?>
         </div>
       </div>

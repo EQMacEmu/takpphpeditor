@@ -80,10 +80,4 @@
     }
   }
 
-  function updateLearn() {
-    var l_method = parseInt(document.forms[1].l_method.value);
-    var l_message = parseInt(document.forms[1].l_message.value);
-    var l_search = parseInt(document.forms[1].l_search.value);
-    document.forms[1].must_learn.value = l_value = l_method + l_message + l_search;
-  }
 </script>

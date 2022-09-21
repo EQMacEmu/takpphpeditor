@@ -77,12 +77,6 @@ switch ($action) {
         $body->set($key, $value);
       }
     }
-    $learn_flags = extract_learn_flags($vars['must_learn']);
-    if ($learn_flags) {
-      foreach ($learn_flags as $key=>$value) {
-        $body->set($key, $value);
-      }
-    }
     break;
   case 2:  //Update recipe
     check_authorization();
@@ -237,7 +231,6 @@ function update_recipe () {
   $nofail = $_POST['nofail'];
   $replace_container = $_POST['replace_container'];
   $notes = $_POST['notes'];
-  $must_learn = $_POST['must_learn'];
   $quest = $_POST['quest'];
   $enabled = $_POST['enabled'];
   $old = recipe_info();
@@ -251,7 +244,6 @@ function update_recipe () {
   if($old['nofail'] != $nofail) $fields .= "nofail=$nofail, ";
   if($old['replace_container'] != $replace_container) $fields .= "replace_container=$replace_container, ";
   if($old['notes'] != $notes) $fields .= "notes=\"$notes\", ";
-  if($old['must_learn'] != $must_learn) $fields .= "must_learn=\"$must_learn\", ";
   if($old['quest'] != $quest) $fields .= "quest=\"$quest\", ";
   if($old['enabled'] != $enabled) $fields .= "enabled=\"$enabled\", ";
 
@@ -282,7 +274,12 @@ function getItemBagtype($item) {
   
   $query = "SELECT bagtype FROM items WHERE id=$item";
   $result = $mysql->query_assoc($query);
-  return $result['bagtype'];
+  if ($result) {
+    return $result['bagtype'];
+  }
+  else {
+    return null;
+  }
 }
 
 function component_info() {
@@ -388,7 +385,6 @@ function add_recipe() {
   if(isset($_POST['nofail'])) $fields .= "nofail={$_POST['nofail']}, ";
   if(isset($_POST['replace_container'])) $fields .= "replace_container={$_POST['replace_container']}, ";
   if(isset($_POST['notes'])) $fields .= "notes=\"{$_POST['notes']}\", ";
-  if(isset($_POST['must_learn'])) $fields .= "must_learn=\"{$_POST['must_learn']}\", ";
   if(isset($_POST['quest'])) $fields .= "quest=\"{$_POST['quest']}\", ";
   if(isset($_POST['enabled'])) $fields .= "enabled=\"{$_POST['enabled']}\", ";
 
@@ -411,8 +407,8 @@ function copy_tradeskill() {
   $query = "DELETE FROM tradeskill_recipe_entries WHERE recipe_id=0";
   $mysql->query_no_result($query);
 
-  $query = "INSERT INTO tradeskill_recipe (name,tradeskill,skillneeded,trivial,nofail,replace_container,notes,must_learn,quest,enabled) 
-            SELECT CONCAT(name,' - Copy'),tradeskill,skillneeded,trivial,nofail,replace_container,notes,must_learn,quest,enabled FROM tradeskill_recipe where id=$rec";
+  $query = "INSERT INTO tradeskill_recipe (name,tradeskill,skillneeded,trivial,nofail,replace_container,notes,quest,enabled) 
+            SELECT CONCAT(name,' - Copy'),tradeskill,skillneeded,trivial,nofail,replace_container,notes,quest,enabled FROM tradeskill_recipe where id=$rec";
   $mysql->query_no_result($query);
 
   $query = "INSERT INTO tradeskill_recipe_entries (item_id,successcount,failcount,componentcount,iscontainer) 
@@ -435,25 +431,6 @@ function get_new_id() {
   $result = $mysql->query_assoc($query);
   $nrec = $result['tid'];
   return $nrec;
-}
-
-function getLearnedRecipes($page_number, $results_per_page, $sort_by) {
-  global $mysql;
-  $limit = ($page_number - 1) * $results_per_page . "," . $results_per_page;
-
-  $query = "SELECT * FROM char_recipe_list ORDER BY $sort_by LIMIT $limit";
-  $results = $mysql->query_mult_assoc($query);
-
-  return $results;
-}
-
-function delete_LearnedRecipe () {
-  global $mysql;
-  $char_id = $_GET['char_id'];
-  $recipe_id = $_GET['recipe_id'];
-  
-  $query = "DELETE FROM char_recipe_list WHERE char_id=$char_id AND recipe_id=$recipe_id";
-  $mysql->query_no_result($query);
 }
 
 function export_recipe_sql() {
@@ -508,23 +485,4 @@ function export_recipe_sql() {
   return $export_string;
 }
 
-function extract_learn_flags($learn_value) {
-  $learn_flags = array();
-  $l_method = 0;
-  $l_message = 0;
-  $l_search = 0;
-
-  if ($learn_value >= 32) {
-    $l_search = 32;
-    $learn_value -= 32;
-  }
-  if ($learn_value >= 16) {
-    $l_message = 16;
-    $learn_value -= 16;
-  }
-  $l_method = $learn_value;
-  $learn_flags = array("l_method" => $l_method, "l_message" => $l_message, "l_search" => $l_search);
-
-  return $learn_flags;
-}
 ?>

@@ -31,25 +31,6 @@
               <option value="0" selected>no</option>
               <option value="1">yes</option>
             </select><br/><br/>
-            <fieldset>
-              <legend>Learn Flag</legend>
-              Learned:
-              <select name='l_method' onChange="javascript:updateLearn();">
-                <option value="0" selected>Not Learned</option>
-                <option value="1">Quest</option>
-                <option value="2">Experiment</option>
-              </select><br/><br/>
-              Client Message:
-              <select name='l_message' onChange="javascript:updateLearn();">
-                <option value="0" selected>Yes</option>
-                <option value="16">No</option>
-              </select><br/><br/>
-              UI Searchable:
-              <select name='l_search' onChange="javascript:updateLearn();">
-                <option value="0" selected>Yes</option>
-                <option value="32">No</option>
-              </select>
-            </fieldset><br/>
             Enabled:<br/>
             <select name="enabled">
               <option value="0">no</option>
@@ -58,7 +39,6 @@
             Notes:<br/>
             <input type="text" name="notes" size="30" value=""><br/><br/>
             <center>
-              <input type="hidden" name="must_learn" value="0">
               <input type="submit" name="submit" value="Submit Changes">
             </center>
           </form>
