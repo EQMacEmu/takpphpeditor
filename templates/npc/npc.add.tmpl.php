@@ -300,8 +300,7 @@
               <tr>
                 <td valign="top" align="left">
                   <input type="checkbox" name="qglobal" value="1"/> Enable Quest Globals<br/>
-                  <input type="checkbox" name="encounter" value="1"/> Enable Encounter Handins<br/>
-                  <input type="checkbox" name="isquest" value="1"> Has Quest File<br/>
+                   <input type="checkbox" name="isquest" value="1"> Has Quest File<br/>
                 </td>
                 <td valign="top" align="left">
                   <input type="checkbox" name="unique_spawn_by_name" value="1"/> Unique by Name<br/>

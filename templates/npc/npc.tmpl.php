@@ -281,9 +281,8 @@
                 <legend><strong>Misc</strong></legend>
                 <table width="100%" border="0" cellpadding="3" cellspacing="0">
                   <tr>
-                    <td align="left" width="33%">Qglobal: <?=$yesno[$qglobal]?></td>
-                    <td align="left" width="33%">Encounter: <?=$yesno[$encounter]?></td>
-                    <td align="left" width="34%">Pet: <?=$yesno[$pet]?></td>
+                    <td align="left" width="50%">Qglobal: <?=$yesno[$qglobal]?></td>
+                    <td align="left" width="50%">Pet: <?=$yesno[$pet]?></td>
                   </tr>
                   <tr>
                     <td align="left" width="33%">Spawn Limit: <?echo ($spawn_limit > 0) ? $spawn_limit : "None";?></td>
@@ -387,7 +386,6 @@
         <input type="hidden" name="combat_hp_regen" value="<?=$combat_hp_regen?>">
         <input type="hidden" name="combat_mana_regen" value="<?=$combat_mana_regen?>">
         <input type="hidden" name="ignore_distance" value="<?=$ignore_distance?>">
-        <input type="hidden" name="encounter" value="<?=$encounter?>">
         <input type="hidden" name="ignore_despawn" value="<?=$ignore_despawn?>">
         <input type="hidden" name="aggro_pc" value="<?=$aggro_pc?>">
         <input type="hidden" name="avoidance" value="<?=$avoidance?>">

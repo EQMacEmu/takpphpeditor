@@ -1290,7 +1290,6 @@ function update_npc() {
   if (!isset($_POST['isquest'])) $_POST['isquest'] = 0;
   if (!isset($_POST['ignore_despawn'])) $_POST['ignore_despawn'] = 0;
   if (!isset($_POST['aggro_pc'])) $_POST['aggro_pc'] = 0;
-  if (!isset($_POST['encounter'])) $_POST['encounter'] = 0;
   if (!isset($_POST['raid_target'])) $_POST['raid_target'] = 0;
 
   // Check for special attacks change
@@ -1399,7 +1398,6 @@ function update_npc() {
   if ($raid_target != $_POST['raid_target']) $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
   if ($light != $_POST['light']) $fields .= "light=\"" . $_POST['light'] . "\", ";
   if ($ignore_distance != $_POST['ignore_distance']) $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
-  if ($encounter != $_POST['encounter']) $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
   if ($ignore_despawn != $_POST['ignore_despawn']) $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   if ($aggro_pc != $_POST['aggro_pc']) $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
   if ($greed != $_POST['greed']) $fields .= "greed=\"" . $_POST['greed'] . "\", ";
@@ -1430,7 +1428,6 @@ function add_npc () {
   if ($_POST['isquest'] != 1) $_POST['isquest'] = 0;
   if ($_POST['ignore_despawn'] != 1) $_POST['ignore_despawn'] = 0;
   if ($_POST['aggro_pc'] != 1) $_POST['aggro_pc'] = 0;
-  if ($_POST['encounter'] != 1) $_POST['encounter'] = 0;
   if ($_POST['pet'] != 1) $_POST['pet'] = 0;
   if ($_POST['raid_target'] != 1) $_POST['raid_target'] = 0;
   if (!isset($_POST['avoidance'])) $_POST['avoidance'] = 0;		// this needs a form entry
@@ -1533,7 +1530,6 @@ function add_npc () {
   $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
   $fields .= "light=\"" . $_POST['light'] . "\", ";
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
-  $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
   $fields .= "greed=\"" . $_POST['greed'] . "\"";
@@ -1641,7 +1637,6 @@ function copy_npc () {
   $fields .= "raid_target=\"" . $_POST['raid_target'] . "\", ";
   $fields .= "light=\"" . $_POST['light'] . "\", ";
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
-  $fields .= "encounter=\"" . $_POST['encounter'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
   $fields .= "greed=\"" . $_POST['greed'] . "\"";

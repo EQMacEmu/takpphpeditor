@@ -1190,18 +1190,17 @@ $npcfields = array (
 73 => "feettexture",
 74 => "aggro_pc", 
 75 => "ignore_distance", 
-76 => "encounter", 
-77 => "ignore_despawn", 
-78 => "loottable_id",
-79 => "merchant_id",
-80 => "npc_spells_id",
-81 => "npc_spells_effects_id",
-82 => "npc_faction_id",
-83 => "emoteid",
-84 => "hp_regen_rate", 
-85 => "mana_regen_rate", 
-86 => "combat_hp_regen", 
-87 => "combat_mana_regen"
+76 => "ignore_despawn", 
+77 => "loottable_id",
+78 => "merchant_id",
+79 => "npc_spells_id",
+80 => "npc_spells_effects_id",
+81 => "npc_faction_id",
+82 => "emoteid",
+83 => "hp_regen_rate", 
+84 => "mana_regen_rate", 
+85 => "combat_hp_regen", 
+86 => "combat_mana_regen"
 );
 
 ?>
