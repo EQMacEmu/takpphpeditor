@@ -127,7 +127,10 @@ function getSpellsetName($id) {
   global $mysql;
   $query = "SELECT name FROM npc_spells WHERE id=$id";
   $result = $mysql->query_assoc($query);
-  return $result['name'];
+   if($result)
+    return $result['name'];
+  else
+    return "Not Found";
 }
 
 function check_authorization() {
