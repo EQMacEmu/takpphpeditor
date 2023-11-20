@@ -5,7 +5,12 @@ function getNPCName($npcid) {
   
   $query = "SELECT name FROM npc_types WHERE id=$npcid";
   $result = $mysql->query_assoc($query);
-  return $result['name'];
+  if ($result) {
+    return $result['name'];
+  }
+  else {
+    return "N/A";
+  }
 }
 
 function getZoneLongName($short_name) {
@@ -14,7 +19,7 @@ function getZoneLongName($short_name) {
   $query = "SELECT long_name FROM zone WHERE short_name=\"$short_name\"";
   $result = $mysql->query_assoc($query);
   if ($result) {
-    return $result['name'];
+    return $result['long_name'];
   }
   else {
     return "N/A";
