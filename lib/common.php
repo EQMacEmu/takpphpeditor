@@ -287,7 +287,10 @@ function getAccountName($acctid) {
   
   $query = "SELECT name FROM account WHERE id=$acctid";
   $result = $mysql->query_assoc($query);
-  return $result['name'];
+   if($result)
+    return $result['name'];
+  else
+    return "Not Found";
 }
 
 function getAccountID($lsname) {
@@ -295,7 +298,10 @@ function getAccountID($lsname) {
 
   $query = "SELECT id FROM account WHERE name=\"$lsname\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+    if($result)
+    return $result['id'];
+  else
+    return "Not Found";
 }
 
 function search_accounts_by_name() {
@@ -533,7 +539,10 @@ function get_currency_name($curr_id) {
   $query = "SELECT a.item_id, i.name FROM alternate_currency a, items i WHERE a.item_id = i.id AND a.id = $curr_id";
   $result = $mysql->query_assoc($query);
 
-  return $result['name'];
+    if($result)
+    return $result['name'];
+  else
+    return "Not Found";
 }
 
 function factions_array() {
