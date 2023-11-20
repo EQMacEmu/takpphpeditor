@@ -13,7 +13,12 @@ function getZoneLongName($short_name) {
 
   $query = "SELECT long_name FROM zone WHERE short_name=\"$short_name\"";
   $result = $mysql->query_assoc($query);
-  return $result['long_name'];
+  if ($result) {
+    return $result['name'];
+  }
+  else {
+    return "N/A";
+  }
 }
 
 function getZoneID($short_name) {
@@ -21,7 +26,12 @@ function getZoneID($short_name) {
 
   $query = "SELECT zoneidnumber AS id FROM zone WHERE short_name=\"$short_name\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+   if ($result) {
+	return $result['id'];
+   }
+	else {
+		return "N/A";
+	}	
 }
 
 function getZoneIDByName($short_name) {
@@ -29,7 +39,12 @@ function getZoneIDByName($short_name) {
 
   $query = "SELECT id FROM zone WHERE short_name=\"$short_name\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+    if ($result) {
+		return $result['id'];
+   }
+	else {
+		return "N/A";
+	}	
 }
 
 function getZoneName($zoneidnumber) {
@@ -37,7 +52,12 @@ function getZoneName($zoneidnumber) {
 
   $query = "SELECT short_name FROM zone WHERE zoneidnumber=\"$zoneidnumber\"";
   $result = $mysql->query_assoc($query);
-  return $result['short_name'];
+  if ($result) {
+    return $result['short_name'];
+  }
+  else {
+    return "N/A";
+  }
 }
 
 function searchItems($search) {
