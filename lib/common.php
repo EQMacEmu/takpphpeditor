@@ -77,7 +77,10 @@ function get_merchant_id() {
   global $mysql, $npcid;
   $query = "SELECT merchant_id FROM npc_types WHERE id=$npcid";
   $result = $mysql->query_assoc($query);
-  return $result['merchant_id'];
+  if($result)
+    return $result['merchant_id'];
+  else
+	return "N/A";
 }
 
 function get_item_name($id) {
@@ -206,7 +209,10 @@ function get_zoneid_by_npcid($npcid) {
 
   $query = "SELECT id FROM zone WHERE zoneidnumber=\"$npczone\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+  if($result)
+	return $result['id'];
+  else
+    return "N/A";
 }
 
 function get_npcid_by_emoteid($emoteid) {
@@ -214,7 +220,10 @@ function get_npcid_by_emoteid($emoteid) {
 
   $query = "SELECT id FROM npc_types WHERE emoteid=\"$emoteid\" limit 1";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+   if($result)
+	return $result['id'];
+  else
+    return "N/A";
 }
 
 function getPlayerName($playerid) {
@@ -235,7 +244,10 @@ function getPlayerID($playername) {
   
   $query = "SELECT id FROM character_data WHERE name=\"$playername\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+  if($result)
+	return $result['id'];
+  else
+    return "N/A";
 }
 
 function search_players_by_name() {
@@ -261,7 +273,10 @@ function getGuildName($guildid) {
 
   $query = "SELECT name FROM guilds WHERE id = $guildid";
   $result = $mysql->query_assoc($query);
-  return $result['name'];
+   if($result)
+    return $result['name'];
+  else
+    return "Not Found";
 }
 
 function search_spell_by_id() {
@@ -328,7 +343,10 @@ function get_real_time($unix_time) {
   $query = "SELECT FROM_UNIXTIME($unix_time) AS real_time";
   $result = $mysql->query_assoc($query);
 
-  return($result['real_time']);
+   if($result)
+    return $result['real_time'];
+  else
+    return "Not Found";
 }
 
 function get_current_time() {
@@ -337,7 +355,10 @@ function get_current_time() {
   $query = "SELECT NOW() AS timestamp";
   $result = $mysql->query_assoc($query);
 
-  return($result['timestamp']);
+    if($result)
+    return $result['timestamp'];
+  else
+    return "Not Found";
 }
 
 function search_guilds() {
