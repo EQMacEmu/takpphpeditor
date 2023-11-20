@@ -1517,8 +1517,10 @@ function add_spawnpoint() {
   $boot_variance = $_POST['boot_variance'];
   $clear_timer_onboot = $_POST['clear_timer_onboot'];
   $force_z = $_POST['force_z'];
+  $min_expansion = $_POST['min_expansion'];
+  $max_expansion = $_POST['max_expansion'];
   
-  $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z";
+  $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z, min_expansion=$min_expansion, max_expansion=$max_expansion;";
   $mysql->query_no_result($query);
 }
 
@@ -1833,8 +1835,10 @@ function copy_spawnpoint() {
   $boot_variance = $_POST['boot_variance'];
   $clear_timer_onboot = $_POST['clear_timer_onboot'];
   $force_z = $_POST['force_z'];
+  $min_expansion = $_POST['min_expansion'];
+  $max_expansion = $_POST['max_expansion'];
 
-  $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z";
+  $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z, min_expansion=$min_expansion, max_expansion=$max_expansion;";
   $mysql->query_no_result($query);
 }
 
