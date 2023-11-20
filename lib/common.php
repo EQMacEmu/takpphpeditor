@@ -5,7 +5,12 @@ function getNPCName($npcid) {
   
   $query = "SELECT name FROM npc_types WHERE id=$npcid";
   $result = $mysql->query_assoc($query);
-  return $result['name'];
+  if ($result) {
+    return $result['name'];
+  }
+  else {
+    return "N/A";
+  }
 }
 
 function getZoneLongName($short_name) {
@@ -13,7 +18,12 @@ function getZoneLongName($short_name) {
 
   $query = "SELECT long_name FROM zone WHERE short_name=\"$short_name\"";
   $result = $mysql->query_assoc($query);
-  return $result['long_name'];
+  if ($result) {
+    return $result['long_name'];
+  }
+  else {
+    return "N/A";
+  }
 }
 
 function getZoneID($short_name) {
@@ -21,7 +31,12 @@ function getZoneID($short_name) {
 
   $query = "SELECT zoneidnumber AS id FROM zone WHERE short_name=\"$short_name\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+   if ($result) {
+	return $result['id'];
+   }
+	else {
+		return "N/A";
+	}	
 }
 
 function getZoneIDByName($short_name) {
@@ -29,7 +44,12 @@ function getZoneIDByName($short_name) {
 
   $query = "SELECT id FROM zone WHERE short_name=\"$short_name\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+    if ($result) {
+		return $result['id'];
+   }
+	else {
+		return "N/A";
+	}	
 }
 
 function getZoneName($zoneidnumber) {
@@ -37,7 +57,12 @@ function getZoneName($zoneidnumber) {
 
   $query = "SELECT short_name FROM zone WHERE zoneidnumber=\"$zoneidnumber\"";
   $result = $mysql->query_assoc($query);
-  return $result['short_name'];
+  if ($result) {
+    return $result['short_name'];
+  }
+  else {
+    return "N/A";
+  }
 }
 
 function searchItems($search) {
@@ -52,7 +77,10 @@ function get_merchant_id() {
   global $mysql, $npcid;
   $query = "SELECT merchant_id FROM npc_types WHERE id=$npcid";
   $result = $mysql->query_assoc($query);
-  return $result['merchant_id'];
+  if($result)
+    return $result['merchant_id'];
+  else
+	return "N/A";
 }
 
 function get_item_name($id) {
@@ -102,7 +130,10 @@ function getSpellsetName($id) {
   global $mysql;
   $query = "SELECT name FROM npc_spells WHERE id=$id";
   $result = $mysql->query_assoc($query);
-  return $result['name'];
+   if($result)
+    return $result['name'];
+  else
+    return "Not Found";
 }
 
 function check_authorization() {
@@ -178,7 +209,10 @@ function get_zoneid_by_npcid($npcid) {
 
   $query = "SELECT id FROM zone WHERE zoneidnumber=\"$npczone\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+  if($result)
+	return $result['id'];
+  else
+    return "N/A";
 }
 
 function get_npcid_by_emoteid($emoteid) {
@@ -186,7 +220,10 @@ function get_npcid_by_emoteid($emoteid) {
 
   $query = "SELECT id FROM npc_types WHERE emoteid=\"$emoteid\" limit 1";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+   if($result)
+	return $result['id'];
+  else
+    return "N/A";
 }
 
 function getPlayerName($playerid) {
@@ -207,7 +244,10 @@ function getPlayerID($playername) {
   
   $query = "SELECT id FROM character_data WHERE name=\"$playername\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+  if($result)
+	return $result['id'];
+  else
+    return "N/A";
 }
 
 function search_players_by_name() {
@@ -233,7 +273,10 @@ function getGuildName($guildid) {
 
   $query = "SELECT name FROM guilds WHERE id = $guildid";
   $result = $mysql->query_assoc($query);
-  return $result['name'];
+   if($result)
+    return $result['name'];
+  else
+    return "Not Found";
 }
 
 function search_spell_by_id() {
@@ -259,7 +302,10 @@ function getAccountName($acctid) {
   
   $query = "SELECT name FROM account WHERE id=$acctid";
   $result = $mysql->query_assoc($query);
-  return $result['name'];
+   if($result)
+    return $result['name'];
+  else
+    return "Not Found";
 }
 
 function getAccountID($lsname) {
@@ -267,7 +313,10 @@ function getAccountID($lsname) {
 
   $query = "SELECT id FROM account WHERE name=\"$lsname\"";
   $result = $mysql->query_assoc($query);
-  return $result['id'];
+    if($result)
+    return $result['id'];
+  else
+    return "Not Found";
 }
 
 function search_accounts_by_name() {
@@ -294,7 +343,10 @@ function get_real_time($unix_time) {
   $query = "SELECT FROM_UNIXTIME($unix_time) AS real_time";
   $result = $mysql->query_assoc($query);
 
-  return($result['real_time']);
+   if($result)
+    return $result['real_time'];
+  else
+    return "Not Found";
 }
 
 function get_current_time() {
@@ -303,7 +355,10 @@ function get_current_time() {
   $query = "SELECT NOW() AS timestamp";
   $result = $mysql->query_assoc($query);
 
-  return($result['timestamp']);
+    if($result)
+    return $result['timestamp'];
+  else
+    return "Not Found";
 }
 
 function search_guilds() {
@@ -505,7 +560,10 @@ function get_currency_name($curr_id) {
   $query = "SELECT a.item_id, i.name FROM alternate_currency a, items i WHERE a.item_id = i.id AND a.id = $curr_id";
   $result = $mysql->query_assoc($query);
 
-  return $result['name'];
+    if($result)
+    return $result['name'];
+  else
+    return "Not Found";
 }
 
 function factions_array() {
