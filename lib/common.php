@@ -109,18 +109,6 @@ function getFactionName($fid) {
   }
 }
 
-function getTaskTitle($tskid) {
-  global $mysql;
-  $query = "SELECT title FROM tasks WHERE id=$tskid";
-  $result = $mysql->query_assoc($query);
-  if ($result) {
-    return $result['title'];
-  }
-  else {
-    return "N/A";
-  }
-}
-
 function getRecipeName($id) {
   global $mysql;
   $query = "SELECT name FROM tradeskill_recipe WHERE id=$id";
@@ -532,8 +520,6 @@ function delete_player($playerid) {
   $query = "DELETE FROM character_spells WHERE id=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM char_recipe_list WHERE char_id=$playerid";
-  $mysql->query_no_result($query);
-  $query = "DELETE FROM completed_tasks WHERE charid=$playerid";
   $mysql->query_no_result($query);
   $query = "DELETE FROM discovered_items WHERE char_name=(SELECT name FROM character_data WHERE id=$playerid)";
   $mysql->query_no_result($query);
