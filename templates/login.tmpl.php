@@ -1,50 +1,50 @@
-    <center>
-        <br><br><br>
-        <h1>Project Everquest Database Editing Interface</h1>
-        <br><br>
+<div class="center">
+    <br><br><br>
+    <h1>Project Everquest Database Editing Interface</h1>
+    <br><br>
 
-<?if($error == 1):?>
-        <font color="red">Invalid username/password or logins are disabled.</font><br><br><br>
-<?endif;?>
+    <?php if (isset($error) && $error == 1): ?>
+        <span class="alert-danger">Invalid username/password or logins are disabled.</span><br><br><br>
+    <?php endif; ?>
 
-        <form method="post" action="index.php?login">
-        <table width="250">
-<?if($enable_user_login == 1):?>
-          <tr>
-            <td align="left">
-              <strong>Login:</strong>
-            </td>
-            <td align="right">
-              <input type="text" name="login" value="<?=$login?>">
-            </td>
-          </tr>
-          <tr>
-            <td align="left">
-              <strong>Password:</strong>
-            </td>
-            <td align="right">
-              <input type="password" name="password" value="<?=$password?>">
-            </td>
-          </tr>
-    <tr>
-            <td colspan="2" align="center">
-              <br><br><input type="submit" value="Login" style="width:60px;"><br><br><br>
-<?endif;?>
+    <form method="post" action="/index.php?login">
+        <table style="margin:0 auto; width: 250px">
+            <?php if (isset($enable_user_login) && $enable_user_login == 1): ?>
+            <tr>
+                <td style="text-align: left">
+                    <label for="login"><strong>Login:</strong></label>
+                </td>
+                <td style="text-align: right">
+                    <input type="text" id="login" name="login" value="<?= $login ?? ""; ?>">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <label for="password"><strong>Password:</strong></label>
+                </td>
+                <td style="text-align: right">
+                    <input type="password" id="password" name="password" value="<?= $password ?? ""; ?>">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <br><br><input type="submit" value="Login" style="width:60px;"><br><br><br>
+                    <?php endif; ?>
 
-<?if($enable_user_login != 1):?>
-         User logins are disabled.<br><br>
-    <tr>
-              <td colspan="2" align="center">
-<?endif;?>
-    
-<?if($enable_guest_mode == 1):?>
-              <a href="index.php?login=guest">Click here to login as a guest.</a>
-<?endif;?>
-<?if($enable_guest_mode != 1):?>
-              Guest mode is disabled.
-<?endif;?>
-            </td>
-          </tr>
+                    <?php if (isset($enable_user_login) && $enable_user_login != 1): ?>
+                    User logins are disabled.<br><br>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <?php endif; ?>
+
+                    <?php if (isset($enable_guest_mode) && $enable_guest_mode == 1): ?>
+                        <a href="/index.php?login=guest">Click here to login as a guest.</a>
+                    <?php endif; ?>
+                    <?php if (isset($enable_guest_mode) && $enable_guest_mode != 1): ?>
+                        Guest mode is disabled.
+                    <?php endif; ?>
+                </td>
+            </tr>
         </table>
-        </form>
-      </center>
+    </form>
+</div>

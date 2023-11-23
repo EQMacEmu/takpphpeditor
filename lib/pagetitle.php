@@ -2,7 +2,7 @@
 
 $pagetitle = "TAKP Database Editor";
 
-switch ($editor) {
+switch ($editor ?? '') {
   case '':
     break;
   case 'npc':
@@ -82,16 +82,16 @@ switch ($editor) {
     break;
 }
 
-if ($z != '') $pagetitle .= " - ".getZoneLongName($z);
-if ($npcid != '' && $npcid !='ID' && $editor != 'altcur' && $editor != 'qglobal') $pagetitle .= " - ".getNPCName($npcid);
-if ($fid != '') $pagetitle .= " - " . getFactionName($fid);
-if ($tskid != '') $pagetitle .= " - " . getTaskTitle($tskid);
-if ($ts != '') $pagetitle .= " - " . $tradeskills[$ts];
-if ($rec != '0') $pagetitle .= " - " . getRecipeName($rec);
-if ($spellset != '') $pagetitle .= " - " . getSpellsetName($spellset);
-if (($playerid != '') && ($playerid != 'Player ID')) $pagetitle .= " - " . getPlayerName($playerid);
-if ($acctid != '') $pagetitle .= " - " . getAccountName($acctid) . " ($acctid)";
-if ($guildid != '') $pagetitle .= " - " . getGuildName($guildid) . " ($guildid)";
-if ($aaid != '') $pagetitle .= " - " . getAAName($aaid) . " ($aaid)";
+if (isset($z) && $z != '') $pagetitle .= " - ".getZoneLongName($z);
+if (isset($npcid) && $npcid != '' && $npcid !='ID' && (isset($editor) && $editor != 'altcur') && $editor != 'qglobal') $pagetitle .= " - ".getNPCName($npcid);
+if (isset($fid) && $fid != '') $pagetitle .= " - " . getFactionName($fid);
+#if (isset($tskid) && $tskid != '') $pagetitle .= " - " . getTaskTitle($tskid);
+#if (isset($ts) && $ts != '') $pagetitle .= " - " . (isset($tradeskills) ? $tradeskills[$ts] : '');
+if (isset($rec) && $rec != '0') $pagetitle .= " - " . getRecipeName($rec);
+if (isset($spellset) && $spellset != '') $pagetitle .= " - " . getSpellsetName($spellset);
+if ((isset($playerid) && $playerid != '') && ($playerid != 'Player ID')) $pagetitle .= " - " . getPlayerName($playerid);
+if (isset($acctid) && $acctid != '') $pagetitle .= " - " . getAccountName($acctid) . " ($acctid)";
+if (isset($guildid) && $guildid != '') $pagetitle .= " - " . getGuildName($guildid) . " ($guildid)";
+if (isset($aaid) && $aaid != '') $pagetitle .= " - " . getAAName($aaid) . " ($aaid)";
 
 ?>

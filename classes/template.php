@@ -1,6 +1,7 @@
 <?php
 
 class Template {
+    private $file;
     var $vars; // Holds all the template variables
 
     /*
@@ -25,10 +26,13 @@ class Template {
      * @param $file string the template file name
      */
     function fetch($file = null) {
-        if(!$file) $file = $this->file;
+        if(!$file) {
+            $file = $this->file;
+        }
 
-        if ($this->vars)
-        extract($this->vars);          // Extract the vars to local namespace
+        if ($this->vars) {
+            extract($this->vars);          // Extract the vars to local namespace
+        }
         ob_start();                    // Start output buffering
         include($file);                // Include the file
         $contents = ob_get_contents(); // Get the contents of the buffer
