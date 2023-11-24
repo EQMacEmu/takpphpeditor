@@ -2038,7 +2038,7 @@ function timer_text($seconds) {
 		return $seconds." seconds";
 	
 	$days = floor($seconds / 86400);
-	$hours = floor($seconds / 3600 % 24);
+	$hours = floor(intval($seconds / 3600) % 24);
 	$mins = floor($seconds / 60 % 60);
 	$secs = floor($seconds % 60);
 	
