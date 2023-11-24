@@ -85,8 +85,7 @@ switch ($editor ?? '') {
 if (isset($z) && $z != '') $pagetitle .= " - ".getZoneLongName($z);
 if (isset($npcid) && $npcid != '' && $npcid !='ID' && (isset($editor) && $editor != 'altcur') && $editor != 'qglobal') $pagetitle .= " - ".getNPCName($npcid);
 if (isset($fid) && $fid != '') $pagetitle .= " - " . getFactionName($fid);
-#if (isset($tskid) && $tskid != '') $pagetitle .= " - " . getTaskTitle($tskid);
-#if (isset($ts) && $ts != '') $pagetitle .= " - " . (isset($tradeskills) ? $tradeskills[$ts] : '');
+if (isset($ts) && $ts != '') $pagetitle .= " - " . (isset($tradeskills) ? $tradeskills[$ts] : '');
 if (isset($rec) && $rec != '0') $pagetitle .= " - " . getRecipeName($rec);
 if (isset($spellset) && $spellset != '') $pagetitle .= " - " . getSpellsetName($spellset);
 if ((isset($playerid) && $playerid != '') && ($playerid != 'Player ID')) $pagetitle .= " - " . getPlayerName($playerid);
