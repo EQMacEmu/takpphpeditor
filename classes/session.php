@@ -25,8 +25,10 @@ class session {
     }
 
     $row = $result->fetch_assoc();
-    extract($row);
-    
+    if (gettype($row) === 'array') {
+      extract($row);
+    }
+
     if ($password == md5($pw)) {
       $_SESSION['login'] = $login;
       $_SESSION['password'] = md5($pw);
@@ -56,7 +58,9 @@ class session {
     }
 
     $row = $result->fetch_assoc();
-    extract($row);
+    if (gettype($row) === 'array') {
+      extract($row);
+    }
 
     if ($password == $pw) {
       return true;
@@ -83,7 +87,9 @@ class session {
     }
 
     $row = $result->fetch_assoc();
-    extract($row);
+    if (gettype($row) === 'array') {
+      extract($row);
+    }
 
     if ($password == $pw) {
       return true;
@@ -105,7 +111,9 @@ class session {
     $result = $mysql->execute_query($query, [$login]);
 
     $row = $result->fetch_assoc();
-    extract($row);
+    if (gettype($row) === 'array') {
+      extract($row);
+    }
 
     if ($administrator == 1) {
       return true;
