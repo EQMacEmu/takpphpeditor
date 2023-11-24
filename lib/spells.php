@@ -101,7 +101,8 @@ function spell_info () {
   return $result;
 }
 
-function delete_spell () {
+function delete_spell (): void
+{
   global $mysql;
 
   $id = $_GET['id'];
@@ -110,7 +111,8 @@ function delete_spell () {
   $mysql->query_no_result($query);
 }
 
-function update_spell () {
+function update_spell (): void
+{
   global $mysql;
 
   $id = $_POST['id'];
@@ -203,7 +205,8 @@ function get_max_id () {
   return $newid;
 }
 
-function add_spell () {
+function add_spell (): void
+{
   global $mysql;
 }
 
