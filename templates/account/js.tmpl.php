@@ -1,4 +1,4 @@
-<script language="javascript">
+<script>
   function showSearch() {
     document.getElementById("searchblock").style.display = "block";
   }
@@ -10,9 +10,9 @@
     document.getElementById("submitblock").style.display = "block";
   }
   function validateTransfer() {
-    var from_acct = document.getElementById("from_acct").value;
-    var to_acct = document.getElementById("to_text").value;
-    if (from_acct == to_acct) {
+    let from_acct = document.getElementById("from_acct").value;
+    let to_acct = document.getElementById("to_text").value;
+    if (from_acct === to_acct) {
       alert("You cannot transfer to the same account!");
     }
     else {
