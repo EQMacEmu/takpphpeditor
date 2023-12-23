@@ -587,7 +587,7 @@ function deconstruct_mod($mod_name) {
       {
         if($model == -1)
         {
-          $model = ALL;
+          $model = 'ALL';
         }
         $mod_type['model'] = $model;
       }
