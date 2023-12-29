@@ -130,7 +130,7 @@ table {
 }
 
 #searchbar select {
-  width: 180px;
+  width: 160px;
   font-size: 12px;
 }
 
@@ -182,10 +182,11 @@ table {
 }
 
 .edit_form_header {
-  padding: 0 5px 3px 5px;
-  background-color: black;
+  padding: 0 10px 3px 10px;
+  background-color: #000;
   color: #FFF;
-  font-size: 12px
+  font-size: 12px;
+  min-width: 200px;
 }
 
 .edit_form_content {
@@ -193,6 +194,7 @@ table {
   color: #000;
   font-size: 12px;
   background-color: #CCC;
+  min-width: 200px;
 }
 
 .edit_form_content_small {
