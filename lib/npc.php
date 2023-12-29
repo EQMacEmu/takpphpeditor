@@ -2099,7 +2099,10 @@ function suggest_npcid() {
 
   $query = "SELECT zoneidnumber FROM zone WHERE short_name=\"$z\"";
   $result = $mysql->query_assoc($query);
-  $zid = $result['zoneidnumber'] . "___";
+  
+  if ($result) {
+	$zid = $result['zoneidnumber'] . "___";
+  }
 
   $query = "SELECT MAX(id) as id FROM npc_types WHERE id like \"$zid\"";
   $result = $mysql->query_assoc($query);
