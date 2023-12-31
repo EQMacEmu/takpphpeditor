@@ -54,11 +54,10 @@ $aa_action_target = array (
   '5'  =>  "Caster Pet"
 );
 
-
 switch ($action) {
   case 0:  // View AA
     check_authorization();
-    $aaref = (isset($_GET['aaref']) ? $_GET['aaref'] : null);
+    $aaref = ($_GET['aaref'] ?? null);
     if ($aaid) {
       $body = new Template("templates/aa/aa.tmpl.php");
       $body->set('aaid', $aaid);
@@ -109,8 +108,8 @@ switch ($action) {
     break;
   case 28: // Search by expansion / class
     check_authorization();
-    $cls = (isset($_GET['cls']) ? $_GET['cls'] : null);
-    $exp = (isset($_GET['exp']) ? $_GET['exp'] : null);
+    $cls = ($_GET['cls'] ?? null);
+    $exp = ($_GET['exp'] ?? null);
     $body = new Template("templates/aa/aa.searchresults.tmpl.php");
     $body->set('eqexpansions', $eqexpansions);
     $body->set('results', null);
@@ -149,7 +148,7 @@ switch ($action) {
     break;
   case 4: // Edit aa_action for rank
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     $body = new Template("templates/aa/aa_action.edit.tmpl.php");
     $body->set('aa_action_target', $aa_action_target);
     $vars = getActionForRank($aaid, $rank);
@@ -162,7 +161,7 @@ switch ($action) {
     break;
   case 5: // Add new aa_action to rank
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     $body = new Template("templates/aa/aa_action.edit.tmpl.php");
       $body->set('aa_action_target', $aa_action_target);
     $body->set('editmode', 2);
@@ -183,8 +182,8 @@ switch ($action) {
     check_authorization();
     // We use the actual ID of the aa_effect entry to pinpoint
     // what we're editing.
-    $aaeffectid = (isset($_GET['aaeffectid']) ? $_GET['aaeffectid'] : null);
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $aaeffectid = ($_GET['aaeffectid'] ?? null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaid && $rank && $aaeffectid) {
       $vars = getAAEffectInfo($aaeffectid);
       $aa_vars = getBaseAAInfo($aaid);
@@ -216,7 +215,7 @@ switch ($action) {
     // base AA template.
     // If we're provided a slot parameter then we treat that as
     // a suggestion to fill in as a preset in the form.
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     //$slot = (isset($_GET['slot']) ? $_GET['slot'] : null);
     if ($aaid && $rank) {
       $aa_vars = getBaseAAInfo($aaid);
@@ -241,12 +240,12 @@ switch ($action) {
     check_authorization();
     // aaeffectid is what we use to delete the correct one from the DB.
     // aaid and rank are sent as navigation aids.
-    $aaeffectid = (isset($_GET['aaeffectid']) ? $_GET['aaeffectid'] : null);
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $aaeffectid = ($_GET['aaeffectid'] ?? null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaeffectid) {
       deleteEffectSlot($aaeffectid);
     }
-    // Check if we have any navigaton markers provided so we can jump
+    // Check if we have any navigaton markers provided, so we can jump
     // right back to where we've been editing.
     if ($aaid) {
       $loc = "Location: index.php?editor=aa&aaid=$aaid";
@@ -260,7 +259,7 @@ switch ($action) {
     break;
   case 9: // Remove all AA effect slots for rank
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaid && $rank) {
       deleteAllEffectsFromRank($aaid, $rank);
     }
@@ -275,7 +274,7 @@ switch ($action) {
     break;
   case 10: // Remove aa_action for rank
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaid && $rank) {
       deleteActionFromRank($aaid, $rank);
     }
@@ -298,7 +297,7 @@ switch ($action) {
     break;
   case 13: // update aa_effect slot for rank
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaid && $rank) {
       $aa_vars = getBaseAAInfo($aaid);
       if ($aa_vars && $rank>0 && $rank<=$aa_vars['max_level']) {
@@ -311,7 +310,7 @@ switch ($action) {
     break;
   case 14: // update aa_action for rank
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     $vars = build_aa_action_from_post();
     updateActionForRank($aaid, $rank, $vars);
     header("Location: index.php?editor=aa&aaid=$aaid#rank$rank");
@@ -351,7 +350,7 @@ switch ($action) {
     break;
   case 17: // insert new aa_effect slot for rank into the DB
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaid && $rank) {
       $aa_vars = getBaseAAInfo($aaid);
       if ($aa_vars && $rank>0 && $rank<=$aa_vars['max_level']) {
@@ -364,14 +363,14 @@ switch ($action) {
     break;
   case 18: // insert new aa_action for rank into the DB
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     $vars = build_aa_action_from_post();
     addActionToRank($aaid, $rank, $vars);
     header("Location: index.php?editor=aa&aaid=$aaid#rank$rank");
     break;
   case 19: // edit cost and level for rank
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaid && $rank) {
       $vars = get_level_cost($aaid, $rank);
       if ($vars) {
@@ -403,7 +402,7 @@ switch ($action) {
     $level = $_POST['level'];
     $cost = $_POST['cost'];
     $desc = $_POST['description'];
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaid && $rank) {
       update_level_cost($aaid, $rank, $level, $cost, $desc);
     }
@@ -411,7 +410,7 @@ switch ($action) {
     break;
   case 21: // Delete specific cost and level for a rank.
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
     if ($aaid && $rank) {
       delete_level_cost($aaid, $rank);
     }
@@ -424,9 +423,9 @@ switch ($action) {
     break;
   case 23: // Copy aa_effect slots from a different rank.
     check_authorization();
-    $rank = (isset($_GET['rank']) ? $_GET['rank'] : null);
-    $fromaaid = (isset($_POST['aaid']) ? $_POST['aaid'] : null);
-    $fromrank = (isset($_POST['rank']) ? $_POST['rank'] : null);
+    $rank = ($_GET['rank'] ?? null);
+    $fromaaid = ($_POST['aaid'] ?? null);
+    $fromrank = ($_POST['rank'] ?? null);
     if ($aaid && $rank && $fromaaid) {
       if ($fromaaid == '' || $fromaaid == 'AA ID')
         copyEffectSlots($aaid, $fromrank, $aaid, $rank);
@@ -445,8 +444,8 @@ switch ($action) {
     // - movetype: 1 - insert the AA, 2 - move it from where it was.
     $aa_add = (isset($_POST['aa_add']) ? intval($_POST['aa_add']) : null);
     $aa_anchor = (isset($_POST['aa_anchor']) ? intval($_POST['aa_anchor']) : null);
-    $before = (isset($_POST['before']) ? $_POST['before'] : null);
-    $movetype = (isset($_POST['movetype']) ? $_POST['movetype'] : null);
+    $before = ($_POST['before'] ?? null);
+    $movetype = ($_POST['movetype'] ?? null);
     if ($aa_add && $aa_anchor && $before != null && $aaid && $aa_add != $aa_anchor) {
       $anchor_vars = getBaseAAInfo($aa_anchor);
       $add_vars = getBaseAAInfo($aa_add);
@@ -462,11 +461,11 @@ switch ($action) {
     // aaref is the AA where we want to unset the next_id for (needed because
     // we may not be operating on the main body AA)
     //
-    // We will pass back the just removed ID as aaref so it is easily available
+    // We will pass back the just removed ID as aaref, so it is easily available
     // for either reinserting or clicking to also fix that line.
     check_authorization();
     if ($aaid) {
-      $aaref = (isset($_GET['aaref']) ? $_GET['aaref'] : null);
+      $aaref = ($_GET['aaref'] ?? null);
       $aarefdata = null;
       $oldnext = null;
       if ($aaref) {
@@ -500,7 +499,7 @@ switch ($action) {
     // can be used on any entry in the SoF AA Group list.
     check_authorization();
     if ($aaid) {
-      $aaref = (isset($_GET['aaref']) ? $_GET['aaref'] : null);
+      $aaref = ($_GET['aaref'] ?? null);
       $aarefdata = null;
       $oldnext = null;
       $loc = "Location: index.php?editor=aa&aaid=$aaid";
@@ -550,15 +549,8 @@ function aa_info () {
     $aa_array['aa_effects'] = $aa_effects_array;
   }
 
-  //Load from aa_required_level_cost
-  $query = "SELECT * FROM aa_required_level_cost WHERE skill_id between $aaid and $aa_range";
-  $aa_cost_array = $mysql->query_mult_assoc($query);
-  if ($aa_cost_array) {
-    $aa_array['aa_cost'] = $aa_cost_array;
-  }
-
   if ($aa_vars_array && $aa_vars_array['prereq_skill'] != 0 && $aa_vars_array['prereq_skill'] != 4294967295) {
-    // Send the full info on the prereq so we can do error checking.
+    // Send the full info on the prereq, so we can do error checking.
     $prereq_aa_name = getBaseAAInfo($aa_vars_array['prereq_skill']);
     if ($prereq_aa_name) {
       $aa_array['prereq_name'] = $prereq_aa_name;
@@ -832,7 +824,7 @@ function build_aa_effect_from_post() {
   return $aa_effect;
 }
 
-// Grab all of the fields from $_POST and fill them into an array
+// Grab all the fields from $_POST and fill them into an array
 // that we return.
 function build_aa_vars_from_post() {
   $aa_vars = array();
