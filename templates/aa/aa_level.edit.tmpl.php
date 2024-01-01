@@ -1,4 +1,4 @@
-<div class="edit_form" style="width:250px;">
+<div class="edit_form" style="width:300px;">
     <div class="edit_form_header">
         Edit Level and Cost of Rank: <?= $rank ?? "" ?><br/>
     </div>

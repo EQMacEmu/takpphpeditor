@@ -76,13 +76,28 @@
 </div>
 <div class="edit_form" style="width:500px;">
     <div class="edit_form_header">
-        <?php global $aa_vars;
-        global $aaid;
-        if (!empty($editmode) && $editmode == 2) echo "Create a new AA"; else echo "Edit AA: {$aa_vars['name']} ({$aa_vars['eqmacid']}:$aaid)"; ?>
+        <?php
+        // Effort to set default array values when not defined; more keys would need to be defined for this array
+        // TODO: Convert to a get_key function that returns a default value when keys don't exist
+        $aa_vars = $aa_vars ?? array("name" => "Unknown", "eqmacid" => -1, "skill_id" => -1);
+        $aaid = $aaid ?? -1;
+        if (!empty($editmode))
+        {
+            if ($editmode == 2)
+            {
+                echo "Create a new AA";
+            } else
+            {
+                echo "Edit AA: {$aa_vars['name']} ({$aa_vars['eqmacid']}:$aaid)";
+            }
+        } else
+        {
+            echo "Error: Edit mode edit mode is undefined";
+        } ?>
     </div>
     <div class="edit_form_content">
         <form name="aa_edit" method="post"
-              action="index.php?editor=aa<?php if (!empty($editmode) && $editmode == 1) echo "&aaid=$aaid"; ?>&action=<?php if (!empty($editmode) && $editmode == 1) echo "15"; else echo "16"; ?>">
+              action="index.php?editor=aa<?php if(!empty($editmode)) { if ($editmode == 1) { echo "&aaid=$aaid"; }?>&action=<?php if ($editmode == 1) echo "15"; else echo "16"; }?>">
             <table>
                 <tr>
                     <td>
@@ -97,7 +112,7 @@
                     </td>
                     <td>
                         <label for="aaname">Name:<br/></label>
-                        <input type="text" id="aaname" name="aaname" size="50"
+                        <input type="text" id="aaname" name="aaname" size="37"
                                value="<?php echo "{$aa_vars['name']}"; ?>"><br/>
                     </td>
                 </tr>
@@ -313,19 +328,15 @@
                                     <td style="padding: 0; width:110px;">
                                         <label for="spellid">Spell ID:</label><br/>
                                         <input type="text" id="spellid" name="spellid" size="10"
-                                               value="<?php echo "{$aa_vars['spellid']}"; ?>"><img
-                                                src="images/minus.gif"
-                                                style="border: 0;"
-                                                title="Fill in the Not Used value for this field"
-                                                alt="Red Minus Icon"
-                                                onclick="fill8F(document.aa_edit.spellid);"><br/>
+                                               value="<?php echo "{$aa_vars['spellid']}"; ?>">
+                                        <img src="images/minus.gif" style="border: 0;" title="Fill in the Not Used value for this field" alt="Red Minus Icon" onclick="fill8F(document.aa_edit.spellid);"><br/>
                                     </td>
-                                    <td style="padding: 0; width:95px;">
+                                    <td style="padding: 0 0 15px 0; width:95px;">
                                         <label for="spell_type">Spell Type:</label><br/>
                                         <input type="text" id="spell_type" name="spell_type" size="10"
                                                value="<?php echo "{$aa_vars['spell_type']}"; ?>"><br/>
                                     </td>
-                                    <td style="padding: 0; width:95px;">
+                                    <td style="padding: 0 0 15px 0; width:95px;">
                                         <label for="spell_refresh">Spell Refresh:</label><br/>
                                         <input type="text" id="spell_refresh" name="spell_refresh" size="10"
                                                value="<?php echo "{$aa_vars['spell_refresh']}"; ?>"><br/>
