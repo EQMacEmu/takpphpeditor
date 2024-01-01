@@ -59,7 +59,7 @@ function getClasses($classes, $berserker): string
                     <td style="text-align: center;"><a href="index.php?editor=aa&aaid=<?= $skill_id ?>"><?= $name ?></a>
                     </td>
                     <td style="text-align: center;"><?= $prereq_skill ?></td>
-                    <td style="text-align: center;"><?= getClasses($classes, $berserker); ?></td>
+                    <td style="text-align: center;"><?= getClasses($classes, $berserker ?? 0); ?></td>
                     <td style="text-align: center;"><?= getExpansionName($aa_expansion); ?></td>
                 </tr>
             <?php endforeach; ?>
