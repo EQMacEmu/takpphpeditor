@@ -1,11 +1,12 @@
-<html>
-  <body bgcolor="#FFCCCC">
+<html lang="en">
+  <body style="background-color: #FFCCCC">
 <?php
 
 if(isset($_GET['name']) && ($_GET['name'] != '')) {
   require("../../config.php");
   require("../../classes/mysqli.php");
   $name = $_GET['name'];
+  global $mysql;
   $query = "SELECT name FROM character_data WHERE name rlike \"$name\" LIMIT 50";
   $results = $mysql->query_mult_assoc($query);
   if($results == '') {
@@ -24,18 +25,18 @@ if(isset($_GET['name']) && ($_GET['name'] != '')) {
 ?>
 
 <br />
-    <center>
-      <table cellpadding="0" cellspacing="0">
+    <div class="center">
+      <table style="border-collapse: collapse; border-spacing: 0;">
         <tr>
-          <td>
+          <td style="padding: 0;">
             <form action="?" method="GET">
-              Search player names:<br />
-              <input type="text" size="30" name="name"><br /><br />
-              <center><input type="submit" value="Search"></center>
+                <label for="name">Search player names:</label><br />
+              <input type="text" size="30" id="name" name="name"><br /><br />
+              <div class="center"><input type="submit" value="Search"></div>
             </form>
           </td>
         </tr>
       </table>
-    </center>
+    </div>
   </body>
 </html>
