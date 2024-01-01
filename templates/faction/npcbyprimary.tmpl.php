@@ -1,16 +1,17 @@
-      <div class="table_container" style="width:450px;">
-        <div class="table_header">
-          NPC Search Results
-        </div>
-        <div class="table_content">
-<?if($npcpri != ''):?>
-  	<?foreach($npcpri as $npcpri): extract($npcpri);?>
-		<a href="index.php?editor=npc&npcid=<?=$npcid?>&z=<?=get_zone_by_npcid($npcid)?>&zoneid=<?=get_zoneid_by_npcid($npcid)?>"><?=$npcname?> - (<?=get_zone_by_npcid($npcid)?>) -- ((<?=$factionname?>))</a><br>
- 	<?endforeach;?>
-<?endif;?>
+<div class="table_container" style="width:450px;">
+    <div class="table_header">
+        NPC Search Results
+    </div>
+    <div class="table_content">
+        <?php if (!empty($npcpri)): ?>
+            <?php foreach ($npcpri as $npc_primary_faction): extract($npc_primary_faction); ?>
+                <a href="index.php?editor=npc&npcid=<?= $npcid ?>&z=<?= get_zone_by_npcid($npcid) ?>&zoneid=<?= get_zoneid_by_npcid($npcid) ?>"><?= $npcname ?>
+                    - (<?= get_zone_by_npcid($npcid) ?>) -- ((<?= $factionname ?>))</a><br>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
-<?if ($npcpri == ''):?>
-       No NPCs are assigned to this faction.
-<?endif;?>
+        <?php if (empty($npcpri)): ?>
+            No NPCs are assigned to this faction.
+        <?php endif; ?>
+    </div>
 </div>
-      </div>
