@@ -1,6 +1,6 @@
 <?php
 
-$current_revision = "31 December 2023";
+$current_revision = "1 January 2023";
 
 require_once("config.php");
 require_once("lib/logging.php");
@@ -122,6 +122,7 @@ switch ($editor) {
 		break;
 }
 
+global $tmpl;
 $tmpl->set('javascript', $javascript);
 $tmpl->set('headbar', $headbar);
 $tmpl->set('searchbar', $searchbar);
