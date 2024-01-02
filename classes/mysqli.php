@@ -1,4 +1,5 @@
 <?php
+/* TODO: Implement parameterized SQL queries for PHP 8.2 */
 
 class mysql extends mysqli {
 
@@ -45,7 +46,7 @@ class mysql extends mysqli {
       if ($log_all == 1) {
         logSQL($query);
       }
-      return (isset($row) ? $row : '');
+      return ($row ?? '');
     }
     if ($log_error == 1) {
       logSQL($query . " - Error: " . mysqli_error($this));
@@ -54,7 +55,7 @@ class mysql extends mysqli {
       die ($query . " - " . mysqli_error($this));
   }
 
-  // Used to return multi-dimensional arrays
+  // Used to return multidimensional arrays
   function query_mult_assoc($query) {
     global $log_all, $log_error;
     if ($result = mysqli_query($this, quote_smart($query))) {
@@ -64,7 +65,7 @@ class mysql extends mysqli {
       if ($log_all == 1) {
         logSQL($query);
       }
-      return (isset($array) ? $array : '');
+      return ($array ?? '');
     }
     if ($log_error == 1) {
       logSQL($query . " - Error: " . mysqli_error($this));
@@ -73,7 +74,9 @@ class mysql extends mysqli {
       die ($query . " - " . mysqli_error($this));
   }
 
-  function generate_insert_query($query) {
+  /** This function is currently unused */
+  function generate_insert_query($query): void
+  {
     preg_match("/FROM (.*?) /i", $query, $matches);
     $table = $matches[1];
 
@@ -83,7 +86,8 @@ class mysql extends mysqli {
     $query2 = "SELECT * FROM " . $table . " WHERE " . $where;
     
     $row = mysql::query_assoc($query2);
-    
+
+    $values = array();
     foreach ($row as $key=>$value) {
       $values[] = "$key=\"$value\"";
     }
@@ -100,11 +104,17 @@ class mysql extends mysqli {
     exit;
   }
   
-  function error($error) {
+  function error($error): void
+  {
     echo "Query failed:<br> $error<br><br>";
   }
 }
 
+global $dbhost;
+global $dbuser;
+global $dbpass;
+global $db;
+global $dbport;
 $mysql = new mysql($dbhost, $dbuser, $dbpass, $db, $dbport);
 
 // Quote variable to make safe

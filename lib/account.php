@@ -29,8 +29,9 @@ switch ($action) {
       $curr_page = (isset($_GET['page'])) ? $_GET['page'] : $default_page;
       $curr_size = (isset($_GET['size'])) ? $_GET['size'] : $default_size;
       $curr_sort = (isset($_GET['sort'])) ? $columns[$_GET['sort']] : $columns[$default_sort];
+      $sort = $_GET['sort'] ?? 1;
       $body = new Template("templates/account/account.default.tmpl.php");
-      $page_stats = getPageInfo("account", $curr_page, $curr_size, $_GET['sort']);
+      $page_stats = getPageInfo("account", $curr_page, $curr_size, $sort);
       if ($page_stats['page']) {
         $accounts = get_accounts($page_stats['page'], $curr_size, $curr_sort);
       }
