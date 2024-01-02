@@ -1,21 +1,23 @@
 <?php
 
 class Template {
-    var $vars; // Holds all the template variables
+    protected mixed $file;
+    protected array $vars; // Holds all the template variables
 
     /*
      * Constructor
      *
      * @param $file string the file name you want to load
      */
-    function __construct($file = null) {
+    public function __construct($file = null) {
         $this->file = $file;
     }
 
     /*
      * Set a template variable.
      */
-    function set($name, $value) {
+    public function set($name, $value): void
+    {
         $this->vars[$name] = is_object($value) ? $value->fetch() : $value;
     }
 
@@ -24,11 +26,15 @@ class Template {
      *
      * @param $file string the template file name
      */
-    function fetch($file = null) {
-        if(!$file) $file = $this->file;
+    public function fetch($file = null): bool|string
+    {
+        if(empty($file) || !file_exists($file)) {
+            $file = $this->file;
+        }
 
-        if ($this->vars)
-        extract($this->vars);          // Extract the vars to local namespace
+        if (!empty($this->vars)) {
+            extract($this->vars);          // Extract the vars to local namespace
+        }
         ob_start();                    // Start output buffering
         include($file);                // Include the file
         $contents = ob_get_contents(); // Get the contents of the buffer
