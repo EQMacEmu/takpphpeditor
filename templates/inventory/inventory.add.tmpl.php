@@ -1,55 +1,55 @@
-      <table class="edit_form" width="300px">
+      <table class="edit_form" style="width: 300px;">
         <tr>
           <td class="edit_form_header">
-            Inventory item for <?=getPlayerName($playerid)?>
+            Inventory item for <?=getPlayerName($playerid ?? '') ?? 'Unknown Player'?>
           </td>
         </tr>
         <tr>
           <td class="edit_form_content">
             <form name="inventory" id="inventory" method="POST" action="index.php?editor=inv&action=5">
-              <table width="100%" cellpadding="3" cellspacing="0">
+              <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
                 <tr>
-                  <td>
-                    Player ID:<br/>
-                    <input type="text" size="5" name="charid" value="<?=$playerid?>" readonly="true">
+                  <td style="padding: 3px;">
+                      <label for="charid">Player ID:</label><br/>
+                    <input type="text" size="5" id="charid" name="charid" value="<?=$playerid ?? ""?>" readonly="readonly">
                   </td>
-                  <td>
-                    <a title="22-29: Main Inventory Slots">Slot ID:</a><br/>
-                    <input type="text" size="3" name="slotid" value="">
+                  <td style="padding: 3px;">
+                      <a title="22-29: Main Inventory Slots"><label for="slotid">Slot ID:</label></a><br/>
+                    <input type="text" size="3" id="slotid" name="slotid" value="">
                   </td>
-                  <td>
-                    Item ID:<br/>
-                    <input type="text" size="5" name="itemid" value="">
+                  <td style="padding: 3px;">
+                      <label for="itemid">Item ID:</label>
+                    <input type="text" size="5" id="itemid" name="itemid" value="">
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    Charges:<br/>
-                    <input type="text" size="3" name="charges" value="0">
+                  <td style="padding: 3px;">
+                      <label for="charges">Charges:</label><br/>
+                    <input type="text" size="3" id="charges" name="charges" value="0">
                   </td>
-                  <td colspan="2">
-                    Color:<br/>
-                    <input type="text" size="10" name="color" value="4278190080">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Inst NoDrop:<br/>
-                    <input type="checkbox" name="instnodrop">
+                  <td colspan="2" style="padding: 3px;">
+                      <label for="color">Color:</label><br/>
+                    <input type="text" size="10" id="color" name="color" value="4278190080">
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="3">
-                    Custom Data:<br/>
-                    <input type="text" size="37" name="custom_data" value="">
+                  <td style="padding: 3px;">
+                      <label for="instnodrop">Inst NoDrop:</label><br/>
+                    <input type="checkbox" id="instnodrop" name="instnodrop">
                   </td>
                 </tr>
-                <tr><td>&nbsp;</td></tr>
                 <tr>
-                  <td colspan="3">
-                    <center>
+                  <td colspan="3" style="padding: 3px;">
+                      <label for="custom_data">Custom Data:</label><br/>
+                    <input type="text" size="37" id="custom_data" name="custom_data" value="">
+                  </td>
+                </tr>
+                <tr><td style="padding: 3px;">&nbsp;</td></tr>
+                <tr>
+                  <td colspan="3" style="padding: 3px;">
+                    <div class="center">
                       <input type="submit" name="submit" value="Submit Changes">&nbsp;<input type="button" name="cancel" value="Cancel" onClick="history.back();">
-                    </center>
+                    </div>
                   </td>
                 </tr>
               </table>
