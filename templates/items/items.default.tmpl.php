@@ -6,7 +6,7 @@
          </tr>
          <tr>
            <td class="edit_form_content">
-             <center><a href="index.php?editor=items&action=8">Create an item</a></center>
+             <div class="center"><a href="index.php?editor=items&action=8">Create an item</a></div>
            </td>
          </tr>
        </table>
