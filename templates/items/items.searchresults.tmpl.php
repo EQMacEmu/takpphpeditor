@@ -3,13 +3,13 @@
           Item Search Results
         </div>
         <div class="table_content">
-<?if($results != ''):?>
-<?foreach($results as $result): extract($result);?>
+            <?php if(!empty($results)):?>
+                <?php foreach($results as $result): extract($result);?>
           <a href="index.php?editor=items&id=<?=$id?>&action=2"><?=$id?> - <?=$name?></a><br>
-<?endforeach;?>
-<?endif;?>
-<?if($results == ''):?>
+                <?php endforeach;?>
+            <?php endif;?>
+            <?php if(empty($results)):?>
           Your search produced no results!
-<?endif;?>
+            <?php endif;?>
         </div>
       </div>
