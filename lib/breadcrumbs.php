@@ -81,14 +81,19 @@ switch ($editor) {
 }
 
 if (isset($z) && $z != '') $breadcrumbs .= " >> " . "<a href='index.php?editor=" . $editor . "&z=" . $z . "&zoneid=" . getZoneIDByName($z) . "'>" . getZoneLongName($z) . "</a>";
-if (isset($npcid) && intval($npcid) > 0 && $editor != 'altcur' && $editor != 'qglobal') $breadcrumbs .= " >> " . getNPCName($npcid) . " ($npcid)";
-if (isset($fid) && intval($fid) > 0) $breadcrumbs .= " >> " . getFactionName($fid);
-if (isset($tskid) && intval($tskid) > 0) $breadcrumbs .= " >> " . getTaskTitle($tskid);
-if (isset($ts) && intval($ts) > 0) $breadcrumbs .= " >> " . "<a href='index.php?editor=" . $editor . "&ts=" . $ts . "'>" . $tradeskills[$ts] . "</a>";
-if (isset($rec) && intval($rec) > 0) $breadcrumbs .= " >> " . getRecipeName($rec);
-if (isset($spellset) && intval($spellset) > 0) $breadcrumbs .= " >> " . getSpellsetName($spellset);
-if (isset($playerid) && intval($playerid) > 0) $breadcrumbs .= " >> <a href='index.php?editor=" . $editor . "&playerid=" . $playerid . "'>" . getPlayerName($playerid) . " ($playerid)</a>";
-if (isset($acctid) && intval($acctid) > 0) $breadcrumbs .= " >> " . getAccountName($acctid) . " ($acctid)";
+if (isset($npcid) && $npcid > 0 && $editor != 'altcur' && $editor != 'qglobal') $breadcrumbs .= " >> " . getNPCName($npcid) . " ($npcid)";
+if (isset($fid) && $fid > 0) $breadcrumbs .= " >> " . getFactionName($fid);
+if (isset($ts) && $ts > 0) $breadcrumbs .= " >> " . "<a href='index.php?editor=" . $editor . "&ts=" . $ts . "'>" . $tradeskills[$ts] . "</a>";
+if (isset($rec) && $rec > 0) $breadcrumbs .= " >> " . getRecipeName($rec);
+if (isset($spellset) && $spellset > 0) $breadcrumbs .= " >> " . getSpellsetName($spellset);
+if (isset($playerid) && $playerid > 0) {
+  if ($editor == 'account') {
+    $breadcrumbs .= " >> <a href='index.php?editor=" . 'player' . "&playerid=" . $playerid . "'>" . getPlayerName($playerid) . " ($playerid)</a>";
+  } else {
+    $breadcrumbs .= " >> <a href='index.php?editor=" . $editor . "&playerid=" . $playerid . "'>" . getPlayerName($playerid) . " ($playerid)</a>";
+  }
+}
+if (isset($acctid) && $acctid > 0) $breadcrumbs .= " >> " . getAccountName($acctid) . " ($acctid)";
 if (isset($guildid) && intval($guildid) > 0) $breadcrumbs .= " >> " . getGuildName($guildid) . " ($guildid)";
 if (isset($aaid) && intval($aaid) > 0) $breadcrumbs .= " >> " . getAAName($aaid) . " ($aaid)";
 

@@ -21,50 +21,64 @@
                 <td style="width: 100%;">
                     <table style="border-collapse: collapse; border-spacing: 0; border: 0; width: 100%;">
                         <tr>
-                            <td style="width:45%">
+                            <td style="width:45%;">
+                                <div>
+                                    <fieldset>
+                                        <legend><strong>General Account Info</strong></legend>
+                                        Account ID: <?= $id ?? "N/A" ?><br/>
+                                        Account Created: <?= (isset($time_creation) ? get_real_time($time_creation) : "Unknown") ?><br />
+                                        Forum ID: <?= $forum_id ?? "" ?><br />
+                                        Karma: <?= $karma ?? "N/A" ?><br/>
+                                        LS Name: <?= $name ?? "N/A" ?><br/>
+                                        LS ID: <?= $lsaccount_id ?? "N/A" ?><br/>
+                                        Minilogin IP: <?= $minilogin_ip ?? "N/A" ?><br/>
+                                        Password: <?= $password ?? "N/A" ?><br/>
+                                        Rules Flag: <?= $rulesflag ?? "N/A" ?><br/>
+                                        <a href="index.php?editor=account&acctid=<?= $id ?? "" ?>&action=7"
+                                           title="Edit Account Status">Status</a>: <?= $status ?? "N/A" ?><br/>
+                                        Shared Platinum: <?= $sharedplat ?? "N/A" ?><br/>
+                                    </fieldset>
+                                </div>
+                            </td>
+                            <td style="width:55%;">
+                                <fieldset><legend><strong>Admin Actions</strong></legend>
+                                    <div style="padding-bottom: 28px;">
+                                        <?php if (isset($yesno)): ?>
+                                            Mule: <?= (isset($mule) ? $yesno[$mule] : "unk") ?><br/>
+                                            Expansion: <?= $expansion ?? "Undefined" ?><br />
+                                            IP_Exemption_Multiplier: <?= $ip_exemption_multiplier ?? "Undefined" ?><br />
+                                            Ban Reason: <?php echo (isset($ban_reason) && $ban_reason != "") ? $ban_reason : "N/A"; ?><br/>
+                                            Revoked: <?= (isset($revoked) ? $yesno[$revoked] : "unk") ?><br/>
+                                            Revoked Until: <?= $revokeduntil ?? "" ?><br />
+                                            Suspended: <?php echo (isset($suspendeduntil) && $suspendeduntil > 0) ? $suspendeduntil : "N/A"; ?><br/>
+                                            Suspend Reason: <?php echo (isset($suspend_reason) && $suspend_reason != "") ? $suspend_reason : "N/A"; ?><br/>
+                                            Suspended Until: <?= $suspendeduntil ?? "" ?><br />
+                                        <?php endif ?>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:45%;">
                                 <fieldset>
-                                    <legend><strong>Account Info</strong></legend>
-                                    Account ID: <?= $id ?? "N/A" ?><br/>
-                                    LS Name: <?= $name ?? "N/A" ?><br/>
-                                    LS ID: <?= $lsaccount_id ?? "N/A" ?><br/>
-                                    Password: <?= $password ?? "N/A" ?><br/>
-                                    <a href="index.php?editor=account&acctid=<?= $id ?? "" ?>&action=7"
-                                       title="Edit Account Status">Status</a>: <?= $status ?? "N/A" ?><br/>
+                                    <legend><strong>GM-Only Properties</strong></legend>
                                     <?php if (isset($yesno)): ?>
                                         GM Speed: <?= (isset($gmspeed) ? $yesno[$gmspeed] : "unk") ?><br/>
                                         Hide Me: <?= (isset($hideme) ? $yesno[$hideme] : "unk") ?><br/>
-                                        Revoked: <?= (isset($revoked) ? $yesno[$revoked] : "unk") ?><br/>
+                                        GM Invul: <?= (isset($gminvul) ? $yesno[$gminvul] : "unk") ?><br/>
+                                        Flymode: <?= (isset($flymode) ? $yesno[$flymode] : "unk") ?><br/>
+                                        Ignore Tells: <?= (isset($ignore_tells) ? $yesno[$ignore_tells] : "unk") ?><br/>
                                     <?php endif ?>
-                                    Karma: <?= $karma ?? "" ?><br/>
-                                    Rules Flag: <?= $rulesflag ?? "" ?><br/>
-                                    Shared Platinum: <?= $sharedplat ?? "" ?><br/>
-                                    Minilogin IP: <?= $minilogin_ip ?? "" ?><br/>
-                                    Suspended: <?php echo (isset($suspendeduntil) && $suspendeduntil > 0) ? $suspendeduntil : "N/A"; ?>
-                                    <br/>
-                                    Suspend
-                                    Reason <?php echo (isset($suspend_reason) && $suspend_reason != "") ? $suspend_reason : "N/A"; ?>
-                                    <br/>
-                                    Ban
-                                    Reason: <?php echo (isset($ban_reason) && $ban_reason != "") ? $ban_reason : "N/A"; ?>
-                                    <br/>
-                                    Account
-                                    Created: <?= (isset($time_creation) ? get_real_time($time_creation) : "Unknown") ?>
                                 </fieldset>
                             </td>
-                            <td style="width:55%;" rowspan="2">
-                                <fieldset>
-                                    <legend><strong>IP Address Info</strong></legend>
+                            <td style="width:55%;">
+                                <fieldset><legend><strong>IP Address Info</strong></legend>
+                                    <div style="padding-bottom: 36px;">
                                     <table>
                                         <tr>
-                                            <td style="width: 40%;">
-                                                <div class="center">IP Address</div>
-                                            </td>
-                                            <td style="width: 20%;">
-                                                <div class="center">Login Count</div>
-                                            </td>
-                                            <td style="width: 40%;">
-                                                <div class="center">Last Login</div>
-                                            </td>
+                                            <td style="width: 40%;"><div class="center">IP Address</div></td>
+                                            <td style="width: 20%;"><div class="center">Login Count</div></td>
+                                            <td style="width: 40%;"><div class="center">Last Login</div></td>
                                         </tr>
                                         <?php
                                         if (isset($ips) && $ips) {
@@ -78,6 +92,7 @@
                                         }
                                         ?>
                                     </table>
+                                    </div>
                                 </fieldset>
                             </td>
                         </tr>

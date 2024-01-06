@@ -87,7 +87,7 @@ switch ($action) {
     $javascript = new Template("templates/account/js.tmpl.php");
     $body->set('acctid', $acctid);
     $body->set('acctname', getAccountName($acctid));
-    $body->set('target_accounts', $target_accounts);
+    $body->set('target_accounts', $target_accounts ?? ""); // $target_accounts doesn't seem to appear anywhere else
     break;
   case 6: // Transfer Character
     check_admin_authorization();
@@ -108,24 +108,20 @@ switch ($action) {
     exit;
 }
 
-function get_accounts($page_number, $results_per_page, $sort_by) {
+function get_accounts($page_number, $results_per_page, $sort_by): array|string|null
+{
   global $mysql;
   $limit = ($page_number - 1) * $results_per_page . "," . $results_per_page;
 
   $query = "SELECT id, name, lsaccount_id, status FROM account ORDER BY $sort_by LIMIT $limit";
-  $results = $mysql->query_mult_assoc($query);
-
-  return $results;
+    return $mysql->query_mult_assoc($query);
 }
 
-function account_info() {
+function account_info(): array|string
+{
   global $mysql, $acctid;
-  $account_array = array();
-  $character_array = array();
-  $ip_array = array();
-  $char_count = 0;
 
-  //Load from account
+    //Load from account
   $query = "SELECT * FROM account WHERE id=$acctid";
   $account_array = $mysql->query_assoc($query);
 
@@ -146,7 +142,8 @@ function account_info() {
   return $account_array;
 }
 
-function update_account() {
+function update_account(): void
+{
   global $mysql, $acctid;
 
   $oldstats = account_info();
@@ -162,8 +159,9 @@ function update_account() {
   }
 }
 
-function char_transfer() {
-  global $mysql, $acctid;
+function char_transfer(): void
+{
+  global $mysql;
   $target_acct = getAccountID($_POST['tacct']);
   $char_id = $_GET['playerid'];
 
@@ -180,7 +178,8 @@ function get_account_status() {
   return $result['status'];
 }
 
-function update_account_status() {
+function update_account_status(): void
+{
   global $mysql, $acctid;
   $new_status = $_POST['new_acct_status'];
 
