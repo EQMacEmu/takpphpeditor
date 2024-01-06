@@ -1,21 +1,21 @@
   <div class="table_container" style="width: 500px;">
     <div class="table_header">
       <div style="float:right;">
-        <a href="index.php?editor=merchant&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>">Standard List</a>&nbsp;
-        <a href="index.php?editor=merchant&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=12"><img src="images/add.gif" border="0" title="Add an Item"></a>&nbsp;
-        <div style="display:<?echo (isset($slots)) ? "inline" : "none";?>">
-          <a href="index.php?editor=merchant&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=9"><img src="images/c_table.gif" border="0" title="Edit this Merchant"></a>&nbsp;
+        <a href="index.php?editor=merchant&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>">Standard List</a>&nbsp;
+        <a href="index.php?editor=merchant&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>&action=12"><img src="images/add.gif" style="border: 0;" alt="Yellow Plus Icon" title="Add an Item"></a>&nbsp;
+        <div style="display:<?php echo (isset($slots)) ? "inline" : "none";?>">
+          <a href="index.php?editor=merchant&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>&action=9"><img src="images/c_table.gif" style="border: 0;" alt="Edit Table Icon" title="Edit this Merchant"></a>&nbsp;
         </div>
-        <a href="index.php?editor=merchant&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=14" onClick="return confirm('Really delete this merchantlist?');"><img src="images/table.gif" border="0" title="Delete this Merchantlist"></a>
+        <a href="index.php?editor=merchant&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>&action=14" onClick="return confirm('Really delete this merchantlist?');"><img src="images/table.gif" style="border: 0;" alt="Red X'd Table Icon" title="Delete this Merchantlist"></a>
       </div>
       Temp Merchant list for NPC <?=$npcid?>
     </div>
-    <div class="table_content" style="padding: 0px;">
-<? if (isset($slots)):?>
-      <table width="100%">
-        <tr bgcolor="#BBBBBB">
-          <th align="center">Slot</th>
-          <th align="center">Item ID</th>
+    <div class="table_content" style="padding: 0;">
+        <?php if (isset($slots)):?>
+      <table style="width: 100%;">
+        <tr style="background-color: #BBBBBB;">
+          <th style="text-align: center;">Slot</th>
+          <th style="text-align: center;">Item ID</th>
           <th>Item Name</th>
           <th>&nbsp;</th>
           <th>Charges</th>
@@ -24,7 +24,7 @@
           <th>Sell Price</th>
           <th>&nbsp;</th>
         </tr>
-<?
+          <?php
 $x=0;
 foreach($slots as $slot=>$v):
   if ($v['price'] > 999) {
@@ -52,50 +52,50 @@ foreach($slots as $slot=>$v):
     $sells = ($v['price']*$v['sellrate']);
   }
 ?>
-        <tr<? echo ($x % 2 == 1) ? " bgcolor=\"#BBBBBB\"" : "";?>>
-          <td align="center"><?=$slot?></td>
-          <td align="center"><?=$v['itemid']?></td>
+        <tr<?php echo ($x % 2 == 1) ? " bgcolor=\"#BBBBBB\"" : "";?>>
+          <td style="text-align: center;"><?=$slot?></td>
+          <td style="text-align: center;"><?=$v['itemid']?></td>
           <td><?=$v['item_name']?></td>
-          <td><a href="http://lucy.allakhazam.com/item.html?id=<?=$v['itemid']?>">Lucy</a></td>
-          <td align="center"><?=$v['charges']?></td>
-          <td align="center"><?=$v['quantity']?></td>
-          <td align="center"><?=$cost?>
-<?if ($v['price'] > 999):?>
+          <td><a href="https://lucy.allakhazam.com/item.html?id=<?=$v['itemid']?>">Lucy</a></td>
+          <td style="text-align: center;"><?=$v['charges']?></td>
+          <td style="text-align: center;"><?=$v['quantity']?></td>
+          <td style="text-align: center;"><?=$cost?>
+              <?php if ($v['price'] > 999):?>
             pp
-<?endif;?>
-<?if ($v['price'] < 999 && $v['price'] > 99):?>
+              <?php endif;?>
+              <?php if ($v['price'] < 999 && $v['price'] > 99):?>
             gp
-<?endif;?>
-<?if ($v['price'] < 99 && $v['price'] > 9):?>
+              <?php endif;?>
+              <?php if ($v['price'] < 99 && $v['price'] > 9):?>
             sp
-<?endif;?>
-<?if ($v['price'] < 10):?>
+              <?php endif;?>
+              <?php if ($v['price'] < 10):?>
             cp
-<?endif;?>
+              <?php endif;?>
           </td>
-          <td align="center"><?=$sells?>
-<?if ($v['price']*$v['sellrate'] > 999):?>
+          <td style="text-align: center;"><?=$sells?>
+              <?php if ($v['price']*$v['sellrate'] > 999):?>
             pp
-<?endif;?>
-<?if ($v['price']*$v['sellrate'] < 999 && $v['price']*$v['sellrate'] > 99):?>
+              <?php endif;?>
+              <?php if ($v['price']*$v['sellrate'] < 999 && $v['price']*$v['sellrate'] > 99):?>
             gp
-<?endif;?>
-<?if ($v['price']*$v['sellrate'] < 99 && $v['price']*$v['sellrate'] > 9):?>
+              <?php endif;?>
+              <?php if ($v['price']*$v['sellrate'] < 99 && $v['price']*$v['sellrate'] > 9):?>
             sp
-<?endif;?>
-<?if ($v['price']*$v['sellrate'] < 10):?>
+              <?php endif;?>
+              <?php if ($v['price']*$v['sellrate'] < 10):?>
             cp
-<?endif;?>
+              <?php endif;?>
           </td>
-          <td align="right" style="padding-right: 10px;">
-            <a href="index.php?editor=merchant&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&slot=<?=$slot?>&itemid=<?=$v['itemid']?>&action=11" onClick="return confirm('Really remove this item from the merchant?');"><img src="images/remove.gif" border="0" title="Delete item from Merchantlist"></a>
+          <td style="padding-right: 10px; text-align: right;">
+            <a href="index.php?editor=merchant&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>&slot=<?=$slot?>&itemid=<?=$v['itemid']?>&action=11" onClick="return confirm('Really remove this item from the merchant?');"><img src="images/remove.gif" style="border: 0;" alt="Red X Icon" title="Delete item from Merchantlist"></a>
           </td>
         </tr>
-<?$x++;endforeach;?>
+    <?php $x++;endforeach;?>
       </table>
-<?endif;?>
-<?if (!isset($slots)):?>
+        <?php endif;?>
+        <?php if (!isset($slots)):?>
       No Wares currently assigned
-<?endif;?>
+        <?php endif;?>
     </div>
   </div>
