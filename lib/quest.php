@@ -21,7 +21,8 @@ switch ($action) {
     exit;
 }
 
-function find_perl_script() {
+function find_perl_script(): string
+{
   global $npcid, $quest_path;
 
   $name = getNPCName($npcid);
@@ -35,14 +36,12 @@ function find_perl_script() {
   $LuafullpathName = "$zonepath/$npcname.lua";
   $LuafulltempID = "$temppath/$npcid.lua";
   $LuafulltempName = "$temppath/$npcname.lua";
-  $Luafullzonedefault = "$zonepath/default.lua";
   $Luafulldefault = "$quest_path/default.lua";
 
   $fullpathID = "$zonepath/$npcid.pl";
   $fullpathName = "$zonepath/$npcname.pl";
   $fulltempID = "$temppath/$npcid.pl";
   $fulltempName = "$temppath/$npcname.pl";
-  $fullzonedefault = "$zonepath/default.pl";
   $fulldefault = "$quest_path/default.pl";
 
   if(file_exists($LuafullpathID))
@@ -53,8 +52,6 @@ function find_perl_script() {
 	$path = $LuafulltempID;
   else if(file_exists($LuafulltempName))
 	$path = $LuafulltempName;
-  else if(file_exists(fullzonedefault))
-	$path = fullzonedefault;
   else if(file_exists($Luafulldefault))
 	$path = $Luafulldefault;
   else if(file_exists($fullpathID))
@@ -65,8 +62,6 @@ function find_perl_script() {
 	$path = $fulltempID;
   else if(file_exists($fulltempName))
 	$path = $fulltempName;
-  else if(file_exists(fullzonedefault))
-	$path = fullzonedefault;
   else if(file_exists($fulldefault))
 	$path = $fulldefault;
   else{
@@ -75,17 +70,12 @@ function find_perl_script() {
 	else
 		$path = $LuafullpathName;
   }
-  // else{
-  //	if($zone == '')
-  //		$path = $fulltempName;
-  //	else
-  //		$path = $fullpathName;
-  //}
 
   return $path;
 }
 
-function MarkQuestNPC() {
+function MarkQuestNPC(): void
+{
   global $mysql, $quest_path;
 
   $query = "UPDATE npc_types SET isquest = 0";
