@@ -166,7 +166,8 @@ switch ($action) {
     exit; 
 }
 
-function get_merchantlist() {
+function get_merchantlist(): array
+{
   global $mysql;
   $mid = get_merchant_id();
   $array = array();
@@ -194,7 +195,8 @@ function get_merchantlist() {
   return $array;
 }
 
-function get_merchantlist_temp() {
+function get_merchantlist_temp(): array
+{
   global $mysql;
   $array = array();
 
@@ -221,44 +223,46 @@ function get_merchantlist_temp() {
   return $array;
 }
 
-function update_merchantlist() {
+function update_merchantlist(): void
+{
   check_authorization();
-  global $mysql, $npcid;
+  global $mysql;
 
   $mid = $_POST['mid'];
   $count = $_POST['count'];
-  $oldstats = get_merchantlist();
+  /* If needed later: $oldstats = get_merchantlist(); */
 
 	for ($i=1; $i<=$count; $i++){
-		$slot = $_POST["slot{$i}"];
-		if (($slot != $_POST["newslot{$i}"]) || ($values['item'] != $_POST["item{$i}"]) || ($values['faction_required'] != $_POST["faction_required{$i}"]) || 
-        	($values['level_required'] != $_POST["level_required{$i}"]) || ($values['alt_currency_cost'] != $_POST["alt_currency_cost{$i}"]) || ($values['classes_required'] != $_POST["classes_required{$i}"]) || ($values['quantity'] != $_POST["quantity{$i}"])) {
-			if($_POST["newslot{$i}"] > -1){
-				$query = "UPDATE merchantlist SET item=\"" . $_POST["item{$i}"] . "\", slot=\"" . $_POST["newslot{$i}"] . "\", faction_required=\"" . $_POST["faction_required{$i}"] . "\", level_required=\"" . $_POST["level_required{$i}"] . "\", alt_currency_cost=\"" . $_POST["alt_currency_cost{$i}"] . "\", classes_required=\"" . $_POST["classes_required{$i}"] . "\", quantity=\"" . $_POST["quantity{$i}"] . "\" WHERE merchantid=$mid AND slot=$slot";
+		$slot = $_POST["slot$i"];
+		if (($slot != $_POST["newslot$i"]) || (!empty($values) && $values['item'] != $_POST["item$i"]) || (!empty($values) && $values['faction_required'] != $_POST["faction_required$i"]) ||
+        	(!empty($values) && $values['level_required'] != $_POST["level_required$i"]) || (!empty($values) && $values['alt_currency_cost'] != $_POST["alt_currency_cost$i"]) || (!empty($values) && $values['classes_required'] != $_POST["classes_required$i"]) || (!empty($values) && $values['quantity'] != $_POST["quantity$i"])) {
+			if($_POST["newslot$i"] > -1){
+				$query = "UPDATE merchantlist SET item=\"" . $_POST["item$i"] . "\", slot=\"" . $_POST["newslot$i"] . "\", faction_required=\"" . $_POST["faction_required$i"] . "\", level_required=\"" . $_POST["level_required$i"] . "\", alt_currency_cost=\"" . $_POST["alt_currency_cost$i"] . "\", classes_required=\"" . $_POST["classes_required$i"] . "\", quantity=\"" . $_POST["quantity$i"] . "\" WHERE merchantid=$mid AND slot=$slot";
 				$mysql->query_no_result($query);
 			}
 		}
 	}
 }
 
-function update_merchantlist_temp() {
+function update_merchantlist_temp(): void
+{
   check_authorization();
   global $mysql, $npcid;
 
-  $count = $_POST['count'];
   $oldstats = get_merchantlist_temp();
   $i = 0;
 
   foreach ($oldstats['slots'] as $slot=>$values) {
     $i++;
-    if (($slot != $_POST["newslot{$i}"]) || ($values['itemid'] != $_POST["itemid{$i}"]) || ($values['charges'] != $_POST["charges{$i}"]) || ($values['quantity'] != $_POST["quantity{$i}"])) {
-      $query = "UPDATE merchantlist_temp SET itemid=\"" . $_POST["itemid{$i}"] . "\", slot=\"" . $_POST["newslot{$i}"] . "\", charges=\"" . $_POST["charges{$i}"] . "\", quantity=\"" . $_POST["quantity{$i}"] . "\" WHERE npcid=$npcid AND slot=" . $_POST["slot{$i}"];
+    if (($slot != $_POST["newslot$i"]) || ($values['itemid'] != $_POST["itemid$i"]) || ($values['charges'] != $_POST["charges$i"]) || ($values['quantity'] != $_POST["quantity$i"])) {
+      $query = "UPDATE merchantlist_temp SET itemid=\"" . $_POST["itemid$i"] . "\", slot=\"" . $_POST["newslot$i"] . "\", charges=\"" . $_POST["charges$i"] . "\", quantity=\"" . $_POST["quantity$i"] . "\" WHERE npcid=$npcid AND slot=" . $_POST["slot$i"];
       $mysql->query_no_result($query);
     }
   }
 }
 
-function delete_ware() {
+function delete_ware(): void
+{
   check_authorization();
   global $mysql;
   $id = $_GET['id'];
@@ -269,7 +273,8 @@ function delete_ware() {
   $mysql->query_no_result($query);
 }
 
-function delete_temp_ware() {
+function delete_temp_ware(): void
+{
   check_authorization();
   global $mysql, $npcid;
   $itemid = $_GET['itemid'];
@@ -279,14 +284,14 @@ function delete_temp_ware() {
   $mysql->query_no_result($query);
 }
 
-function add_merchant_item() {
+function add_merchant_item(): void
+{
   check_authorization();
   global $mysql, $npcid;
   $mid = $_POST['mid'];
   $item = $_POST['itemid'];
   $faction_required = $_POST['faction_required'];
   $level_required = $_POST['level_required'];
-  $alt_currency_cost = $_POST['alt_currency_cost'];
   $classes_required = $_POST['classes_required'];
   $quantity = $_POST['quantity'];
   
@@ -301,7 +306,8 @@ function add_merchant_item() {
   $mysql->query_no_result($query);
 }
 
-function add_merchant_item_temp() {
+function add_merchant_item_temp(): void
+{
   check_authorization();
   global $mysql, $npcid;
   $charges = $_POST['charges'];
@@ -329,7 +335,8 @@ function add_merchant_item_temp() {
   }
 }
 
-function delete_merchantlist() {
+function delete_merchantlist(): void
+{
   check_authorization();
   global $mysql, $npcid;
   $mid = $_GET['mid'];
@@ -341,7 +348,8 @@ function delete_merchantlist() {
   $mysql->query_no_result($query);
 }
 
-function delete_merchantlist_temp() {
+function delete_merchantlist_temp(): void
+{
   check_authorization();
   global $mysql, $npcid;
 
@@ -349,7 +357,8 @@ function delete_merchantlist_temp() {
   $mysql->query_no_result($query);
 }
 
-function wipe_merchantlist_temp() {
+function wipe_merchantlist_temp(): void
+{
   check_authorization();
   global $mysql;
 
@@ -357,39 +366,39 @@ function wipe_merchantlist_temp() {
   $mysql->query_no_result($query);
 }
 
-function search_merchant_by_item() {
+function search_merchant_by_item(): array|string|null
+{
   global $mysql;
   $search = $_GET['search'];
 
   $query = "SELECT npc_types.id,npc_types.name FROM merchantlist
             INNER JOIN npc_types ON npc_types.merchant_id = merchantlist.merchantid
             WHERE merchantlist.item = \"$search\"";
-  $results = $mysql->query_mult_assoc($query);
-  return $results;
+    return $mysql->query_mult_assoc($query);
 }
 
-function search_temp_merchant() {
+function search_temp_merchant(): array|string|null
+{
   global $mysql;
   $search = $_GET['search1'];
 
   $query = "SELECT npc_types.id,npc_types.name FROM merchantlist_temp
             INNER JOIN npc_types ON npc_types.id = merchantlist_temp.npcid
             WHERE merchantlist_temp.slot < 81 and merchantlist_temp.itemid = \"$search\"";
-  $results = $mysql->query_mult_assoc($query);
-  return $results;
+    return $mysql->query_mult_assoc($query);
 }
 
-function npcs_using_merchantlist () {
+function npcs_using_merchantlist (): array|string|null
+{
   global $mysql;
-  $array = array();
   $merid = $_GET['merid'];
 
   $query = "SELECT id AS npcid, name from npc_types where merchant_id=$merid";
-  $results = $mysql->query_mult_assoc($query);
-  return $results;
+    return $mysql->query_mult_assoc($query);
   }
 
-function drop_merchantlist() {
+function drop_merchantlist(): void
+{
   check_authorization();
   global $mysql, $npcid;
 
@@ -397,7 +406,8 @@ function drop_merchantlist() {
   $mysql->query_no_result($query);
 }
 
-function copy_merchantlist() {
+function copy_merchantlist(): void
+{
   check_authorization();
   global $mysql, $npcid;
   $mid = $_POST['mid'];
@@ -420,7 +430,8 @@ function copy_merchantlist() {
   $mysql->query_no_result($query);
 }
 
-function sort_merchantlist() {
+function sort_merchantlist(): void
+{
   check_authorization();
   global $mysql;
   $merchantid = get_merchant_id();
@@ -452,7 +463,8 @@ function sort_merchantlist() {
   }   
 }
  
-function merchantlist_npcid() {
+function merchantlist_npcid(): void
+{
    check_authorization();
    global $mysql, $npcid;
    $mid = $_GET['mid'];

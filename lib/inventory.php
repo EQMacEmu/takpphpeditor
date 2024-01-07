@@ -454,13 +454,7 @@ switch ($action) {
     break;
   case 2: //Search by Player ID or Player Name
     check_admin_authorization();
-    $search_results = "";
-    if (isset($_GET['playerid']) && ($_GET['playerid'] != "") && ($_GET['playerid'] != "Player ID")) {
-      $search_results = search_by_playerid($_GET['playerid']);
-    }
-    elseif (isset($_GET['player_name']) && ($_GET['player_name'] != "") && ($_GET['player_name'] != "Player Name")) {
-      $search_results = search_by_playername($_GET['player_name'], $list_limit);
-    }
+    $search_results = set_search_results();
     $body = new Template("templates/inventory/inventory.searchresults.tmpl.php");
     $body->set('search_results', $search_results);
     $body->set("list_limit", $list_limit);
@@ -509,59 +503,56 @@ switch ($action) {
     exit;
 }
 
-function player_inventory($player_id) {
+function player_inventory($player_id): array|string|null
+{
   global $mysql;
 
   $query = "SELECT id, slotid, itemid FROM character_inventory WHERE id=$player_id ORDER BY slotid";
-  $results = $mysql->query_mult_assoc($query);
-
-  return $results;
+    return $mysql->query_mult_assoc($query);
 }
 
-function inv_slot_details($player_id, $slot_id) {
+function inv_slot_details($player_id, $slot_id): bool|array|string|null
+{
   global $mysql;
 
   $query = "SELECT * FROM character_inventory WHERE id=$player_id AND slotid=$slot_id";
-  $results = $mysql->query_assoc($query);
-
-  return $results;
+    return $mysql->query_assoc($query);
 }
 
-function search_by_playerid($player_id) {
+function search_by_playerid($player_id): array|string|null
+{
   global $mysql;
 
   $query = "SELECT DISTINCT(id) AS id FROM character_inventory WHERE id=$player_id";
-  $results = $mysql->query_mult_assoc($query);
-
-  return $results;
+    return $mysql->query_mult_assoc($query);
 }
 
-function search_by_playername($player_name, $list_limit) {
+function search_by_playername($player_name, $list_limit): array|string|null
+{
   global $mysql;
 
   $query = "SELECT id AS charid FROM character_data WHERE `name` RLIKE \"$player_name\" LIMIT $list_limit";
-  $results = $mysql->query_mult_assoc($query);
-
-  return $results;
+    return $mysql->query_mult_assoc($query);
 }
 
-function search_by_itemid($item_id, $list_limit) {
+function search_by_itemid($item_id, $list_limit): array|string|null
+{
   global $mysql;
 
   $query = "SELECT DISTINCT(id) AS charid FROM character_inventory WHERE itemid=$item_id LIMIT $list_limit";
-  $results = $mysql->query_mult_assoc($query);
-
-  return $results;
+    return $mysql->query_mult_assoc($query);
 }
 
-function delete_inv_item($player_id, $slot_id) {
+function delete_inv_item($player_id, $slot_id): void
+{
   global $mysql;
 
   $query = "DELETE FROM character_inventory WHERE id=$player_id AND slotid=$slot_id";
   $mysql->query_no_result($query);
 }
 
-function update_inv_item() {
+function update_inv_item(): void
+{
   global $mysql;
 
   $charid = $_POST['charid'];
@@ -576,7 +567,8 @@ function update_inv_item() {
   $mysql->query_no_result($query);
 }
 
-function insert_inv_item() {
+function insert_inv_item(): void
+{
   global $mysql;
 
   $charid = $_POST['charid'];
@@ -590,4 +582,5 @@ function insert_inv_item() {
   $query = "INSERT INTO character_inventory SET id=$charid, slotid=$slotid, itemid=$itemid, charges=$charges, color=$color, instnodrop=$instnodrop, custom_data=\"$custom_data\"";
   $mysql->query_no_result($query);
 }
+
 ?>

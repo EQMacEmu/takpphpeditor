@@ -82,30 +82,8 @@ switch ($action) {
         check_authorization();
         $javascript = new Template("templates/iframes/js.tmpl.php");
         $body = new Template("templates/items/items.edit.tmpl.php");
-        $body->set("itemsize", $itemsize);
-        $body->set("itemmaterial", $itemmaterial);
-        $body->set("itemtypes", $itemtypes);
-        $body->set("skilltypes", $skilltypes);
-        $body->set("bodytypes", $bodytypes);
-        $body->set("itemraces", $races);
-        $body->set("itemsaugrestrict", $itemsaugrestrict);
-        $body->set("itembagsize", $itembagsize);
-        $body->set("world_containers", $world_containers);
-        $body->set("itembardtype", $itembardtype);
-        $body->set("itemcasttype", $itemcasttype);
-        $body->set("proccasttype", $proccasttype);
-        $body->set("worncasttype", $worncasttype);
-        $body->set("focuscasttype", $focuscasttype);
-        $body->set("scrollcasttype", $scrollcasttype);
-        $body->set("factions", factions_array());
-        $body->set("gmflagtype", $gmflagtype);
-        $body->set("soulboundtype", $soulboundtype);
         $vars = item_info();
-        if ($vars) {
-            foreach ($vars as $key => $value) {
-                $body->set($key, $value);
-            }
-        }
+        $body = load_items_template($body, $vars);
         $date_vars = getdate();
         if ($date_vars) {
             foreach ($date_vars as $key => $value) {
@@ -164,32 +142,8 @@ switch ($action) {
         check_authorization();
         $javascript = new Template("templates/iframes/js.tmpl.php");
         $body = new Template("templates/items/items.add.tmpl.php");
-        $body->set("itemsize", $itemsize);
-        $body->set("itemmaterial", $itemmaterial);
-        $body->set("itemtypes", $itemtypes);
-        $body->set("skilltypes", $skilltypes);
-        $body->set("bodytypes", $bodytypes);
-        $body->set("itemraces", $races);
-        $body->set("itemsaugrestrict", $itemsaugrestrict);
-        $body->set("itembagsize", $itembagsize);
-        $body->set("world_containers", $world_containers);
-        $body->set("itembardtype", $itembardtype);
-        $body->set("itemcasttype", $itemcasttype);
-        $body->set("proccasttype", $proccasttype);
-        $body->set("worncasttype", $worncasttype);
-        $body->set("focuscasttype", $focuscasttype);
-        $body->set("scrollcasttype", $scrollcasttype);
-        $body->set("yesno", $yesno);
-        $body->set('newid', get_max_id());
-        $body->set("factions", factions_array());
-        $body->set("gmflagtype", $gmflagtype);
-        $body->set("soulboundtype", $soulboundtype);
         $vars = getdate();
-        if ($vars) {
-            foreach ($vars as $key => $value) {
-                $body->set($key, $value);
-            }
-        }
+        $body = load_items_template($body, $vars);
         break;
     case 9: //Add Item
         check_authorization();
@@ -197,6 +151,42 @@ switch ($action) {
         $id = $_POST['id'];
         header("Location: index.php?editor=items&id=$id&action=2");
         exit;
+}
+
+function load_items_template($body, $vars): mixed
+{
+    global $itemsize, $itemmaterial, $itemtypes, $skilltypes, $bodytypes;
+    global $races, $itemsaugrestrict, $itembagsize, $world_containers;
+    global $itembardtype, $itemcasttype, $proccasttype, $worncasttype;
+    global $focuscasttype, $scrollcasttype, $yesno, $gmflagtype, $soulboundtype;
+    $body->set("itemsize", $itemsize);
+    $body->set("itemmaterial", $itemmaterial);
+    $body->set("itemtypes", $itemtypes);
+    $body->set("skilltypes", $skilltypes);
+    $body->set("bodytypes", $bodytypes);
+    $body->set("itemraces", $races);
+    $body->set("itemsaugrestrict", $itemsaugrestrict);
+    $body->set("itembagsize", $itembagsize);
+    $body->set("world_containers", $world_containers);
+    $body->set("itembardtype", $itembardtype);
+    $body->set("itemcasttype", $itemcasttype);
+    $body->set("proccasttype", $proccasttype);
+    $body->set("worncasttype", $worncasttype);
+    $body->set("focuscasttype", $focuscasttype);
+    $body->set("scrollcasttype", $scrollcasttype);
+    $body->set("yesno", $yesno);
+    $body->set('newid', get_max_id());
+    $body->set("factions", factions_array());
+    $body->set("gmflagtype", $gmflagtype);
+    $body->set("soulboundtype", $soulboundtype);
+
+    if ($vars) {
+        foreach ($vars as $key => $value) {
+            $body->set($key, $value);
+        }
+    }
+
+    return $body;
 }
 
 function item_info(): array|string|null
@@ -246,16 +236,8 @@ function delete_item(): void
     $mysql->query_no_result($query);
 }
 
-function update_item(): void
+function set_slots_bitmask(): int
 {
-    global $mysql;
-
-    $id = $_POST['id'];
-
-    $query = "SELECT * FROM items WHERE id=$id";
-    $item = $mysql->query_assoc($query);
-
-    // Define checkbox fields:
     $slots = 0;
     if (isset($_POST['slot_Cursor'])) $slots = $slots + 1;
     if (isset($_POST['slot_Ear01'])) $slots = $slots + 2;
@@ -279,7 +261,11 @@ function update_item(): void
     if (isset($_POST['slot_Feet'])) $slots = $slots + 524288;
     if (isset($_POST['slot_Waist'])) $slots = $slots + 1048576;
     if (isset($_POST['slot_Ammo'])) $slots = $slots + 2097152;
+    return $slots;
+}
 
+function set_races_bitmask(): int
+{
     $races = 0;
     if (isset($_POST['race_Human'])) $races = $races + 1;
     if (isset($_POST['race_Barbarian'])) $races = $races + 2;
@@ -295,7 +281,11 @@ function update_item(): void
     if (isset($_POST['race_Gnome'])) $races = $races + 2048;
     if (isset($_POST['race_Iksar'])) $races = $races + 4096;
     if (isset($_POST['race_Vah_Shir'])) $races = $races + 8192;
+    return $races;
+}
 
+function set_classes_bitmask(): int
+{
     $classes = 0;
     if (isset($_POST['class_Warrior'])) $classes = $classes + 1;
     if (isset($_POST['class_Cleric'])) $classes = $classes + 2;
@@ -312,7 +302,11 @@ function update_item(): void
     if (isset($_POST['class_Magician'])) $classes = $classes + 4096;
     if (isset($_POST['class_Enchanter'])) $classes = $classes + 8192;
     if (isset($_POST['class_Beastlord'])) $classes = $classes + 16384;
+    return $classes;
+}
 
+function set_deity_bitmask(): int
+{
     $deity = 0;
     if (isset($_POST['deity_Agnostic'])) $deity = $deity + 1;
     if (isset($_POST['deity_Bertox'])) $deity = $deity + 2;
@@ -331,6 +325,26 @@ function update_item(): void
     if (isset($_POST['deity_The_Tribunal'])) $deity = $deity + 16384;
     if (isset($_POST['deity_Tunare'])) $deity = $deity + 32768;
     if (isset($_POST['deity_Veeshan'])) $deity = $deity + 65536;
+    return $deity;
+}
+
+function update_item(): void
+{
+    global $mysql;
+
+    $id = $_POST['id'];
+
+    $query = "SELECT * FROM items WHERE id=$id";
+    $item = $mysql->query_assoc($query);
+
+    // Define checkbox fields:
+    $slots = set_slots_bitmask();
+
+    $races = set_races_bitmask();
+
+    $classes = set_classes_bitmask();
+
+    $deity = set_deity_bitmask();
 
     $fields = '';
     if ($item['slots'] != $slots) $fields .= "slots=\"$slots\", ";
@@ -458,8 +472,8 @@ function copy_item()
     $query = "DELETE FROM items where id=0";
     $mysql->query_no_result($query);
 
-    $query2 = "INSERT INTO items (minstatus, Name, aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, classes, color, price, cr, damage, deity, delay, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, range, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, booktype, recastdelay, recasttype, updated, comment, stacksize, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, created, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound)
-   SELECT minstatus, concat(Name, ' - Copy'), aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, classes, color, price, cr, damage, deity, delay, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, range, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, booktype, recastdelay, recasttype, updated, comment, stacksize, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, created, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound FROM items where id=$id";
+    $query2 = "INSERT INTO items (`minstatus`, `Name`, `aagi`, `ac`, `acha`, `adex`, `aint`, `asta`, `astr`, `awis`, `bagsize`, `bagslots`, `bagtype`, `bagwr`, `banedmgamt`, `banedmgbody`, `banedmgrace`, `bardtype`, `bardvalue`, `book`, `casttime`, `casttime_`, `classes`, `color`, `price`, `cr`, `damage`, `deity`, `delay`, `dr`, `clicktype`, `clicklevel2`, `elemdmgtype`, `elemdmgamt`, `factionamt1`, `factionamt2`, `factionamt3`, `factionamt4`, `factionmod1`, `factionmod2`, `factionmod3`, `factionmod4`, `filename`, `focuseffect`, `fr`, `fvnodrop`, `clicklevel`, `hp`, `icon`, `idfile`, `itemclass`, `itemtype`, `light`, `lore`, `magic`, `mana`, `material`, `maxcharges`, `mr`, `nodrop`, `norent`, `pr`, `procrate`, `races`, `range`, `reclevel`, `recskill`, `reqlevel`, `sellrate`, `size`, `skillmodtype`, `skillmodvalue`, `slots`, `clickeffect`, `tradeskills`, `weight`, `booktype`, `recastdelay`, `recasttype`, `updated`, `comment`, `stacksize`, `stackable`, `proceffect`, `proctype`, `proclevel2`, `proclevel`, `worneffect`, `worntype`, `wornlevel2`, `wornlevel`, `focustype`, `focuslevel2`, `focuslevel`, `scrolleffect`, `scrolltype`, `scrolllevel2`, `scrolllevel`, `serialized`, `verified`, `serialization`, `source`, `lorefile`, `questitemflag`, `clickunk5`, `clickunk6`, `clickunk7`, `procunk1`, `procunk2`, `procunk3`, `procunk4`, `procunk6`, `procunk7`, `wornunk1`, `wornunk2`, `wornunk3`, `wornunk4`, `wornunk5`, `wornunk6`, `wornunk7`, `focusunk1`, `focusunk2`, `focusunk3`, `focusunk4`, `focusunk5`, `focusunk6`, `focusunk7`, `scrollunk1`, `scrollunk2`, `scrollunk3`, `scrollunk4`, `scrollunk5`, `scrollunk6`, `scrollunk7`, `clickname`, `procname`, `wornname`, `focusname`, `scrollname`, `created`, `bardeffect`, `bardeffecttype`, `bardlevel2`, `bardlevel`, `bardunk1`, `bardunk2`, `bardunk3`, `bardunk4`, `bardunk5`, `bardname`, `bardunk7`, `gmflag`, `soulbound`)
+   SELECT minstatus, concat(Name, ' - Copy'), aagi, ac, acha, adex, aint, asta, astr, awis, bagsize, bagslots, bagtype, bagwr, banedmgamt, banedmgbody, banedmgrace, bardtype, bardvalue, book, casttime, casttime_, classes, color, price, cr, damage, deity, delay, dr, clicktype, clicklevel2, elemdmgtype, elemdmgamt, factionamt1, factionamt2, factionamt3, factionamt4, factionmod1, factionmod2, factionmod3, factionmod4, filename, focuseffect, fr, fvnodrop, clicklevel, hp, icon, idfile, itemclass, itemtype, light, lore, magic, mana, material, maxcharges, mr, nodrop, norent, pr, procrate, races, `range`, reclevel, recskill, reqlevel, sellrate, size, skillmodtype, skillmodvalue, slots, clickeffect, tradeskills, weight, booktype, recastdelay, recasttype, updated, comment, stacksize, stackable, proceffect, proctype, proclevel2, proclevel, worneffect, worntype, wornlevel2, wornlevel, focustype, focuslevel2, focuslevel, scrolleffect, scrolltype, scrolllevel2, scrolllevel, serialized, verified, serialization, source, lorefile, questitemflag, clickunk5, clickunk6, clickunk7, procunk1, procunk2, procunk3, procunk4, procunk6, procunk7, wornunk1, wornunk2, wornunk3, wornunk4, wornunk5, wornunk6, wornunk7, focusunk1, focusunk2, focusunk3, focusunk4, focusunk5, focusunk6, focusunk7, scrollunk1, scrollunk2, scrollunk3, scrollunk4, scrollunk5, scrollunk6, scrollunk7, clickname, procname, wornname, focusname, scrollname, created, bardeffect, bardeffecttype, bardlevel2, bardlevel, bardunk1, bardunk2, bardunk3, bardunk4, bardunk5, bardname, bardunk7, gmflag, soulbound FROM items where id=$id";
     $mysql->query_no_result($query2);
 
     $query3 = "SELECT max(id) AS iid FROM items";
@@ -487,81 +501,13 @@ function add_item(): void
     global $mysql;
 
     // Define checkbox fields:
-    $slots = 0;
-    if (isset($_POST['slot_Cursor'])) $slots = $slots + 1;
-    if (isset($_POST['slot_Ear01'])) $slots = $slots + 2;
-    if (isset($_POST['slot_Head'])) $slots = $slots + 4;
-    if (isset($_POST['slot_Face'])) $slots = $slots + 8;
-    if (isset($_POST['slot_Ear02'])) $slots = $slots + 16;
-    if (isset($_POST['slot_Neck'])) $slots = $slots + 32;
-    if (isset($_POST['slot_Shoulder'])) $slots = $slots + 64;
-    if (isset($_POST['slot_Arms'])) $slots = $slots + 128;
-    if (isset($_POST['slot_Back'])) $slots = $slots + 256;
-    if (isset($_POST['slot_Bracer01'])) $slots = $slots + 512;
-    if (isset($_POST['slot_Bracer02'])) $slots = $slots + 1024;
-    if (isset($_POST['slot_Range'])) $slots = $slots + 2048;
-    if (isset($_POST['slot_Hands'])) $slots = $slots + 4096;
-    if (isset($_POST['slot_Primary'])) $slots = $slots + 8192;
-    if (isset($_POST['slot_Secondary'])) $slots = $slots + 16384;
-    if (isset($_POST['slot_Ring01'])) $slots = $slots + 32768;
-    if (isset($_POST['slot_Ring02'])) $slots = $slots + 65536;
-    if (isset($_POST['slot_Chest'])) $slots = $slots + 131072;
-    if (isset($_POST['slot_Legs'])) $slots = $slots + 262144;
-    if (isset($_POST['slot_Feet'])) $slots = $slots + 524288;
-    if (isset($_POST['slot_Waist'])) $slots = $slots + 1048576;
-    if (isset($_POST['slot_Ammo'])) $slots = $slots + 2097152;
+    $slots = set_slots_bitmask();
 
-    $races = 0;
-    if (isset($_POST['race_Human'])) $races = $races + 1;
-    if (isset($_POST['race_Barbarian'])) $races = $races + 2;
-    if (isset($_POST['race_Erudite'])) $races = $races + 4;
-    if (isset($_POST['race_Wood_Elf'])) $races = $races + 8;
-    if (isset($_POST['race_High_Elf'])) $races = $races + 16;
-    if (isset($_POST['race_Dark_Elf'])) $races = $races + 32;
-    if (isset($_POST['race_Half_Elf'])) $races = $races + 64;
-    if (isset($_POST['race_Dwarf'])) $races = $races + 128;
-    if (isset($_POST['race_Troll'])) $races = $races + 256;
-    if (isset($_POST['race_Ogre'])) $races = $races + 512;
-    if (isset($_POST['race_Halfling'])) $races = $races + 1024;
-    if (isset($_POST['race_Gnome'])) $races = $races + 2048;
-    if (isset($_POST['race_Iksar'])) $races = $races + 4096;
-    if (isset($_POST['race_Vah_Shir'])) $races = $races + 8192;
+    $races = set_races_bitmask();
 
-    $classes = 0;
-    if (isset($_POST['class_Warrior'])) $classes = $classes + 1;
-    if (isset($_POST['class_Cleric'])) $classes = $classes + 2;
-    if (isset($_POST['class_Paladin'])) $classes = $classes + 4;
-    if (isset($_POST['class_Ranger'])) $classes = $classes + 8;
-    if (isset($_POST['class_Shadowknight'])) $classes = $classes + 16;
-    if (isset($_POST['class_Druid'])) $classes = $classes + 32;
-    if (isset($_POST['class_Monk'])) $classes = $classes + 64;
-    if (isset($_POST['class_Bard'])) $classes = $classes + 128;
-    if (isset($_POST['class_Rogue'])) $classes = $classes + 256;
-    if (isset($_POST['class_Shaman'])) $classes = $classes + 512;
-    if (isset($_POST['class_Necromancer'])) $classes = $classes + 1024;
-    if (isset($_POST['class_Wizard'])) $classes = $classes + 2048;
-    if (isset($_POST['class_Magician'])) $classes = $classes + 4096;
-    if (isset($_POST['class_Enchanter'])) $classes = $classes + 8192;
-    if (isset($_POST['class_Beastlord'])) $classes = $classes + 16384;
+    $classes = set_classes_bitmask();
 
-    $deity = 0;
-    if (isset($_POST['deity_Agnostic'])) $deity = $deity + 1;
-    if (isset($_POST['deity_Bertox'])) $deity = $deity + 2;
-    if (isset($_POST['deity_Brell'])) $deity = $deity + 4;
-    if (isset($_POST['deity_Cazic'])) $deity = $deity + 8;
-    if (isset($_POST['deity_Erollsi'])) $deity = $deity + 16;
-    if (isset($_POST['deity_Bristlebane'])) $deity = $deity + 32;
-    if (isset($_POST['deity_Innoruuk'])) $deity = $deity + 64;
-    if (isset($_POST['deity_Karana'])) $deity = $deity + 128;
-    if (isset($_POST['deity_Mithaniel_Marr'])) $deity = $deity + 256;
-    if (isset($_POST['deity_Prexus'])) $deity = $deity + 512;
-    if (isset($_POST['deity_Quellious'])) $deity = $deity + 1024;
-    if (isset($_POST['deity_Rallos_Zek'])) $deity = $deity + 2048;
-    if (isset($_POST['deity_Rodcet_Nife'])) $deity = $deity + 4096;
-    if (isset($_POST['deity_Solusek_Ro'])) $deity = $deity + 8192;
-    if (isset($_POST['deity_The_Tribunal'])) $deity = $deity + 16384;
-    if (isset($_POST['deity_Tunare'])) $deity = $deity + 32768;
-    if (isset($_POST['deity_Veeshan'])) $deity = $deity + 65536;
+    $deity = set_deity_bitmask();
 
     $fields = "slots=\"$slots\", ";
     $fields .= "races=\"$races\", ";
