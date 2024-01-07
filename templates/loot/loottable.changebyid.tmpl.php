@@ -6,12 +6,12 @@
          </tr>
          <tr>
            <td class="edit_form_content">
-             <form method="post" action="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=13">
-               Enter Loottable ID:<br>
-               <input type="text" name="id"><br><br>
-               <center>
+             <form method="post" action="index.php?editor=loot&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>&action=13">
+                 <label for="id">Enter Loottable ID:</label><br>
+               <input type="text" id="id" name="id"><br><br>
+               <div class="center">
                  <input type="submit">
-               </center>
+               </div>
              </form>
            </td>
          </tr>
