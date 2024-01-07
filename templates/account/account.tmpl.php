@@ -49,7 +49,7 @@
                                             IP_Exemption_Multiplier: <?= $ip_exemption_multiplier ?? "Undefined" ?><br />
                                             Ban Reason: <?php echo (isset($ban_reason) && $ban_reason != "") ? $ban_reason : "N/A"; ?><br/>
                                             Revoked: <?= (isset($revoked) ? $yesno[$revoked] : "unk") ?><br/>
-                                            Revoked Until: <?= $revokeduntil ?? "" ?><br />
+                                            <?php if(isset($revokeduntil)): ?>Revoked Until: <?= $revokeduntil ?><br /><?php endif ?>
                                             Suspended: <?php echo (isset($suspendeduntil) && $suspendeduntil > 0) ? $suspendeduntil : "N/A"; ?><br/>
                                             Suspend Reason: <?php echo (isset($suspend_reason) && $suspend_reason != "") ? $suspend_reason : "N/A"; ?><br/>
                                             Suspended Until: <?= $suspendeduntil ?? "" ?><br />
