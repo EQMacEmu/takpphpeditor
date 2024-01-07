@@ -35,7 +35,7 @@ switch ($action) {
     $body->set("acttypes", $sp_acttypes);
     $body->set("daytimes", $sp_daytimes);
     $body->set("traveltypes", $sp_traveltypes);
-    $body->set("spellcats", $sp_categories);
+    $body->set("spellcats", $sp_categories ?? ""); /* TODO FIX: this variable is not defined anywhere */
 
     $vars = spell_info();
     if ($vars) {
@@ -86,7 +86,8 @@ switch ($action) {
      break;
 }
 
-function spell_info () {
+function spell_info (): array|string|null
+{
   global $mysql;
 
   $id = $_GET['id'];
@@ -97,11 +98,11 @@ function spell_info () {
   $query = "SELECT * FROM spells_new WHERE id=$id";
   $result2 = $mysql->query_assoc($query);
 
-  $result = $result+$result2;
-  return $result;
+  return $result+$result2;
 }
 
-function delete_spell () {
+function delete_spell (): void
+{
   global $mysql;
 
   $id = $_GET['id'];
@@ -110,7 +111,8 @@ function delete_spell () {
   $mysql->query_no_result($query);
 }
 
-function update_spell () {
+function update_spell (): void
+{
   global $mysql;
 
   $id = $_POST['id'];
@@ -152,7 +154,7 @@ function update_spell () {
   }
 
   //Fix the 'use text field' elements
-  if($_POST[spell_category] == -100) { $_POST[spell_category] = $_POST[spcat]; }
+  if($_POST['spell_category'] == -100) { $_POST['spell_category'] = $_POST['spcat']; }
   for($x = 1; $x <= 12; $x++)
   {
    if($_POST['formula'.$x] == 1) { $_POST['formula'.$x] = $_POST['fmm'.$x]; }
@@ -198,13 +200,10 @@ function get_max_id () {
 
   $query = "SELECT max(id) AS iid FROM spells_new";
   $result = $mysql->query_assoc($query);
-  $newid = $result['iid'] + 1;
-
-  return $newid;
+  return $result['iid'] + 1;
 }
 
 function add_spell () {
-  global $mysql;
 }
 
 ?>
