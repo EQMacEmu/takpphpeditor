@@ -1,7 +1,7 @@
-  <script language="javascript">
+  <script type="text/javascript">
     function toggle_all() {
-      var boxes = document.getElementsByName("id[]");
-      for (var i = 0; i < boxes.length; i++) {
+      let boxes = document.getElementsByName("id[]");
+      for (let i = 0; i < boxes.length; i++) {
         boxes[i].checked = document.getElementById("all").checked;
       }
     }
@@ -12,10 +12,10 @@
     }
 
     function box_checked() {
-      var box_checked = false;
-      var boxes = document.getElementsByName("id[]");
-      for (var i = 0; i < boxes.length; i++) {
-        if (boxes[i].checked == true) {
+      let box_checked = false;
+      let boxes = document.getElementsByName("id[]");
+      for (let i = 0; i < boxes.length; i++) {
+        if (boxes[i].checked === true) {
           box_checked = true;
           break;
         }
@@ -25,7 +25,7 @@
 
     function verify() {
       if (box_checked()) {
-        var response = confirm("Are you sure you want delete these records?");
+        let response = confirm("Are you sure you want delete these records?");
         if (response) {
           document.forms["purge"].submit();
         }
@@ -36,7 +36,7 @@
     }
 
     function toggleCount() {
-      if(document.getElementById("CustomCount").style.display == "none") {
+      if(document.getElementById("CustomCount").style.display === "none") {
         document.getElementById("CustomCount").style.display = "block";
       }
       else {
@@ -45,7 +45,7 @@
     }
 
     function verifyCount() {
-      var newCount = document.getElementById("new_count").value;
+      let newCount = document.getElementById("new_count").value;
       if (parseInt(newCount) >= 0) {
         window.location = "index.php?editor=util&action=6&count=" + newCount;
       }
