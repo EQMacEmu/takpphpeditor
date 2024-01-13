@@ -1,49 +1,58 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!doctype html>
+<html lang="en">
 
-  <head>
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html">
     <script type="text/javascript">
-      function gotosite(site) { if (site != "") { self.location=site; } }
+        function gotosite(site) {
+            if (site !== "") {
+                self.location = site;
+            }
+        }
     </script>
     <script type="text/javascript">
-      function clearField(obj) { obj.value=""; }
+        function clearField(obj) {
+            obj.value = "";
+        }
     </script>
 
-<?if (isset($javascript)) echo $javascript;?>
+    <?php if (isset($javascript)) echo $javascript; ?>
 
-    <title><?if(isset($pagetitle) && ($pagetitle != '')) echo $pagetitle; else echo "TAKP Database Editor"; ?></title>
+    <title><?php if (isset($pagetitle) && ($pagetitle != '')) echo $pagetitle; else echo "TAKP Database Editor"; ?></title>
 
     <link rel="stylesheet" href="css/peq.css" type="text/css">
-  </head>
+</head>
 
-  <body>
-    <div id="container">
-      <div id="header">
-        <center><a href="index.php"><img src="images/logo.png" title="Home" border="0" width="75%" alt="TAKP Editor Banner"></a></center>
-      </div>
-        <?php
-            global $server, $server_name;
-            $color = 'style=""';
-            if($server !== $server_name) {
-                //echo '<center><H1 style="color:red">'. $server .'</H1></center>';
-                $color = 'style="color:red"';
-            }
-            else{
-                //echo '<center><H1 style="color:green">'. $server .'</H1></center>';
-                $color = 'style="color:green"';
-            }
-            echo '<center><H1 '. $color .'>'. $server .'</H1></center>';
-		?>
-<?if (isset($headbar)) echo $headbar;?>
-<?if (isset($searchbar)) echo $searchbar;?>
-      <div id="content">
-<?if(isset($breadcrumbs) && ($breadcrumbs != '')):?>
-      <div class='page_title'><?=$breadcrumbs?></div>
-<?endif;?>
-<?=$body?>
-      </div>
+<body>
+<div id="container">
+    <div id="header">
+        <div class="center">
+            <a href="index.php">
+                <img src="images/logo.png" title="Home" style="border: 0; width: 75%;" alt="TAKP Editor Banner">
+            </a>
+        </div>
     </div>
-  </body>
+    <?php
+    global $server, $server_name;
+    $color = 'style=""';
+    if ($server !== $server_name) {
+        //echo '<center><H1 style="color:red">'. $server .'</H1></center>';
+        $color = 'style="color:red"';
+    } else {
+        //echo '<center><H1 style="color:green">'. $server .'</H1></center>';
+        $color = 'style="color:green"';
+    }
+    echo '<div class="center"><H1 ' . $color . '>' . $server . '</H1></div>';
+    ?>
+    <?php if (isset($headbar)) echo $headbar; ?>
+    <?php if (isset($searchbar)) echo $searchbar; ?>
+    <div id="content">
+        <?php if (isset($breadcrumbs) && ($breadcrumbs != '')): ?>
+            <div class='page_title'><?= $breadcrumbs ?></div>
+        <?php endif; ?>
+        <?= $body ?>
+    </div>
+</div>
+</body>
 </html>
