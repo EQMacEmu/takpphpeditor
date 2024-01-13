@@ -226,7 +226,7 @@ function get_merchantlist_temp(): array
 function update_merchantlist(): void
 {
   check_authorization();
-  global $mysql;
+  global $mysql, $npcid;
 
   $mid = $_POST['mid'];
   $count = $_POST['count'];
@@ -234,8 +234,8 @@ function update_merchantlist(): void
 
 	for ($i=1; $i<=$count; $i++){
 		$slot = $_POST["slot$i"];
-		if (($slot != $_POST["newslot$i"]) || (!empty($values) && $values['item'] != $_POST["item$i"]) || (!empty($values) && $values['faction_required'] != $_POST["faction_required$i"]) ||
-        	(!empty($values) && $values['level_required'] != $_POST["level_required$i"]) || (!empty($values) && $values['classes_required'] != $_POST["classes_required$i"]) || (!empty($values) && $values['quantity'] != $_POST["quantity$i"])) {
+		if (($slot != $_POST["newslot$i"]) || (!isset($values) && $values['item'] != $_POST["item$i"]) || (!isset($values) && $values['faction_required'] != $_POST["faction_required$i"]) ||
+        	(!isset($values) && $values['level_required'] != $_POST["level_required$i"]) || (!isset($values) && $values['classes_required'] != $_POST["classes_required$i"]) || (!isset($values) && $values['quantity'] != $_POST["quantity$i"])) {
 			if($_POST["newslot$i"] > -1){
 				$query = "UPDATE merchantlist SET item=\"" . $_POST["item$i"] . "\", slot=\"" . $_POST["newslot$i"] . "\", faction_required=\"" . $_POST["faction_required$i"] . "\", level_required=\"" . $_POST["level_required$i"] . "\", classes_required=\"" . $_POST["classes_required$i"] . "\", quantity=\"" . $_POST["quantity$i"] . "\" WHERE merchantid=$mid AND slot=$slot";
 				$mysql->query_no_result($query);
