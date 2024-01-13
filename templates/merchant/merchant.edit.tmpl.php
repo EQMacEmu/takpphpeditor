@@ -12,8 +12,7 @@
             <th>Item Name</th>
             <th>Fact<br/>Req</th>
             <th>Lvl<br/>Req</th>
-            <th>Alt<br/>Curr</th>
-            <th>Class<br/>Req</th>
+             <th>Class<br/>Req</th>
             <th>Qty</th>
           </tr>
             <?php $x=1; foreach ($slots as $slot => $v):?>
@@ -24,7 +23,6 @@
             <td><?=$v['item_name']?></td>
             <td style="text-align: center;"><label for="faction_required<?=$x?>"></label><input type="text" size="3" id="faction_required<?=$x?>" name="faction_required<?=$x?>" value="<?=$v['faction_required']?>"</td>
             <td style="text-align: center;"><label for="level_required<?=$x?>"></label><input type="text" size="3" id="level_required<?=$x?>" name="level_required<?=$x?>" value="<?=$v['level_required']?>"</td>
-            <td style="text-align: center;"><label for="alt_currency_cost<?=$x?>"></label><input type="text" size="3" id="alt_currency_cost<?=$x?>" name="alt_currency_cost<?=$x?>" value="<?=$v['alt_currency_cost']?>"</td>
             <td style="text-align: center;"><label for="classes_required<?=$x?>"></label><input type="text" size="3" id="classes_required<?=$x?>" name="classes_required<?=$x?>" value="<?=$v['classes_required']?>"</td>
             <td style="text-align: center;"><label for="quantity<?=$x?>"></label><input type="text" size="3" id="quantity<?=$x?>" name="quantity<?=$x?>" value="<?=$v['quantity']?>"</td>
           </tr>
