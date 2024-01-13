@@ -226,11 +226,11 @@ function get_merchantlist_temp(): array
 function update_merchantlist(): void
 {
   check_authorization();
-  global $mysql, $npcid;
+  global $mysql;
 
   $mid = $_POST['mid'];
   $count = $_POST['count'];
-  $oldstats = get_merchantlist();
+  /* If needed later: $oldstats = get_merchantlist(); */
 
 	for ($i=1; $i<=$count; $i++){
 		$slot = $_POST["slot$i"];
