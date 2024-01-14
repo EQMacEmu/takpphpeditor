@@ -58,7 +58,7 @@ switch ($action) {
         $javascript = new Template("templates/util/js.tmpl.php");
         $body = new Template("templates/util/util.recipes.tmpl.php");
         $count = $default_count;
-        if ($_GET['count'] > 0) {
+        if (isset($_GET['count']) && $_GET['count'] > 0) {
             $count = $_GET['count'];
         }
         $body->set('count', $count);
@@ -81,7 +81,7 @@ function purge_characters(): void
 {
     $characters = $_POST['id'];
 
-    foreach ($characters as $character => $id) {
+    foreach ($characters as ($char) => $id) {
         delete_player($id);
     }
 }
@@ -98,7 +98,7 @@ function purge_accounts(): void
 {
     $accounts = $_POST['id'];
 
-    foreach ($accounts as $account => $id) {
+    foreach ($accounts as ($account) => $id) {
         delete_account($id);
     }
 }
