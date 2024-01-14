@@ -3,29 +3,29 @@
         Change Spellset
                </div>
         <div class="edit_form_content">
-        <form method="post" action="index.php?editor=spellset&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&id=<?=$id?>&action=21">
-              <table width="100%">
+        <form method="post" action="index.php?editor=spellset&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>&id=<?=$id?>&action=21">
+              <table style="width: 100%;">
           <tr>
-              <th>npc class</th>
-              <th>update all</th>
+              <th><label for="npcclass">npc class</label></th>
+              <th><label for="updateall">update all</label></th>
            </tr>
            <tr>
-               <td><select name="npcclass" style="width: 265px;">
-<?foreach($classes as $key=>$value):?>
-                   <option value="<?=$key?>"<?echo ($key == $class)? " selected" : "";?>><?=$key?>: <?=$value?></option>
-<?endforeach;?>
+               <td><select id="npcclass" name="npcclass" style="width: 265px;">
+                       <?php foreach($classes as $key=> $value):?>
+                   <option value="<?=$key?>"<?php echo (isset($class) && $key == $class)? " selected" : "";?>><?=$key?>: <?=$value?></option>
+                       <?php endforeach;?>
                  </select></td>
                <td>
-               <select name="updateall">
-                   <option value="0"<?echo ($updateall == 0) ? " selected" : ""?>>No</option>
-                   <option value="1"<?echo ($updateall == 1) ? " selected" : ""?>>Yes</option>
+               <select id="updateall" name="updateall">
+                   <option value="0"<?php echo (isset($updateall) && $updateall == 0) ? " selected" : ""?>>No</option>
+                   <option value="1"<?php echo (isset($updateall) && $updateall == 1) ? " selected" : ""?>>Yes</option>
                  </select>
                </td>
              </tr>
                  </table><br><br>
-               <center>
+               <div class="center">
                  <input type="submit">
-               </center>
+               </div>
              </form>
          </div>
       </div>
