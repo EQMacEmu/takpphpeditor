@@ -1,22 +1,22 @@
-      <center>
+      <div class="center">
         <iframe id='searchframe' src='templates/iframes/spellsearch.php'></iframe>
         <input id="button" type="button" value='Hide Spell Search' onclick='hideSearch();' style='display:none; margin-bottom: 20px;'>
-      </center>
+      </div>
 
       <div class="table_container" style="width: 150px">
         <div class="edit_form_header">
             Add a Spell
         </div>
         <div class="edit_form_content">
-          <form method="post" action="index.php?editor=spellset&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&spellset=<?=$spellset?>&action=4">
-            <strong>Spell ID:</strong> (<a href="javascript:showSearch();">search</a>)<br>
+          <form method="post" action="index.php?editor=spellset&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>&spellset=<?=$spellset?>&action=4">
+              <strong><label for="id">Spell ID:</label></strong> (<a href="javascript:showSearch();">search</a>)<br>
             <input class="indented" id="id" type="text" name="spellid" size="10" value="0"><br><br>
 
-            <strong>Type:</strong> <br>
-            <select class = "indented" name="type">
-<?foreach($spelltypes as $k => $v):?>
+              <strong><label for="type">Type:</label></strong> <br>
+            <select class = "indented" id="type" name="type">
+                <?php foreach($spelltypes as $k => $v):?>
               <option value="<?=$k?>"><?=$v?></option>
-<?endforeach;?>
+                <?php endforeach;?>
             </select><br><br>
 
             <strong>Minlevel:</strong><br>
@@ -37,12 +37,12 @@
             <input class="indented" id="id" type="text" name="priority" size="10" value="0"><br><br>
 
             <strong>Resist Adj:</strong><br>
-            <input class="indented" id="id" input type="text" name="resist_adjust" size="10" value=""><br><br>
+            <input class="indented" id="id" type="text" name="resist_adjust" size="10" value=""><br><br>
 
-            <center>
-              <input type="hidden" name="npc_spells_id" value="<?=$npc_spells_id?>">
+            <div class="center">
+              <input type="hidden" name="npc_spells_id" value="<?=$npc_spells_id ?? ""?>">
               <input type="submit" name="submit" value="Submit">
-            </center>
+            </div>
           </form>
         </div>
       </div>
