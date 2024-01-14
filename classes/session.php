@@ -20,7 +20,7 @@ class session
 
         $query = "SELECT password FROM peq_admin WHERE login=\"$login\"";
         $result = $mysql->query_assoc($query);
-        if ($result == '') {
+        if (empty($result)) {
             $_SESSION['error'] = 1;
             logSQL("Invalid login attempt. Bad username from IP: '" . getIP() . "'. Username: '$login' Password: '$pw'.");
             return;
@@ -36,12 +36,9 @@ class session
         }
     }
 
-    public static function logged_in(): bool
+    public static function validate_credentials(): bool
     {
         global $mysql, $password;
-
-        if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return true;
-
         if (!isset($_SESSION['login']) || !isset($_SESSION['password'])) return false;
 
         $login = $_SESSION['login'];
@@ -49,39 +46,29 @@ class session
         $query = "SELECT password FROM peq_admin WHERE login=\"$login\"";
         $result = $mysql->query_assoc($query);
 
-        if ($result == '') {
+        if (empty($result)) {
             return false;
         }
 
         extract($result);
 
-        if ($password == $pw) {
-            return true;
-        } else return false;
+        return $password == $pw;
+    }
+
+    public static function logged_in(): bool
+    {
+        if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return true;
+
+        // return false if session credentials don't exist or don't match database, otherwise true
+        return self::validate_credentials();
     }
 
     public static function check_authorization(): bool
     {
-        global $mysql, $password;
-
         if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return false;
 
-        if (!isset($_SESSION['login']) || !isset($_SESSION['password'])) return false;
-
-        $login = $_SESSION['login'];
-        $pw = $_SESSION['password'];
-        $query = "SELECT password FROM peq_admin WHERE login=\"$login\"";
-        $result = $mysql->query_assoc($query);
-
-        if ($result == '') {
-            return false;
-        }
-
-        extract($result);
-
-        if ($password == $pw) {
-            return true;
-        } else return false;
+        // return false if session credentials don't exist or don't match database, otherwise true
+        return self::validate_credentials();
     }
 
     public static function is_admin(): bool
@@ -124,11 +111,8 @@ if (isset($_GET['logout'])) {
 
 // Handle logins
 if (isset($_GET['login'])) {
-    if ($_GET['login'] == "guest" && $enable_guest_mode == 1) {
-        $_SESSION['guest'] = 1;
-    }
-    if ($_GET['login'] == "guest" && $enable_guest_mode != 1) {
-        $_SESSION['guest'] = 0;
+    if ($_GET['login'] == "guest") {
+        $_SESSION['guest'] = $enable_guest_mode ? 1 : 0;
     }
     if ($enable_user_login != 1) {
         $login = $_POST['login'];
@@ -136,7 +120,9 @@ if (isset($_GET['login'])) {
         logSQL("POSSIBLE HACK ATTEMPT. Person was from IP: '" . getIP() . "'. and used Username: '$login' Password: '$password'.");
         $_SESSION['error'] = 1;
     } else {
-        session::login($_POST['login'], $_POST['password']);
+        $login = $_POST['login'] ?? "";
+        $password = $_POST['password'] ?? "";
+        session::login($login, $password);
     }
     header('Location: index.php');
     exit;
@@ -148,8 +134,8 @@ if (!session::logged_in()) {
     $error = isset($_SESSION['error']) ? 1 : 0;
 
     // Safer to fail if not set
-    $login = $login ?? '';
-    $password = $password ?? '';
+    $login = $_POST['login'] ?? '';
+    $password = $_POST['password'] ?? '';
 
     $tmpl = $tmpl ?? new Template;
 
