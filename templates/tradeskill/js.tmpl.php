@@ -1,7 +1,7 @@
-<script language="javascript">
+<script type="text/javascript">
   function toggleComponentType() {
-    var x = document.forms[1].type.selectedIndex;
-    if (x == 0) {
+    let x = document.forms[1].type.selectedIndex;
+    if (x === 0) {
       document.forms[1].iscontainer.value=1;
 
       document.forms[1].successcount.disabled=true;
@@ -13,11 +13,11 @@
       document.forms[1].componentcount.disabled=true;
       document.forms[1].componentcount.value=0;
 
-      if (document.getElementById("ContainerTable").style.display == "none") {
+      if (document.getElementById("ContainerTable").style.display === "none") {
         toggleContainer();
       }
     }
-    else if (x == 1) {
+    else if (x === 1) {
       document.forms[1].iscontainer.value=0;
 
       document.forms[1].successcount.disabled=true;
@@ -29,7 +29,7 @@
       document.forms[1].componentcount.disabled=false;
       document.forms[1].componentcount.value=1;
 
-      if (document.getElementById("ContainerTable").style.display == "block") {
+      if (document.getElementById("ContainerTable").style.display === "block") {
         toggleContainer();
       }
     }
@@ -45,7 +45,7 @@
       document.forms[1].successcount.disabled=false;
       document.forms[1].successcount.value=1;
 
-      if (document.getElementById("ContainerTable").style.display == "block") {
+      if (document.getElementById("ContainerTable").style.display === "block") {
         toggleContainer();
       }
     }
@@ -68,7 +68,7 @@
   }
 
   function toggleContainer() {
-    if(document.getElementById("ContainerCollapsed").style.display == "inline") {
+    if(document.getElementById("ContainerCollapsed").style.display === "inline") {
       document.getElementById("ContainerCollapsed").style.display = "none";
       document.getElementById("ContainerTable").style.display = "block";
       document.getElementById("ContainerExpanded").style.display = "inline";

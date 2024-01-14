@@ -55,7 +55,7 @@ switch ($action) {
             $body->set("errors", $errors);
         } else {
             $body = new Template("templates/tradeskill/tradeskill.default.tmpl.php");
-            if (!empty($_GET['ts']) && $_GET['ts'] > 0) {
+            if (isset($_GET['ts']) && $_GET['ts'] > 0) {
                 $body->set("ts", $_GET['ts']);
                 $body->set("tradeskills", $tradeskills);
             }
@@ -110,7 +110,7 @@ switch ($action) {
         update_component();
         header("Location: index.php?editor=tradeskill&ts=$ts&rec=$rec");
         exit;
-    case 7: // Add component
+    case 7: // Add Recipe component
         check_authorization();
         $javascript = new Template("templates/tradeskill/js.tmpl.php");
         $body = new Template("templates/tradeskill/component.add.tmpl.php");
@@ -127,7 +127,9 @@ switch ($action) {
         $body = new Template("templates/tradeskill/tradeskill.searchresults.tmpl.php");
         if (isset($_GET['itemid']) && $_GET['itemid'] != "Item ID") {
             $results = search_recipes_by_item();
-        } else $results = search_recipes();
+        } else {
+            $results = search_recipes();
+        }
         $body->set("results", $results);
         break;
     case 10:  // Add recipe
@@ -135,8 +137,9 @@ switch ($action) {
         $javascript = new Template("templates/tradeskill/js.tmpl.php");
         $body = new Template("templates/tradeskill/recipe.add.tmpl.php");
         $body->set("tradeskills", $tradeskills);
-        if ($_GET['ts'] > 0)
+        if (isset($_GET['ts']) && $_GET['ts'] > 0) {
             $body->set('ts', $_GET['ts']);
+        }
         break;
     case 11:  // Add component
         check_authorization();
@@ -148,34 +151,6 @@ switch ($action) {
         copy_tradeskill();
         $nrec = get_new_id();
         header("Location: index.php?editor=tradeskill&ts=$ts&rec=$nrec");
-        exit;
-    case 13:  // View Learned Recipes
-        check_authorization();
-        $breadcrumbs .= " >> Learned Recipes";
-        $pagetitle .= " - Learned Recipes";
-        $curr_page = (isset($_GET['page'])) ? $_GET['page'] : $default_page;
-        $curr_size = (isset($_GET['size'])) ? $_GET['size'] : $default_size;
-        $curr_sort = (isset($_GET['sort'])) ? $columns[$_GET['sort']] : $columns[$default_sort];
-        $body = new Template("templates/tradeskill/learned.tmpl.php");
-        $page_stats = getPageInfo("char_recipe_list", $curr_page, $curr_size, $_GET['sort']);
-        if ($page_stats['page']) {
-            $recipes = getLearnedRecipes($page_stats['page'], $curr_size, $curr_sort); /* TODO FIX: undefined function */
-        }
-        if ($recipes) {
-            $body->set('recipes', $recipes);
-            foreach ($page_stats as $key => $value) {
-                $body->set($key, $value);
-            }
-        } else {
-            $body->set('page', 0);
-            $body->set('pages', 0);
-        }
-        break;
-    case 14:  // Delete Learned Recipe
-        check_authorization();
-        delete_LearnedRecipe(); /* TODO Fix: undefined function */
-        $return_address = $_SERVER['HTTP_REFERER'];
-        header("Location: $return_address");
         exit;
 }
 
@@ -200,13 +175,23 @@ function recipe_info(): bool|array|string
     $query = "SELECT * FROM tradeskill_recipe_entries WHERE recipe_id=$rec";
     $results = $mysql->query_mult_assoc($query);
 
-    if ($results != '') {
+    if (!empty($results)) {
         foreach ($results as $r) {
-            if (isset($world_containers[$r['item_id']])) $r['name'] = $world_containers[$r['item_id']];
-            else $r['name'] = get_item_name($r['item_id']);
-            if ($r['iscontainer'] == 1) $array['containers'][] = $r;
-            elseif ($r['successcount'] > 0) $array['products'][] = $r;
-            else $array['components'][] = $r;
+            if (isset($world_containers[$r['item_id']])) {
+                $r['name'] = $world_containers[$r['item_id']];
+            }
+            else {
+                $r['name'] = get_item_name($r['item_id']);
+            }
+            if ($r['iscontainer'] == 1) {
+                $array['containers'][] = $r;
+            }
+            elseif ($r['successcount'] > 0) {
+                $array['products'][] = $r;
+            }
+            else {
+                $array['components'][] = $r;
+            }
         }
     }
     return $array;
@@ -243,7 +228,7 @@ function update_recipe(): void
 
     $fields = rtrim($fields, ", ");
 
-    if ($fields != '') {
+    if (!empty($fields)) {
         $query = "UPDATE tradeskill_recipe SET $fields WHERE id=$id";
         $mysql->query_no_result($query);
     }
@@ -311,7 +296,7 @@ function update_component(): void
 
     $fields = rtrim($fields, ", ");
 
-    if ($fields != '') {
+    if (!empty($fields)) {
         $query = "UPDATE tradeskill_recipe_entries SET $fields WHERE id=$id";
         $mysql->query_no_result($query);
     }
