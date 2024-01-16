@@ -49,12 +49,12 @@
                 <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
                     <tr>
                         <td style="padding: 0;">
-                            Spawngroup <a href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $spawngroupID ?></a>
-                            - <?= $name ?>
+                            Spawngroup <a href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $spawngroupID ?? 0 ?></a>
+                            - <?= $name ?? "Undefined" ?>
                         </td>
                         <td style="padding: 0;">
                             spawn_limit: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $spawn_limit ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $spawn_limit ?? "N/A" ?></a>
                         </td>
                         <td style="padding: 0;">
                             <a href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=10">View
@@ -77,23 +77,23 @@
                     <tr>
                         <td style="padding: 0; width: 20%">
                             WP Spawns: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?php echo ($wp_spawns) ? "Enabled" : "Off"; ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?php echo !empty($wp_spawns) ? "Enabled" : "Off"; ?></a>
                         </td>
                         <td style="padding: 0; width: 20%">
                             min_x: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $min_x ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $min_x ?? 0 ?></a>
                         </td>
                         <td style="padding: 0; width: 20%">
                             max_x: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $max_x ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $max_x ?? 0?></a>
                         </td>
                         <td style="padding: 0; width: 20%">
                             min_y: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $min_y ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $min_y ?? 0?></a>
                         </td>
                         <td style="padding: 0; width: 20%">
                             max_y: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $max_y ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $max_y ?? 0 ?></a>
                         </td>
                     </tr>
                 </table>
@@ -103,19 +103,19 @@
                     <tr>
                         <td style="padding: 0; width: 25%">
                             mindelay: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $mindelay ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $mindelay ?? "N/A" ?></a>
                         </td>
                         <td style="padding: 0; width: 25%">
                             delay: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $delay ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $delay ?? "N/A" ?></a>
                         </td>
                         <td style="padding: 0; width: 25%">
                             despawn: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $despawntype[$despawn] ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= isset($despawn) ? $despawntype[$despawn] : "None" ?></a>
                         </td>
                         <td style="padding: 0; width: 25%">
                             despawn timer: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $despawn_timer ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $despawn_timer ?? "N/A" ?></a>
                         </td>
                     </tr>
                 </table>
@@ -125,19 +125,19 @@
                     <tr>
                         <td style="padding: 0; width: 25%">
                             rand_spawns: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $rand_spawns ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $rand_spawns ?? "N/A" ?></a>
                         </td>
                         <td style="padding: 0; width: 25%">
                             rand_respawntime: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $rand_respawntime ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $rand_respawntime ?? "N/A" ?></a>
                         </td>
                         <td style="padding: 0; width: 25%">
                             rand_variance: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $rand_variance ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $rand_variance ?? "N/A" ?></a>
                         </td>
                         <td style="padding: 0; width: 25%">
                             rand_condition: <a
-                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $rand_condition_ ?></a>
+                                    href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>&sid=<?= $spawngroupID ?>&action=4"><?= $rand_condition_ ?? "N/A" ?></a>
                         </td>
                     </tr>
                 </table>
