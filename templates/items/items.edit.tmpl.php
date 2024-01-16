@@ -35,7 +35,7 @@
                 <select id="itemtype" name="itemtype" style="width:265px;">
                     <?php $itemtypes = $itemtypes ?? array(); ?>
                     <?php foreach($itemtypes as $k => $v):?>
-                  <option value="<?=$k?>"<?php echo (!empty($itemtype) && $k == $itemtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                  <option value="<?=$k?>"<?php echo (isset($itemtype) && $k == $itemtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                     <?php endforeach;?>
                 </select>
               </td>
@@ -46,9 +46,9 @@
                 <td style="padding: 3px; text-align: left; width: 50%"><label for="lore">Lore Name: (* - Lore # - Artifact)</label><br/><input type="text" id="lore" name="lore" size="45" value="<?=$lore ?? ""?>"></td>
                 <td style="padding: 3px; text-align: left; width: 50%"><label for="itemclass">Class:</label><br/>
                 <select id="itemclass" name="itemclass">
-                  <option value="0"<?php echo (!empty($itemclass) && $itemclass == 0) ? " selected" : ""?>>Common Item</option>
-                  <option value="1"<?php echo (!empty($itemclass) && $itemclass == 1) ? " selected" : ""?>>Container</option>
-                  <option value="2"<?php echo (!empty($itemclass) && $itemclass == 2) ? " selected" : ""?>>Book</option>
+                  <option value="0"<?php echo (isset($itemclass) && $itemclass == 0) ? " selected" : ""?>>Common Item</option>
+                  <option value="1"<?php echo (isset($itemclass) && $itemclass == 1) ? " selected" : ""?>>Container</option>
+                  <option value="2"<?php echo (isset($itemclass) && $itemclass == 2) ? " selected" : ""?>>Book</option>
                 </select>
               </td>
             </tr>
@@ -65,9 +65,9 @@
               <td style="padding: 3px; text-align: left; width: 33%;"><?php echo !empty($filename) ? '<a href="index.php?editor=items&id=' . ($id ?? "") . '&name=' . $filename . '&action=3"><label for="filename">Book Name:</label></a>' : 'Book Name:'?><br/><input type="text" id="filename" name="filename" size="25" value="<?=($filename ?? "")?>"/></td>
                 <td style="padding: 3px; text-align: left; width: 33%;"><label for="book">Book:</label><br/>
                 <select id="book" name="book">
-                  <option value="0"<?php echo (!empty($book) && $book == 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?php echo (!empty($book) && $book == 1) ? " selected" : ""?>>Yes</option>
-                  <option value="2"<?php echo (!empty($book) && $book == 2) ? " selected" : ""?>>Message</option>
+                  <option value="0"<?php echo (isset($book) && $book == 0) ? " selected" : ""?>>No</option>
+                  <option value="1"<?php echo (isset($book) && $book == 1) ? " selected" : ""?>>Yes</option>
+                  <option value="2"<?php echo (isset($book) && $book == 2) ? " selected" : ""?>>Message</option>
                 </select>
               </td>
                 <td style="padding: 3px; text-align: left; width: 33%;"><label for="booktype">Booktype:</label><br/><input type="text" id="booktype" name="booktype" size="10" value="<?=$booktype ?? ""?>"/></td>
@@ -80,7 +80,7 @@
                     <?php
                     $itembagsize = $itembagsize ?? array();
                     foreach($itembagsize as $k => $v):?>
-                  <option value="<?=$k?>"<?php echo (!empty($bagsize) && $k == $bagsize) ? " selected" : ""?>><?=$v?></option>
+                  <option value="<?=$k?>"<?php echo (isset($bagsize) && $k == $bagsize) ? " selected" : ""?>><?=$v?></option>
                     <?php endforeach;?>
                 </select>
               </td>
@@ -91,7 +91,7 @@
                     <?php
                     $world_containers = $world_containers ?? array();
                     foreach($world_containers as $k => $v):?>
-                  <option value="<?=$k?>"<?php echo (!empty($bagtype) && $k == $bagtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                  <option value="<?=$k?>"<?php echo (isset($bagtype) && $k == $bagtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                     <?php endforeach;?>
                 </select>
               </td>
@@ -104,40 +104,40 @@
             <tr>
                 <td style="padding: 3px; text-align: left; width: 20%"><label for="nodrop">No Drop:</label><br/>
                 <select id="nodrop" name="nodrop">
-                  <option value="1"<?php echo (!empty($nodrop) && $nodrop == 1) ? " selected" : ""?>>No</option>
-                  <option value="0"<?php echo (!empty($nodrop) && $nodrop == 0) ? " selected" : ""?>>Yes</option>
+                  <option value="1"<?php echo (isset($nodrop) && $nodrop == 1) ? " selected" : ""?>>No</option>
+                  <option value="0"<?php echo (isset($nodrop) && $nodrop == 0) ? " selected" : ""?>>Yes</option>
                 </select>
               </td>
                 <td style="padding: 3px; text-align: left; width: 20%"><label for="norent">No Rent:</label><br/>
                 <select id="norent" name="norent">
-                  <option value="1"<?php echo (!empty($norent) && $norent == 1) ? " selected" : ""?>>No</option>
-                  <option value="0"<?php echo (!empty($norent) && $norent == 0) ? " selected" : ""?>>Yes</option>
-                  <option value="255"<?php echo (!empty($norent) && $norent == 255) ? " selected" : ""?>>255</option>
+                  <option value="1"<?php echo (isset($norent) && $norent == 1) ? " selected" : ""?>>No</option>
+                  <option value="0"<?php echo (isset($norent) && $norent == 0) ? " selected" : ""?>>Yes</option>
+                  <option value="255"<?php echo (isset($norent) && $norent == 255) ? " selected" : ""?>>255</option>
                 </select>
               </td>
                 <td style="padding: 3px; text-align: left; width: 20%"><label for="magic">Magic:</label><br/>
                 <select id="magic" name="magic">
-                  <option value="0"<?php echo (!empty($magic) && $magic == 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?php echo (!empty($magic) && $magic == 1) ? " selected" : ""?>>Yes</option>
+                  <option value="0"<?php echo (isset($magic) && $magic == 0) ? " selected" : ""?>>No</option>
+                  <option value="1"<?php echo (isset($magic) && $magic == 1) ? " selected" : ""?>>Yes</option>
                 </select>
               </td>
                 <td style="padding: 3px; text-align: left; width: 20%"><label for="tradeskills">Tradeskill:</label><br/>
                 <select id="tradeskills" name="tradeskills">
-                  <option value="0"<?php echo (!empty($tradeskills) && $tradeskills == 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?php echo (!empty($tradeskills) && $tradeskills == 1) ? " selected" : ""?>>Yes</option>
+                  <option value="0"<?php echo (isset($tradeskills) && $tradeskills == 0) ? " selected" : ""?>>No</option>
+                  <option value="1"<?php echo (isset($tradeskills) && $tradeskills == 1) ? " selected" : ""?>>Yes</option>
                 </select>
                 <td style="padding: 3px; text-align: left; width: 20%"><label for="questitemflag">Quest:</label><br/>
                 <select id="questitemflag" name="questitemflag">
-                  <option value="0"<?php echo (!empty($questitemflag) && $questitemflag == 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?php echo (!empty($questitemflag) && $questitemflag == 1) ? " selected" : ""?>>Yes</option>
+                  <option value="0"<?php echo (isset($questitemflag) && $questitemflag == 0) ? " selected" : ""?>>No</option>
+                  <option value="1"<?php echo (isset($questitemflag) && $questitemflag == 1) ? " selected" : ""?>>Yes</option>
                 </select>
               </td>
             </tr>
             <tr>
                 <td style="padding: 3px; text-align: left; width: 16%"><label for="fvnodrop">FV No Drop:</label><br/>
                 <select id="fvnodrop" name="fvnodrop">
-                  <option value="0"<?php echo (!empty($fvnodrop) && $fvnodrop== 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?php echo (!empty($fvnodrop) && $fvnodrop == 1) ? " selected" : ""?>>Yes</option>
+                  <option value="0"<?php echo (isset($fvnodrop) && $fvnodrop== 0) ? " selected" : ""?>>No</option>
+                  <option value="1"<?php echo (isset($fvnodrop) && $fvnodrop == 1) ? " selected" : ""?>>Yes</option>
                 </select>
               </td>
                 <td style="padding: 3px; text-align: left; width: 16%"><label for="gmflag">GM Flag:</label><br/>
@@ -145,14 +145,14 @@
                          <?php
                          $gmflagtype = $gmflagtype ?? array();
                          foreach($gmflagtype as $k => $v):?>
-			           <option value="<?=$k?>"<?php echo (!empty($gmflag) && $k == $gmflag) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+			           <option value="<?=$k?>"<?php echo (isset($gmflag) && $k == $gmflag) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                          <?php endforeach;?>
 			        </select>
               </td>
                 <td style="padding: 3px; text-align: left; width: 16%"><label for="soulbound">Soulbound:</label><br/>
 			         <select class="left" id="soulbound" name="soulbound">
-			           <option value="0"<?php echo (!empty($soulbound) && $soulbound == 0) ? " selected" : ""?>>No</option>
-                  <option value="1"<?php echo (!empty($soulbound) && $soulbound == 1) ? " selected" : ""?>>Yes</option>
+			           <option value="0"<?php echo (isset($soulbound) && $soulbound == 0) ? " selected" : ""?>>No</option>
+                  <option value="1"<?php echo (isset($soulbound) && $soulbound == 1) ? " selected" : ""?>>Yes</option>
 			         </select>
              </td>
             </tr>
@@ -314,7 +314,7 @@
                   <select class="left" id="banedmgrace" name="banedmgrace">
                       <?php $itemraces = $itemraces ?? array(); ?>
                       <?php foreach($itemraces as $k => $v):?>
-                    <option value="<?=$k?>"<?php echo (!empty($banedmgrace) && $k == $banedmgrace) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                    <option value="<?=$k?>"<?php echo (isset($banedmgrace) && $k == $banedmgrace) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
@@ -322,7 +322,7 @@
                   <select class="left" id="banedmgbody" name="banedmgbody">
                       <?php $bodytypes = $bodytypes ?? array(); ?>
                       <?php foreach($bodytypes as $k => $v):?>
-                    <option value="<?=$k?>"<?php echo (!empty($banedmgbody) && $k == $banedmgbody) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                    <option value="<?=$k?>"<?php echo (isset($banedmgbody) && $k == $banedmgbody) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
@@ -377,7 +377,7 @@
                   <select class="left" id="skillmodtype" name="skillmodtype">
                       <?php $skilltypes = $skilltypes ?? array(); ?>
                       <?php foreach($skilltypes as $k => $v):?>
-                    <option value="<?=$k?>"<?php echo (!empty($skillmodtype) && $k == $skillmodtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                    <option value="<?=$k?>"<?php echo (isset($skillmodtype) && $k == $skillmodtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
@@ -412,7 +412,7 @@
                     <?php
                     $itemsize = $itemsize ?? array();
                     foreach($itemsize as $k => $v):?>
-                  <option value="<?=$k?>"<?php echo (!empty($size) && $k == $size) ? " selected" : ""?>><?=$v?></option>
+                  <option value="<?=$k?>"<?php echo (isset($size) && $k == $size) ? " selected" : ""?>><?=$v?></option>
                     <?php endforeach;?>
                 </select>
               </td>
@@ -421,7 +421,7 @@
                     <?php
                     $itemmaterial = $itemmaterial ?? array();
                     foreach($itemmaterial as $k => $v):?>
-                  <option value="<?=$k?>"<?php echo (!empty($material) && $k == $material) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                  <option value="<?=$k?>"<?php echo (isset($material) && $k == $material) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                     <?php endforeach;?>
                 </select>
               </td>
@@ -451,7 +451,7 @@
                       <?php
                       $itemcasttype = $itemcasttype ?? array();
                       foreach($itemcasttype as $k => $v):?>
-                        <option value="<?=$k?>"<?php echo (!empty($clicktype) && $k == $clicktype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                        <option value="<?=$k?>"<?php echo (isset($clicktype) && $k == $clicktype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
@@ -467,7 +467,7 @@
                       <?php
                       $proccasttype = $proccasttype ?? array();
                       foreach($proccasttype as $k => $v):?>
-                    <option value="<?=$k?>"<?php echo (!empty($proctype) && $k == $proctype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                    <option value="<?=$k?>"<?php echo (isset($proctype) && $k == $proctype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
@@ -484,7 +484,7 @@
                       <?php
                       $worncasttype = $worncasttype ?? array();
                       foreach($worncasttype as $k => $v):?>
-                    <option value="<?=$k?>"<?php echo (!empty($worntype) && $k == $worntype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                    <option value="<?=$k?>"<?php echo (isset($worntype) && $k == $worntype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
@@ -501,7 +501,7 @@
                       <?php
                       $focuscasttype = $focuscasttype ?? array();
                       foreach($focuscasttype as $k => $v):?>
-                    <option value="<?=$k?>"<?php echo (!empty($focustype) && $k == $focustype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                    <option value="<?=$k?>"<?php echo (isset($focustype) && $k == $focustype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
@@ -518,7 +518,7 @@
                       <?php
                       $scrollcasttype = $scrollcasttype ?? array();
                       foreach($scrollcasttype as $k => $v):?>
-                    <option value="<?=$k?>"<?php echo (!empty($scrolltype) && $k == $scrolltype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                    <option value="<?=$k?>"<?php echo (isset($scrolltype) && $k == $scrolltype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
@@ -535,7 +535,7 @@
                       <?php
                       $itembardtype = $itembardtype ?? array();
                       foreach($itembardtype as $k => $v):?>
-                    <option value="<?=$k?>"<?php echo (!empty($bardtype) && $k == $bardtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
+                    <option value="<?=$k?>"<?php echo (isset($bardtype) && $k == $bardtype) ? " selected" : ""?>><?=$k?>: <?=$v?></option>
                       <?php endforeach;?>
                   </select>
                 </td>
