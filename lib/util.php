@@ -81,7 +81,7 @@ function purge_characters(): void
 {
     $characters = $_POST['id'];
 
-    foreach ($characters as ($char) => $id) {
+    foreach ($characters as $char => $id) {
         delete_player($id);
     }
 }
@@ -98,7 +98,7 @@ function purge_accounts(): void
 {
     $accounts = $_POST['id'];
 
-    foreach ($accounts as ($account) => $id) {
+    foreach ($accounts as $account => $id) {
         delete_account($id);
     }
 }
