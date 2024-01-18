@@ -1,37 +1,43 @@
-        <div class="table_container" style="width: 650px;">
-          <div class="table_header">
-            <table width="100%" cellpadding="0" cellspacing="0">
-              <tr>
-                <td>Petitions</td>
-                <td align="right">&nbsp;</td>
-              </tr>
-            </table>
-          </div>
-          <table class="table_content2" width="100%">
-<?if (isset($petitions)) :?>
+<div class="table_container" style="width: 650px;">
+    <div class="table_header">
+        <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
             <tr>
-              <td align="center" width="5%"><strong>ID</strong></td>
-              <td align="center" width="5%"><strong>Account</strong></td>
-              <td align="center" width="5%"><strong>Name</strong></td>
-              <td align="center" width="5%"><strong>Zone</strong></td>
-              <td align="center" width="10%"><strong>Date</strong></td>
-              <th width="5%"></th>
+                <td style="padding: 0;">Petitions</td>
+                <td style="padding: 0; text-align: right;">&nbsp;</td>
             </tr>
-<?$x=0; foreach($petitions as $petitions=>$v):?>
-            <tr bgcolor="#<? echo ($x % 2 == 0) ? "BBBBBB" : "AAAAAA";?>">
-              <td align="center" width="5%"><?=$v['dib']?> - <?=$v['petid']?></td>
-              <td align="center" width="5%"><?=$v['accountname']?></td>
-              <td align="center" width="5%"><?=$v['charname']?></td>
-              <td align="center" width="5%"><?=getZoneName($v['zone'])?></td>
-              <td align="center" width="10%"><? echo date("Y-m-d H:i:s", $v['senttime'])?></td>
-              <td align="right"><a href="index.php?editor=server&dib=<?=$v['dib']?>&action=13"><img src="images/edit2.gif" border="0" title="View Petition"></a>&nbsp;<a onClick="return confirm('Really Delete Petition <?=$v['dib']?>?');" href="index.php?editor=server&dib=<?=$v['dib']?>&action=15"><img src="images/remove3.gif" border="0" title="Delete this petition"></a></td>
-            </tr>
-<?$x++; endforeach;?>
-<?endif;?>
-<?if (!isset($petitions)):?>
+        </table>
+    </div>
+    <table class="table_content2" style="width: 100%;">
+        <?php if (isset($petitions)) : ?>
             <tr>
-              <td align="left" width="100" style="padding: 10px;">No petitions</td>
+                <td style="text-align: center; width: 5%"><strong>ID</strong></td>
+                <td style="text-align: center; width: 5%"><strong>Account</strong></td>
+                <td style="text-align: center; width: 5%"><strong>Name</strong></td>
+                <td style="text-align: center; width: 5%"><strong>Zone</strong></td>
+                <td style="text-align: center; width: 10%"><strong>Date</strong></td>
+                <th style="width: 5%;"></th>
             </tr>
-<?endif;?>
-          </table>
-        </div>
+            <?php $x = 0;
+            foreach ($petitions as $key => $v): ?>
+                <tr style="background-color: #<?php echo ($x % 2 == 0) ? "BBBBBB" : "AAAAAA"; ?>">
+                    <td style="text-align: center; width: 5%"><?= $v['dib'] ?> - <?= $v['petid'] ?></td>
+                    <td style="text-align: center; width: 5%"><?= $v['accountname'] ?></td>
+                    <td style="text-align: center; width: 5%"><?= $v['charname'] ?></td>
+                    <td style="text-align: center; width: 5%"><?= getZoneName($v['zone']) ?></td>
+                    <td style="text-align: center; width: 10%"><?php echo date("Y-m-d H:i:s", $v['senttime']) ?></td>
+                    <td style="text-align: right;"><a href="index.php?editor=server&dib=<?= $v['dib'] ?>&action=13"><img
+                                    src="images/edit2.gif" style="border: 0;" alt="View Icon" title="View Petition"></a>&nbsp;<a
+                                onClick="return confirm('Really Delete Petition <?= $v['dib'] ?>?');"
+                                href="index.php?editor=server&dib=<?= $v['dib'] ?>&action=15"><img
+                                    src="images/remove3.gif" style="border: 0;" alt="Delete Icon"
+                                    title="Delete this petition"></a></td>
+                </tr>
+                <?php $x++; endforeach; ?>
+        <?php endif; ?>
+        <?php if (!isset($petitions)): ?>
+            <tr>
+                <td style="text-align: left; width: 100px; padding: 10px;">No petitions</td>
+            </tr>
+        <?php endif; ?>
+    </table>
+</div>

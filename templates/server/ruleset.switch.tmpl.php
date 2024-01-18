@@ -1,35 +1,51 @@
-        <div class="table_container" style="width: 200px;">
-          <div class="table_header">
-            <table width="100%" cellpadding="0" cellspacing="0">
-              <tr>
-                <td>Select Ruleset</td>
-                <td align="right"><a href="index.php?editor=server&action=30"><img src="images/add.gif" border="0" title="Add a Ruleset"></a></td>
-              </tr>
-            </table>
-          </div>
-          <table class="table_content2" width="100%">
-<?if (isset($ruleset)):?>
+<div class="table_container" style="width: 200px;">
+    <div class="table_header">
+        <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
             <tr>
-              <td align="center" width="5%"><strong>id</strong></td>
-              <td align="center" width="5%"><strong>name</strong></td>
-              <td width="5%">&nbsp;</td>
+                <td style="padding: 0;">Select Ruleset</td>
+                <td style="padding: 0; text-align: right;"><a href="index.php?editor=server&action=30"><img
+                                src="images/add.gif"
+                                style="border: 0;"
+                                alt="Add Icon"
+                                title="Add a Ruleset"></a>
+                </td>
             </tr>
-<?$x=0; foreach($ruleset as $ruleset=>$v):?>
-            <tr bgcolor="#<? echo ($x % 2 == 0) ? "AAAAAA" : "BBBBBB";?>">
-              <td align="center" width="5%"><?=$v['ruleset_id']?></td>
-              <td align="center" width="5%"><a href="index.php?editor=server&ruleset_id=<?=$v['ruleset_id']?>&action=28"><?=$v['name']?></td>
-              <td align="right">
-                <a href="index.php?editor=server&ruleset_id=<?=$v['ruleset_id']?>&action=22"><img src="images/edit2.gif" border="0" title="Edit Ruleset"></a>
-                <a href="index.php?editor=server&name=<?=$v['name']?>&action=25"><img src="images/last.gif" border="0" title="Copy this ruleset"></a>
-                <a onClick="return confirm('WARNING: This will delete ruleset <?=$v['ruleset_id']?> and all associated rules! Do you wish to continue?');" href="index.php?editor=server&ruleset_id=<?=$v['ruleset_id']?>&action=29"><img src="images/remove3.gif" border="0" title="Delete ruleset and all assoicated rules"></a>
-              </td>
-            </tr>
-<?$x++; endforeach;?>
-<?endif;?>
-<?if (!isset($ruleset)):?>
+        </table>
+    </div>
+    <table class="table_content2" style="width: 100%;">
+        <?php if (isset($ruleset)): ?>
             <tr>
-              <td align="left" width="100" style="padding: 10px;">No rulesets</td>
+                <td style="text-align: center; width: 5%"><strong>id</strong></td>
+                <td style="text-align: center; width: 5%"><strong>name</strong></td>
+                <td style="width: 5%;">&nbsp;</td>
             </tr>
-<?endif;?>
-          </table>
-        </div>
+            <?php $x = 0;
+            foreach ($ruleset as $key => $v): ?>
+                <tr style="background-color: #<?php echo ($x % 2 == 0) ? "AAAAAA" : "BBBBBB"; ?>">
+                    <td style="text-align: center; width: 5%"><?= $v['ruleset_id'] ?></td>
+                    <td style="text-align: center; width: 5%"><a
+                                href="index.php?editor=server&ruleset_id=<?= $v['ruleset_id'] ?>&action=28"><?= $v['name'] ?>
+                    </td>
+                    <td style="text-align: right;">
+                        <a href="index.php?editor=server&ruleset_id=<?= $v['ruleset_id'] ?>&action=22"><img
+                                    src="images/edit2.gif" style="border: 0;" alt="Edit Ruleset Icon"
+                                    title="Edit Ruleset"></a>
+                        <a href="index.php?editor=server&name=<?= $v['name'] ?>&action=25"><img src="images/last.gif"
+                                                                                                style="border: 0;"
+                                                                                                alt="Copy Ruleset Icon"
+                                                                                                title="Copy this ruleset"></a>
+                        <a onClick="return confirm('WARNING: This will delete ruleset <?= $v['ruleset_id'] ?> and all associated rules! Do you wish to continue?');"
+                           href="index.php?editor=server&ruleset_id=<?= $v['ruleset_id'] ?>&action=29"><img
+                                    src="images/remove3.gif" style="border: 0;" alt="Delete Ruleset Icon"
+                                    title="Delete ruleset and all associated rules"></a>
+                    </td>
+                </tr>
+                <?php $x++; endforeach; ?>
+        <?php endif; ?>
+        <?php if (!isset($ruleset)): ?>
+            <tr>
+                <td style="text-align: left; width: 100px; padding: 10px;">No rulesets</td>
+            </tr>
+        <?php endif; ?>
+    </table>
+</div>
