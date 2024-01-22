@@ -1,4 +1,4 @@
-<div class="edit_form" style="width: 450px">
+<div class="edit_form" style="width: 750px">
     <div class="edit_form_header">
         Edit Horse <?= $filename ?? "" ?>
     </div>
