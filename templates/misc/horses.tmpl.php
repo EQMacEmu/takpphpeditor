@@ -27,7 +27,7 @@
         foreach ($horses as $key => $v): ?>
             <tr style="background-color: #<?php echo ($x % 2 == 0) ? "BBBBBB" : "AAAAAA"; ?>">
                 <td style="text-align: center; width: 12%"><?= $v['filename'] ?></td>
-                <td style="text-align: center; width: 8%"><?= $races[$v['race']] ?></td>
+                <td style="text-align: center; width: 8%"><?= $races[$v['race']] ?? "" ?></td>
                 <td style="text-align: center; width: 8%"><?= $genders[$v['gender']] ?></td>
                 <td style="text-align: center; width: 8%"><?= $v['texture'] ?></td>
                 <td style="text-align: center; width: 8%"><?= $v['mountspeed'] ?></td>
