@@ -382,10 +382,8 @@ function update_item(): void
     if ($item['banedmgbody'] != $_POST['banedmgbody']) $fields .= "banedmgbody=\"" . $_POST['banedmgbody'] . "\", ";
     if ($item['hp'] != $_POST['hp']) $fields .= "hp=\"" . $_POST['hp'] . "\", ";
     if ($item['mana'] != $_POST['mana']) $fields .= "mana=\"" . $_POST['mana'] . "\", ";
-    if ($item['endur'] != $_POST['endur']) $fields .= "endur=\"" . $_POST['endur'] . "\", ";
     if ($item['ac'] != $_POST['ac']) $fields .= "ac=\"" . $_POST['ac'] . "\", ";
     if ($item['light'] != $_POST['light']) $fields .= "light=\"" . $_POST['light'] . "\", ";
-    if ($item['regen'] != $_POST['regen']) $fields .= "regen=\"" . $_POST['regen'] . "\", ";
     if ($item['aagi'] != $_POST['aagi']) $fields .= "aagi=\"" . $_POST['aagi'] . "\", ";
     if ($item['acha'] != $_POST['acha']) $fields .= "acha=\"" . $_POST['acha'] . "\", ";
     if ($item['adex'] != $_POST['adex']) $fields .= "adex=\"" . $_POST['adex'] . "\", ";

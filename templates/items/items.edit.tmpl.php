@@ -72,7 +72,15 @@
           </table>
           <table style="width: 100%; border: 0; border-collapse: collapse; border-spacing: 0;">
             <tr>
-              <td style="padding: 3px; text-align: left; width: 33%;"><?php echo !empty($filename) ? '<a href="index.php?editor=items&id=' . ($id ?? "") . '&name=' . $filename . '&action=3"><label for="filename">Book Name:</label></a>' : 'Book Name:'?><br/><input type="text" id="filename" name="filename" size="25" value="<?=($filename ?? "")?>"/></td>
+                <td style="padding: 3px; text-align: left; width: 33%;">
+                    <?php if (!empty($filename)) {
+                        echo '<label for="filename"><a href="index.php?editor=items&id=' . ($id ?? "") . '&name=' . $filename . '&action=3">Book Name:</a></label>';
+                    } else {
+                        echo '<label for="filename">Book Name:</label>';
+                    }
+                    ?>
+                    <input type="text" id="filename" name="filename" size="25" value="<?= $filename ?? "" ?>"/>
+                </td>
                 <td style="padding: 3px; text-align: left; width: 33%;"><label for="book">Book:</label><br/>
                 <select id="book" name="book">
                   <option value="0"<?php echo (isset($book) && $book == 0) ? " selected" : ""?>>No</option>
