@@ -55,7 +55,17 @@
           </table>
           <table style="width: 100%; border-collapse: collapse: border-spacing: 0;">
             <tr>
-                <td style="padding: 3px; text-align: left; width: 34%;"><label for="stackable">Stackable:</label><br/><input type="text" id="stackable" name="stackable" size="10" value="<?=$stackable ?? ""?>"></td>
+                <td style="padding: 3px; text-align: left; width: 34%;">
+                    <label for="stackable">Stackable:</label>
+                    <div class="tooltip">(?)
+                        <span class="tooltiptext">0: Non-Stackable<br />1: Stackable<br />2: Unused<br />3: Spell Effect<br /></span>
+                    </div><br/>
+                    <select id="stackable" name="stackable">
+                        <option value="0"<?php echo (isset($stackable) && $stackable == 0) ? " selected" : ""?>>0: Non-Stackable</option>
+                        <option value="1"<?php echo (isset($stackable) && $stackable == 1) ? " selected" : ""?>>1: Stackable</option>
+                        <option value="3"<?php echo (isset($stackable) && $stackable == 3) ? " selected" : ""?>>3: Spell Effect</option>
+                    </select>
+                </td>
                 <td style="padding: 3px; text-align: left; width: 33%;"><label for="stacksize">Stacksize:</label><br/><input type="text" id="stacksize" name="stacksize" size="10" value="<?=$stacksize ?? ""?>"></td>
                 <td style="padding: 3px; text-align: left; width: 33%;"><label for="maxcharges">Charges:</label><br/><input type="text" id="maxcharges" name="maxcharges" size="10" value="<?=$maxcharges ?? ""?>"></td>
             </tr>
@@ -488,7 +498,12 @@
                       <?php endforeach;?>
                   </select>
                 </td>
-                  <td style="padding: 3px; text-align: left; width: 16%"><label for="worneffect">Worn Effect:</label><br/><input type="text" id="worneffect" name="worneffect" size="5" value="<?=$worneffect ?? ""?>"></td>
+                  <td style="padding: 3px; text-align: left; width: 16%">
+                      <label for="worneffect">Worn Effect:</label>
+                      <div class="tooltip">(?)
+                          <span class="tooltiptext">Set Stackable to 3</span>
+                      </div><br/>
+                      <input type="text" id="worneffect" name="worneffect" size="5" value="<?=$worneffect ?? ""?>"></td>
                   <td style="padding: 3px; text-align: left; width: 16%"><label for="wornlevel">Worn Level:</label><br/><input type="text" id="wornlevel" name="wornlevel" size="5" value="<?=$wornlevel ?? ""?>"></td>
                   <td style="padding: 3px; text-align: left; width: 16%"><label for="wornlevel2">Worn Level 2:</label><br/><input type="text" id="wornlevel2" name="wornlevel2" size="5" value="<?=$wornlevel2 ?? ""?>"></td>
                 <td style="padding: 3px; text-align: left; width: 16%">&nbsp;</td>
