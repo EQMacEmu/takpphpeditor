@@ -61,9 +61,9 @@
                         <span class="tooltiptext">0: Non-Stackable<br />1: Stackable<br />2: Unused<br />3: Spell Effect<br /></span>
                     </div><br/>
                     <select id="stackable" name="stackable">
-                        <option value="0"<?php echo (isset($stackable) && $stackable == 0) ? "selected" : ""?>>Non-Stackable</option>
-                        <option value="1"<?php echo (isset($stackable) && $stackable == 1) ? "selected" : ""?>>Stackable</option>
-                        <option value="3"<?php echo (isset($stackable) && $stackable == 3) ? "selected" : ""?>>Spell Effect</option>
+                        <option value="0"<?php echo (isset($stackable) && $stackable == 0) ? " selected" : ""?>>0: Non-Stackable</option>
+                        <option value="1"<?php echo (isset($stackable) && $stackable == 1) ? " selected" : ""?>>1: Stackable</option>
+                        <option value="3"<?php echo (isset($stackable) && $stackable == 3) ? " selected" : ""?>>3: Spell Effect</option>
                     </select>
                 </td>
                 <td style="padding: 3px; text-align: left; width: 33%;"><label for="stacksize">Stacksize:</label><br/><input type="text" id="stacksize" name="stacksize" size="10" value="<?=$stacksize ?? ""?>"></td>
