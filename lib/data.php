@@ -1067,12 +1067,11 @@ $zoneids = array(
 );
 
 $eqexpansions = array(
-    0 => 'None Selected',
-    1 => 'EverQuest',
-    2 => 'Ruins of Kunark',
-    3 => 'Scars of Velious',
-    4 => 'Shadows of Luclin',
-    5 => 'Planes of Power',
+    0 => 'EverQuest',
+    1 => 'Ruins of Kunark',
+    2 => 'Scars of Velious',
+    3 => 'Shadows of Luclin',
+    4 => 'Planes of Power',
     99 => 'Other'
 );
 
