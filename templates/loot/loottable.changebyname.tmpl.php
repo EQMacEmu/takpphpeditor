@@ -13,8 +13,8 @@
                <td><label for="npcname"></label><input type="text" size="25" id="npcname" name="npcname" value=""></td>
                <td><label for="updateall"></label>
                <select id="updateall" name="updateall">
-                   <option value="0"<?php echo (!empty($updateall) && $updateall == 0) ? " selected" : ""?>>No</option>
-                   <option value="1"<?php echo (!empty($updateall) && $updateall == 1) ? " selected" : ""?>>Yes</option>
+                   <option value="0"<?php echo (isset($updateall) && $updateall == 0) ? " selected" : ""?>>No</option>
+                   <option value="1"<?php echo (isset($updateall) && $updateall == 1) ? " selected" : ""?>>Yes</option>
                  </select>
                </td>
              </tr>

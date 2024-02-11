@@ -12,13 +12,13 @@
            <tr>
                <td><label for="npcrace"></label><select id="npcrace" name="npcrace" style="width: 265px;">
                        <?php foreach($races as $key=> $value):?>
-                   <option value="<?=$key?>"<?php echo (!empty($race) && $key == $race)? " selected" : "";?>><?=$key?>: <?=$value?></option>
+                   <option value="<?=$key?>"<?php echo (isset($race) && $key == $race)? " selected" : "";?>><?=$key?>: <?=$value?></option>
                        <?php endforeach;?>
                  </select></td>
                <td><label for="updateall"></label>
                <select id="updateall" name="updateall">
-                   <option value="0"<?php echo (!empty($updateall) && $updateall == 0) ? " selected" : ""?>>No</option>
-                   <option value="1"<?php echo (!empty($updateall) && $updateall == 1) ? " selected" : ""?>>Yes</option>
+                   <option value="0"<?php echo (isset($updateall) && $updateall == 0) ? " selected" : ""?>>No</option>
+                   <option value="1"<?php echo (isset($updateall) && $updateall == 1) ? " selected" : ""?>>Yes</option>
                  </select>
                </td>
              </tr>

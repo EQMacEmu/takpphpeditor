@@ -10,9 +10,9 @@
             <strong>Lootdrop:</strong> <?=$ldid ?? ""?><br>
             <strong>Item:</strong> <?=$itemid ?? ""?><br><br>
             <strong>Equipped:</strong><br>
-              <input type="radio" id="equip_item_no" name="equip_item" value="0"<?php echo (!empty($equip_item) && $equip_item == 0) ? " checked" : ""?>><label for="equip_item_no">no</label><br>
-              <input type="radio" id="equip_item_yes" name="equip_item" value="1"<?php echo (!empty($equip_item) && $equip_item == 1) ? " checked" : ""?>><label for="equip_item_yes">yes</label><br>
-              <input type="radio" id="equip_item_force" name="equip_item" value="2"<?php echo (!empty($equip_item) && $equip_item == 2) ? " checked" : ""?>><label for="equip_item_force">force</label><br><br>
+              <input type="radio" id="equip_item_no" name="equip_item" value="0"<?php echo (isset($equip_item) && $equip_item == 0) ? " checked" : ""?>><label for="equip_item_no">no</label><br>
+              <input type="radio" id="equip_item_yes" name="equip_item" value="1"<?php echo (isset($equip_item) && $equip_item == 1) ? " checked" : ""?>><label for="equip_item_yes">yes</label><br>
+              <input type="radio" id="equip_item_force" name="equip_item" value="2"<?php echo (isset($equip_item) && $equip_item == 2) ? " checked" : ""?>><label for="equip_item_force">force</label><br><br>
               <strong><label for="charges">Item Charges:</label></strong> <br>
             <input class="indented" type="text" size="5" id="charges" name="charges" value="<?=$item_charges ?? ""?>"><br><br>
               <strong><label for="minlevel">Min Level:</label></strong> <br>
