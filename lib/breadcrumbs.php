@@ -78,6 +78,9 @@ switch ($editor) {
   case 'keys':
     $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>Player Keys</a>";
     break;
+  case 'content':
+    $breadcrumbs = "<a href='index.php?editor=" . $editor . "'>Content Flags</a>";
+    break;
 }
 
 if (isset($z) && $z != '') $breadcrumbs .= " >> " . "<a href='index.php?editor=" . $editor . "&z=" . $z . "&zoneid=" . getZoneIDByName($z) . "'>" . getZoneLongName($z) . "</a>";

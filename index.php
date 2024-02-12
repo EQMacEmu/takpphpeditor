@@ -120,6 +120,9 @@ switch ($editor) {
 	case 'keys':
 		require_once("lib/keys.php");
 		break;
+	case 'content':
+		require_once('lib/content.php');
+		break;
 }
 
 global $tmpl;
