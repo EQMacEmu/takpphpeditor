@@ -19,6 +19,14 @@
               <input class="indented" type="text" size="5" id="multiplier_min" name="multiplier_min" value="<?=$multiplier_min ?? ""?>"><br><br>
                 <strong><label for="probability">Probability:</label></strong><br>
               <input class="indented" type="text" size="5" id="probability" name="probability" value="<?=$probability ?? ""?>"><br><br>
+			    <strong><label for="min_expansion">Min Expansion:</label></strong><br>
+              <input class="indented" type="text" size="5" id="min_expansion" name="min_expansion" value="<?=$min_expansion ?? ""?>"><br><br>
+			    <strong><label for="max_expansion">Max Expansion:</label></strong><br>
+              <input class="indented" type="text" size="5" id="max_expansion" name="max_expansion" value="<?=$max_expansion ?? ""?>"><br><br>
+			    <strong><label for="content_flags">Content Flags:</label></strong><br>
+              <input class="indented" type="text" size="5" id="content_flags" name="content_flags" value="<?=$content_flags ?? ""?>"><br><br>
+			    <strong><label for="content_flags_disabled">Content Flags Disabled:</label></strong><br>
+              <input class="indented" type="text" size="5" id="content_flags_disabled" name="content_flags_disabled" value="<?=$content_flags_disabled ?? ""?>"><br><br>
               <div class="center">
                 <input type="submit" name="submit" value="Submit Changes">
               </div>

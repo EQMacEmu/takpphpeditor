@@ -46,6 +46,13 @@
                 Min Cash: <?= $mincash ?? "" ?><br/>
                 Max Cash: <?= $maxcash ?? "" ?><br/>
             </div>
+				Content Control:
+			<div style="padding: 5px 0px 0px 20px;">
+				Min Expansion: <?=$min_expansion?><br>
+				Max Expansion: <?=$max_expansion?><br>
+				Content Flags: <?echo ($content_flags != "") ? $content_flags : "N/A";?><br>
+				Content Flags Disabled: <?echo ($content_flags_disabled != "") ? $content_flags_disabled : "N/A";?><br>
+          </div>
             <div style="padding: 10px 0 0 0;">
                 NPCs using this loottable: <?= $usage['count'] ?? "Undefined" ?>
                 <?php if (!isset($_GET['display_usage'])) { ?>
@@ -190,6 +197,21 @@
                             <?php
                             $x++;
                         endforeach;
+						?>
+						<tr bgcolor="#000000">
+								<td colspan="2">
+									<a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ltid=<?=$loottable_id?>&ldid=<?=$lootdrop['id']?>&action=7" style="color:yellow;">Expansion Flags: <?echo ($lootdrop['min_expansion'] > 0 && $lootdrop['max_expansion'] > 0) ? "Yes" : "No";?></a>
+							</td>
+							<td colspan="4">
+								<a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ltid=<?=$loottable_id?>&ldid=<?=$lootdrop['id']?>&action=7" style="color:yellow;">Content Flags: <?echo ($lootdrop['content_flags'] != "" && $lootdrop['content_flags_disabled'] != "") ? "Yes" : "No";?></a>
+							</td>
+							<td colspan="4" align="right">
+								<a title="Set chance for all items on this table to <?=$normalize_amount?>" href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ldid=<?=$lootdrop['id']?>&action=18" style="color:yellow;">Normalize Drops</a>
+							</td>
+						</tr>
+					</table>
+					</div><br>
+<?
                     endif;
                     ?>
                     <?php if (!isset($lootdrop['items'])): ?>
