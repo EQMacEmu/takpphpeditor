@@ -146,10 +146,13 @@
                 <div class="table_content2" style="padding: 0;">
                     <table style="width: 100%; border-collapse: collapse: border-spacing: 0;">
                         <tr style="background-color:#AAAAAA">
-                            <th style="width: 20%; text-align: center;">Name</th>
-                            <th style="width: 20%; text-align: center;">MinTime</th>
-                            <th style="width: 20%; text-align: center;">MaxTime</th>
-                            <th style="width: 20%; text-align: center;">Chance</th>
+                            <th width: 30%; align: center;">Name</th>
+                            <th width: 15%; align: center;">MinTime</th>
+                            <th width: 15%; align: center;">MaxTime</th>
+                            <th width: 10%; align: center;">Chance</th> 
+							<th width: 15%; align: center;">Flags</th> 
+							<th width="15%" align="center">&nbsp;</th>
+
                         </tr>
                         <?php
                         $x = 0; $chance_total = $chance_total ?? 0;
@@ -161,10 +164,11 @@
                                     <a href="index.php?editor=npc&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcID ?>"><?= $name ?></a>
                                     (<?= $npcID ?>)
                                 </td>
-                                <td style="width: 20%; text-align: center;"><?= $mintime ?></td>
-                                <td style="width: 20%; text-align: center;"><?= $maxtime ?></td>
-                                <td style="width: 20%; text-align: center;"><?= $chance ?></td>
-                                <td style="text-align: right;">
+                                <td align: center;"><?= $mintime ?></td>
+                                <td align: center;"><?= $maxtime ?></td>
+                                <td align: center;"><?= $chance ?></td>
+								<td align: center;"><?echo ($min_expansion > -1 || $max_expansion > -1 || $content_flags != "" || $content_flags_disabled != "") ? "Yes" : "No";?></td>
+                                <td align: right;">
                                     <a href="index.php?editor=spawn&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&sid=<?= $spawngroupID ?>&sgnpcid=<?= $npcID ?>&action=1"><img
                                                 src="images/edit2.gif" alt="Edit Spawngroup Icon"
                                                 title="Edit this Spawngroup Member" style="border: 0;"></a>&nbsp;

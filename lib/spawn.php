@@ -957,12 +957,16 @@ function add_spawngroup_member(): void
     $npc = $_REQUEST['npc'];
     $balance = $_REQUEST['balance'];
     $chance = ($balance == "on") ? 0 : $_REQUEST['chance'];
+	$min_expansion = $_REQUEST['min_expansion'];
+	$max_expansion = $_REQUEST['max_expansion'];
+	$content_flags = $_REQUEST['content_flags'];
+	$content_flags_disabled = $_REQUEST['content_flags_disabled'];
 
-    $query = "SELECT max(chance) AS chance FROM spawnentry where spawngroupID=$sid limit 1";
+    $query = "SELECT MAX(chance) AS chance FROM spawnentry WHERE spawngroupID=$sid limit 1";
     $result = $mysql->query_assoc($query);
     $maxchance = $result['chance'];
 
-    $query = "SELECT npcID AS maxnpcid FROM spawnentry where spawngroupID=$sid AND chance=$maxchance";
+    $query = "SELECT npcID AS maxnpcid FROM spawnentry WHERE spawngroupID=$sid AND chance=$maxchance";
     $result = $mysql->query_assoc($query);
     $maxnpcid = $result['maxnpcid'];
 
@@ -976,8 +980,18 @@ function add_spawngroup_member(): void
     if ($npc == "") {
         $npc = 0;
     }
-    $query = "INSERT INTO spawnentry SET spawngroupID=$sid, npcID=$npc, chance=$chance";
+    $query = "INSERT INTO spawnentry SET spawngroupID=$sid, npcID=$npc, chance=$chance, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query);
+
+	if ($content_flags != "") {
+		$query = "UPDATE spawnentry SET content_flags=\"$content_flags\" WHERE spawngroupID=$sid AND npcID=$npc";
+		$mysql_content_db->query_no_result($query);
+	}
+
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE spawnentry SET content_flags_disabled=\"$content_flags_disabled\" WHERE spawngroupID=$sid AND npcID=$npc";
+		$mysql_content_db->query_no_result($query);
+	}
 
     if ($balance == "on") {
         balance_spawns('');
@@ -998,6 +1012,10 @@ function add_multiple_spawngroup_member(): void
     $npc = $_REQUEST['npc'];
     $balance = $_REQUEST['balance'];
     $chance = ($balance == "on") ? 0 : $_REQUEST['chance'];
+	$min_expansion = $_REQUEST['min_expansion'];
+	$max_expansion = $_REQUEST['max_expansion'];
+	$content_flags = $_REQUEST['content_flags'];
+	$content_flags_disabled = $_REQUEST['content_flags_disabled'];
 
     if ($spawngroup_limit != '' && ($limit < 1 || $limit > $spawngroup_limit)) {
         $limit = $spawngroup_limit;
@@ -1018,7 +1036,7 @@ function add_multiple_spawngroup_member(): void
     for ($x = 0; $x < count($results); $x++) {
         $sid = $results[$x]['spawngroupID'];
 
-        $query = "SELECT max(chance) AS chance, npcID AS maxnpcid FROM spawnentry where spawngroupID=$sid";
+        $query = "SELECT MAX(chance) AS chance, npcID AS maxnpcid FROM spawnentry WHERE spawngroupID=$sid";
         $result = $mysql->query_assoc($query);
         $maxchance = $result['chance'];
         $maxnpcid = $result['maxnpcid'];
@@ -1030,8 +1048,18 @@ function add_multiple_spawngroup_member(): void
             $mysql->query_no_result($query);
         }
 
-        $query = "REPLACE INTO spawnentry SET spawngroupID=$sid, npcID=$npc, chance=$chance";
+        $query = "REPLACE INTO spawnentry SET spawngroupID=$sid, npcID=$npc, chance=$chance, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
         $mysql->query_no_result($query);
+
+		if ($content_flags != "") {
+		$query = "UPDATE spawnentry SET content_flags=\"$content_flags\" WHERE spawngroupID=$sid AND npcID=$npc";
+		$mysql_content_db->query_no_result($query);
+		}
+
+		if ($content_flags_disabled != "") {
+			$query = "UPDATE spawnentry SET content_flags_disabled=\"$content_flags_disabled\" WHERE spawngroupID=$sid AND npcID=$npc";
+			$mysql_content_db->query_no_result($query);
+		}
 
         if ($balance == "on") {
             balance_spawns($sid);
@@ -1049,9 +1077,23 @@ function update_spawngroup_member(): void
     $maxtime = $_POST['maxtime'];
     $chance = $_POST['chance'];
     $npc = $_POST['sgnpcid'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "UPDATE spawnentry SET mintime=$mintime, maxtime=$maxtime, chance=$chance WHERE spawngroupID=$spawngroupID AND npcID=$npc";
+    $query = "UPDATE spawnentry SET mintime=$mintime, maxtime=$maxtime, chance=$chance, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL WHERE spawngroupID=$spawngroupID AND npcID=$npc";
     $mysql->query_no_result($query);
+	
+	if ($content_flags != "") {
+		$query = "UPDATE spawnentry SET content_flags=\"$content_flags\" WHERE spawngroupID=$spawngroupID AND npcID=$npc";
+		$mysql_content_db->query_no_result($query);
+	}
+
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE spawnentry SET content_flags_disabled=\"$content_flags_disabled\" WHERE spawngroupID=$spawngroupID AND npcID=$npc";
+		$mysql_content_db->query_no_result($query);
+	}	
 }
 
 function delete_spawngroup_member($balance): void
@@ -1075,7 +1117,7 @@ function delete_spawngroup_member($balance): void
     $chance = $result['chance_'];
 
     if ($chance != '') {
-        $query = "SELECT npcID FROM spawnentry WHERE spawngroupID=$sid AND chance=$chance limit 1";
+        $query = "SELECT npcID FROM spawnentry WHERE spawngroupID=$sid AND chance=$chance LIMIT 1";
         $result = $mysql->query_assoc($query);
         $npcid_ = $result['npcID'];
     }
@@ -1573,6 +1615,10 @@ function add_spawngroup(): void
     $name = $_POST['name'];
     $npcID = $_POST['npcID'];
     $chance = ($_POST['chance'] >= 0 && $_POST['chance'] <= 100) ? $_POST['chance'] : 100;
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
     $spawn_limit = intval($_POST['spawn_limit']);
     $max_x = $_POST['max_x'];
     $min_x = $_POST['min_x'];
@@ -1594,8 +1640,18 @@ function add_spawngroup(): void
     if ($npcID == "") {
         $npcID = 0;
     }
-    $query = "INSERT INTO spawnentry SET spawngroupID=$id, npcID=$npcID, chance=$chance";
+    $query = "INSERT INTO spawnentry SET spawngroupID=$id, npcID=$npcID, chance=$chance, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query);
+	
+	if ($content_flags != "") {
+		$query = "UPDATE spawnentry SET content_flags=\"$content_flags\" WHERE spawngroupID=$id AND npcID=$npcID";
+		$mysql_content_db->query_no_result($query);
+	}
+
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE spawnentry SET content_flags_disabled=\"$content_flags_disabled\" WHERE spawngroupID=$id AND npcID=$npcID";
+		$mysql_content_db->query_no_result($query);
+	}
 }
 
 function add_grid(): void
