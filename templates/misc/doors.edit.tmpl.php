@@ -160,7 +160,30 @@
                     </table>
                 </fieldset>
             </div>
-            <div class="center">
+            <div style="padding-bottom:20px;">
+                <fieldset>
+                    <legend>Expansion and Content Flags</legend>
+                    <table style="width: 100%; border-spacing: 20px;">
+						<td>
+							<strong>Min Expansion</strong><br>
+							<input type="text" size="7" name="min_expansion" value="<?=$min_expansion?>">
+						</td>
+						<td>
+							<strong>Max Expansion</strong><br>
+							<input type="text" size="7" name="max_expansion" value="<?=$max_expansion?>">
+						</td>
+						<td colspan="2">
+							<strong>Content Flags</strong><br>
+							<input type="text" size="25" name="content_flags" value="<?=$content_flags?>">
+						</td>
+						<td colspan="2">
+							<strong>Content Flags Disabled</strong><br>
+							<input type="text" size="25" name="content_flags_disabled" value="<?=$content_flags_disabled?>">
+						</td>					
+                     </table>
+                </fieldset>
+            </div>
+           <div class="center">
                 <input type="hidden" name="drid" value="<?= $id ?>">
                 <input type="submit" value="Submit Changes">
             </div>

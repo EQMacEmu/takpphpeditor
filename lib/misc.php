@@ -423,7 +423,7 @@ function get_fishing(): array
     $zid = getZoneID($z);
     $array = array();
 
-    $query = "SELECT fishing.id,Itemid AS fiid,zoneid,skill_level,chance, items.name AS name
+    $query = "SELECT fishing.id,Itemid AS fiid,zoneid,skill_level,chance, items.name AS name, min_expansion, max_expansion, content_flags, content_flags_disabled
                 FROM fishing, items
                 WHERE fishing.zoneid=$zid
                 AND fishing.Itemid=items.id
@@ -432,7 +432,7 @@ function get_fishing(): array
     $results = $mysql->query_mult_assoc($query);
     if ($results) {
         foreach ($results as $result) {
-            $array['fishing'][$result['id']] = array("fsid" => $result['id'], "fiid" => $result['fiid'], "zoneid" => $result['zoneid'], "skill_level" => $result['skill_level'], "chance" => $result['chance'], "name" => $result['name']);
+            $array['fishing'][$result['id']] = array("fsid" => $result['id'], "fiid" => $result['fiid'], "zoneid" => $result['zoneid'], "skill_level" => $result['skill_level'], "chance" => $result['chance'], "name" => $result['name'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$result['content_flags_disabled']);
         }
     }
     return $array;
@@ -444,7 +444,7 @@ function get_forage(): array
     $zid = getZoneID($z);
     $array = array();
 
-    $query = "SELECT forage.id,zoneid,Itemid AS fgiid,level,chance, items.name AS name
+    $query = "SELECT forage.id,zoneid,Itemid AS fgiid,level,chance, items.name AS name, min_expansion, max_expansion, content_flags, content_flags_disabled
                 FROM forage, items
                 WHERE forage.zoneid=$zid
                 AND forage.Itemid=items.id
@@ -453,7 +453,7 @@ function get_forage(): array
     $results = $mysql->query_mult_assoc($query);
     if ($results) {
         foreach ($results as $result) {
-            $array['forage'][$result['id']] = array("fgid" => $result['id'], "fgiid" => $result['fgiid'], "zoneid" => $result['zoneid'], "level" => $result['level'], "chance" => $result['chance'], "name" => $result['name']);
+            $array['forage'][$result['id']] = array("fgid" => $result['id'], "fgiid" => $result['fgiid'], "zoneid" => $result['zoneid'], "level" => $result['level'], "chance" => $result['chance'], "name" => $result['name'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$result['content_flags_disabled']);
         }
     }
     return $array;
@@ -465,7 +465,7 @@ function get_gspawn(): array
     $zid = getZoneID($z);
     $array = array();
 
-    $query = "SELECT ground_spawns.id,zoneid,max_x,max_y,max_z,min_x,min_y,heading,max_allowed, ground_spawns.comment As comment, respawn_timer,item AS giid, items.name AS name
+    $query = "SELECT ground_spawns.id,zoneid,max_x,max_y,max_z,min_x,min_y,heading,max_allowed, ground_spawns.comment As comment, respawn_timer,item AS giid, items.name AS name, min_expansion, max_expansion, content_flags, content_flags_disabled
                 FROM ground_spawns, items
                 WHERE ground_spawns.zoneid=$zid
                 AND ground_spawns.item=items.id
@@ -474,7 +474,7 @@ function get_gspawn(): array
     $results = $mysql->query_mult_assoc($query);
     if ($results) {
         foreach ($results as $result) {
-            $array['gspawn'][$result['id']] = array("gsid" => $result['id'], "giid" => $result['giid'], "zoneid" => $result['zoneid'], "max_x" => $result['max_x'], "max_y" => $result['max_y'], "max_z" => $result['max_z'], "min_x" => $result['min_x'], "min_y" => $result['min_y'], "heading" => $result['heading'], "gname" => $result['name'], "max_allowed" => $result['max_allowed'], "comment" => $result['comment'], "respawn_timer" => $result['respawn_timer'], "iname" => $result['name']);
+            $array['gspawn'][$result['id']] = array("gsid" => $result['id'], "giid" => $result['giid'], "zoneid" => $result['zoneid'], "max_x" => $result['max_x'], "max_y" => $result['max_y'], "max_z" => $result['max_z'], "min_x" => $result['min_x'], "min_y" => $result['min_y'], "heading" => $result['heading'], "gname" => $result['name'], "max_allowed" => $result['max_allowed'], "comment" => $result['comment'], "respawn_timer" => $result['respawn_timer'], "iname" => $result['name'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$result['content_flags_disabled']);
         }
     }
 
@@ -490,7 +490,7 @@ function get_traps(): array
     $results = $mysql->query_mult_assoc($query);
     if ($results) {
         foreach ($results as $result) {
-            $array['traps'][$result['id']] = array("tid" => $result['id'], "x_coord" => $result['x'], "y_coord" => $result['y'], "z_coord" => $result['z'], "chance" => $result['chance'], "maxzdiff" => $result['maxzdiff'], "radius" => $result['radius'], "effect" => $result['effect'], "effectvalue" => $result['effectvalue'], "effectvalue2" => $result['effectvalue2'], "message" => $result['message'], "skill" => $result['skill'], "level" => $result['level'], "respawn_time" => $result['respawn_time'], "respawn_var" => $result['respawn_var'], "group" => $result['group'], "triggered_number" => $result['triggered_number'], "despawn_when_triggered" => $result['despawn_when_triggered'], "undetectable" => $result['undetectable']);
+            $array['traps'][$result['id']] = array("tid" => $result['id'], "x_coord" => $result['x'], "y_coord" => $result['y'], "z_coord" => $result['z'], "chance" => $result['chance'], "maxzdiff" => $result['maxzdiff'], "radius" => $result['radius'], "effect" => $result['effect'], "effectvalue" => $result['effectvalue'], "effectvalue2" => $result['effectvalue2'], "message" => $result['message'], "skill" => $result['skill'], "level" => $result['level'], "respawn_time" => $result['respawn_time'], "respawn_var" => $result['respawn_var'], "group" => $result['group'], "triggered_number" => $result['triggered_number'], "despawn_when_triggered" => $result['despawn_when_triggered'], "undetectable" => $result['undetectable'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$result['content_flags_disabled']);
         }
     }
 
@@ -522,7 +522,7 @@ function get_doors($open): array
     $results = $mysql->query_mult_assoc($query);
     if ($results) {
         foreach ($results as $result) {
-            $array['doors'][$result['id']] = array("drid" => $result['id'], "doorid" => $result['doorid'], "name" => $result['name'], "pos_x" => $result['pos_x'], "pos_y" => $result['pos_y'], "pos_z" => $result['pos_z'], "heading" => $result['heading'], "opentype" => $result['opentype'], "lockpick" => $result['lockpick'], "keyitem" => $result['keyitem'], "altkeyitem" => $result['altkeyitem'], "triggerdoor" => $result['triggerdoor'], "triggertype" => $result['triggertype'], "doorisopen" => $result['doorisopen'], "door_param" => $result['door_param'], "dest_zone" => $result['dest_zone'], "dest_x" => $result['dest_x'], "dest_y" => $result['dest_y'], "dest_z" => $result['dest_z'], "dest_heading" => $result['dest_heading'], "invert_state" => $result['invert_state'], "incline" => $result['incline'], "size" => $result['size'], "client_version_mask" => $result['client_version_mask'], "nokeyring" => $result['nokeyring'], "islift" => $result['islift'], "close_time" => $result['close_time'], "can_open" => $result['can_open']);
+            $array['doors'][$result['id']] = array("drid" => $result['id'], "doorid" => $result['doorid'], "name" => $result['name'], "pos_x" => $result['pos_x'], "pos_y" => $result['pos_y'], "pos_z" => $result['pos_z'], "heading" => $result['heading'], "opentype" => $result['opentype'], "lockpick" => $result['lockpick'], "keyitem" => $result['keyitem'], "altkeyitem" => $result['altkeyitem'], "triggerdoor" => $result['triggerdoor'], "triggertype" => $result['triggertype'], "doorisopen" => $result['doorisopen'], "door_param" => $result['door_param'], "dest_zone" => $result['dest_zone'], "dest_x" => $result['dest_x'], "dest_y" => $result['dest_y'], "dest_z" => $result['dest_z'], "dest_heading" => $result['dest_heading'], "invert_state" => $result['invert_state'], "incline" => $result['incline'], "size" => $result['size'], "client_version_mask" => $result['client_version_mask'], "nokeyring" => $result['nokeyring'], "islift" => $result['islift'], "close_time" => $result['close_time'], "can_open" => $result['can_open'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$result['content_flags_disabled']);
 
         }
     }
@@ -540,7 +540,7 @@ function get_objects(): array
     $results = $mysql->query_mult_assoc($query);
     if ($results) {
         foreach ($results as $result) {
-            $array['objects'][$result['id']] = array("objid" => $result['id'], "objectname" => $result['objectname'], "xpos" => $result['xpos'], "ypos" => $result['ypos'], "zpos" => $result['zpos'], "heading" => $result['heading'], "itemid" => $result['itemid'], "charges" => $result['charges'], "type" => $result['type'], "icon" => $result['icon']);
+            $array['objects'][$result['id']] = array("objid" => $result['id'], "objectname" => $result['objectname'], "xpos" => $result['xpos'], "ypos" => $result['ypos'], "zpos" => $result['zpos'], "heading" => $result['heading'], "itemid" => $result['itemid'], "charges" => $result['charges'], "type" => $result['type'], "icon" => $result['icon'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$result['content_flags_disabled']);
         }
     }
     return $array;
@@ -552,7 +552,7 @@ function fishing_info(): bool|array|string|null
 
     $fsid = $_GET['fsid'];
 
-    $query = "SELECT id AS fsid,Itemid AS fiid,zoneid,skill_level,chance FROM fishing WHERE id=\"$fsid\"";
+    $query = "SELECT id AS fsid,Itemid AS fiid,zoneid,skill_level,chance, min_expansion, max_expansion, content_flags, content_flags_disabled FROM fishing WHERE id=\"$fsid\"";
     return $mysql->query_assoc($query);
 }
 
@@ -562,7 +562,7 @@ function forage_info(): bool|array|string|null
 
     $fgid = $_GET['fgid'];
 
-    $query = "SELECT id AS fgid,Itemid AS fgiid,zoneid,level,chance FROM forage WHERE id=\"$fgid\"";
+    $query = "SELECT id AS fgid,Itemid AS fgiid,zoneid,level,chance, min_expansion, max_expansion, content_flags, content_flags_disabled FROM forage WHERE id=\"$fgid\"";
     return $mysql->query_assoc($query);
 }
 
@@ -572,7 +572,7 @@ function gspawn_info(): bool|array|string|null
 
     $gsid = $_GET['gsid'];
 
-    $query = "SELECT id AS gsid,zoneid,max_x,max_y,max_z,min_x,min_y,heading,name,item AS giid,max_allowed,comment,respawn_timer FROM ground_spawns WHERE id=\"$gsid\"";
+    $query = "SELECT id AS gsid,zoneid,max_x,max_y,max_z,min_x,min_y,heading,name,item AS giid,max_allowed,comment,respawn_timer, min_expansion, max_expansion, content_flags, content_flags_disabled FROM ground_spawns WHERE id=\"$gsid\"";
     return $mysql->query_assoc($query);
 }
 
@@ -625,8 +625,12 @@ function update_fishing(): void
     $zoneid = $_POST['zoneid'];
     $skill_level = $_POST['skill_level'];
     $chance = $_POST['chance'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "UPDATE fishing SET Itemid=\"$fiid\", zoneid=\"$zoneid\", skill_level=\"$skill_level\", chance=\"$chance\" WHERE id=\"$fsid\"";
+    $query = "UPDATE fishing SET Itemid=\"$fiid\", zoneid=\"$zoneid\", skill_level=\"$skill_level\", chance=\"$chance\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\" WHERE id=\"$fsid\"";
     $mysql->query_no_result($query);
 }
 
@@ -639,8 +643,12 @@ function update_forage(): void
     $zoneid = $_POST['zoneid'];
     $level = $_POST['level'];
     $chance = $_POST['chance'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "UPDATE forage SET Itemid=\"$fgiid\", zoneid=\"$zoneid\", level=\"$level\", chance=\"$chance\" WHERE id=\"$fgid\"";
+    $query = "UPDATE forage SET Itemid=\"$fgiid\", zoneid=\"$zoneid\", level=\"$level\", chance=\"$chance\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\" WHERE id=\"$fgid\"";
     $mysql->query_no_result($query);
 }
 
@@ -677,8 +685,12 @@ function update_gspawn(): void
     $respawn_timer = $_POST['respawn_timer'];
     $name = $_POST['name'];
     $comment = $_POST['comment'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "UPDATE ground_spawns SET item=\"$giid\", zoneid=\"$zoneid\", max_x=\"$max_x\", max_y=\"$max_y\", max_z=\"$max_z\", min_x=\"$min_x\", min_y=\"$min_y\", heading=\"$heading\", max_allowed=\"$max_allowed\", respawn_timer=\"$respawn_timer\", name=\"$name\", comment=\"$comment\" 
+    $query = "UPDATE ground_spawns SET item=\"$giid\", zoneid=\"$zoneid\", max_x=\"$max_x\", max_y=\"$max_y\", max_z=\"$max_z\", min_x=\"$min_x\", min_y=\"$min_y\", heading=\"$heading\", max_allowed=\"$max_allowed\", respawn_timer=\"$respawn_timer\", name=\"$name\", comment=\"$comment\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"
   WHERE id=\"$gsid\"";
     $mysql->query_no_result($query);
 }
@@ -707,8 +719,12 @@ function update_traps(): void
     $triggered_number = $_POST['triggered_number'];
     $despawn_when_triggered = $_POST['despawn_when_triggered'];
     $undetectable = $_POST['undetectable'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "UPDATE traps SET zone=\"$zone\", x=\"$x\", y=\"$y\", z=\"$z_coord\", chance=\"$chance\", maxzdiff=\"$maxzdiff\", radius=\"$radius\", effect=\"$effect\", effectvalue=\"$effectvalue\", effectvalue2=\"$effectvalue2\", message=\"$message\", skill=\"$skill\", level=\"$level\", respawn_time=\"$respawn_time\", respawn_var=\"$respawn_var\", `group`=\"$group\", triggered_number=\"$triggered_number\", despawn_when_triggered=\"$despawn_when_triggered\", undetectable=\"$undetectable\" WHERE id=\"$tid\"";
+    $query = "UPDATE traps SET zone=\"$zone\", x=\"$x\", y=\"$y\", z=\"$z_coord\", chance=\"$chance\", maxzdiff=\"$maxzdiff\", radius=\"$radius\", effect=\"$effect\", effectvalue=\"$effectvalue\", effectvalue2=\"$effectvalue2\", message=\"$message\", skill=\"$skill\", level=\"$level\", respawn_time=\"$respawn_time\", respawn_var=\"$respawn_var\", `group`=\"$group\", triggered_number=\"$triggered_number\", despawn_when_triggered=\"$despawn_when_triggered\", undetectable=\"$undetectable\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\" WHERE id=\"$tid\"";
     $mysql->query_no_result($query);
 }
 
@@ -744,8 +760,12 @@ function update_doors(): void
     $islift = $_POST['islift'];
     $close_time = $_POST['close_time'];
     $can_open = $_POST['can_open'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "UPDATE doors SET doorid=\"$doorid\", name=\"$name\", pos_x=\"$pos_x\", pos_y=\"$pos_y\", pos_z=\"$pos_z\", heading=\"$heading\", opentype=\"$opentype\", lockpick=\"$lockpick\", keyitem=\"$keyitem\", altkeyitem=\"$altkeyitem\", triggerdoor=\"$triggerdoor\", triggertype=\"$triggertype\", doorisopen=\"$doorisopen\", door_param=\"$door_param\", dest_zone=\"$dest_zone\", dest_x=\"$dest_x\", dest_y=\"$dest_y\", dest_z=\"$dest_z\", dest_heading=\"$dest_heading\", invert_state=\"$invert_state\", incline=\"$incline\", size=\"$size\", client_version_mask=\"$client_version_mask\", nokeyring=\"$nokeyring\", islift=\"$islift\", close_time=\"$close_time\", can_open=\"$can_open\" WHERE id=\"$drid\"";
+    $query = "UPDATE doors SET doorid=\"$doorid\", name=\"$name\", pos_x=\"$pos_x\", pos_y=\"$pos_y\", pos_z=\"$pos_z\", heading=\"$heading\", opentype=\"$opentype\", lockpick=\"$lockpick\", keyitem=\"$keyitem\", altkeyitem=\"$altkeyitem\", triggerdoor=\"$triggerdoor\", triggertype=\"$triggertype\", doorisopen=\"$doorisopen\", door_param=\"$door_param\", dest_zone=\"$dest_zone\", dest_x=\"$dest_x\", dest_y=\"$dest_y\", dest_z=\"$dest_z\", dest_heading=\"$dest_heading\", invert_state=\"$invert_state\", incline=\"$incline\", size=\"$size\", client_version_mask=\"$client_version_mask\", nokeyring=\"$nokeyring\", islift=\"$islift\", close_time=\"$close_time\", can_open=\"$can_open\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\" WHERE id=\"$drid\"";
     $mysql->query_no_result($query);
 }
 
@@ -763,8 +783,12 @@ function update_objects(): void
     $charges = $_POST['charges'];
     $type = $_POST['type'];
     $icon = $_POST['icon'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "UPDATE object SET objectname=\"$objectname\", xpos=\"$xpos\", ypos=\"$ypos\", zpos=\"$zpos\", heading=\"$heading\", itemid=\"$itemid\", charges=\"$charges\", type=\"$type\", icon=\"$icon\" WHERE id=\"$objid\"";
+    $query = "UPDATE object SET objectname=\"$objectname\", xpos=\"$xpos\", ypos=\"$ypos\", zpos=\"$zpos\", heading=\"$heading\", itemid=\"$itemid\", charges=\"$charges\", type=\"$type\", icon=\"$icon\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\" WHERE id=\"$objid\"";
 
     $mysql->query_no_result($query);
 }
@@ -918,8 +942,12 @@ function add_fishing(): void
     $zoneid = $_POST['zoneid'];
     $skill_level = $_POST['skill_level'];
     $chance = $_POST['chance'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "INSERT INTO fishing SET id=\"fsid\", Itemid=\"$fiid\", zoneid=\"$zoneid\", skill_level=\"$skill_level\", chance=\"$chance\"";
+    $query = "INSERT INTO fishing SET id=\"fsid\", Itemid=\"$fiid\", zoneid=\"$zoneid\", skill_level=\"$skill_level\", chance=\"$chance\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
     $mysql->query_no_result($query);
 }
 
@@ -931,8 +959,12 @@ function add_forage(): void
     $zoneid = $_POST['zoneid'];
     $level = $_POST['level'];
     $chance = $_POST['chance'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "INSERT INTO forage SET id=\"fgid\", Itemid=\"$fgiid\", zoneid=\"$zoneid\", level=\"$level\", chance=\"$chance\"";
+    $query = "INSERT INTO forage SET id=\"fgid\", Itemid=\"$fgiid\", zoneid=\"$zoneid\", level=\"$level\", chance=\"$chance\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
     $mysql->query_no_result($query);
 }
 
@@ -953,8 +985,12 @@ function add_gspawn(): void
     $respawn_timer = $_POST['respawn_timer'];
     $name = $_POST['name'];
     $comment = $_POST['comment'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "INSERT INTO ground_spawns SET id=\"$gsid\", item=\"$giid\", zoneid=\"$zoneid\", max_x=\"$max_x\", max_y=\"$max_y\", max_z=\"$max_z\", min_x=\"$min_x\", min_y=\"$min_y\", heading=\"$heading\", max_allowed=\"$max_allowed\", respawn_timer=\"$respawn_timer\", name=\"$name\", comment=\"$comment\"";
+    $query = "INSERT INTO ground_spawns SET id=\"$gsid\", item=\"$giid\", zoneid=\"$zoneid\", max_x=\"$max_x\", max_y=\"$max_y\", max_z=\"$max_z\", min_x=\"$min_x\", min_y=\"$min_y\", heading=\"$heading\", max_allowed=\"$max_allowed\", respawn_timer=\"$respawn_timer\", name=\"$name\", comment=\"$comment\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
     $mysql->query_no_result($query);
 }
 
@@ -982,8 +1018,12 @@ function add_traps(): void
     $triggered_number = $_POST['triggered_number'];
     $despawn_when_triggered = $_POST['despawn_when_triggered'];
     $undetectable = $_POST['undetectable'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "INSERT INTO traps SET id=\"$tid\", zone=\"$zone\", x=\"$x\", y=\"$y\", z=\"$z_coord\", chance=\"$chance\", maxzdiff=\"$maxzdiff\", radius=\"$radius\", effect=\"$effect\", effectvalue=\"$effectvalue\", effectvalue2=\"$effectvalue2\", message=\"$message\", skill=\"$skill\", level=\"$level\", respawn_time=\"$respawn_time\", respawn_var=\"$respawn_var\", `group`=\"$group\", triggered_number=\"$triggered_number\", despawn_when_triggered=\"$despawn_when_triggered\", undetectable=\"$undetectable\"";
+    $query = "INSERT INTO traps SET id=\"$tid\", zone=\"$zone\", x=\"$x\", y=\"$y\", z=\"$z_coord\", chance=\"$chance\", maxzdiff=\"$maxzdiff\", radius=\"$radius\", effect=\"$effect\", effectvalue=\"$effectvalue\", effectvalue2=\"$effectvalue2\", message=\"$message\", skill=\"$skill\", level=\"$level\", respawn_time=\"$respawn_time\", respawn_var=\"$respawn_var\", `group`=\"$group\", triggered_number=\"$triggered_number\", despawn_when_triggered=\"$despawn_when_triggered\", undetectable=\"$undetectable\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
     $mysql->query_no_result($query);
 }
 
@@ -1034,8 +1074,12 @@ function add_doors(): void
     $islift = $_POST['islift'];
     $close_time = $_POST['close_time'];
     $can_open = $_POST['can_open'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "INSERT INTO doors SET id=\"$drid\", zone=\"$z\", doorid=\"$doorid\", name=\"$name\", pos_x=\"$pos_x\", pos_y=\"$pos_y\", pos_z=\"$pos_z\", heading=\"$heading\", opentype=\"$opentype\", lockpick=\"$lockpick\", keyitem=\"$keyitem\", altkeyitem=\"$altkeyitem\", triggerdoor=\"$triggerdoor\", triggertype=\"$triggertype\", doorisopen=\"$doorisopen\", door_param=\"$door_param\", dest_zone=\"$dest_zone\", dest_x=\"$dest_x\", dest_y=\"$dest_y\", dest_z=\"$dest_z\", dest_heading=\"$dest_heading\", invert_state=\"$invert_state\", incline=\"$incline\", size=\"$size\", client_version_mask=\"$client_version_mask\", nokeyring=\"$nokeyring\", islift=\"$islift\", close_time=\"$close_time\", can_open=\"$can_open\"";
+    $query = "INSERT INTO doors SET id=\"$drid\", zone=\"$z\", doorid=\"$doorid\", name=\"$name\", pos_x=\"$pos_x\", pos_y=\"$pos_y\", pos_z=\"$pos_z\", heading=\"$heading\", opentype=\"$opentype\", lockpick=\"$lockpick\", keyitem=\"$keyitem\", altkeyitem=\"$altkeyitem\", triggerdoor=\"$triggerdoor\", triggertype=\"$triggertype\", doorisopen=\"$doorisopen\", door_param=\"$door_param\", dest_zone=\"$dest_zone\", dest_x=\"$dest_x\", dest_y=\"$dest_y\", dest_z=\"$dest_z\", dest_heading=\"$dest_heading\", invert_state=\"$invert_state\", incline=\"$incline\", size=\"$size\", client_version_mask=\"$client_version_mask\", nokeyring=\"$nokeyring\", islift=\"$islift\", close_time=\"$close_time\", can_open=\"$can_open\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
     $mysql->query_no_result($query);
 }
 
@@ -1054,8 +1098,12 @@ function add_objects(): void
     $charges = $_POST['charges'];
     $type = $_POST['type'];
     $icon = $_POST['icon'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "INSERT INTO object SET id=\"$objid\", zoneid=\"$zid\", objectname=\"$objectname\", xpos=\"$xpos\", ypos=\"$ypos\", zpos=\"$zpos\", heading=\"$heading\", itemid=\"$itemid\", charges=\"$charges\", type=\"$type\", icon=\"$icon\"";
+    $query = "INSERT INTO object SET id=\"$objid\", zoneid=\"$zid\", objectname=\"$objectname\", xpos=\"$xpos\", ypos=\"$ypos\", zpos=\"$zpos\", heading=\"$heading\", itemid=\"$itemid\", charges=\"$charges\", type=\"$type\", icon=\"$icon\", min_expansion=\"$min_expansion\", max_expansion=\"$max_expansion\", content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
 
     $mysql->query_no_result($query);
 }
