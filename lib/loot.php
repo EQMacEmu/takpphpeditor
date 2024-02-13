@@ -485,20 +485,20 @@ function update_loottable(): void
 	
 	if ($content_flags == "") {
 		$query = "UPDATE loottable SET content_flags=NULL WHERE id=$id";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 	else {
 		$query = "UPDATE loottable SET content_flags=\"$content_flags\" WHERE id=$id";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
 	if ($content_flags_disabled == "") {
 		$query = "UPDATE loottable SET content_flags_disabled=NULL WHERE id=$id";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 	else {
 		$query = "UPDATE loottable SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$id";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 }
 
@@ -522,12 +522,12 @@ function add_loottable(): void
 
 	if ($content_flags != "") {
 		$query = "UPDATE loottable SET content_flags=\"$content_flags\" WHERE id=$id";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
 	if ($content_flags_disabled != "") {
 		$query = "UPDATE loottable SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$id";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
     change_npc_loottable();
@@ -689,20 +689,20 @@ function update_loottable_entries(): void
 	
 	if ($content_flags == "") {
 		$query3 = "UPDATE lootdrop SET content_flags=NULL WHERE id=$ldid";
-		$mysql_content_db->query_no_result($query3);
+		$mysql->query_no_result($query3);
 	}
 	else {
 		$query3 = "UPDATE lootdrop SET content_flags=\"$content_flags\" WHERE id=$ldid";
-		$mysql_content_db->query_no_result($query3);
+		$mysql->query_no_result($query3);
 	}
 
 	if ($content_flags_disabled == "") {
 		$query4 = "UPDATE lootdrop SET content_flags_disabled=NULL WHERE id=$ldid";
-		$mysql_content_db->query_no_result($query4);
+		$mysql->query_no_result($query4);
 	}
 	else {
 		$query4 = "UPDATE lootdrop SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$ldid";
-		$mysql_content_db->query_no_result($query4);
+		$mysql->query_no_result($query4);
 	}
 }
 
@@ -913,12 +913,12 @@ function create_lootdrop(): void
 	
 	if ($content_flags != "") {
 		$query = "UPDATE lootdrop SET content_flags=\"$content_flags\" WHERE id=$ldid";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
 	if ($content_flags_disabled != "") {
 		$query = "UPDATE lootdrop SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$ldid";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 }
 

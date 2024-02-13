@@ -985,12 +985,12 @@ function add_spawngroup_member(): void
 
 	if ($content_flags != "") {
 		$query = "UPDATE spawnentry SET content_flags=\"$content_flags\" WHERE spawngroupID=$sid AND npcID=$npc";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
 	if ($content_flags_disabled != "") {
 		$query = "UPDATE spawnentry SET content_flags_disabled=\"$content_flags_disabled\" WHERE spawngroupID=$sid AND npcID=$npc";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
     if ($balance == "on") {
@@ -1053,12 +1053,12 @@ function add_multiple_spawngroup_member(): void
 
 		if ($content_flags != "") {
 		$query = "UPDATE spawnentry SET content_flags=\"$content_flags\" WHERE spawngroupID=$sid AND npcID=$npc";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 		}
 
 		if ($content_flags_disabled != "") {
 			$query = "UPDATE spawnentry SET content_flags_disabled=\"$content_flags_disabled\" WHERE spawngroupID=$sid AND npcID=$npc";
-			$mysql_content_db->query_no_result($query);
+			$mysql->query_no_result($query);
 		}
 
         if ($balance == "on") {
@@ -1087,12 +1087,12 @@ function update_spawngroup_member(): void
 	
 	if ($content_flags != "") {
 		$query = "UPDATE spawnentry SET content_flags=\"$content_flags\" WHERE spawngroupID=$spawngroupID AND npcID=$npc";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
 	if ($content_flags_disabled != "") {
 		$query = "UPDATE spawnentry SET content_flags_disabled=\"$content_flags_disabled\" WHERE spawngroupID=$spawngroupID AND npcID=$npc";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}	
 }
 
@@ -1597,12 +1597,12 @@ function add_spawnpoint(): void
 	
 	if ($content_flags != "") {
 		$query = "UPDATE spawn2 SET content_flags=\"$content_flags\" WHERE id=$id";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
 	if ($content_flags_disabled != "") {
 		$query = "UPDATE spawn2 SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$id";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 }
 
@@ -1645,12 +1645,12 @@ function add_spawngroup(): void
 	
 	if ($content_flags != "") {
 		$query = "UPDATE spawnentry SET content_flags=\"$content_flags\" WHERE spawngroupID=$id AND npcID=$npcID";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 
 	if ($content_flags_disabled != "") {
 		$query = "UPDATE spawnentry SET content_flags_disabled=\"$content_flags_disabled\" WHERE spawngroupID=$id AND npcID=$npcID";
-		$mysql_content_db->query_no_result($query);
+		$mysql->query_no_result($query);
 	}
 }
 
@@ -1963,12 +1963,12 @@ function copy_spawnpoint(): void
 	
 	if ($content_flags != "") {
 		$query3 = "UPDATE spawn2 SET content_flags=\"$content_flags\" WHERE id=$new_id";
-		$mysql_content_db->query_no_result($query3);
+		$mysql->query_no_result($query3);
 	}
 
 	if ($content_flags_disabled != "") {
 		$query4 = "UPDATE spawn2 SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$new_id";
-		$mysql_content_db->query_no_result($query4);
+		$mysql->query_no_result($query4);
 	}
 }
 

@@ -239,7 +239,7 @@
                         <td colspan="4">
                             <a href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"
                                style="color:yellow;">Content
-                                Flags: <?php echo ($lootdrop['content_flags'] != "" && $lootdrop['content_flags_disabled'] != "") ? "Yes" : "No"; ?></a>
+                                Flags: <?php echo ($lootdrop['content_flags'] != "" || $lootdrop['content_flags_disabled'] != "") ? "Yes" : "No"; ?></a>
                         </td>
                         <td colspan="4" style="text-align: right;">
                             <a title="Set chance for all items on this table to <?= $normalize_amount ?>"
