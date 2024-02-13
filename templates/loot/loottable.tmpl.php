@@ -250,15 +250,14 @@
                 </table>
             </div><br>
             <table>
-            <?php if (!isset($lootdrop['items'])): ?>
-            <tr>
-                <td style="text-align: left; width: 100%; padding: 10px;">No items currently assigned to this
-                    lootdrop
-                </td>
-            </tr>
-        <?php endif; ?>
+                <?php if (!isset($lootdrop['items'])): ?>
+                    <tr>
+                        <td style="text-align: left; width: 100%; padding: 10px;">No items currently assigned to this
+                            lootdrop
+                        </td>
+                    </tr>
+                <?php endif; ?>
             </table>
-            </div>
         <?php endforeach; ?>
         </div>
     <?php endif; ?>
