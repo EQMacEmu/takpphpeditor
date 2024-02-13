@@ -594,7 +594,7 @@ switch ($action) {
         $sid = $_POST['sgid'];
         header("Location: index.php?editor=spawn&z=$z&zoneid=$zoneid&npcid=$npcid&sid=$sid&action=10");
         exit;
-    case 52:  // Copy Spawnpoint
+    case 52:  // Move Spawnpoint
         check_authorization();
         $body = new Template("templates/spawn/spawnpoint.move.tmpl.php");
         $body->set('currzone', $z);
@@ -1530,8 +1530,12 @@ function add_spawnpoint(): void
     $boot_variance = $_POST['boot_variance'];
     $clear_timer_onboot = $_POST['clear_timer_onboot'];
     $force_z = $_POST['force_z'];
-
-    $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z";
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
+  
+    $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
     $mysql->query_no_result($query);
 }
 
@@ -1845,26 +1849,36 @@ function copy_spawnpoint(): void
 {
     check_authorization();
     global $mysql;
-    $zone = $_POST['zone'];
-    $x = $_POST['x'];
-    $y = $_POST['y'];
-    $z = $_POST['z'];
-    $heading = $_POST['heading'];
-    $respawntime = $_POST['respawntime'];
-    $variance = $_POST['variance'];
-    $pathgrid = $_POST['pathgrid'];
-    $condition = $_POST['condition'];
-    $cond_value = $_POST['cond_value'];
-    $enabled = $_POST['enabled'];
-    $animation = $_POST['animation'];
-    $sgid = $_POST['sgid'];
-    $boot_respawntime = $_POST['boot_respawntime'];
-    $boot_variance = $_POST['boot_variance'];
-    $clear_timer_onboot = $_POST['clear_timer_onboot'];
-    $force_z = $_POST['force_z'];
+	
+	$id = $_POST['id'];
+	$sgid = $_POST['sgid'];
+	
+	$query1 = "SELECT * FROM spawn2 WHERE id=$id";
+	$original = $mysql->query_assoc($query1);
+	
+    $zone = $original['zone'];
+    $x = $original['x'];
+    $y = $original['y'];
+    $z = $original['z'];
+    $heading = $original['heading'];
+    $respawntime = $original['respawntime'];
+    $variance = $original['variance'];
+    $pathgrid = $original['pathgrid'];
+    $condition = $original['condition'];
+    $cond_value = $original['cond_value'];
+    $enabled = $original['enabled'];
+    $animation = $original['animation'];
+    $boot_respawntime = $original['boot_respawntime'];
+    $boot_variance = $original['boot_variance'];
+    $clear_timer_onboot = $original['clear_timer_onboot'];
+    $force_z = $original['force_z'];
+	$min_expansion = $original['min_expansion'];
+	$max_expansion = $original['max_expansion'];
+	$content_flags = $original['content_flags'];
+	$content_flags_disabled = $original['content_flags_disabled'];
 
-    $query = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z";
-    $mysql->query_no_result($query);
+    $query2 = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
+    $mysql->query_no_result($query2);
 }
 
 function move_spawnpoint(): void
