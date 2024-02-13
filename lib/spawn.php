@@ -1402,12 +1402,25 @@ function update_spawnpoint(): void
         }
     }
 
+	$fields .= "content_flags=NULL, ";
+	$fields .= "content_flags_disabled=NULL, ";
+
     $fields = rtrim($fields, ", ");
 
     if ($fields != '') {
         $query = "UPDATE spawn2 SET $fields WHERE id=$id";
         $mysql->query_no_result($query);
     }
+	
+	if ($_POST['content_flags'] != "") {
+		$query = "UPDATE spawn2 SET content_flags=\"$content_flags\" WHERE id=$id";
+		$mysql_content_db->query_no_result($query);
+	}
+
+	if ($_POST['content_flags_disabled'] != "") {
+		$query = "UPDATE spawn2 SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$id";
+		$mysql_content_db->query_no_result($query);
+	}
 }
 
 function delete_spawnpoint(): void
@@ -1535,8 +1548,18 @@ function add_spawnpoint(): void
 	$content_flags = $_POST['content_flags'];
 	$content_flags_disabled = $_POST['content_flags_disabled'];
   
-    $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
+    $query = "INSERT INTO spawn2 SET id=$id, spawngroupID=$spawngroupID, zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query);
+	
+	if ($content_flags != "") {
+		$query = "UPDATE spawn2 SET content_flags=\"$content_flags\" WHERE id=$id";
+		$mysql_content_db->query_no_result($query);
+	}
+
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE spawn2 SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$id";
+		$mysql_content_db->query_no_result($query);
+	}
 }
 
 function add_spawngroup(): void
@@ -1877,8 +1900,18 @@ function copy_spawnpoint(): void
 	$content_flags = $original['content_flags'];
 	$content_flags_disabled = $original['content_flags_disabled'];
 
-    $query2 = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
+    $query2 = "INSERT INTO spawn2 SET spawngroupID=\"$sgid\", zone=\"$zone\", x=$x, y=$y, z=$z, heading=$heading, respawntime=$respawntime, boot_respawntime=$boot_respawntime, boot_variance=$boot_variance, clear_timer_onboot=$clear_timer_onboot, variance=$variance, pathgrid=$pathgrid, _condition=$condition, cond_value=$cond_value, enabled=$enabled, animation=$animation, force_z=$force_z, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query2);
+	
+	if ($content_flags != "") {
+		$query3 = "UPDATE spawn2 SET content_flags=\"$content_flags\" WHERE id=$new_id";
+		$mysql_content_db->query_no_result($query3);
+	}
+
+	if ($content_flags_disabled != "") {
+		$query4 = "UPDATE spawn2 SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$new_id";
+		$mysql_content_db->query_no_result($query4);
+	}
 }
 
 function move_spawnpoint(): void
