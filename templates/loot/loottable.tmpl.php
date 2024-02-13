@@ -23,10 +23,12 @@
                 <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=11"><img
                             src="images/create.gif" style="border: 0;" alt="Gears Icon" title="Change LootTable"></a>&nbsp;
                 <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&action=36"><img
-                            src="images/last.gif" style="border: 0;" alt="Double Yellow Arrow Icon" title="Apply LootTable to Multiple NPCs"></a>&nbsp;
+                            src="images/last.gif" style="border: 0;" alt="Double Yellow Arrow Icon"
+                            title="Apply LootTable to Multiple NPCs"></a>&nbsp;
                 <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=34"
                    onClick="return confirm('Really remove this loottable from the selected NPC?');"><img
-                            src="images/minus2.gif" style="border: 0;" alt="Double Red Arrow Icon" title="Drop this loottable"></a>
+                            src="images/minus2.gif" style="border: 0;" alt="Double Red Arrow Icon"
+                            title="Drop this loottable"></a>
                 <a onClick="return confirm('Really Delete LootTable <?= $loottable_id ?>?');"
                    href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=16&ltid=<?= $loottable_id ?>"><img
                             src="images/remove3.gif" style="border: 0;" alt="Red X Icon" title="Delete LootTable"></a>
@@ -46,21 +48,24 @@
                 Min Cash: <?= $mincash ?? "" ?><br/>
                 Max Cash: <?= $maxcash ?? "" ?><br/>
             </div>
-				Content Control:
-			<div style="padding: 5px 0px 0px 20px;">
-				Min Expansion: <?=$min_expansion?><br>
-				Max Expansion: <?=$max_expansion?><br>
-				Content Flags: <?echo ($content_flags != "") ? $content_flags : "N/A";?><br>
-				Content Flags Disabled: <?echo ($content_flags_disabled != "") ? $content_flags_disabled : "N/A";?><br>
-          </div>
+            Content Control:
+            <div style="padding: 5px 0 0 20px;">
+                Min Expansion: <?= $min_expansion ?><br>
+                Max Expansion: <?= $max_expansion ?><br>
+                Content Flags: <?= ($content_flags != "") ? $content_flags : "N/A"; ?><br>
+                Content Flags Disabled: <?php echo ($content_flags_disabled != "") ? $content_flags_disabled : "N/A"; ?>
+                <br>
+            </div>
             <div style="padding: 10px 0 0 0;">
                 NPCs using this loottable: <?= $usage['count'] ?? "Undefined" ?>
                 <?php if (!isset($_GET['display_usage'])) { ?>
                     [
                     <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&display_usage">show</a>]
                 <?php } else { ?>
-                    [<a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>">hide</a>]
-                    <?php $usage = $usage ?? array(); foreach ($usage['mobs'] as $mob): ?>
+                    [
+                    <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>">hide</a>]
+                    <?php $usage = $usage ?? array();
+                    foreach ($usage['mobs'] as $mob): ?>
                         <br/>&nbsp;&nbsp;&nbsp;<?= $mob['id'] ?>: <?= $mob['name'] ?>
                     <?php endforeach; ?>
                 <?php } ?>
@@ -68,7 +73,8 @@
             <div style="padding: 5px 0 0 0;">
                 LootDrops associated with this LootTable: <?= $lootdrop_count ?? "Undefined" ?> <a
                         href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=22&ltid=<?= $loottable_id ?>"><img
-                            src="images/add.gif" style="border: 0;" alt="Yellow Plus Icon" title="Add a LootDrop to this LootTable"></a>
+                            src="images/add.gif" style="border: 0;" alt="Yellow Plus Icon"
+                            title="Add a LootDrop to this LootTable"></a>
             </div>
             <div style="padding: 10px 0 0 0;">
                 <div class="center">
@@ -87,39 +93,59 @@
                 <div class="table_header">
                     <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
                         <tr>
-                            <td style="padding: 0;">Lootdrop: <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? ""?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&action=33"><?= $lootdrop['id'] ?></a></td>
+                            <td style="padding: 0;">Lootdrop: <a
+                                        href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&action=33"><?= $lootdrop['id'] ?></a>
+                            </td>
                             <?php
                             $newname = substr($lootdrop['name'], 0, 22);
                             if ($newname != $lootdrop['name'])
                                 $newname = "$newname...";
                             ?>
-                            <td style="padding: 0;">"<a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&action=3"<?php echo ($newname != $lootdrop['name']) ? " title=\"{$lootdrop['name']}\"" : "" ?>><?= $newname ?></a>"</td>
-                            <td style="padding: 0;">Mindrop: <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['mindrop'] ?></a></td>
-                            <td style="padding: 0;">Droplimit: <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['droplimit'] ?></a></td>
-                            <td style="padding: 0;">Multiplier: <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? ""?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['multiplier'] ?></a></td>
-                            <td style="padding: 0;">Min:<a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['multiplier_min'] ?></a></td>
-                            <td style="padding: 0;">Probability: <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['probability'] ?></a></td>
+                            <td style="padding: 0;">"<a
+                                        href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&action=3"<?php echo ($newname != $lootdrop['name']) ? " title=\"{$lootdrop['name']}\"" : "" ?>><?= $newname ?></a>"
+                            </td>
+                            <td style="padding: 0;">Mindrop: <a
+                                        href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['mindrop'] ?></a>
+                            </td>
+                            <td style="padding: 0;">Droplimit: <a
+                                        href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['droplimit'] ?></a>
+                            </td>
+                            <td style="padding: 0;">Multiplier: <a
+                                        href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['multiplier'] ?></a>
+                            </td>
+                            <td style="padding: 0;">Min:<a
+                                        href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['multiplier_min'] ?></a>
+                            </td>
+                            <td style="padding: 0;">Probability: <a
+                                        href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"><?= $lootdrop['probability'] ?></a>
+                            </td>
                             <td style="padding: 0; text-align: right;">
                                 <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=20&ldid=<?= $lootdrop['id'] ?>">
-                                    <img src="images/add.gif" style="border: 0;" alt="Yellow Plus Icon" title="Add an Item to this LootDrop Table">
+                                    <img src="images/add.gif" style="border: 0;" alt="Yellow Plus Icon"
+                                         title="Add an Item to this LootDrop Table">
                                 </a>
-                                <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? ""?>&npcid=<?= $npcid ?>&action=41&ldid=<?= $lootdrop['id'] ?>">
-                                    <img src="images/resetpw.gif" style="border: 0;" alt="ResetPW Icon" title="Merge this LootDrop">
+                                <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=41&ldid=<?= $lootdrop['id'] ?>">
+                                    <img src="images/resetpw.gif" style="border: 0;" alt="ResetPW Icon"
+                                         title="Merge this LootDrop">
                                 </a>
                                 <a href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=35&ldid=<?= $lootdrop['id'] ?>&name=<?= $lootdrop['name'] ?>">
-                                    <img src="images/last.gif" style="border: 0;" alt="Double Yellow Arrow Icon" title="Copy lootdrop">
+                                    <img src="images/last.gif" style="border: 0;" alt="Double Yellow Arrow Icon"
+                                         title="Copy lootdrop">
                                 </a>
                                 <a onClick="return confirm('Really move multiplier to the items in lootdrop: <?= $lootdrop['id'] ?>?  The table multiplier will be set to 1.');"
                                    href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=43&ldid=<?= $lootdrop['id'] ?>&multiplier=<?= $lootdrop['multiplier'] ?>">
-                                    <img src="images/sort.gif" style="border: 0;" alt="Sort Icon" title="Move mutliplier to items">
+                                    <img src="images/sort.gif" style="border: 0;" alt="Sort Icon"
+                                         title="Move mutliplier to items">
                                 </a>
                                 <a onClick="return confirm('Really remove LootDrop <?= $lootdrop['id'] ?> from LootTable <?= $loottable_id ?>?  All <?= $usage['count'] ?> NPCs that use LootTable <?= $loottable_id ?> will be affected.');"
                                    href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=19&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>">
-                                    <img src="images/minus2.gif" style="border: 0;" alt="Double Red Down Arrow Icon" title="Remove this LootDrop from LootTable <?= $loottable_id ?>">
+                                    <img src="images/minus2.gif" style="border: 0;" alt="Double Red Down Arrow Icon"
+                                         title="Remove this LootDrop from LootTable <?= $loottable_id ?>">
                                 </a>
                                 <a onClick="return confirm('Really delete LootDrop <?= $lootdrop['id'] ?>?  All LootTables that use this LootDrop will be affected.');"
                                    href="index.php?editor=loot&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=26&ldid=<?= $lootdrop['id'] ?>">
-                                    <img src="images/remove2.gif" style="border: 0;" alt="Red X Icon" title="Permanently delete this LootDrop">
+                                    <img src="images/remove2.gif" style="border: 0;" alt="Red X Icon"
+                                         title="Permanently delete this LootDrop">
                                 </a>
                             </td>
                         </tr>
@@ -172,24 +198,29 @@
                                 <td style="text-align: center"><?= $chance ?>%</td>
                                 <td style="text-align: right;">
                                     <a href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&itemid=<?= $item_id ?>&action=47">
-                                        <img src="images/minus.gif" style="border: 0;" alt="Red Minus Icon" title="Move Lootdrop Item">
+                                        <img src="images/minus.gif" style="border: 0;" alt="Red Minus Icon"
+                                             title="Move Lootdrop Item">
                                     </a>
                                     <a href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&itemid=<?= $item_id ?>&action=5">
-                                        <img src="images/edit2.gif" style="border: 0;" alt="Edit Table Icon" title="Edit Lootdrop Item">
+                                        <img src="images/edit2.gif" style="border: 0;" alt="Edit Table Icon"
+                                             title="Edit Lootdrop Item">
                                     </a>
                                     <?php if ($disabled_chance == 0 && $chance > 0): ?>
                                         <a href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&itemid=<?= $item_id ?>&chance=<?= $chance ?>&action=44">
-                                            <img src="images/downgrade.gif" style="border: 0;" alt="Downgrade Icon" title="Disable Item">
+                                            <img src="images/downgrade.gif" style="border: 0;" alt="Downgrade Icon"
+                                                 title="Disable Item">
                                         </a>
                                     <?php endif; ?>
                                     <?php if ($disabled_chance > 0): ?>
                                         <a href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&itemid=<?= $item_id ?>&dchance=<?= $disabled_chance ?>&action=45">
-                                            <img src="images/upgrade.gif" style="border: 0;" alt="Upgrade Icon" title="Enable Item">
+                                            <img src="images/upgrade.gif" style="border: 0;" alt="Upgrade Icon"
+                                                 title="Enable Item">
                                         </a>
                                     <?php endif; ?>
                                     <a onClick="return confirm('Really remove item <?= $item_id ?> from LootDrop <?= $lootdrop['id'] ?>?');"
                                        href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&itemid=<?= $item_id ?>&action=17">
-                                        <img src="images/remove3.gif" style="border: 0;" alt="Red X Icon" title="Remove Item">
+                                        <img src="images/remove3.gif" style="border: 0;" alt="Red X Icon"
+                                             title="Remove Item">
                                     </a>
                                 </td>
                                 <td>&nbsp;</td>
@@ -197,31 +228,36 @@
                             <?php
                             $x++;
                         endforeach;
-						?>
-						<tr bgcolor="#000000">
-								<td colspan="2">
-									<a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ltid=<?=$loottable_id?>&ldid=<?=$lootdrop['id']?>&action=7" style="color:yellow;">Expansion Flags: <?echo ($lootdrop['min_expansion'] > 0 && $lootdrop['max_expansion'] > 0) ? "Yes" : "No";?></a>
-							</td>
-							<td colspan="4">
-								<a href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ltid=<?=$loottable_id?>&ldid=<?=$lootdrop['id']?>&action=7" style="color:yellow;">Content Flags: <?echo ($lootdrop['content_flags'] != "" && $lootdrop['content_flags_disabled'] != "") ? "Yes" : "No";?></a>
-							</td>
-							<td colspan="4" align="right">
-								<a title="Set chance for all items on this table to <?=$normalize_amount?>" href="index.php?editor=loot&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&ldid=<?=$lootdrop['id']?>&action=18" style="color:yellow;">Normalize Drops</a>
-							</td>
-						</tr>
-					</table>
-					</div><br>
-<?
                     endif;
                     ?>
-                    <?php if (!isset($lootdrop['items'])): ?>
-                        <tr>
-                            <td style="text-align: left; width: 100%; padding: 10px;">No items currently assigned to this
-                                lootdrop
-                            </td>
-                        </tr>
-                    <?php endif; ?>
+                    <tr style="background-color: #000;">
+                        <td colspan="2">
+                            <a href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"
+                               style="color:yellow;">Expansion
+                                Flags: <?php echo ($lootdrop['min_expansion'] > 0 || $lootdrop['max_expansion'] > 0) ? "Yes" : "No"; ?></a>
+                        </td>
+                        <td colspan="4">
+                            <a href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ltid=<?= $loottable_id ?>&ldid=<?= $lootdrop['id'] ?>&action=7"
+                               style="color:yellow;">Content
+                                Flags: <?php echo ($lootdrop['content_flags'] != "" && $lootdrop['content_flags_disabled'] != "") ? "Yes" : "No"; ?></a>
+                        </td>
+                        <td colspan="4" style="text-align: right;">
+                            <a title="Set chance for all items on this table to <?= $normalize_amount ?>"
+                               href="index.php?editor=loot&z=<?= $currzone ?>&zoneid=<?= $currzoneid ?>&npcid=<?= $npcid ?>&ldid=<?= $lootdrop['id'] ?>&action=18"
+                               style="color:yellow;">Normalize Drops</a>
+                        </td>
+                    </tr>
                 </table>
+            </div><br>
+            <table>
+            <?php if (!isset($lootdrop['items'])): ?>
+            <tr>
+                <td style="text-align: left; width: 100%; padding: 10px;">No items currently assigned to this
+                    lootdrop
+                </td>
+            </tr>
+        <?php endif; ?>
+            </table>
             </div>
         <?php endforeach; ?>
         </div>
