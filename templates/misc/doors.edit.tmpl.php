@@ -185,7 +185,7 @@
             </div>
            <div class="center">
                 <input type="hidden" name="drid" value="<?= $id ?>">
-                <input type="submit" value="Submit Changes">
+                <input type="submit" value="Submit Changes">&nbsp;<input type="button" value="Cancel" onClick="history.back();">
             </div>
         </form>
     </div>
