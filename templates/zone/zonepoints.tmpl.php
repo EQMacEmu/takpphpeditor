@@ -34,9 +34,9 @@
                 <td style="text-align: center; width: 5%"><?= $v['zpid'] ?></td>
                 <td style="text-align: center; width: 5%"><?= $v['zone'] ?></td>
                 <td style="text-align: center; width: 5%"><?= $v['number'] ?></td>
-                <td style="text-align: center; width: 5%"><?= $v['x_coord'] ?></td>
-                <td style="text-align: center; width: 5%"><?= $v['y_coord'] ?></td>
-                <td style="text-align: center; width: 5%"><?= $v['z_coord'] ?></td>
+                <td style="text-align: center; width: 5%"><?= $v['x'] ?></td>
+                <td style="text-align: center; width: 5%"><?= $v['y'] ?></td>
+                <td style="text-align: center; width: 5%"><?= $v['z'] ?></td>
                 <td style="text-align: center; width: 5%"><?= $v['heading'] ?></td>
                 <td style="text-align: center; width: 5%"><?= $v['target_x'] ?></td>
                 <td style="text-align: center; width: 5%"><?= $v['target_y'] ?></td>
