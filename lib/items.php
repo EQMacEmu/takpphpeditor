@@ -145,12 +145,70 @@ switch ($action) {
         $vars = getdate();
         $body = load_items_template($body, $vars);
         break;
-    case 9: //Add Item
+    case 9: //Insert Item
         check_authorization();
         add_item();
         $id = $_POST['id'];
         header("Location: index.php?editor=items&id=$id&action=2");
         exit;
+	case 10: //Starting Items
+		$body = new Template("templates/items/items.starting.tmpl.php");
+		$breadcrumbs .= " >> Starting Items";
+		$items = get_starting_items();
+		if ($items) {
+		$body->set("items", $items);
+		$body->set("races", $races);
+		$body->set("classes", $classes);
+		$body->set("deities", $deities);
+		$body->set("zones", $zoneids);
+		}
+		break;
+	case 11: //Edit Starting Item
+		$javascript = new Template("templates/items/js.tmpl.php");
+		$body = new Template("templates/items/items.starting.edit.tmpl.php");
+		$breadcrumbs .= " >> <a href='index.php?editor=items&action=10'>Starting Items</a> >> Edit Starting Item";
+		$id = $_GET['id'];
+		$race = $_GET['race'];
+		$item = get_starting_item($id, $race);
+		if ($item) {
+		$body->set("item", $item);
+		$body->set("races", $races);
+		$body->set("classes", $classes);
+		$body->set("deities", $deities);
+		$body->set("zones", $zoneids);
+		}
+		break;
+	case 12: //Update Starting Item
+		check_authorization();
+		update_starting_item();
+		$id = $_POST['id'];
+		$race = $_POST['race'];
+		header("Location: index.php?editor=items&action=10");
+		exit;
+	case 13: //Add Starting Item
+		check_authorization();
+		$javascript = new Template("templates/items/js.tmpl.php");
+		$body = new Template("templates/items/items.starting.add.tmpl.php");
+		$breadcrumbs .= " >> <a href='index.php?editor=items&action=10'>Starting Items</a> >> Add Starting Item";
+		$nextid = next_starting_item_id();
+		$body->set("nextid", $nextid);
+		$body->set("races", $races);
+		$body->set("classes", $classes);
+		$body->set("deities", $deities);
+		$body->set("zones", $zoneids);
+		break;
+	case 14: //Insert Starting Item
+		check_authorization();
+		insert_starting_item();
+		$id = $_POST['id'];
+		$race = $_POST['race'];
+		header("Location: index.php?editor=items&action=10");
+		exit;
+	case 15: //Delete Starting Item
+		check_authorization();
+		delete_starting_item();
+		header("Location: index.php?editor=items&action=10");
+		exit;
 }
 
 function load_items_template($body, $vars): mixed
@@ -617,6 +675,87 @@ function add_item(): void
 
     $query = "INSERT INTO items SET $fields";
     $mysql->query_no_result($query);
+}
+
+function get_starting_items() {
+  global $mysql;
+
+  $query = "SELECT * FROM starting_items";
+  $results = $mysql->query_mult_assoc($query);
+
+  if ($results) {
+    return $results;
+  }
+  else {
+    return null;
+  }
+}
+
+function get_starting_item($id, $race) {
+  global $mysql;
+
+  $query = "SELECT * FROM starting_items WHERE id=$id AND race=$race LIMIT 1";
+  $result = $mysql->query_assoc($query);
+
+  if ($result) {
+    return $result;
+  }
+  else {
+    return null;
+  }
+}
+
+function update_starting_item() {
+  global $mysql;
+
+  $id = $_POST['id'];
+  $race = $_POST['race'];
+  $class = $_POST['class'];
+  $deityid = $_POST['deityid'];
+  $zoneid = $_POST['zoneid'];
+  $itemid = $_POST['itemid'];
+  $item_charges = $_POST['item_charges'];
+  $gm = $_POST['gm'];
+  $slot = $_POST['slot'];
+
+  $query = "UPDATE starting_items SET class=$class, deityid=$deityid, zoneid=$zoneid, itemid=$itemid, item_charges=$item_charges, gm=$gm, slot=$slot WHERE id=$id AND race=$race";
+  $mysql->query_no_result($query);
+}
+
+function insert_starting_item() {
+  global $mysql;
+
+  $id = $_POST['id'];
+  $race = $_POST['race'];
+  $class = $_POST['class'];
+  $deityid = $_POST['deityid'];
+  $zoneid = $_POST['zoneid'];
+  $itemid = $_POST['itemid'];
+  $item_charges = $_POST['item_charges'];
+  $gm = $_POST['gm'];
+  $slot = $_POST['slot'];
+
+  $query = "INSERT INTO starting_items SET id=$id, race=$race, class=$class, deityid=$deityid, zoneid=$zoneid, itemid=$itemid, item_charges=$item_charges, gm=$gm, slot=$slot";
+  $mysql->query_no_result($query);
+}
+
+function next_starting_item_id() {
+  global $mysql;
+
+  $query = "SELECT MAX(id) AS id FROM starting_items";
+  $result = $mysql->query_assoc($query);
+
+  return $result['id'] + 1;
+}
+
+function delete_starting_item() {
+  global $mysql;
+
+  $id = $_GET['id'];
+  $race = $_GET['race'];
+
+  $query = "DELETE FROM starting_items WHERE id=$id AND race=$race";
+  $mysql->query_no_result($query);
 }
 
 ?>
