@@ -12,7 +12,7 @@
         <div class="edit_form_content">
             <strong><label for="fiid">Item ID</label></strong> (<a href="javascript:showSearch();">search</a>)<br>
             <input class="indented" id="fiid" type="text" name="fiid" size="7" value=""><br><br>
-            <strong><label for="fsid">ID</label></strong><br>
+            <<strong><label for="fsid">ID</label></strong><br>
             <input class="indented" id="fsid" type="text" name="fsid" size="7"
                    value="<?= $suggestfsid ?? "" ?>"><br><br>
             <strong><label for="zoneid">Zone</label></strong><br>
