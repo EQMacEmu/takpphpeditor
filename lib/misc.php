@@ -843,12 +843,12 @@ function update_objects(): void
     $mysql->query_no_result($query);
 	
 	if ($content_flags != "") {
-		$query = "UPDATE object SET content_flags=\"$content_flags\" WHERE id=$id";
+		$query = "UPDATE object SET content_flags=\"$content_flags\" WHERE id=$objid";
 		$mysql->query_no_result($query);
 	}
 
 	if ($content_flags_disabled != "") {
-		$query = "UPDATE object SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$id";
+		$query = "UPDATE object SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$objid";
 		$mysql->query_no_result($query);
 	}
 }
