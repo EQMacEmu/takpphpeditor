@@ -168,6 +168,25 @@
                     </table>
                 </fieldset>
             </div>
+			            <div style="padding-bottom: 20px;">
+                <fieldset>
+                    <legend>Trap Expansion and Content Flags</legend>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th><label for="min_expansion">Min Expansion</label></th>
+                            <th><label for="max_expansion">Max Expansion</label></th>
+                            <th><label for="content_flags">Content Flags</label></th>
+                           <th><label for="content_flags_disabled">Content Flags Disabled</label></th>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom: 10px;"><input type="text" size="7" id="min_expansion" name="min_expansion" value="-1"></td>
+                            <td style="padding-bottom: 10px;"><input type="text" size="7" id="max_expansion" name="max_expansion" value="-1"></td>
+                            <td style="padding-bottom: 10px;"><input type="text" size="15" id="content_flags" name="content_flags" value=""></td>
+                            <td style="padding-bottom: 10px;"><input type="text" size="15" id="content_flags_disabled" name="content_flags_disabled" value=""></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
             <div style="padding-bottom: 20px;">
                 <fieldset>
                     <legend>Trap Message</legend>
