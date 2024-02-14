@@ -59,6 +59,10 @@
         <strong>Quest Controlled:</strong> <?= $yesno[$quest] ?><br/>
         <?php $enabled = $enabled ?? 0; // Not enabled if not defined ?>
         <strong>Enabled:</strong> <?= $yesno[$enabled] ?><br/>
+        <strong>Min Expansion:</strong> <?=$min_expansion?><br>
+        <strong>Max Expansion:</strong> <?=$max_expansion?><br>
+        <strong>Content Flags:</strong> <?echo ($content_flags != "") ? "Yes" : "No";?><br>
+        <strong>Content Flags Disabled:</strong> <?echo ($content_flags_disabled != "") ? "Yes" : "No";?><br>
         <strong>Notes:</strong> <?= $notes ?? "N/A" ?>
     </div>
 </div>

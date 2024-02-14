@@ -212,6 +212,10 @@ function update_recipe(): void
     $notes = $_POST['notes'];
     $quest = $_POST['quest'];
     $enabled = $_POST['enabled'];
+    $min_expansion = $_POST['min_expansion'];
+    $max_expansion = $_POST['max_expansion'];
+    $content_flags = $_POST['content_flags'];
+    $content_flags_disabled = $_POST['content_flags_disabled'];
     $old = recipe_info();
     $fields = '';
 
@@ -225,6 +229,22 @@ function update_recipe(): void
     if ($old['notes'] != $notes) $fields .= "notes=\"$notes\", ";
     if ($old['quest'] != $quest) $fields .= "quest=\"$quest\", ";
     if ($old['enabled'] != $enabled) $fields .= "enabled=\"$enabled\", ";
+    if ($old['min_expansion'] != $min_expansion) $fields .= "min_expansion=$min_expansion, ";
+    if ($old['max_expansion'] != $max_expansion) $fields .= "max_expansion=$max_expansion, ";
+
+    if ($content_flags != "") {
+        $fields .= "content_flags=\"$content_flags\", ";
+    }
+    else {
+        $fields .= "content_flags=NULL, ";
+    }
+
+    if($content_flags_disabled != "") {
+        $fields .= "content_flags_disabled=\"$content_flags_disabled\", ";
+    }
+    else {
+        $fields .= "content_flags_disabled=NULL, ";
+    }
 
     $fields = rtrim($fields, ", ");
 
@@ -371,6 +391,10 @@ function add_recipe()
     if (isset($_POST['notes'])) $fields .= "notes=\"{$_POST['notes']}\", ";
     if (isset($_POST['quest'])) $fields .= "quest=\"{$_POST['quest']}\", ";
     if (isset($_POST['enabled'])) $fields .= "enabled=\"{$_POST['enabled']}\", ";
+    if (isset($_POST['min_expansion'])) $fields .= "min_expansion=\"{$_POST['min_expansion']}\", ";
+    if (isset($_POST['max_expansion'])) $fields .= "max_expansion=\"{$_POST['max_expansion']}\", ";
+    if (isset($_POST['content_flags'])) $fields .= "content_flags=\"{$_POST['content_flags']}\", ";
+    if (isset($_POST['content_flags_disabled'])) $fields .= "content_flags_disabled=\"{$_POST['content_flags_disabled']}\", ";
 
     $fields = rtrim($fields, ", ");
 

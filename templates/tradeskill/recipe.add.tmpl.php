@@ -1,4 +1,4 @@
-<div class="edit_form" style="width: 300px;">
+<div class="edit_form" style="width: 400px;">
     <div class="edit_form_header">
         Create a new Recipe
     </div>
@@ -36,10 +36,19 @@
                 <option value="0">no</option>
                 <option value="1" selected>yes</option>
             </select><br/><br/>
+            <label for="min_expansion">Min Expansion:</label><br/>
+            <input type="text" id="min_expansion" name="min_expansion" size="7" value="-1"><br><br>
+            <label for="max_expansion">Max Expansion:</label><br/>
+            <input type="text" id="max_expansion" name="max_expansion" size="7" value="-1"><br><br>
+            <label for="content_flags">Content Flags:</label><br/>
+            <input type="text" id="content_flags" name="content_flags" size="41" value=""><br><br>
+            <label for="content_flags_disabled">Content Flags Disabled:</label><br/>
+            <input type="text" id="content_flags_disabled" name="content_flags_disabled" size="41" value=""><br><br>
             <label for="notes">Notes:</label><br/>
-            <input type="text" id="notes" name="notes" size="30" value=""><br/><br/>
+            <input type="text" id="notes" name="notes" size="41" value=""><br/><br/>
             <div class="center">
-                <input type="submit" name="submit" value="Submit Changes">
+                <input type="submit" name="submit" value="Add Recipe">&nbsp;&nbsp;
+                <input type="button" value="Cancel" onClick="history.back();">
             </div>
         </form>
     </div>

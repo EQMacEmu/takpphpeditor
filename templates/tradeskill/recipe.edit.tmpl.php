@@ -1,4 +1,4 @@
-<div class="edit_form" style="width: 300px;">
+<div class="edit_form" style="width: 400px;">
     <div class="edit_form_header">
         Edit Recipe <?= $id ?>
     </div>
@@ -40,6 +40,14 @@
                 <option value="0"<?php echo (isset($enabled) && $enabled == 0) ? " selected" : "" ?>>no</option>
                 <option value="1"<?php echo (isset($enabled) && $enabled == 1) ? " selected" : "" ?>>yes</option>
             </select><br/><br/>
+            <label for="min_expansion">Min Expansion:</label><br/>
+            <input type="text" id="min_expansion" name="min_expansion" size="7" value="<?=$min_expansion?>"><br><br>
+            <label for="max_expansion">Max Expansion:</label><br/>
+            <input type="text" id="max_expansion" name="max_expansion" size="7" value="<?=$max_expansion?>"><br><br>
+            <label for="content_flags">Content Flags:</label><br/>
+            <input type="text" id="content_flags" name="content_flags" size="41" value="<?=$content_flags?>"><br><br>
+            <label for="content_flags_disabled">Content Flags Disabled:</label><br/>
+            <input type="text" id="content_flags_disabled" name="content_flags_disabled" size="41" value="<?=$content_flags_disabled?>"><br><br>
             <label for="notes">Notes:</label><br/>
             <input type="text" id="notes" name="notes" size="30" value="<?= $notes ?? "" ?>"><br/><br/>
             <div class="center">
