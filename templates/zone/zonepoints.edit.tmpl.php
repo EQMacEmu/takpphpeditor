@@ -94,7 +94,7 @@
                 <input type="hidden" name="zpid" value="<?= $id ?>">
 				<input type="hidden" name="zone" value="<?=$zone?>">
 				<input type="submit" value="Update Zonepoint">&nbsp;&nbsp;
-                <input type="submit" value="Submit Changes">
+				<input type="button" value="Cancel" onClick="history.back();">
             </div>
         </form>
     </div>
