@@ -17,7 +17,15 @@
                 <label for="chance">Chance:</label><br>
                 <input type="text" id="npcID" name="npcID" size="5" value="<?= $npcid ?>">
                 <input type="text" id="chance" name="chance" size="2" value="100">%<br><br>
-                <label for="wp_spawns">Waypoint Spawning:</label>
+				<label for="min_expansion">Min Expansion:</label>
+				<input type="text" name="min_expansion" size="10" value="-1"><br>
+                <label for="max_expansion">Max Expansion:</label>
+				 <input type="text" name="max_expansion" size="10" value="-1"><br><br>
+				 <label for="content_flags">Content Flags:</label><br>
+				 <input type="text" name="content_flags" size="26" value=""><br><br>
+				 <label for="content_flags_disabled">Content Flags Disabled:</label>
+				 <input type="text" name="content_flags_disabled" size="26" value=""><br>
+				<label for="wp_spawns">Waypoint Spawning:</label>
                 <select id="wp_spawns" name="wp_spawns" style="width: 70px;">
                     <option value="0" selected>Off</option>
                     <option value="1">Enabled</option>

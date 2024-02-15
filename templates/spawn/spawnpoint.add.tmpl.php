@@ -63,7 +63,14 @@
                             <?php endforeach; ?>
                         </select>
                     </td>
-                    <td style="width: 34%">&nbsp;</td>
+                    <td style="text-align: left; width: 33%">
+                        <label for="force_z">force_z:</label><br/>
+                        <select id="force_z" name="force_z">
+                            <?php foreach ($yesno as $k => $v): ?>
+                                <option value="<?= $k ?>"><?= $v ?>&nbsp;&nbsp;</option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td style="width: 33%">
@@ -79,17 +86,25 @@
                         <input type="text" id="clear_timer_onboot" name="clear_timer_onboot" value="0">
                 </tr>
                 <tr>
-                    <td style="text-align: left; width: 33%">
-                        <label for="force_z">force_z:</label><br/>
-                        <select id="force_z" name="force_z">
-                            <?php foreach ($yesno as $k => $v): ?>
-                                <option value="<?= $k ?>"><?= $v ?>&nbsp;&nbsp;</option>
-                            <?php endforeach; ?>
-                        </select>
-                    </td>
-                    <td style="width: 33%">&nbsp;</td>
-                    <td style="width: 34%">&nbsp;</td>
+                      <td style="width: 15%">
+						<label for="min_expansion">min expansion:</label><br/>
+                        <input type="text" id="min_expansion" name="min_expansion" value="-1">
+					</td>
+                    <td style="width: 15%">
+						<label for="max_expansion">max expansion:</label><br/>
+                        <input type="text" id="max_expansion" name="max_expansion" value="-1">
+					</td>
                 </tr>
+				<tr>
+					 <td style="width: 15%">
+						<label for="content_flags">content flags:</label><br/>
+                        <input type="text" id="content_flags" name="content_flags" value="">
+					</td>
+                    <td style="width: 15%">
+						<label for="content_flags_disabled">content flags disabled:</label><br/>
+                        <input type="text" id="content_flags_disabled" name="content_flags_disabled" value="">
+					</td>
+				</tr>
             </table>
             <br/><br/>
             <div class="center">

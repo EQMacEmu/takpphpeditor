@@ -147,6 +147,8 @@ switch ($editor) {
     case 'keys':
         $searchbar = new Template("templates/searchbar/searchbar.keys.tmpl.php");
         break;
+	case 'content':
+		break;
 }
 
 function build_tabs(): bool|string
@@ -172,7 +174,8 @@ function build_tabs(): bool|string
     $tabstatus17 = "off";
     $tabstatus18 = "off";
     $tabstatus19 = "off";
-
+	$tabstatus20 = "off";
+	
     $zoneurl = "";
     $npcurl = "";
     if ($z) $zoneurl = "&z=$z&zoneid=$zoneid";
@@ -240,6 +243,9 @@ function build_tabs(): bool|string
         case 'keys':
             $tabstatus19 = "on";
             break;
+		case 'content':
+			$tabstatus20 = "on";
+			break;
     }
 
     $admin = '';
@@ -269,6 +275,7 @@ function build_tabs(): bool|string
         <div class=\"$tabstatus17\"><a href=\"index.php?editor=util\">Utilities</a></div>
         <div class=\"$tabstatus18\"><a href=\"index.php?editor=inv\">Inventory</a></div>
         <div class=\"$tabstatus19\"><a href=\"index.php?editor=keys\">Keys</a></div><br/>
+		<div class=\"$tabstatus20\"><a href=\"index.php?editor=content\">Content Flags</a></div>
         <div style=\"float: right;\">$admin<a href=\"index.php?logout\">Logout</a></div><br/><br/>
       </div>
 ";

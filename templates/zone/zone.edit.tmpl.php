@@ -94,6 +94,13 @@
                     </select>
                   </td>
                 </tr>
+              </table><table width="100%" cellpadding="5" cellspacing="3">
+                <tr>
+                  <td style="padding: 3px; text-align: left; width: 20%"><label for="min_expansion">Min Expansion:<br><input type="text" name="min_expansion" size="8" value="<?=$min_expansion?>"></td>
+                  <td style="padding: 3px; text-align: left; width: 20%"><label for="max_expansion">Max Expansion:<br><input type="text" name="max_expansion" size="8" value="<?=$max_expansion?>"></td>
+                  <td style="padding: 3px; text-align: left; width: 20%"><label for="content_flags">Content Flags:<br><input type="text" name="content_flags" size="24" value="<?=$content_flags?>"></td>
+                  <td style="padding: 3px; text-align: left; width: 20%"><label for="content_flags_disabled">Content Flags Disabled:<br><input type="text" name="content_flags_disabled" size="24" value="<?=$content_flags_disabled?>"></td>
+                </tr>
               </table>
             </fieldset><br>
             <fieldset>
@@ -146,6 +153,7 @@
                   </td>
                 </tr>
               </table>
+
             </fieldset><br>
             <fieldset>
               <legend><strong><span style="font-size: 16px;">Sky</span></strong></legend>
@@ -224,7 +232,8 @@
             </fieldset><br>
             <input type="hidden" name="zoneidnumber" value="<?=$zoneidnumber ?? ""?>">
             <input type="hidden" name="short_name" value="<?=$short_name ?? ""?>">
-            <input type="submit" value="Submit Changes">
+			<input type="submit" value="Update Zone">&nbsp;&nbsp;
+            <input type="button" value="Cancel" onClick="history.back();">
           </div>
         </div>
       </div>

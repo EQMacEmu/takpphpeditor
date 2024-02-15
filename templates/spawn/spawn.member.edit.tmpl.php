@@ -12,8 +12,15 @@
             <strong><label for="maxtime">MaxTime:</label></strong><br>
             <input class="indented" type="text" size="5" id="maxtime" name="maxtime" value="<?= $maxtime ?? "" ?>"><br/><br/>
             <strong><label for="chance">Chance:</label></strong><br>
-            <input class="indented" type="text" size="5" id="chance" name="chance"
-                   value="<?= $chance ?? "" ?>">%<br/><br/>
+            <input class="indented" type="text" size="5" id="chance" name="chance" value="<?= $chance ?? "" ?>">%<br/><br/>
+			<strong><label for="min_expansion">Min Expansion:</label></strong><br>
+            <input class="indented" type="text" size="5" id="min_expansion" name="min_expansion" value="<?= $min_expansion ?? "" ?>"><br/><br/>
+            <strong><label for="max_expansion">Max Expansion:</label></strong><br>
+            <input class="indented" type="text" size="5" id="max_expansion" name="max_expansion" value="<?= $max_expansion ?? "" ?>"><br/><br/>
+			<strong><label for="content_flags">Content Flags:</label></strong><br>
+            <input class="indented" type="text" size="5" id="content_flags" name="content_flags" value="<?= $content_flags ?? "" ?>"><br/><br/>
+            <strong><label for="content_flags_disabled">Content Flags Disabled:</label></strong><br>
+            <input class="indented" type="text" size="5" id="content_flags_disabled" name="content_flags_disabled" value="<?= $content_flags_disabled ?? "" ?>"><br/><br/>
             <div class="center">
                 <input type="hidden" name="sgnpcid" value="<?= $sgnpcid ?? "" ?>">
                 <input type="hidden" name="spawngroupID" value="<?= $spawngroupID ?? "" ?>">

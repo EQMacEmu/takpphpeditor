@@ -84,7 +84,17 @@
                         <td style="width: 33%">boot variance: <?= timer_text($boot_variance) ?></td>
                         <td style="width: 33%">clear on boot: <?= $clear_timer_onboot ?></td>
                     </tr>
-                    <tr>
+					 <tr>
+                        <td style="width: 33%">min expansion: <?= $min_expansion ?></td>
+                        <td style="width: 33%">max expansion: <?= $max_expansion ?></td>
+                        <td style="width: 33%">&nbsp;</td>
+                    </tr>
+ 					 <tr>
+                        <td style="width: 33%">content flags: <?echo ($content_flags != "") ? $content_flags : "None";?></td>
+                        <td style="width: 33%">content flags disabled: <?echo ($content_flags_disabled != "") ? $content_flags_disabled : "None";?>
+                        <td style="width: 33%">&nbsp;</td>
+                    </tr>
+					<tr>
                         <td style="width: 33%">zone: <?= $zone ?></td>
                         <td style="width: 33%">&nbsp;</td>
                         <td style="width: 34%">&nbsp;</td>

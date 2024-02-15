@@ -32,6 +32,28 @@
                 </div>
             </td>
         </tr>
+		<tr>
+			<td class="edit_form_content">
+				<strong>Min Expansion:</strong><br>
+				<input type="text" name="min_expansion" value="-1">
+			</td>
+			<td class="edit_form_content">&nbsp;</td>
+			<td class="edit_form_content">
+				<strong>Max Expansion:</strong><br>
+				<input type="text" name="max_expansion" value="-1">
+			</td>
+		</tr>
+		<tr>
+			<td class="edit_form_content">
+				<strong>Content Flags:</strong><br>
+				<input type="text" name="content_flags" value="">
+			</td>
+			<td class="edit_form_content">&nbsp;</td>
+			<td class="edit_form_content">
+				<strong>Content Flags Disabled:</strong><br>
+				<input type="text" name="content_flags_disabled" value="">
+			</td>
+		</tr>
         <tr>
             <td colspan=3 style="text-align: center;" class="edit_form_content">
                 <input type="submit" name="submit" value=" Submit ">
