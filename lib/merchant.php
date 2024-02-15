@@ -18,22 +18,23 @@ switch ($action) {
        $body = new Template("templates/merchant/merchant.default.tmpl.php");
     }
     break;
-  case 1: // Edit Merchantlist
+  case 1: // merchant item
     check_authorization();
-    $body = new Template("templates/merchant/merchant.edit.tmpl.php");
+    $body = new Template("templates/merchant/item.edit.tmpl.php");
+    $javascript .= file_get_contents("templates/merchant/js.tmpl.php");
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);
     $body->set('npcid', $npcid);
-    $vars = get_merchantlist();
+    $vars = get_ware();
     if ($vars) {
       foreach ($vars as $key=>$value) {
         $body->set($key, $value);
       }
     }
     break;
-  case 2:
+  case 2: // Update merchant item
     check_authorization();
-    update_merchantlist();
+    update_merchant_item();
     header("Location: index.php?editor=merchant&z=$z&zoneid=$zoneid&npcid=$npcid");
     exit;
   case 3:  // Delete item from merchant
@@ -44,6 +45,7 @@ switch ($action) {
   case 4: // Add item to Merchant
     check_authorization();
     $javascript .= file_get_contents("templates/iframes/js.tmpl.php");
+	$javascript .= file_get_contents("templates/merchant/js.tmpl.php");
     $body = new Template("templates/merchant/item.add.tmpl.php");
     $body->set('currzone', $z);
     $body->set('currzoneid', $zoneid);
@@ -223,25 +225,41 @@ function get_merchantlist_temp(): array
   return $array;
 }
 
-function update_merchantlist(): void
+function update_merchant_item()
 {
   check_authorization();
-  global $mysql;
+  global $mysql, $npcid;
+  
+  $merchantid = $_POST['merchantid'];
+  $slot = $_POST['slot'];
+  $item = $_POST['item'];
+  $faction_required = $_POST['faction_required'];
+  $level_required = $_POST['level_required'];
+  $classes_required = $_POST['classes_required'];
+  $quantity = $_POST['quantity'];
+  $min_expansion = $_POST['min_expansion'];
+  $max_expansion = $_POST['max_expansion'];
+  $content_flags = $_POST['content_flags'];
+  $content_flags_disabled = $_POST['content_flags_disabled'];
+  $new_slot = $_POST['new_slot'];
 
-  $mid = $_POST['mid'];
-  $count = $_POST['count'];
-  /* If needed later: $oldstats = get_merchantlist(); */
+  $classes_value = 0;
+  foreach ($classes_required as $v) {
+    $classes_value = $classes_value ^ $v;
+  }
+	
+  $query = "UPDATE merchantlist SET slot=$new_slot, item=$item, faction_required=$faction_required, level_required=$level_required, classes_required=$classes_value, quantity=$quantity, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL WHERE merchantid=$merchantid AND slot=$slot";
+  $mysql->query_no_result($query);
+  
+    if ($content_flags != "") {
+    $query = "UPDATE merchantlist SET content_flags=\"$content_flags\" WHERE merchantid=$merchantid AND slot=$slot";
+    $mysql->query_no_result($query);
+  }
 
-	for ($i=1; $i<=$count; $i++){
-		$slot = $_POST["slot$i"];
-		if (($slot != $_POST["newslot$i"]) || (!isset($values) && $values['item'] != $_POST["item$i"]) || (!isset($values) && $values['faction_required'] != $_POST["faction_required$i"]) ||
-        	(!isset($values) && $values['level_required'] != $_POST["level_required$i"]) || (!isset($values) && $values['classes_required'] != $_POST["classes_required$i"]) || (!isset($values) && $values['quantity'] != $_POST["quantity$i"]) || (!isset($values) && $values['min_expansion'] != $_POST["min_expansion$i"]) || (!isset($values) && $values['max_expansion'] != $_POST["max_expansion$i"]) || (!isset($values) && $values['content_flags'] != $_POST["content_flags$i"]) || (!isset($values) && $values['content_flags_disabled'] != $_POST["content_flags_disabled$i"])) {
-			if($_POST["newslot$i"] > -1){
-				$query = "UPDATE merchantlist SET item=\"" . $_POST["item$i"] . "\", slot=\"" . $_POST["newslot$i"] . "\", faction_required=\"" . $_POST["faction_required$i"] . "\", level_required=\"" . $_POST["level_required$i"] . "\", classes_required=\"" . $_POST["classes_required$i"] . "\", quantity=\"" . $_POST["quantity$i"] . "\", min_expansion=\"" . $_POST["min_expansion$i"] . "\", max_expansion=\"" . $_POST["max_expansion$i"] . "\", content_flags=\"" . $_POST["content_flags$i"] . "\", content_flags_disabled=\"" . $_POST["content_flags_disabled$i"] . "\" WHERE merchantid=$mid AND slot=$slot";
-				$mysql->query_no_result($query);
-			}
-		}
-	}
+  if ($content_flags_disabled != "") {
+    $query = "UPDATE merchantlist SET content_flags_disabled=\"$content_flags_disabled\" WHERE merchantid=$merchantid AND slot=$slot";
+    $mysql->query_no_result($query);
+  }
 }
 
 function update_merchantlist_temp(): void
@@ -258,6 +276,23 @@ function update_merchantlist_temp(): void
       $query = "UPDATE merchantlist_temp SET itemid=\"" . $_POST["itemid$i"] . "\", slot=\"" . $_POST["newslot$i"] . "\", charges=\"" . $_POST["charges$i"] . "\", quantity=\"" . $_POST["quantity$i"] . "\" WHERE npcid=$npcid AND slot=" . $_POST["slot$i"];
       $mysql->query_no_result($query);
     }
+  }
+}
+
+function get_ware() {
+  global $mysql;
+  $id = $_GET['id'];
+  $slot = $_GET['slot'];
+  $mid = $_GET['mid'];
+
+  $query = "SELECT * FROM merchantlist WHERE merchantid=$mid AND slot=$slot AND item=$id";
+  $result = $mysql->query_assoc($query);
+
+  if ($result) {
+    return $result;
+  }
+  else {
+    return null;
   }
 }
 
@@ -288,7 +323,9 @@ function add_merchant_item(): void
 {
   check_authorization();
   global $mysql, $npcid;
+  
   $mid = $_POST['mid'];
+  $slot = $_POST['slot'];
   $item = $_POST['itemid'];
   $faction_required = $_POST['faction_required'];
   $level_required = $_POST['level_required'];
@@ -299,15 +336,23 @@ function add_merchant_item(): void
   $content_flags = $_POST['content_flags'];
   $content_flags_disabled = $_POST['content_flags_disabled'];
   
-  $query = "SELECT MAX(slot) AS slot FROM merchantlist WHERE merchantid=$mid";
-  $result = $mysql->query_assoc($query);
-  $slot = $result['slot'] + 1;
-  
-  $query = "DELETE FROM merchantlist_temp WHERE npcid=$npcid AND slot=$slot";
+  $classes_value = 0;
+  foreach ($classes_required as $v) {
+    $classes_value = $classes_value ^ $v;
+  }
+ 
+ $query = "INSERT INTO merchantlist SET merchantid=$mid, slot=$slot, item=$item, faction_required=$faction_required, level_required=$level_required, classes_required=$classes_value, quantity=$quantity, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
   $mysql->query_no_result($query);
   
-  $query = "INSERT INTO merchantlist SET merchantid=$mid, slot=$slot, item=$item, faction_required=$faction_required, level_required=$level_required, classes_required=$classes_required, quantity=$quantity, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=\"$content_flags\", content_flags_disabled=\"$content_flags_disabled\"";
-  $mysql->query_no_result($query);
+  if ($content_flags != "") {
+    $query = "UPDATE merchantlist SET content_flags=\"$content_flags\" WHERE merchantid=$mid AND slot=$slot";
+    $mysql->query_no_result($query);
+  }
+
+  if ($content_flags_disabled != "") {
+    $query = "UPDATE merchantlist SET content_flags_disabled=\"$content_flags_disabled\" WHERE merchantid=$mid AND slot=$slot";
+    $mysql->query_no_result($query);
+  }
 }
 
 function add_merchant_item_temp(): void
