@@ -33,6 +33,8 @@
           <th>Lvl<br/>Req</th>
           <th>Qty</th>
           <th>Class<br/>Req</th>
+		  <th>Expan<br>Flags</th>
+          <th>Content<br>Flags</th>
           <th>&nbsp;</th>
         </tr>
           <?php
@@ -104,6 +106,8 @@ $round_sells = round($sells,3);
           <td style="text-align: center;"><?=$v['level_required']?></td>
           <td style="text-align: center;"><?=$v['quantity']?></td>
           <td style="text-align: center;"><?php echo ($v['classes_required'] == 65535) ? "N" : "Y";?></td>
+		  <td align="center"><?echo (($v['min_expansion'] > 0) || ($v['max_expansion'] > 0)) ? "Y" : "N";?></td>
+          <td align="center"><?echo (($v['content_flags'] != "") || ($v['content_flags_disabled'] != "")) ? "Y" : "N";?></td>
           <td style="padding-right: 10px; text-align: right;">
             <a href="index.php?editor=merchant&z=<?=$currzone ?? ""?>&zoneid=<?=$currzoneid ?? ""?>&npcid=<?=$npcid?>&mid=<?=$id?>&slot=<?=$slot?>&id=<?=$v['item']?>&action=3" onClick="return confirm('Really remove this item from the merchant?');"><img src="images/remove.gif" style="border: 0;" alt="Red X Icon" title="Delete item from Merchantlist"></a>
           </td>

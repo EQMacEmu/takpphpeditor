@@ -20,9 +20,20 @@
             <input class="indented" id="classes_required" type="text" name="classes_required" value="65535"/><br/><br/>
             <strong><label for="quantity">Quantity:</label></strong>
             <input class="indented" id="quantity" type="text" name="quantity" value="0"/><br/><br/>
-            <div class="center">
+			
+             <strong><label for="min_expansion">Min Expansion:</label></strong>
+            <input class="indented" id="min_expansion" type="text" name="min_expansion" value="-1"/><br/><br/>
+            <strong><label for="max_expansion">Max Expansion:</label></strong>
+            <input class="indented" id="max_expansion" type="text" name="max_expansion" value="-1"/><br/><br/>
+            <strong><label for="content_flags">Content Flags:</label></strong>
+            <input class="indented" id="content_flags" type="text" name="content_flags" value=""/><br/><br/>
+            <strong><label for="content_flags_disabled">Content Flags Disabled:</label></strong>
+            <input class="indented" id="content_flags_disabled" type="text" name="content_flags_disabled" value=""/><br/><br/>
+
+           <div class="center">
                 <input type="hidden" name="mid" value="<?= $mid ?? "" ?>"/>
-                <input type="submit" name="submit" value=" Submit "/>
+				<input type="submit" name="submit" value="Add Item">&nbsp;&nbsp;
+				<input type="button" value="Cancel" onClick="history.back();">
             </div>
         </div>
     </div>
