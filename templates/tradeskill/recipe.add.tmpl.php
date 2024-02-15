@@ -1,9 +1,9 @@
 <div class="edit_form" style="width: 400px;">
-    <div class="edit_form_header">
-        Create a new Recipe
-    </div>
+    <div class="edit_form_header">Create a new Recipe</div>
     <div class="edit_form_content">
         <form method="post" action="index.php?editor=tradeskill&action=11">
+		    <label for="id">Recipe ID:</label><br>
+			<input type="text" name="id" size="7" value="<?=$id?>"><br><br>
             <label for="name">Recipe Name:</label> <br/>
             <input type="text" id="name" name="name" size="30" value=""><br/><br/>
             <label for="tradeskill">Tradeskill Used:</label> <br/>
