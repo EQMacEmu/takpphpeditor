@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-type" content="text/html">
+    <meta name="viewport" content="width=800">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <script type="text/javascript">
         function gotosite(site) {
             if (site !== "") {
