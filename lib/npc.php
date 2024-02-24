@@ -2092,6 +2092,9 @@ function delete_npc() {
 
   $query = "DELETE FROM npc_types WHERE id=$npcid";
   $mysql->query_no_result($query);
+
+  $query = "DELETE FROM spawnentry WHERE npcID=$npcid";
+  $mysql->query_no_result($query);
 }
 
 function suggest_npcid() {
