@@ -957,6 +957,8 @@ function add_spawngroup_member(): void
     $npc = $_REQUEST['npc'];
     $balance = $_REQUEST['balance'];
     $chance = ($balance == "on") ? 0 : $_REQUEST['chance'];
+	$min_time = (isset($_REQUEST['mintime'])) ? $_REQUEST['mintime'] : 0;
+	$max_time = (isset($_REQUEST['maxtime'])) ? $_REQUEST['maxtime'] : 0;
 	$min_expansion = $_REQUEST['min_expansion'];
 	$max_expansion = $_REQUEST['max_expansion'];
 	$content_flags = $_REQUEST['content_flags'];
@@ -980,7 +982,7 @@ function add_spawngroup_member(): void
     if ($npc == "") {
         $npc = 0;
     }
-    $query = "INSERT INTO spawnentry SET spawngroupID=$sid, npcID=$npc, chance=$chance, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
+    $query = "INSERT INTO spawnentry SET spawngroupID=$sid, npcID=$npc, chance=$chance, mintime=$min_time, maxtime=$max_time, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query);
 
 	if ($content_flags != "") {
