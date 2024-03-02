@@ -139,21 +139,24 @@ switch ($action) {
         }
         break;
     case 9: // Process add npc form
-        check_authorization();
-        if (isset($_POST['search']) && ($_POST['search'] != '')) {
-            $body = new Template("templates/spawn/spawngroup.member.searchresults.tmpl.php");
-            $body->set('currzone', $z);
-            $body->set('currzoneid', $zoneid);
-            $body->set('npcid', $npcid);
-            $body->set('sid', $_GET['sid']);
-            $results = search_npc_types($_POST['search']);
-            $body->set('results', $results);
-        } else {
-            add_spawngroup_member();
+         check_authorization();
+         if (isset($_POST['search']) && ($_POST['search'] != '')) {
+           $body = new Template("templates/spawn/spawngroup.member.searchresults.tmpl.php");
+           $body->set('currzone', $z);
+           $body->set('currzoneid', $zoneid);
+           $body->set('npcid', $npcid);
+           if (isset($_GET['sid']) && $_GET['sid'] > 0) {
+             $body->set('sid', $_GET['sid']);
+           }
+           $results = search_npc_types($_POST['search']);
+           $body->set('results', $results);
+         }
+          else {
+            add_spawngroup_member($_REQUEST['npc']);
             header("Location: index.php?editor=spawn&z=$z&zoneid=$zoneid&npcid=$npcid");
             exit;
-        }
-        break;
+          }
+          break;
     case 10:  // View Spawnpoints
         check_authorization();
         if ($npcid) {
@@ -959,10 +962,10 @@ function add_spawngroup_member(): void
     $chance = ($balance == "on") ? 0 : $_REQUEST['chance'];
 	$min_time = (isset($_REQUEST['mintime'])) ? $_REQUEST['mintime'] : 0;
 	$max_time = (isset($_REQUEST['maxtime'])) ? $_REQUEST['maxtime'] : 0;
-	$min_expansion = $_REQUEST['min_expansion'];
-	$max_expansion = $_REQUEST['max_expansion'];
-	$content_flags = $_REQUEST['content_flags'];
-	$content_flags_disabled = $_REQUEST['content_flags_disabled'];
+	$min_expansion = (isset($_REQUEST['min_expansion'])) ? $_REQUEST['min_expansion'] : -1;
+    $max_expansion = (isset($_REQUEST['max_expansion'])) ? $_REQUEST['max_expansion'] : -1;
+    $content_flags = (isset($_REQUEST['content_flags'])) ? $_REQUEST['content_flags'] : null;
+    $content_flags_disabled = (isset($_REQUEST['content_flags_disabled'])) ? $_REQUEST['content_flags_disabled'] : null;
 
     $query = "SELECT MAX(chance) AS chance FROM spawnentry WHERE spawngroupID=$sid limit 1";
     $result = $mysql->query_assoc($query);
@@ -979,9 +982,6 @@ function add_spawngroup_member(): void
         $mysql->query_no_result($query);
     }
 
-    if ($npc == "") {
-        $npc = 0;
-    }
     $query = "INSERT INTO spawnentry SET spawngroupID=$sid, npcID=$npc, chance=$chance, mintime=$min_time, maxtime=$max_time, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query);
 
@@ -1617,6 +1617,8 @@ function add_spawngroup(): void
     $name = $_POST['name'];
     $npcID = $_POST['npcID'];
     $chance = ($_POST['chance'] >= 0 && $_POST['chance'] <= 100) ? $_POST['chance'] : 100;
+	$min_time = $_POST['mintime'];
+	$max_time = $_POST['maxtime'];
 	$min_expansion = $_POST['min_expansion'];
 	$max_expansion = $_POST['max_expansion'];
 	$content_flags = $_POST['content_flags'];
@@ -1642,7 +1644,7 @@ function add_spawngroup(): void
     if ($npcID == "") {
         $npcID = 0;
     }
-    $query = "INSERT INTO spawnentry SET spawngroupID=$id, npcID=$npcID, chance=$chance, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
+    $query = "INSERT INTO spawnentry SET spawngroupID=$id, npcID=$npcID, chance=$chance, mintime=$min_time, maxtime=$max_time, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query);
 	
 	if ($content_flags != "") {
