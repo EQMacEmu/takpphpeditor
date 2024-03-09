@@ -280,8 +280,8 @@
                                 <tr>
                                     <td style="padding: 3px; text-align: left; width: 34%">Spells Effects
                                         ID: <?= $npc_spells_effects_id ?? "" ?></td>
-                                    <td style="padding: 3px; text-align: left; width: 34%">&nbsp;</td>
-                                    <td style="padding: 3px; text-align: left; width: 34%">&nbsp;</td>
+                                    <td style="padding: 3px; text-align: left; width: 34%">Skip Global Loot: <?=$yesno[$skip_global_loot]?></td>
+                                    <td style="padding: 3px; text-align: left; width: 34%">Rare Spawn: <?=$yesno[$rare_spawn]?></td>
                                 </tr>
                                 <?php
                                 $new_special_abilities = '';
@@ -481,6 +481,8 @@
             <input type="hidden" name="avoidance" value="<?= $avoidance ?? "" ?>">
             <input type="hidden" name="exp_pct" value="<?= $exp_pct ?? "" ?>">
             <input type="hidden" name="greed" value="<?= $greed ?? "" ?>">
+			<input type="hidden" name="skip_global_loot" value="<?=$skip_global_loot?>">
+			<input type="hidden" name="rare_spawn" value="<?=$rare_spawn?>">
             <div class="center">
                 <label for="id">NEW ID:</label>
                 <input type="text" id="id" name="id" size="10" value="<?= $suggestedid ?? "" ?>">

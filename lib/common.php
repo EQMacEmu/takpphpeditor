@@ -645,4 +645,32 @@ function set_search_results(): array|string|null
     return $search_results;
 }
 
+function isGlobalLoot($loottable_id) {
+  global $mysql;
+
+  $query = "SELECT id FROM global_loot WHERE loottable_id=$loottable_id LIMIT 1";
+  $result = $mysql->query_assoc($query);
+
+  if ($result && $result['id'] > 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function isValidLoot($loottable_id) {
+  global $mysql;
+
+  $query = "SELECT id FROM loottable WHERE id=$loottable_id LIMIT 1";
+  $result = $mysql->query_assoc($query);
+
+  if ($result && $result['id'] > 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 ?>

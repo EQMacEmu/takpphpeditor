@@ -42,6 +42,7 @@
                     href="index.php?editor=loot&action=1&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>"<?php echo ($new_loottable_name != $loottable_name) ? " title=\"$loottable_name\"" : "" ?>><?= $new_loottable_name ?></a>"
         </div>
         <div class="table_content">
+			Global Loot: <?echo ($global_loot_id != 0) ? "<a href='index.php?editor=loot&id=" . $global_loot_id . "&action=52' title='View Global Loot'>" . $global_loot_id . "</a>" : "None";?><br><br>
             Cash loot [<a
                     href="index.php?editor=loot&action=1&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>">edit</a>]:<br/>
             <div style="padding: 5px 0 0 20px;">

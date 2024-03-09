@@ -1291,6 +1291,8 @@ function update_npc() {
   if (!isset($_POST['ignore_despawn'])) $_POST['ignore_despawn'] = 0;
   if (!isset($_POST['aggro_pc'])) $_POST['aggro_pc'] = 0;
   if (!isset($_POST['raid_target'])) $_POST['raid_target'] = 0;
+  if (!isset($_POST['skip_global_loot'])) $_POST['skip_global_loot'] = 0;
+  if (!isset($_POST['rare_spawn'])) $_POST['rare_spawn'] = 0;
 
   // Check for special attacks change
   $new_specialattks = '';
@@ -1401,6 +1403,8 @@ function update_npc() {
   if ($ignore_despawn != $_POST['ignore_despawn']) $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   if ($aggro_pc != $_POST['aggro_pc']) $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
   if ($greed != $_POST['greed']) $fields .= "greed=\"" . $_POST['greed'] . "\", ";
+  if ($skip_global_loot != $_POST['skip_global_loot']) $fields .= "skip_global_loot=\"" . $_POST['skip_global_loot'] . "\", ";
+  if ($rare_spawn != $_POST['rare_spawn']) $fields .= "rare_spawn=\"" . $_POST['rare_spawn'] . "\", ";
 
   $fields =  rtrim($fields, ", ");
 
@@ -1431,6 +1435,8 @@ function add_npc () {
   if ($_POST['pet'] != 1) $_POST['pet'] = 0;
   if ($_POST['raid_target'] != 1) $_POST['raid_target'] = 0;
   if (!isset($_POST['avoidance'])) $_POST['avoidance'] = 0;		// this needs a form entry
+  if ($_POST['skip_global_loot'] != 1) $_POST['skip_global_loot'] = 0;
+  if ($_POST['rare_spawn'] != 1) $_POST['rare_spawn'] = 0;
 
   foreach ($specialattacks as $k => $v) {
     if (isset($_POST["$k"])) {
@@ -1532,7 +1538,9 @@ function add_npc () {
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
-  $fields .= "greed=\"" . $_POST['greed'] . "\"";
+  $fields .= "greed=\"" . $_POST['greed'] . "\", ";
+  $fields .= "skip_global_loot=\"" . $_POST['skip_global_loot'] . "\", ";
+  $fields .= "rare_spawn=\"" .$_POST['rare_spawn'] . "\"";
 
   if ($fields != '') {
     $query = "INSERT INTO npc_types SET $fields";
@@ -1639,7 +1647,9 @@ function copy_npc () {
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
-  $fields .= "greed=\"" . $_POST['greed'] . "\"";
+  $fields .= "greed=\"" . $_POST['greed'] . "\", ";
+  $fields .= "skip_global_loot=\"" . $_POST['skip_global_loot'] . "\", ";
+  $fields .= "rare_spawn=\"" . $_POST['rare_spawn'] . "\"";
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
