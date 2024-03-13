@@ -104,12 +104,9 @@ switch ($action) {
         $body->set('ldid', $_GET['ldid']);
         $body->set('ltname', getLootdropName($_GET['ldid']));
         $vars = loottable_entries_info();
-        foreach ($vars['loottable_entries'] as $key => $value) {
-            $body->set($key, $value);
-        }
-        foreach ($vars['lootdrop'] as $key => $value) {
-            $body->set($key, $value);
-        }
+    foreach ($vars as $key=>$value) {
+      $body->set($key, $value);
+    }
         break;
     case 8:  // Update loottable entry
         check_authorization();
