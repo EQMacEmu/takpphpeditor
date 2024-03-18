@@ -126,17 +126,17 @@ switch ($action) {
         exit;
     case 8: // Add spawngroup member
         check_authorization();
-        $body = new Template("templates/spawn/spawngroup.member.add.tmpl.php");
-        $body->set('currzone', $z);
-        $body->set('currzoneid', $zoneid);
-        $body->set('npcid', $npcid);
-        $body->set('sid', $_GET['sid']);
-        $vars = get_spawngroup_info();
-        if ($vars) {
-            foreach ($vars as $key => $value) {
-                $body->set($key, $value);
-            }
-        }
+		$body = new Template("templates/spawn/spawngroup.member.add.tmpl.php");
+		$body->set('currzone', $z);
+		$body->set('currzoneid', $zoneid);
+		$body->set('npcid', $npcid);
+		$body->set('sid', $_GET['sid']);
+		$vars = get_spawngroup_info();
+		if ($vars) {
+			foreach ($vars as $key=>$value) {
+				$body->set($key, $value);
+			}
+		}
         break;
     case 9: // Process add npc form
          check_authorization();
