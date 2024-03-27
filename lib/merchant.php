@@ -74,7 +74,9 @@ switch ($action) {
     if (isset($_GET['search']) && $_GET['search'] != "Enter Item ID") {
       $results = search_merchant_by_item();
     }
-    $body->set("results", $results);
+	if (isset($results)) {
+		$body->set("results", $results);
+	}
     break;
   case 8:  // View Temp Merchanlist
     if ($npcid) {

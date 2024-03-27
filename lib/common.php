@@ -172,7 +172,7 @@ function check_admin_authorization(): void
 function search_npc_by_id(): array|string|null
 {
     global $mysql;
-    $npcid = $_GET['npcid'];
+    $npcid = $_GET['npc_id'];
 
     $query = "SELECT id,name FROM npc_types WHERE id=\"$npcid\"";
     return $mysql->query_mult_assoc($query);

@@ -10,10 +10,10 @@ $normalize_amount = 10;
 
 switch ($action) {
     case 0:  // View Loottable
-        if ($npcid || (isset($_GET['npcid']) && $_GET['npcid'] > 0)) {
+        if ($npcid || (isset($_GET['npc_id']) && $_GET['npc_id'] > 0)) {
             $body = new Template("templates/loot/loottable.tmpl.php");
             if (!$npcid) {
-				$npcid = $_GET['npcid'];
+				$npcid = $_GET['npc_id'];
 			}
 			$z = get_zone_by_npcid($npcid);
 			if ($z) {
@@ -585,7 +585,7 @@ function loottable_info(): bool|array|string
     $query = "SELECT loottable_id FROM npc_types WHERE id=$npcid";
     $result = $mysql->query_assoc($query);
 
-   if ($result['loottable_id'] == 0) {
+   if (!$result || $result['loottable_id'] == 0) {
     return false;
   }
     else {
