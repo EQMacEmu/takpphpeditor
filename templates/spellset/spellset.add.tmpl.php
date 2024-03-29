@@ -11,8 +11,8 @@
     <div class="edit_form_content">
         <form method="post"
               action="index.php?editor=spellset&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&npcid=<?= $npcid ?>&action=11">
-            <strong><label for="id">Suggested ID:</label></strong><br>
-            <input class="indented" type="text" id="id" name="id" size="10" value="<?= $id ?>"><br><br>
+            <strong><label for="suggested_id">Suggested ID:</label></strong><br>
+            <input class="indented" type="text" id="suggested_id" name="id" size="10" value="<?= $id ?>"><br><br>
 
             <strong><label for="name">Spellset Name:</label></strong><br>
             <input class="indented" type="text" id="name" name="name" size="25" value="<?= $name ?? "" ?>"><br><br>
