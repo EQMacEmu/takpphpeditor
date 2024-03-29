@@ -763,6 +763,14 @@
                                        value="1"<?php echo (isset($raid_target) && $raid_target == 1) ? " checked" : ""; ?>>
                                 <label for="raid_target">Raid Target</label><br/>
                             </td>
+							<td style="padding: 20px; vertical-align: top; text-align: left;">
+								<input type="checkbox" id="skip_global_loot" name="skip_global_loot"
+                                       value="1"<?php echo (isset($skip_global_loot) && $skip_global_loot == 1) ? " checked" : ""; ?>>
+                                <label for="skip_global_loot">Skip Global Loot</label><br/>
+                                <input type="checkbox" id="rare_spawn" name="rare_spawn"
+                                       value="1"<?php echo (isset($rare_spawn) && $rare_spawn == 1) ? " checked" : ""; ?>>
+                                <label for="rare_spawn">Rare Spawn</label><br/>
+							</td>
                         </tr>
                     </table>
                 </div>

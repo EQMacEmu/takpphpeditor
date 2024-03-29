@@ -307,7 +307,6 @@ function get_blockedspell(): bool|array|string|null
 
 function update_zone(): void
 {
-    check_authorization();
     global $mysql, $zoneid;
 
     $oldstats = get_zone();
@@ -399,6 +398,27 @@ function update_zone(): void
     if ($never_idle != $_POST['never_idle']) $fields .= "never_idle=\"" . $_POST['never_idle'] . "\", ";
     if ($graveyard_time != $_POST['graveyard_time']) $fields .= "graveyard_time=\"" . $_POST['graveyard_time'] . "\", ";
     if ($max_z != $_POST['max_z']) $fields .= "max_z=\"" . $_POST['max_z'] . "\", ";
+	if ($min_expansion != $_POST['min_expansion']) $fields .= "min_expansion=\"" . $_POST['min_expansion'] . "\", ";
+	if ($max_expansion != $_POST['max_expansion']) $fields .= "max_expansion=\"" . $_POST['max_expansion'] . "\", ";
+
+	if ($content_flags != $_POST['content_flags']) {
+		if ($_POST['content_flags'] == "") {
+			$fields .= "content_flags=NULL,";
+		}
+		else {
+			$fields .= "content_flags=\"" . $_POST['content_flags'] . "\", ";
+		}
+	}
+
+	if ($content_flags_disabled != $_POST['content_flags_disabled']) {
+		if ($_POST['content_flags_disabled'] == "") {
+			$fields .= "content_flags_disabled=NULL,";
+		}
+		else {
+			$fields .= "content_flags_disabled=\"" . $_POST['content_flags_disabled'] . "\", ";
+		}
+	}
+
     $fields = rtrim($fields, ", ");
 
     if ($fields != '') {
@@ -411,7 +431,6 @@ function update_graveyard(): void
 {
     global $mysql;
 
-    $zone_id = $_POST['zone_id'];
     $graveyard_id = $_POST['graveyard_id'];
     $zone_id = $_POST['zone_id'];
     $x = $_POST['x'];
@@ -432,7 +451,7 @@ function update_zonepoints(): void
     $number = $_POST['number'];
     $x = $_POST['x'];
     $y = $_POST['y'];
-    $z_coord = $_POST['z_coord'];
+    $z = $_POST['z'];
     $heading = $_POST['heading'];
     $target_x = $_POST['target_x'];
     $target_y = $_POST['target_y'];
@@ -440,9 +459,23 @@ function update_zonepoints(): void
     $target_heading = $_POST['target_heading'];
     $target_zone_id = $_POST['target_zone_id'];
     $client_version_mask = $_POST['client_version_mask'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "UPDATE zone_points SET zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", target_zone_id=\"$target_zone_id\",  client_version_mask=\"$client_version_mask\" WHERE id=\"$zpid\"";
+    $query = "UPDATE zone_points SET zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", target_zone_id=\"$target_zone_id\",  client_version_mask=\"$client_version_mask\", min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL  WHERE id=\"$zpid\"";
     $mysql->query_no_result($query);
+	
+	if ($content_flags != "") {
+		$query = "UPDATE zone_points SET content_flags=\"$content_flags\" WHERE id=$zpid";
+		$mysql->query_no_result($query);
+	}
+
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE zone_points SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$zpid";
+		$mysql->query_no_result($query);
+	}
 }
 
 function update_blockedspell(): void
@@ -482,7 +515,7 @@ function delete_zonepoints(): void
 {
     global $mysql;
 
-    $zpid = $_GET['zpid'];
+    $id = $_GET['zpid'];
 
     $query = "DELETE FROM zone_points WHERE id=\"$zpid\"";
     $mysql->query_no_result($query);
@@ -566,7 +599,7 @@ function add_zonepoints(): void
     $number = $_POST['number'];
     $x = $_POST['x'];
     $y = $_POST['y'];
-    $z_coord = $_POST['z_coord'];
+    $z = $_POST['z'];
     $heading = $_POST['heading'];
     $target_x = $_POST['target_x'];
     $target_y = $_POST['target_y'];
@@ -574,10 +607,24 @@ function add_zonepoints(): void
     $target_heading = $_POST['target_heading'];
     $target_zone_id = $_POST['target_zone_id'];
     $client_version_mask = $_POST['client_version_mask'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
 
-    $query = "INSERT INTO zone_points SET id=\"$zpid\", zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z_coord\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\",
-   target_zone_id=\"$target_zone_id\", client_version_mask=\"$client_version_mask\"";
+    $query = "INSERT INTO zone_points SET id=$zpid, zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\",
+   target_zone_id=\"$target_zone_id\", client_version_mask=\"$client_version_mask\", min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query);
+	
+	if ($content_flags != "") {
+		$query = "UPDATE zone_points SET content_flags=\"$content_flags\" WHERE id=$zpid";
+		$mysql->query_no_result($query);
+	}
+
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE zone_points SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$zpid";
+		$mysql->query_no_result($query);
+	}
 }
 
 function add_blockedspell(): void
@@ -625,7 +672,7 @@ function zonepoints_info(): array
     $results = $mysql->query_mult_assoc($query);
     if ($results) {
         foreach ($results as $result) {
-            $array['zonepoints'][$result['id']] = array("zpid" => $result['id'], "zone" => $result['zone'], "number" => $result['number'], "x_coord" => $result['x'], "y_coord" => $result['y'], "z_coord" => $result['z'], "heading" => $result['heading'], "target_x" => $result['target_x'], "target_y" => $result['target_y'], "target_z" => $result['target_z'], "target_heading" => $result['target_heading'], "target_zone_id" => $result['target_zone_id'], "client_version_mask" => $result['client_version_mask']);
+            $array['zonepoints'][$result['id']] = array("zpid" => $result['id'], "zone" => $result['zone'], "number" => $result['number'], "x" => $result['x'], "y" => $result['y'], "z" => $result['z'], "heading" => $result['heading'], "target_x" => $result['target_x'], "target_y" => $result['target_y'], "target_z" => $result['target_z'], "target_heading" => $result['target_heading'], "target_zone_id" => $result['target_zone_id'], "client_version_mask" => $result['client_version_mask'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$results['content_flags_disabled']);
         }
     }
     return $array;

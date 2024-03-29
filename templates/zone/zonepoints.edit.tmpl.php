@@ -1,4 +1,4 @@
-<div class="edit_form" style="width: 600px">
+<div class="edit_form" style="width: 700px">
     <div class="edit_form_header">
         Edit Zone Point: <?= $id ?>
     </div>
@@ -15,7 +15,7 @@
                             <th><label for="client_version_mask">Client</label></th>
                         </tr>
                         <tr>
-                            <td><input type="text" size="10" id="zone" name="zone" value="<?= $zone ?>"></td>
+                            <td><input type="text" size="10" id="zone" name="zone" value="<?= $zone ?>" disabled></td>
                             <td><input type="text" size="7" id="number" name="number" value="<?= $number ?? "" ?>"></td>
                             <td><input type="text" size="10" id="client_version_mask" name="client_version_mask"
                                        value="<?= $client_version_mask ?? "" ?>"></td>
@@ -30,7 +30,7 @@
                         <tr>
                             <th><label for="x">X</label></th>
                             <th><label for="y">Y</label></th>
-                            <th><label for="z_coord">Z</label></th>
+                            <th><label for="z">Z</label></th>
                             <th><label for="heading">Heading</label></th>
                         </tr>
                         <tr>
@@ -38,7 +38,7 @@
                                                                      value="<?= $x ?>"></td>
                             <td style="padding-bottom: 20px;"><input type="text" size="7" id="y" name="y"
                                                                      value="<?= $y ?? "" ?>"></td>
-                            <td style="padding-bottom: 20px;"><input type="text" size="7" id="z_coord" name="z_coord"
+                            <td style="padding-bottom: 20px;"><input type="text" size="7" id="z" name="z"
                                                                      value="<?= $z ?>"></td>
                             <td style="padding-bottom: 20px;"><input type="text" size="7" id="heading" name="heading"
                                                                      value="<?= $heading ?? "" ?>"></td>
@@ -68,9 +68,33 @@
                     </table>
                 </fieldset>
             </div>
+			
+			<div style="margin-bottom: 20px;">
+                <fieldset>
+                    <legend>Expansion and Content Flags</legend>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th><label for="min_expansion">Min Expansion</label></th>
+                            <th><label for="max_expansion">Max Expansion</label></th>
+                            <th><label for="content_flags">Content Flags</label></th>
+                            <th><label for="content_flags_disabed">Content Flags Disabled</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" size="7" id="min_expansion" name="min_expansion" value="<?= $min_expansion ?? "" ?>"></td>
+                            <td><input type="text" size="7" id="max_expansion" name="max_expansion" value="<?= $max_expansion ?? "" ?>"></td>
+                            <td><input type="text" size="20" id="content_flags" name="content_flags" value="<?= $content_flags ?? "" ?>"></td>
+                            <td><input type="text" size="20" id="content_flags_disabed" name="content_flags_disabed" value="<?= $content_flags_disabed ?? "" ?>"></td>
+                        </tr>					
+                    </table>
+                </fieldset>
+            </div>
+					
+					
             <div class="center">
                 <input type="hidden" name="zpid" value="<?= $id ?>">
-                <input type="submit" value="Submit Changes">
+				<input type="hidden" name="zone" value="<?=$zone?>">
+				<input type="submit" value="Update Zonepoint">&nbsp;&nbsp;
+				<input type="button" value="Cancel" onClick="history.back();">
             </div>
         </form>
     </div>

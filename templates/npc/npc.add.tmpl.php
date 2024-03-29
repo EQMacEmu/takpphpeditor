@@ -687,6 +687,11 @@
                                         for="private_corpse">Corpse does not Unlock</label><br/>
                                 <input type="checkbox" id="raid_target" name="raid_target" value="1"/> <label
                                         for="raid_target">Raid Target</label><br/>
+							</td>
+							<td>
+								<input type="checkbox" name="skip_global_loot" value="1"> Skip Global Loot<br>
+								<input type="checkbox" name="rare_spawn" value="1"> Rare Spawn<br>
+
                             </td>
                         </tr>
                     </table>

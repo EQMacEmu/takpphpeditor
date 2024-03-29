@@ -96,6 +96,32 @@
                                value="<?= $clear_timer_onboot ?? "" ?>">
                     </td>
                 </tr>
+				<tr>
+                   <td style="width: 33%">
+                        <label for="min_expansion">min expansion:</label><br/>
+                        <input type="text" id="min_expansion" name="min_expansion" value="<?= $min_expansion ?>">
+                    </td>
+                    <td style="width: 33%">
+                        <label for="max_expansion">max expansion:</label><br/>
+                        <input type="text" id="max_expansion" name="max_expansion" value="<?= $max_expansion ?? "" ?>">
+                    </td>
+                    <td style="width: 34%">
+                        &nbsp;
+                    </td>				
+				</tr>
+								<tr>
+                   <td style="width: 33%">
+                        <label for="content_flags">content flags:</label><br/>
+                        <input type="text" id="content_flags" name="content_flags" value="<?= $content_flags ?>">
+                    </td>
+                    <td style="width: 33%">
+                        <label for="content_flags_disabled">content flags disabled:</label><br/>
+                        <input type="text" id="content_flags_disabled" name="content_flags_disabled" value="<?= $content_flags_disabled ?? "" ?>">
+                    </td>
+                    <td style="width: 34%">
+                        &nbsp;
+                    </td>				
+				</tr>
             </table>
             <br/><br/>
             <div class="center">

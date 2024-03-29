@@ -16,6 +16,7 @@
                         href="index.php?editor=server&action=56">View Character Creation Combos</a><br></span>
             <span class="center"><a href="index.php?editor=server&action=57">Key Ring Data</a><br></span>
             <span class="center"><a href="index.php?editor=server&action=63">View Skills</a><br></span>
+			<span class="center"><a href="index.php?editor=server&action=66">View Scheduled Events</a><br></span>
         </td>
     </tr>
 </table>

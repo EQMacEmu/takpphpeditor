@@ -35,12 +35,11 @@
                 <form action="index.php" method="GET">
                     <input type="hidden" name="editor" value="merchant">
                     <input type="hidden" name="action" value="7">
-                    <label for="npcid"></label>
-                    <input type="text" id="npcid" name="npcid" size="5" value="ID"
-                           onFocus="clearField(document.forms[0].npcid);document.forms[0].search.value='Enter Item ID';document.forms[0].search1.value='Item ID';">
+                    <input type="text" id="npc_id" name="npc_id" size="5" value="ID"
+                           onFocus="clearField(document.forms[0].npc_id);document.forms[0].search.value='Enter Item ID';document.forms[0].search1.value='Item ID';">
                     or <label for="search"></label><input type="text" id="search" name="search" size="12"
                                                           value="Enter Item ID"
-                                                          onFocus="clearField(document.forms[0].search);document.forms[0].npcid.value='ID';document.forms[0].search1.value='Item ID';">
+                                                          onFocus="clearField(document.forms[0].search);document.forms[0].npc_id.value='ID';document.forms[0].search1.value='Item ID';">
                     <input type="submit" value=" Search ">
                 </form>
             </td>
@@ -55,7 +54,7 @@
                     <input type="hidden" name="action" value="7">
                     <label for="search1"></label>
                     <input type="text" id="search1" name="search1" size="12" value="Item ID"
-                           onFocus="clearField(document.forms[0].search1);document.forms[0].npcid.value='ID';document.forms[0].search.value='Enter Item ID';">
+                           onFocus="clearField(document.forms[0].search1);document.forms[0].npc_id.value='ID';document.forms[0].search.value='Enter Item ID';">
                     <input type="submit" value=" GO ">
                 </form>
             </td>

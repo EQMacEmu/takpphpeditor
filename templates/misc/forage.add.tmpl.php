@@ -21,8 +21,16 @@
             <input class="indented" id="level" type="text" name="level" size="7" value="0"><br><br>
             <strong><label for="chance">Chance</label></strong><br>
             <input class="indented" id="chance" type="text" name="chance" size="7" value="0">%<br><br>
-
+            <strong><label for="min_expansion">Min Expansion</label></strong><br>
+            <input class="indented" id="min_expansion" type="text" name="min_expansion" size="7" value="-1"><br><br>
+            <strong><label for="max_expansion">Max Expansion</label></strong><br>
+            <input class="indented" id="max_expansion" type="text" name="max_expansion" size="7" value="-1"><br><br>
+            <strong><label for="content_flags">Content Flags</label></strong><br>
+            <input class="indented" id="content_flags" type="text" name="content_flags" size="18" value=""><br><br>
+            <strong><label for="content_flags_disabled">Content Flags Disabled</label></strong><br>
+            <input class="indented" id="content_flags_disabled" type="text" name="content_flags_disabled" size="18" value=""><br><br>
             <div class="center">
-                <input type="submit" value="Submit Changes">
+                <input type="submit" value="Add Entry">&nbsp;&nbsp;
+				<input type="button" value="Cancel" onClick="history.back();">
             </div>
 </form>

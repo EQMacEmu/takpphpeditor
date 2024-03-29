@@ -63,6 +63,26 @@
                     </table>
                 </fieldset>
             </div>
+			           <div style="padding-bottom: 20px;">
+                <fieldset>
+                    <legend>Object Expansion and Content Flags</legend>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th><label for="min_expansion">Min Expansion</label></th>
+                            <th><label for="max_expansion">Max Expansion</label></th>
+                            <th><label for="content_flags">Content Flags</label></th>
+                            <th><label for="content_flags_disabled">Content Flags Disabled</label></th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" size="7" id="min_expansion" name="min_expansion" value="<?= $min_expansion ?? "" ?>"></td>
+                            <td><input type="text" size="7" id="max_expansion" name="max_expansion" value="<?= $max_expansion ?? "" ?>"></td>
+                            <td><input type="text" size="18" id="content_flags" name="content_flags" value="<?= $content_flags ?? "" ?>"></td>
+                            <td><input type="text" size="18" id="content_flags_disabled" name="content_flags_disabled" value="<?= $content_flags_disabled ?? "" ?>">
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
             <div class="center">
                 <input type="hidden" name="objid" value="<?= $id ?>">
                 <input type="submit" value="Submit Changes">

@@ -405,7 +405,7 @@ switch ($action) {
   case 27: // Search npcs
     //check_authorization();
     $body = new Template("templates/npc/npc.searchresults.tmpl.php");
-    if (isset($_GET['npcid']) && $_GET['npcid'] != "ID") {
+    if (isset($_GET['npc_id']) && $_GET['npc_id'] != "ID") {
       $results = search_npc_by_id();
     }
     else {
@@ -1291,6 +1291,8 @@ function update_npc() {
   if (!isset($_POST['ignore_despawn'])) $_POST['ignore_despawn'] = 0;
   if (!isset($_POST['aggro_pc'])) $_POST['aggro_pc'] = 0;
   if (!isset($_POST['raid_target'])) $_POST['raid_target'] = 0;
+  if (!isset($_POST['skip_global_loot'])) $_POST['skip_global_loot'] = 0;
+  if (!isset($_POST['rare_spawn'])) $_POST['rare_spawn'] = 0;
 
   // Check for special attacks change
   $new_specialattks = '';
@@ -1401,6 +1403,8 @@ function update_npc() {
   if ($ignore_despawn != $_POST['ignore_despawn']) $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   if ($aggro_pc != $_POST['aggro_pc']) $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
   if ($greed != $_POST['greed']) $fields .= "greed=\"" . $_POST['greed'] . "\", ";
+  if ($skip_global_loot != $_POST['skip_global_loot']) $fields .= "skip_global_loot=\"" . $_POST['skip_global_loot'] . "\", ";
+  if ($rare_spawn != $_POST['rare_spawn']) $fields .= "rare_spawn=\"" . $_POST['rare_spawn'] . "\", ";
 
   $fields =  rtrim($fields, ", ");
 
@@ -1431,6 +1435,8 @@ function add_npc () {
   if ($_POST['pet'] != 1) $_POST['pet'] = 0;
   if ($_POST['raid_target'] != 1) $_POST['raid_target'] = 0;
   if (!isset($_POST['avoidance'])) $_POST['avoidance'] = 0;		// this needs a form entry
+  if ($_POST['skip_global_loot'] != 1) $_POST['skip_global_loot'] = 0;
+  if ($_POST['rare_spawn'] != 1) $_POST['rare_spawn'] = 0;
 
   foreach ($specialattacks as $k => $v) {
     if (isset($_POST["$k"])) {
@@ -1532,7 +1538,9 @@ function add_npc () {
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
-  $fields .= "greed=\"" . $_POST['greed'] . "\"";
+  $fields .= "greed=\"" . $_POST['greed'] . "\", ";
+  $fields .= "skip_global_loot=\"" . $_POST['skip_global_loot'] . "\", ";
+  $fields .= "rare_spawn=\"" .$_POST['rare_spawn'] . "\"";
 
   if ($fields != '') {
     $query = "INSERT INTO npc_types SET $fields";
@@ -1639,7 +1647,9 @@ function copy_npc () {
   $fields .= "ignore_distance=\"" . $_POST['ignore_distance'] . "\", ";
   $fields .= "ignore_despawn=\"" . $_POST['ignore_despawn'] . "\", ";
   $fields .= "aggro_pc=\"" . $_POST['aggro_pc'] . "\", ";
-  $fields .= "greed=\"" . $_POST['greed'] . "\"";
+  $fields .= "greed=\"" . $_POST['greed'] . "\", ";
+  $fields .= "skip_global_loot=\"" . $_POST['skip_global_loot'] . "\", ";
+  $fields .= "rare_spawn=\"" . $_POST['rare_spawn'] . "\"";
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
@@ -2092,6 +2102,9 @@ function delete_npc() {
 
   $query = "DELETE FROM npc_types WHERE id=$npcid";
   $mysql->query_no_result($query);
+
+  $query = "DELETE FROM spawnentry WHERE npcID=$npcid";
+  $mysql->query_no_result($query);
 }
 
 function suggest_npcid() {
@@ -2099,15 +2112,48 @@ function suggest_npcid() {
 
   $query = "SELECT zoneidnumber FROM zone WHERE short_name=\"$z\"";
   $result = $mysql->query_assoc($query);
-  
-  if ($result) {
-	$zid = $result['zoneidnumber'] . "___";
+
+  if ($result) { // Associated with a zone
+    $npczoneid = $result['zoneidnumber'];
+
+    $query = "SELECT id FROM npc_types WHERE id = $npczoneid * 1000";
+    $result = $mysql->query_assoc($query);
+
+    if (!$result) { // Very first id is available
+      return $npczoneid * 1000;
+    }
+
+    // Find next available id
+    $query = "SELECT MIN(n1.id + 1) AS npcid FROM npc_types n1 LEFT JOIN npc_types n2 ON n1.id + 1 = n2.id WHERE n1.id >= $npczoneid * 1000 AND n1.id < $npczoneid * 1000 + 1000 AND n2.id IS NULL";
+    $result = $mysql->query_assoc($query);
+
+    if ($result['npcid'] > 0) {
+      return $result['npcid'];
+    }
+    else {
+      return "";
+    }
   }
+  else { // Not associated with a zone (pet, trigger, chest, etc.)
 
-  $query = "SELECT MAX(id) as id FROM npc_types WHERE id like \"$zid\"";
-  $result = $mysql->query_assoc($query);
+    $query = "SELECT id FROM npc_types WHERE id = 1";
+    $result = $mysql->query_assoc($query);
 
-  return (($result['id'] == 0) ? "" : $result['id'] + 1);
+    if (!$result) { // Very first id is available
+      return 1;
+    }
+
+    // Find next available id
+    $query = "SELECT MIN(n1.id + 1) AS npcid FROM npc_types n1 LEFT JOIN npc_types n2 ON n1.id + 1 = n2.id WHERE n1.id >= 0 AND n1.id < 1000 AND n2.id IS NULL";
+    $result = $mysql->query_assoc($query);
+
+    if ($result['npcid'] > 0) {
+      return $result['npcid'];
+    }
+    else {
+      return "";
+    }
+  }
 }
 
 function tint_info() {
@@ -2126,9 +2172,23 @@ function next_npcid() {
 
   $npczoneid = $_POST['npczoneid'];
 
-  $query = "SELECT max(id) AS npcid FROM npc_types WHERE id < \"$npczoneid\"*1000+1000";
+  $query = "SELECT id FROM npc_types WHERE id = $npczoneid * 1000";
   $result = $mysql->query_assoc($query);
-  return ($result['npcid'] + 1);
+
+  if (!$result) { // Very first id is available
+    return $npczoneid * 1000;
+  }
+
+  // Find next available id
+  $query = "SELECT MIN(n1.id + 1) AS npcid FROM npc_types n1 LEFT JOIN npc_types n2 ON n1.id + 1 = n2.id WHERE n1.id >= $npczoneid * 1000 AND n1.id < $npczoneid * 1000 + 1000 AND n2.id IS NULL";
+  $result = $mysql->query_assoc($query);
+
+  if ($result['npcid'] > 0) {
+    return $result['npcid'];
+  }
+  else {
+    return "";
+  }
 }
 
 function get_stats() {

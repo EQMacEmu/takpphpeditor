@@ -128,11 +128,35 @@
                             <td colspan="2"><input type="text" size="7" id="keyitem" name="keyitem" value="0"></td>
                             <td colspan="2"><input type="text" size="7" id="altkeyitem" name="altkeyitem" value="0"></td>
                         </tr>
+						
                     </table>
                 </fieldset>
             </div>
+           <div style="padding-bottom:20px;">
+				<fieldset>
+					<legend>Expansion and Content Flags</legend>
+					<table style="width: 100%; border-spacing: 20px;">
+						<td>
+							<strong>Min Expansion</strong><br>
+							<input type="text" size="7" name="min_expansion" value="-1">
+						</td>
+						<td>
+							<strong>Max Expansion</strong><br>
+							<input type="text" size="7" name="max_expansion" value="-1">
+						</td>
+						<td colspan="2">
+							<strong>Content Flags</strong><br>
+							<input type="text" size="25" name="content_flags" value="">
+						</td>
+						<td colspan="2">
+							<strong>Content Flags Disabled</strong><br>
+							<input type="text" size="25" name="content_flags_disabled" value="">
+						</td>
+					 </table>
+				</fieldset>
+		   </div>
             <div class="center">
-                <input type="submit" value="Submit Changes">
+                <input type="submit" value="Submit Changes">&nbsp;<input type="button" value="Cancel" onClick="history.back();">
             </div>
         </form>
     </div>

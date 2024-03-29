@@ -172,7 +172,7 @@ function check_admin_authorization(): void
 function search_npc_by_id(): array|string|null
 {
     global $mysql;
-    $npcid = $_GET['npcid'];
+    $npcid = $_GET['npc_id'];
 
     $query = "SELECT id,name FROM npc_types WHERE id=\"$npcid\"";
     return $mysql->query_mult_assoc($query);
@@ -643,6 +643,34 @@ function set_search_results(): array|string|null
         $search_results = "";
     }
     return $search_results;
+}
+
+function isGlobalLoot($loottable_id) {
+  global $mysql;
+
+  $query = "SELECT id FROM global_loot WHERE loottable_id=$loottable_id LIMIT 1";
+  $result = $mysql->query_assoc($query);
+
+  if ($result && $result['id'] > 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function isValidLoot($loottable_id) {
+  global $mysql;
+
+  $query = "SELECT id FROM loottable WHERE id=$loottable_id LIMIT 1";
+  $result = $mysql->query_assoc($query);
+
+  if ($result && $result['id'] > 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 ?>
