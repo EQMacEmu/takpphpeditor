@@ -121,7 +121,7 @@ switch ($action) {
         $body->set('currzoneid', $zoneid);
         $body->set('npcid', $npcid);
         $body->set('name', getNPCName($npcid));
-        $body->set('id', suggest_spellset_id());
+        $body->set('suggested_id', suggest_spellset_id());
         break;
     case 11:
         check_authorization();
