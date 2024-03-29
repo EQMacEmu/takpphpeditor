@@ -121,7 +121,7 @@ switch ($action) {
         $body->set('currzoneid', $zoneid);
         $body->set('npcid', $npcid);
         $body->set('name', getNPCName($npcid));
-        $body->set('id', suggest_spellset_id());
+        $body->set('suggested_id', suggest_spellset_id());
         break;
     case 11:
         check_authorization();
@@ -361,13 +361,13 @@ function add_spellset(): void
     check_authorization();
     global $mysql;
 
-    $id = $_POST['id'];
+    $suggested_id = $_POST['suggested_id'];
     $name = $_POST['name'];
     $parent_list = $_POST['parent_list'];
     $attack_proc = $_POST['attack_proc'];
     $proc_chance = $_POST['proc_chance'];
 
-    $query = "INSERT INTO npc_spells SET id=$id, name=\"$name\", parent_list=$parent_list, attack_proc=$attack_proc, proc_chance=$proc_chance";
+    $query = "INSERT INTO npc_spells SET id=$suggested_id, name=\"$name\", parent_list=$parent_list, attack_proc=$attack_proc, proc_chance=$proc_chance";
     $mysql->query_no_result($query);
 }
 
@@ -376,7 +376,7 @@ function update_npc_spellset(): void
     check_authorization();
     global $mysql, $npcid;
 
-    $id = $_POST['id'];
+    $id = $_POST['suggested_id'] ?? ($_POST['id'] ?? '0');
 
     $query = "UPDATE npc_types SET npc_spells_id=$id WHERE id=$npcid";
     $mysql->query_no_result($query);
