@@ -41,7 +41,28 @@
               <input type="text" size="5" name="multiplier" value="1">
             </td>
           </tr>
-          <tr><td colspan="4">&nbsp;</td></tr>
+           <tr>
+            <td colspan="2">
+              <strong>Min Expansion:</strong><br>
+              <input type="text" size="18" name="min_expansion" value="-1">
+            </td>
+            <td colspan="2">
+              <strong>Max Expansion:</strong><br>
+              <input type="text" size="18" name="max_expansion" value="-1">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <strong>Content Flags:</strong><br>
+              <input type="text" size="51" name="content_flags" value="">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <strong>Content Flags Disabled:</strong><br>
+              <input type="text" size="51" name="content_flags_disabled" value="">
+            </td>
+          </tr>
         </table><br><br>
         <center>
           <input type="hidden" name="global_loot" value="<?=$global_loot?>">

@@ -812,8 +812,23 @@ function update_lootdrop_item(): void
     $minlevel = $_POST['minlevel'];
     $maxlevel = $_POST['maxlevel'];
     $multiplier = $_POST['multiplier'];
-    $query = "UPDATE lootdrop_entries SET equip_item=$equip, item_charges=$charges, chance=$chance, minlevel=$minlevel, maxlevel=$maxlevel, multiplier=$multiplier WHERE lootdrop_id=$ldid AND item_id=$itemid";
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
+	
+    $query = "UPDATE lootdrop_entries SET equip_item=$equip, item_charges=$charges, chance=$chance, minlevel=$minlevel, maxlevel=$maxlevel, multiplier=$multiplier, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL WHERE lootdrop_id=$ldid AND item_id=$itemid";
     $mysql->query_no_result($query);
+	
+	if ($content_flags != "") {
+		$query = "UPDATE lootdrop_entries SET content_flags=\"$content_flags\" WHERE lootdrop_id=$ldid AND item_id=$itemid";
+		$mysql->query_no_result($query);
+	}
+	
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE lootdrop_entries SET content_flags_disabled=\"$content_flags_disabled\" WHERE lootdrop_id=$ldid AND item_id=$itemid";
+		$mysql->query_no_result($query);
+	}
 }
 
 function getLootdropName($id)
@@ -1000,6 +1015,10 @@ function add_lootdrop_item($itemid): void
     $item_charges = $_POST['item_charges'];
     $multiplier = $_POST['multiplier'];
     $chance = $_POST['chance'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
     $eitem = 0;
 
     $query = "SELECT slots FROM items WHERE id=$itemid";
@@ -1011,8 +1030,18 @@ function add_lootdrop_item($itemid): void
         $eitem = 1;
     }
 
-    $query = "INSERT INTO lootdrop_entries SET lootdrop_id=$ldid, item_id=$itemid, equip_item=$eitem, item_charges=$item_charges, multiplier=$multiplier, chance=$chance";
+    $query = "INSERT INTO lootdrop_entries SET lootdrop_id=$ldid, item_id=$itemid, equip_item=$eitem, item_charges=$item_charges, multiplier=$multiplier, chance=$chance, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
     $mysql->query_no_result($query);
+	
+	if ($content_flags != "") {
+		$query = "UPDATE lootdrop_entries SET content_flags=\"$content_flags\" WHERE lootdrop_id=$ldid AND item_id=$itemid";
+		$mysql->query_no_result($query);
+	}
+
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE lootdrop_entries SET content_flags_disabled=\"$content_flags_disabled\" WHERE lootdrop_id=$ldid AND item_id=$itemid";
+		$mysql->query_no_result($query);
+	}
 
 }
 
@@ -1155,8 +1184,8 @@ function copy_lootdrop(): void
             SELECT loottable_id,droplimit,mindrop,multiplier,probability,multiplier_min FROM loottable_entries where lootdrop_id=$ldid";
     $mysql->query_no_result($query);
 
-    $query = "INSERT INTO lootdrop_entries (item_id,item_charges,equip_item,chance,minlevel,maxlevel,multiplier) 
-            SELECT item_id,item_charges,equip_item,chance,minlevel,maxlevel,multiplier FROM lootdrop_entries where lootdrop_id=$ldid";
+    $query = "INSERT INTO lootdrop_entries (item_id,item_charges,equip_item,chance,minlevel,maxlevel,multiplier, min_expansion, max_expansion, content_flags, content_flags_disabled) 
+            SELECT item_id,item_charges,equip_item,chance,minlevel,maxlevel,multiplier, min_expansion, max_expansion, content_flags, content_flags_disabled FROM lootdrop_entries where lootdrop_id=$ldid";
     $mysql->query_no_result($query);
 
     $query = "UPDATE loottable_entries set lootdrop_id=$nlid where lootdrop_id=0";
@@ -1221,19 +1250,30 @@ function move_copy_lootdrop_item(): void
     $minlevel = $_POST['minlevel'];
     $maxlevel = $_POST['maxlevel'];
     $multiplier = $_POST['multiplier'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
     $new_ldid = $_POST['movetolootdrop'];
     $move_copy_item = $_POST['move_copy_item'];
-    if ($move_copy_item == 0) {
-        $query1 = "DELETE FROM lootdrop_entries WHERE lootdrop_id=$ldid AND item_id=$itemid";
-        $mysql->query_no_result($query1);
 
-        $query2 = "INSERT INTO lootdrop_entries SET lootdrop_id=$new_ldid, item_id=$itemid, equip_item=$equip, item_charges=$charges, chance=$chance, minlevel=$minlevel, maxlevel=$maxlevel, multiplier=$multiplier";
-        $mysql->query_no_result($query2);
-    }
-    if ($move_copy_item == 1) {
-        $query = "INSERT INTO lootdrop_entries SET lootdrop_id=$new_ldid, item_id=$itemid, equip_item=$equip, item_charges=$charges, chance=$chance, minlevel=$minlevel, maxlevel=$maxlevel, multiplier=$multiplier";
-        $mysql->query_no_result($query);
-    }
+	$query = "INSERT INTO lootdrop_entries SET lootdrop_id=$new_ldid, item_id=$itemid, equip_item=$equip, item_charges=$charges, chance=$chance, minlevel=$minlevel, maxlevel=$maxlevel, multiplier=$multiplier, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
+	$mysql->query_no_result($query);
+    
+	if ($content_flags != "") {
+		$query = "UPDATE lootdrop_entries SET content_flags=\"$content_flags\" WHERE lootdrop_id=$new_ldid AND item_id=$itemid";
+		$mysql->query_no_result($query);
+	}
+	
+	if ($content_flags_disabled != "") {
+		$query = "UPDATE lootdrop_entries SET content_flags_disabled=\"$content_flags_disabled\" WHERE lootdrop_id=$new_ldid AND item_id=$itemid";
+		$mysql->query_no_result($query);
+	}
+	
+	if ($move_copy_item == 0) {
+		$query = "DELETE FROM lootdrop_entries WHERE lootdrop_id=$ldid AND item_id=$itemid";
+		$mysql_content_db->query_no_result($query);
+	}
 }
 
 function global_loot_info() {
