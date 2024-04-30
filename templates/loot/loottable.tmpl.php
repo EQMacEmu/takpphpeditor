@@ -121,7 +121,8 @@
  <? if(isset($lootdrop['items']) && $lootdrop['items']): $x=0; ?>
           <tr>
             <th align="center" width="8%">Item ID</th>
-            <th align="center" width="36%">Item Name</th>
+            <th align="center" width="31%">Item Name</th>
+			<th align="center" width="5%">Flag</th>
             <th align="center" width="7%">Equip</th>
             <th align="center" width="7%">Charges</th>
             <th align="center" width="7%">Min<br>Level</th>
@@ -150,7 +151,8 @@
           <tr bgcolor="#<? echo ($x % 2 == 0) ? "BBBBBB" : "AAAAAA";?>">
             <td align="center"><a href="index.php?editor=items&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&id=<?=$item_id?>&action=2"><?=$item_id?></a></td>
             <td align="center"><?echo (get_item_name($item_id) != "") ? get_item_name($item_id) : "<a title='Item not in database!'>UNKNOWN</a>";?> <span>[<a href="https://lucy.allakhazam.com/item.html?id=<?=$item_id?>" target="_blank">Lucy</a>]</span></td>
-            <td align="center" width="100"><?= $equiptit[$equip_item] ?></td>
+            <td align="center"><?echo ($min_expansion > -1 || $max_expansion > -1 || $content_flags != "" || $content_flags_disabled != "") ? "Yes" : "No";?></td>
+			<td align="center" width="100"><?= $equiptit[$equip_item] ?></td>
             <td align="center"><?=$item_charges?></td>
             <td align="center"><?= $minlevel ?></td>
             <td align="center"><?= $maxlevel ?></td>
