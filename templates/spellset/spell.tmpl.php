@@ -45,19 +45,21 @@
         <div class="table_content">
           <table style="width: 100%; border-collapse: collapse; border-spacing: 0;">
             <tr style="background-color: #BBBBBB">
-              <th style="padding: 0; width: 30%;">Spell</th>
-              <th style="padding: 0; width: 9%; text-align: center;">Type</th>
-              <th style="padding: 0; width: 9%; text-align: center;">minlevel</th>
-              <th style="padding: 0; width: 9%; text-align: center;">maxlevel</th>
-              <th style="padding: 0; width: 9%; text-align: center;">manacost</th>
+              <th style="padding: 0; width: 28%;">Spell</th>
+			  <th style="padding: 0; width: 5%; text-align: center;">Flag</th>
+              <th style="padding: 0; width: 7%; text-align: center;">Type</th>
+              <th style="padding: 0; width: 7%; text-align: center;">minlevel</th>
+              <th style="padding: 0; width: 7%; text-align: center;">maxlevel</th>
+              <th style="padding: 0; width: 8%; text-align: center;">manacost</th>
               <th style="padding: 0; width: 10%; text-align: center;">recast delay</th>
-              <th style="padding: 0; width: 9%; text-align: center;">priority</th>
-              <th style="padding: 0; width: 9%; text-align: center;">resist adj</th>
-              <th style="padding: 0; width: 10%; text-align: center;"></th>
+              <th style="padding: 0; width: 8%; text-align: center;">priority</th>
+              <th style="padding: 0; width: 8%; text-align: center;">resist adj</th>
+              <th style="padding: 0; width: 8%; text-align: center;"></th>
             </tr>
               <?php $x=0; foreach($spells as $spell): extract($spell);?>
             <tr<?php echo($x % 2 == 1) ? " bgcolor=\"#BBBBBB\"" : "";?>>
               <td style="padding: 0;"><?=$name?> (<?=$spellid?>) [<a href="https://lucy.allakhazam.com/spell.html?source=Live&id=<?=$spellid?>">Lucy</a>]</td>
+			  <td style="padding: 0; text-align: center;"><?echo ($min_expansion > -1 || $max_expansion > -1 || $content_flags != "" || $content_flags_disabled != "") ? "Yes" : "No";?></td>
               <td style="padding: 0; text-align: center;"><?=$spelltypes[$type]?></td>
               <td style="padding: 0; text-align: center;"><?=$minlevel?></td>
               <td style="padding: 0; text-align: center;"><?=$maxlevel?></td>
