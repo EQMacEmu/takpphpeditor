@@ -332,13 +332,36 @@ function update_spell(): void
     $recast_delay = $_POST['recast_delay'];
     $priority = $_POST['priority'];
     $resist_adjust = $_POST['resist_adjust'];
+	$min_expansion = $_POST['min_expansion'];
+	$max_expansion = $_POST['max_expansion'];
+	$content_flags = $_POST['content_flags'];
+	$content_flags_disabled = $_POST['content_flags_disabled'];
+
 
     if ($resist_adjust == "") {
         $resist_adjust = "NULL";
     }
 
-    $query = "UPDATE npc_spells_entries SET spellid=$spellid, type=$type, minlevel=$minlevel, maxlevel=$maxlevel, manacost=$manacost, recast_delay=$recast_delay, priority=$priority, resist_adjust=$resist_adjust WHERE id=$id";
+    $query = "UPDATE npc_spells_entries SET spellid=$spellid, type=$type, minlevel=$minlevel, maxlevel=$maxlevel, manacost=$manacost, recast_delay=$recast_delay, priority=$priority, resist_adjust=$resist_adjust, min_expansion=$min_expansion, max_expansion=$max_expansion  WHERE id=$id";
     $mysql->query_no_result($query);
+	
+	if ($content_flags == "") {
+		$query = "UPDATE npc_spells_entries SET content_flags=NULL WHERE id=$id";
+		$mysql->query_no_result($query);
+	}
+	else {
+		$query = "UPDATE npc_spells_entries SET content_flags=\"$content_flags\" WHERE id=$id";
+		$mysql->query_no_result($query);
+	}
+
+	if ($content_flags_disabled == "") {
+		$query = "UPDATE npc_spells_entries SET content_flags_disabled=NULL WHERE id=$id";
+		$mysql->query_no_result($query);
+	}
+	else {
+		$query = "UPDATE npc_spells_entries SET content_flags_disabled=\"$content_flags_disabled\" WHERE id=$id";
+		$mysql->query_no_result($query);
+	}
 }
 
 function suggest_spellset_id()

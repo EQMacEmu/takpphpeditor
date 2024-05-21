@@ -39,6 +39,19 @@
               <strong><label for="resist_adjust">Resist Adj:</label></strong><br>
             <input class="indented" type="text" id="resist_adjust" name="resist_adjust" size="10" value="<?=$resist_adjust ?? ""?>"><br><br>
 
+              <strong><label for="min_expansion">Min Expansion:</label></strong><br>
+            <input class="indented" type="text" id="min_expansion" name="min_expansion" size="10" value="<?=$min_expansion ?? ""?>"><br><br>
+
+              <strong><label for="max_expansion">Max Expansion:</label></strong><br>
+            <input class="indented" type="text" id="max_expansion" name="max_expansion" size="10" value="<?=$max_expansion ?? ""?>"><br><br>
+
+              <strong><label for="content_flags">Content Flag:</label></strong><br>
+            <input class="indented" type="text" id="content_flags" name="content_flags" size="10" value="<?=$content_flags ?? ""?>"><br><br>
+
+              <strong><label for="content_flags_disabled">Content Flag Disabled:</label></strong><br>
+            <input class="indented" type="text" id="content_flags_disabled" name="content_flags_disabled" size="10" value="<?=$content_flags_disabled ?? ""?>"><br><br>
+
+
             <div class="center">
               <input type="hidden" name="id" value="<?=$id?>">
               <input type="submit" name="submit" value="Submit">
