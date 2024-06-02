@@ -115,7 +115,8 @@
               <?php if ($parent['spells'] ?? ""):?>
             <tr style="background-color: #BBBBBB">
               <th style="padding: 0; width: 30%;">Spell</th>
-              <th style="padding: 0; width: 9%; text-align: center;">Type</th>
+			  <th style="padding: 0; width: 5%; text-align: center;">Flag</th> 
+				<th style="padding: 0; width: 9%; text-align: center;">Type</th>
               <th style="padding: 0; width: 9%; text-align: center;">minlevel</th>
               <th style="padding: 0; width: 9%; text-align: center;">maxlevel</th>
               <th style="padding: 0; width: 9%; text-align: center;">manacost</th>
@@ -127,7 +128,8 @@
                   <?php if(isset($parent['spells'])) { $x=0; foreach($parent['spells'] as $spell): extract($spell);?>
             <tr<?php echo($x % 2 == 1) ? " bgcolor=\"#BBBBBB\"" : "";?>>
               <td style="padding: 0;"><?=$name?> (<?=$spellid?>) [<a href="https://lucy.allakhazam.com/spell.html?source=Live&id=<?=$spellid?>">Lucy</a>]</td>
-              <td style="padding: 0; text-align: center;"><?=$spelltypes[$type]?></td>
+			  <td style="padding: 0; text-align: center;"><?echo ($min_expansion > -1 || $max_expansion > -1 || $content_flags != "" || $content_flags_disabled != "") ? "Yes" : "No";?></td>
+			  <td style="padding: 0; text-align: center;"><?=$spelltypes[$type]?></td>
               <td style="padding: 0; text-align: center;"><?=$minlevel?></td>
               <td style="padding: 0; text-align: center;"><?=$maxlevel?></td>
               <td style="padding: 0; text-align: center;"><?php echo ($manacost != -1) ? $manacost : "Default";?></td>
