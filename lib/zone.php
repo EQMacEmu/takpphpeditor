@@ -463,8 +463,11 @@ function update_zonepoints(): void
 	$max_expansion = $_POST['max_expansion'];
 	$content_flags = $_POST['content_flags'];
 	$content_flags_disabled = $_POST['content_flags_disabled'];
+	$is_virtual = $_POST['is_virtual'];
+	$height = $_POST['height'];
+	$width = $_POST['width'];
 
-    $query = "UPDATE zone_points SET zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", target_zone_id=\"$target_zone_id\",  client_version_mask=\"$client_version_mask\", min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL  WHERE id=\"$zpid\"";
+    $query = "UPDATE zone_points SET zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\", target_zone_id=\"$target_zone_id\",  client_version_mask=\"$client_version_mask\", min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL, is_virtual=$is_virtual, height=$height, width=$width  WHERE id=\"$zpid\"";
     $mysql->query_no_result($query);
 	
 	if ($content_flags != "") {
@@ -611,9 +614,12 @@ function add_zonepoints(): void
 	$max_expansion = $_POST['max_expansion'];
 	$content_flags = $_POST['content_flags'];
 	$content_flags_disabled = $_POST['content_flags_disabled'];
+	$is_virtual = $_POST['is_virtual'];
+	$height = $_POST['height'];
+	$width = $_POST['width'];
 
     $query = "INSERT INTO zone_points SET id=$zpid, zone=\"$zone\", number=\"$number\", x=\"$x\", y=\"$y\", z=\"$z\", heading=\"$heading\", target_x=\"$target_x\", target_y=\"$target_y\", target_z=\"$target_z\", target_heading=\"$target_heading\",
-   target_zone_id=\"$target_zone_id\", client_version_mask=\"$client_version_mask\", min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
+   target_zone_id=\"$target_zone_id\", client_version_mask=\"$client_version_mask\", min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL, is_virtual=$is_virtual, height=$height, width=$width";
     $mysql->query_no_result($query);
 	
 	if ($content_flags != "") {
@@ -672,7 +678,7 @@ function zonepoints_info(): array
     $results = $mysql->query_mult_assoc($query);
     if ($results) {
         foreach ($results as $result) {
-            $array['zonepoints'][$result['id']] = array("zpid" => $result['id'], "zone" => $result['zone'], "number" => $result['number'], "x" => $result['x'], "y" => $result['y'], "z" => $result['z'], "heading" => $result['heading'], "target_x" => $result['target_x'], "target_y" => $result['target_y'], "target_z" => $result['target_z'], "target_heading" => $result['target_heading'], "target_zone_id" => $result['target_zone_id'], "client_version_mask" => $result['client_version_mask'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$results['content_flags_disabled']);
+            $array['zonepoints'][$result['id']] = array("zpid" => $result['id'], "zone" => $result['zone'], "number" => $result['number'], "x" => $result['x'], "y" => $result['y'], "z" => $result['z'], "heading" => $result['heading'], "target_x" => $result['target_x'], "target_y" => $result['target_y'], "target_z" => $result['target_z'], "target_heading" => $result['target_heading'], "target_zone_id" => $result['target_zone_id'], "client_version_mask" => $result['client_version_mask'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$results['content_flags_disabled'], "is_virtual"=>$results['is_virtual'], "height"=>$results['height'], "width"=>$results['width']);
         }
     }
     return $array;

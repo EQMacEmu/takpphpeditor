@@ -64,7 +64,7 @@
                 </fieldset>
             </div>
 			
-			 <div style="margin-bottom: 20px;">
+			<div style="margin-bottom: 20px;">
                 <fieldset>
                     <legend>Expansion and Content Flagging</legend>
                     <table style="width: 100%;">
@@ -84,8 +84,25 @@
                     </table>
                 </fieldset>
             </div>
-
 			
+			 <div style="margin-bottom: 20px;">
+                <fieldset>
+                    <legend>Virtual Zonepoint</legend>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th><label for="is_virtual">Is Virtual</label></th>
+                            <th><label for="height">Height</label></th>
+                            <th><label for="width">Width</label></th>
+                        </tr>
+						<tr>
+                            <td style="padding-bottom: 20px;"><select name="is_virtual"><option value="0" selected>No</option><option value="1">Yes</option></select></td>
+                            <td style="padding-bottom: 20px;"><input type="text" size="7" id="height" name="height" value="0"></td>
+                            <td style="padding-bottom: 20px;"><input type="text" size="7" id="width" name="width" value="0"></td>
+						</tr>
+                    </table>
+                </fieldset>
+            </div>
+
             <div class="center">
                 <input type="hidden" name="zone" value="<?=$currzone?>">
 				<input type="submit" value="Add Zonepoint">&nbsp;&nbsp;

@@ -88,7 +88,24 @@
                     </table>
                 </fieldset>
             </div>
-					
+
+			 <div style="margin-bottom: 20px;">
+                <fieldset>
+                    <legend>Virtual Zonepoint</legend>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th><label for="is_virtual">Is Virtual</label></th>
+                            <th><label for="height">Height</label></th>
+                            <th><label for="width">Width</label></th>
+                        </tr>
+						<tr>
+                            <td><select name="is_virtual"><option value="0"<?echo ($is_virtual == 0) ? " selected" : "";?>>No</option><option value="1"<?echo ($is_virtual == 1) ? " selected" : "";?>>Yes</option></select></td>
+                            <td><input type="text" size="7" id="height" name="height" value="<?=$height?>">"></td>
+                            <td><input type="text" size="7" id="width" name="width" value="<?=$width?>"></td>
+						</tr>
+                    </table>
+                </fieldset>
+            </div>					
 					
             <div class="center">
                 <input type="hidden" name="zpid" value="<?= $id ?>">
