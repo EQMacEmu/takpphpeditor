@@ -31,7 +31,7 @@
         <?php $x = 0;
         foreach ($zonepoints as $key => $v): ?>
             <tr style="background-color: #<?php echo ($x % 2 == 0) ? "BBBBBB" : "AAAAAA"; ?>">
-                <td style="text-align: center; width: 5%"><?= $v['zpid'] ?></td>
+                <td style="text-align: center; width: 5%"><?= $v['id'] ?></td>
                 <td style="text-align: center; width: 5%"><?= $v['zone'] ?></td>
                 <td style="text-align: center; width: 5%"><?= $v['number'] ?></td>
                 <td style="text-align: center; width: 5%"><?= $v['x'] ?></td>
@@ -44,10 +44,10 @@
                 <td style="text-align: center; width: 5%"><?= $v['target_heading'] ?></td>
                 <td style="text-align: center; width: 5%"><?= getZoneName($v['target_zone_id']) ?></td>
                 <td style="text-align: right;">
-                    <a href="index.php?editor=zone&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&zpid=<?= $v['zpid'] ?>&action=13"><img
+                    <a href="index.php?editor=zone&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&zpid=<?= $v['id'] ?>&action=13"><img
                                 src="images/edit2.gif" style="border: 0;" alt="Edit Icon" title="Edit Entry"></a>
-                    <a onClick="return confirm('Really Delete Point <?= $v['zpid'] ?>?');"
-                       href="index.php?editor=zone&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&zpid=<?= $v['zpid'] ?>&action=15"><img
+                    <a onClick="return confirm('Really Delete Point <?= $v['id'] ?>?');"
+                       href="index.php?editor=zone&z=<?= $currzone ?? "" ?>&zoneid=<?= $currzoneid ?? "" ?>&zpid=<?= $v['id'] ?>&action=15"><img
                                 src="images/remove3.gif" style="border: 0;" alt="Remove Icon" title="Delete this entry"></a>
                 </td>
             </tr>

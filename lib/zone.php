@@ -446,7 +446,7 @@ function update_zonepoints(): void
 {
     global $mysql;
 
-    $zpid = $_POST['zpid'];
+    $zpid = $_POST['id'];
     $zone = $_POST['zone'];
     $number = $_POST['number'];
     $x = $_POST['x'];
@@ -669,18 +669,18 @@ function graveyard_info(): array
     return $array;
 }
 
-function zonepoints_info(): array
+function zonepoints_info()
 {
-    global $mysql, $z;
+    global $mysql, $z, $zoneid;;
     $array = array();
 
     $query = "SELECT * FROM zone_points WHERE zone=\"$z\"";
     $results = $mysql->query_mult_assoc($query);
-    if ($results) {
-        foreach ($results as $result) {
-            $array['zonepoints'][$result['id']] = array("zpid" => $result['id'], "zone" => $result['zone'], "number" => $result['number'], "x" => $result['x'], "y" => $result['y'], "z" => $result['z'], "heading" => $result['heading'], "target_x" => $result['target_x'], "target_y" => $result['target_y'], "target_z" => $result['target_z'], "target_heading" => $result['target_heading'], "target_zone_id" => $result['target_zone_id'], "client_version_mask" => $result['client_version_mask'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$results['content_flags_disabled'], "is_virtual"=>$results['is_virtual'], "height"=>$results['height'], "width"=>$results['width']);
-        }
+  if ($results) {
+    foreach ($results as $result) {
+      $array['zonepoints'][$result['id']] = array("id"=>$result['id'], "zone"=>$result['zone'], "number"=>$result['number'], "x"=>$result['x'], "y"=>$result['y'], "z"=>$result['z'], "heading"=>$result['heading'], "target_x"=>$result['target_x'], "target_y"=>$result['target_y'], "target_z"=>$result['target_z'], "target_heading"=>$result['target_heading'], "target_zone_id"=>$result['target_zone_id'], "client_version_mask"=>$result['client_version_mask'], "min_expansion"=>$result['min_expansion'], "max_expansion"=>$result['max_expansion'], "content_flags"=>$result['content_flags'], "content_flags_disabled"=>$result['content_flags_disabled'], "is_virtual"=>$result['is_virtual'], "height"=>$result['height'], "width"=>$result['width']);
     }
+  }
     return $array;
 }
 
