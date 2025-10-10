@@ -11,6 +11,17 @@ require_once("classes/session.php");
 require_once("lib/common.php");
 require_once("lib/data.php");
 
+// TODO: MIGRATION - Remove global $database once all code uses dependency injection
+// This global connection exists for gradual migration compatibility
+// Target: refactor to pass Database instances via constructor injection
+global $database;
+try {
+    $database = new Database($GLOBALS['dbhost'], $GLOBALS['dbuser'], $GLOBALS['dbpass'], $GLOBALS['db'], $GLOBALS['dbport'], new Logger());
+} catch (Exception $e) {
+   error_log("Database connection failed: " . $e->getMessage());
+   die("Unable to connect to the database.  Please contact the administrator.");
+}
+
 
 $editor = (isset($_GET['editor'])) ? $_GET['editor'] : null;
 $action = (isset($_GET['action'])) ? intval($_GET['action']) : 0;
