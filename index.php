@@ -5,6 +5,7 @@ $current_revision = "3 January 2025";
 require_once("config.php");
 require_once("lib/logging.php");
 require_once("classes/mysqli.php");
+require_once("classes/Database.php"); // New mysqli.php replacement, available but optional
 require_once("classes/template.php");
 require_once("classes/session.php");
 require_once("lib/common.php");
