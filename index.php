@@ -15,8 +15,9 @@ require_once("lib/data.php");
 // This global connection exists for gradual migration compatibility
 // Target: refactor to pass Database instances via constructor injection
 global $database;
+global $dbhost, $dbuser, $dbpass, $db, $dbport;
 try {
-    $database = new Database($GLOBALS['dbhost'], $GLOBALS['dbuser'], $GLOBALS['dbpass'], $GLOBALS['db'], $GLOBALS['dbport'], new Logger());
+    $database = new Database($dbhost, $dbuser, $dbpass, $db, $dbport, new Logger());
 } catch (Exception $e) {
    error_log("Database connection failed: " . $e->getMessage());
    die("Unable to connect to the database.  Please contact the administrator.");
