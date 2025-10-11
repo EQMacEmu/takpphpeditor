@@ -6,7 +6,7 @@
   </div>
   <div>
     <form method="post" name="merchant_item" action="index.php?editor=merchant&z=<?=$currzone?>&zoneid=<?=$currzoneid?>&npcid=<?=$npcid?>&action=5">
-      <div class="edit_form" style="width: 550px">
+      <div class="edit_form" style="width: 650px">
         <div class="edit_form_header">Add an Item to Merchant</div>
         <div class="edit_form_content">
           <table width="100%" cellpadding="3" cellspacing="3">
