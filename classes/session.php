@@ -1,9 +1,7 @@
 <?php
-/* TODO: Implement parameterized SQL queries for PHP 8.2 */
 
 class session
 {
-
     public static function start(): void
     {
         global $SessionTimeout;
@@ -16,48 +14,73 @@ class session
 
     public static function login($login, $pw): void
     {
-        global $mysql, $password;
+        global $database;
 
-        $query = "SELECT password FROM peq_admin WHERE login=\"$login\"";
-        $result = $mysql->query_assoc($query);
-        if (empty($result)) {
-            $_SESSION['error'] = 1;
-            logSQL("Invalid login attempt. Bad username from IP: '" . getIP() . "'. Username: '$login' Password: '$pw'.");
-            return;
-        }
-        extract($result);
+        // TODO: In Phase 6 (dependency injection) we'll inject one logger across everything
+        $logger = new Logger();
 
-        if ($password == md5($pw)) {
-            $_SESSION['login'] = $login;
-            $_SESSION['password'] = md5($pw);
-        } else {
+        try {
+            $result = $database->fetchAssoc(
+                "SELECT password FROM peq_admin WHERE login = ?",
+                [$login],
+                's'
+            );
+
+            if (empty($result)) {
+                $_SESSION['error'] = 1;
+                $logger->logSQL("Invalid login attempt. Bad username from IP: '" . getIP() . "'. Username: '$login' Password: '$pw'.");
+                return;
+            }
+
+            $password = $result["password"];
+
+            if ($password == md5($pw)) {
+                $_SESSION['login'] = $login;
+                $_SESSION['password'] = md5($pw);
+            } else {
+                $_SESSION['error'] = 1;
+                $logger->logSQL("Invalid login attempt. Bad password from IP: '" . getIP() . "'. Username: '$login' Password: '$pw'.");
+            }
+        } catch (Exception $e) {
+            error_log("Login error: " . $e->getMessage());
             $_SESSION['error'] = 1;
-            logSQL("Invalid login attempt. Bad password from IP: '" . getIP() . "'. Username: '$login' Password: '$pw'.");
         }
     }
 
     public static function validate_credentials(): bool
     {
-        global $mysql, $password;
-        if (!isset($_SESSION['login']) || !isset($_SESSION['password'])) return false;
+        global $database;
 
-        $login = $_SESSION['login'];
-        $pw = $_SESSION['password'];
-        $query = "SELECT password FROM peq_admin WHERE login=\"$login\"";
-        $result = $mysql->query_assoc($query);
-
-        if (empty($result)) {
+        if (!isset($_SESSION['login']) || !isset($_SESSION['password'])) {
             return false;
         }
 
-        extract($result);
+        $login = $_SESSION['login'];
+        $pw = $_SESSION['password'];
 
-        return $password == $pw;
+        try {
+            $result = $database->fetchAssoc(
+                "SELECT password FROM peq_admin WHERE login = ?",
+                [$login],
+                's'
+            );
+
+            if (empty($result)) {
+                return false;
+            }
+
+            return $result['password'] == $pw;
+        } catch (Exception $e) {
+            error_log("Validation error: " . $e->getMessage());
+            return false;
+        }
     }
 
     public static function logged_in(): bool
     {
-        if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return true;
+        if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) {
+            return true;
+        }
 
         // return false if session credentials don't exist or don't match database, otherwise true
         return self::validate_credentials();
@@ -65,7 +88,9 @@ class session
 
     public static function check_authorization(): bool
     {
-        if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return false;
+        if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) {
+            return false;
+        }
 
         // return false if session credentials don't exist or don't match database, otherwise true
         return self::validate_credentials();
@@ -73,20 +98,34 @@ class session
 
     public static function is_admin(): bool
     {
-        global $mysql, $administrator;
+        global $database;
 
-        if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) return false;
+        if (isset($_SESSION['guest']) && $_SESSION['guest'] == 1) {
+            return false;
+        }
 
-        if (!isset($_SESSION['login']) || !isset($_SESSION['password'])) return false;
+        if (!isset($_SESSION['login']) || !isset($_SESSION['password'])) {
+            return false;
+        }
 
         $login = $_SESSION['login'];
-        $query = "SELECT administrator FROM peq_admin WHERE login=\"$login\"";
-        $result = $mysql->query_assoc($query);
-        extract($result);
 
-        if ($administrator == 1) {
-            return true;
-        } else return false;
+        try {
+            $result = $database->fetchAssoc(
+                "SELECT administrator FROM peq_admin WHERE login = ?",
+                [$login],
+                's'
+            );
+
+            if (empty($result)) {
+                return false;
+            }
+
+            return $result['administrator'] == 1;
+        } catch (Exception $e) {
+            error_log("Admin check error: " . $e->getMessage());
+            return false;
+        }
     }
 
     public static function stop(): void

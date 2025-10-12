@@ -5,6 +5,19 @@ $current_revision = "11 October 2025";
 require_once("config.php");
 require_once("lib/logging.php");
 require_once("classes/mysqli.php");
+require_once("classes/Database.php"); // New mysqli.php replacement, available but optional
+// TODO: MIGRATION - Remove global $database once all code uses dependency injection
+// This global connection exists for gradual migration compatibility
+// Target: refactor to pass Database instances via constructor injection
+global $database;
+global $dbhost, $dbuser, $dbpass, $db, $dbport;
+try {
+    $database = new Database($dbhost, $dbuser, $dbpass, $db, $dbport, new Logger());
+} catch (Exception $e) {
+    error_log("Database connection failed: " . $e->getMessage());
+    die("Unable to connect to the database.  Please contact the administrator.");
+}
+
 require_once("classes/template.php");
 require_once("classes/session.php");
 require_once("lib/common.php");

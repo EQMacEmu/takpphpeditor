@@ -90,5 +90,12 @@ $enable_guest_mode = env('GUEST_MODE_ENABLE', 1);
  */
 $quest_path = "/path/to/quests";
 
+/**
+ * Server environment display
+ * Show server name in header (red if not production, green if production)
+ */
+$server = env('SERVER_NAME', 'Development');
+$server_name = 'Production'; // What the "safe" environment is called
+
 
 ?>

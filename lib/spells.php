@@ -35,7 +35,6 @@ switch ($action) {
     $body->set("acttypes", $sp_acttypes);
     $body->set("daytimes", $sp_daytimes);
     $body->set("traveltypes", $sp_traveltypes);
-    $body->set("spellcats", $sp_categories ?? ""); /* TODO FIX: this variable is not defined anywhere */
 
     $vars = spell_info();
     if ($vars) {
