@@ -51,6 +51,10 @@ switch ($action) {
     $body->set('currzoneid', $zoneid);
     $body->set('npcid', $npcid);
     $body->set('mid', $_GET['mid']);
+    $slot = next_slot($_GET['mid']);
+    if ($slot) {
+        $body->set('slot', $slot);
+    }
     break;
   case 5: // Add item
     check_authorization();
@@ -343,7 +347,7 @@ function add_merchant_item(): void
     $classes_value = $classes_value ^ $v;
   }
  
- $query = "INSERT INTO merchantlist SET merchantid=$mid, slot=$slot, item=$item, faction_required=$faction_required, level_required=$level_required, classes_required=$classes_value, quantity=$quantity, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
+  $query = "INSERT INTO merchantlist SET merchantid=$mid, slot=$slot, item=$item, faction_required=$faction_required, level_required=$level_required, classes_required=$classes_value, quantity=$quantity, min_expansion=$min_expansion, max_expansion=$max_expansion, content_flags=NULL, content_flags_disabled=NULL";
   $mysql->query_no_result($query);
   
   if ($content_flags != "") {
@@ -384,6 +388,14 @@ function add_merchant_item_temp(): void
     $query = "INSERT INTO merchantlist_temp SET npcid=$npcid, slot=$tslot, itemid=$itemid, charges=$charges, quantity=1";
     $mysql->query_no_result($query);
   }
+}
+
+function next_slot($merchantid) {
+    global $mysql;
+    $query = "SELECT MAX(slot) AS slot FROM merchantlist WHERE merchantid=$merchantid";
+    $result = $mysql->query_assoc($query);
+
+    return $result['slot'] + 1;
 }
 
 function delete_merchantlist(): void
