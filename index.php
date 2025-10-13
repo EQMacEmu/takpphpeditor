@@ -23,6 +23,15 @@ require_once("classes/session.php");
 require_once("lib/common.php");
 require_once("lib/data.php");
 
+/**
+ * Set a Global exception handler.  DRY principle.
+ * This substitutes hundreds of try/catch blocks in the lib/ code
+ */
+set_exception_handler(function($e) {
+    error_log("Database error: " . $e->getMessage());
+    die("A database error occurred. Please contact the administrator.");
+});
+
 $editor = (isset($_GET['editor'])) ? $_GET['editor'] : null;
 $action = (isset($_GET['action'])) ? intval($_GET['action']) : 0;
 $npcid = (isset($_GET['npcid'])) ? intval($_GET['npcid']) : 0;
