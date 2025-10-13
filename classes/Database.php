@@ -1,7 +1,11 @@
 <?php
 /**
  * Secure MySQL Database Wrapper using Prepared Statements
- * PHP 8.2+ compatible
+ *
+ *  PHP Version Requirements:
+ *  - Minimum: PHP 7.4 (typed class properties)
+ *  - Recommended: PHP 8.0+
+ *  - Tested on: PHP 8.4
  *
  * Prevents SQL injection by using parameterized queries.
  * Supports dependency injection for logging.
