@@ -27,14 +27,43 @@ switch ($action) {
             $body->set('npc_name', getNPCName($npcid));
 			$body->set('normalize_amount', $normalize_amount);
             $body->set('equiptit', $equiptit);
+
+//            $defaults = [
+//                'loottable_id' => null,
+//                'new_loottable_name' => '',
+//                'mincash' => 0,
+//                'maxcash' => 0,
+//                'avgcoin' => 0,
+//                'min_expansion' => 0,
+//                'max_expansion' => 0,
+//                'content_flags' => null,
+//                'content_flags_disabled' => null,
+//                'mob' => null,
+//                'lootdrop_count' => 0,
+//                'lootdrop' => null,
+//                'lootdrops' => null,
+//                'newname' => '',
+//                'item_id' => null,
+//                'equip_item' => 0,
+//                'item_charges' => 1,
+//                'minlevel' => 0,
+//                'maxlevel' => 0,
+//                'multiplier' => 1,
+//                'chance' => 1,
+//                'disabled_chance' => '',
+//            ];
+//            foreach ($defaults as $key => $value) {
+//                $body->set($key, $value);
+//            }
+
             $vars = loottable_info();
             if ($vars) {
                 foreach ($vars as $key => $value) {
                     $body->set($key, $value);
                 }
             }
- 			$usage = mobs_using_loottable();
-			$body->set('usage', $usage);
+            $usage = mobs_using_loottable();
+            $body->set('usage', $usage);
         }
 		 else {
 			$body = new Template("templates/loot/loot.default.tmpl.php");
@@ -632,7 +661,7 @@ function loottable_info(): bool|array|string
     }
 }
 
-function mobs_using_loottable(): bool|array
+function mobs_using_loottable(): array
 {
     global $mysql, $npcid;
 
@@ -647,7 +676,7 @@ function mobs_using_loottable(): bool|array
 		return array("count"=>$count, "mobs"=>$results);
 	}
 	
-	return false;
+	return ["count" => 0, "mobs" => []];
  }
 
 function loottables_using_lootdrop(): array|string|null
