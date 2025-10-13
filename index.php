@@ -1,6 +1,6 @@
 <?php
 
-$current_revision = "11 October 2025";
+$current_revision = "13 October 2025";
 
 require_once("config.php");
 require_once("lib/logging.php");
@@ -22,7 +22,6 @@ require_once("classes/template.php");
 require_once("classes/session.php");
 require_once("lib/common.php");
 require_once("lib/data.php");
-
 
 $editor = (isset($_GET['editor'])) ? $_GET['editor'] : null;
 $action = (isset($_GET['action'])) ? intval($_GET['action']) : 0;
