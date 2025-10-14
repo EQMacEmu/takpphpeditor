@@ -1270,37 +1270,40 @@ function drop_loottable(): void
 function copy_lootdrop(): void
 {
     check_authorization();
-    global $mysql;
+    global $database;
     $ldid = $_GET['ldid'];
     $name = $_GET['name'];
 
-    $query = "SELECT MAX(id) as lid FROM lootdrop";
-    $result = $mysql->query_assoc($query);
+    $result = $database->fetchAssoc("SELECT MAX(id) as lid FROM lootdrop");
     $nlid = $result['lid'] + 1;
 
-    $query = "DELETE FROM loottable_entries WHERE lootdrop_id=0";
-    $mysql->query_no_result($query);
+    $database->executeQuery("DELETE FROM loottable_entries WHERE lootdrop_id = 0");
 
-    $query = "DELETE FROM lootdrop_entries WHERE lootdrop_id=0";
-    $mysql->query_no_result($query);
+    $database->executeQuery("DELETE FROM lootdrop_entries WHERE lootdrop_id = 0");
 
     $newname = $name . '_' . $nlid;
-    $query = "INSERT INTO lootdrop SET id=\"$nlid\", name=\"$newname\"";
-    $mysql->query_no_result($query);
+    $database->executeQuery("INSERT INTO lootdrop SET id = ?, name = ?", [$nlid, $newname], 'is');
 
-    $query = "INSERT INTO loottable_entries (loottable_id,droplimit,mindrop,multiplier,probability,multiplier_min) 
-            SELECT loottable_id,droplimit,mindrop,multiplier,probability,multiplier_min FROM loottable_entries where lootdrop_id=$ldid";
-    $mysql->query_no_result($query);
+    $database->executeQuery(
+        "INSERT INTO loottable_entries (loottable_id, droplimit, mindrop, multiplier, probability, multiplier_min) 
+            SELECT loottable_id, droplimit, mindrop, multiplier, probability, multiplier_min 
+            FROM loottable_entries WHERE lootdrop_id = ?",
+    [$ldid],
+    'i'
+    );
 
-    $query = "INSERT INTO lootdrop_entries (item_id,item_charges,equip_item,chance,minlevel,maxlevel,multiplier, min_expansion, max_expansion, content_flags, content_flags_disabled) 
-            SELECT item_id,item_charges,equip_item,chance,minlevel,maxlevel,multiplier, min_expansion, max_expansion, content_flags, content_flags_disabled FROM lootdrop_entries where lootdrop_id=$ldid";
-    $mysql->query_no_result($query);
+    $database->executeQuery(
+        "INSERT INTO lootdrop_entries (item_id, item_charges, equip_item, chance, minlevel, maxlevel, multiplier, min_expansion, max_expansion, content_flags, content_flags_disabled)
+        SELECT item_id, item_charges, equip_item, chance, minlevel, maxlevel, multiplier, min_expansion, max_expansion, content_flags, content_flags_disabled 
+        FROM lootdrop_entries 
+        WHERE lootdrop_id = ?",
+        [$ldid],
+    'i'
+    );
 
-    $query = "UPDATE loottable_entries set lootdrop_id=$nlid where lootdrop_id=0";
-    $mysql->query_no_result($query);
+    $database->executeQuery("UPDATE loottable_entries SET lootdrop_id = ? WHERE lootdrop_id = 0", [$nlid], 'i');
 
-    $query = "UPDATE lootdrop_entries set lootdrop_id=$nlid where lootdrop_id=0";
-    $mysql->query_no_result($query);
+    $database->executeQuery("UPDATE lootdrop_entries SET lootdrop_id = ? WHERE lootdrop_id = 0", [$nlid], 'i');
 }
 
 function merge_lootdrop(): void
