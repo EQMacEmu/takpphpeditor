@@ -889,7 +889,7 @@ function update_lootdrop_item(): void
         SET equip_item = ?, item_charges = ?, chance = ?, minlevel = ?, maxlevel = ?, multiplier = ?, min_expansion = ?, max_expansion = ?, content_flags = NULL, content_flags_disabled = NULL
         WHERE lootdrop_id = ? AND item_id = ?",
         [$equip, $charges, $chance, $minlevel, $maxlevel, $multiplier, $min_expansion, $max_expansion, $ldid, $itemid],
-        'iidiiiiiiii'
+        'iidiiiiiii'
     );
 
     if ($content_flags != "") {
