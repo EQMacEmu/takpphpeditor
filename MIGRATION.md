@@ -47,7 +47,7 @@ This document tracks the gradual migration from the legacy `mysql` class to the 
 - [ ] `lib/npcmultiedit.php` - Bulk NPC editing
 - [ ] `lib/items.php` - Item editor
 - [ ] `lib/spawn.php` - Spawn/spawngroup editor
-- [ ] `lib/loot.php` - Loot table editor
+- [x] `lib/loot.php` - Loot table editor
 - [ ] `lib/merchant.php` - Merchant editor
 
 ---
