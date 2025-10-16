@@ -515,97 +515,94 @@ function search_temp_merchant(): array
   );
 }
 
-function npcs_using_merchantlist (): array|string|null
+function npcs_using_merchantlist (): array
 {
-  global $mysql;
+  global $database;
   $merid = $_GET['merid'];
 
-  $query = "SELECT id AS npcid, name from npc_types where merchant_id=$merid";
-    return $mysql->query_mult_assoc($query);
+  return $database->fetchAll("SELECT id AS npcid, name FROM npc_types WHERE merchant_id = ?", [$merid], 'i');
   }
 
 function drop_merchantlist(): void
 {
   check_authorization();
-  global $mysql, $npcid;
+  global $database, $npcid;
 
-  $query = "UPDATE npc_types SET merchant_id=0 WHERE id=$npcid";
-  $mysql->query_no_result($query);
+  $database->executeQuery("UPDATE npc_types SET merchant_id = 0 WHERE id = ?", [$npcid], 'i');
 }
 
 function copy_merchantlist(): void
 {
   check_authorization();
-  global $mysql, $npcid;
+  global $database, $npcid;
   $mid = $_POST['mid'];
   
-  $query = "SELECT MAX(merchantid) as merid FROM merchantlist";
-  $result = $mysql->query_assoc($query);
+  $result = $database->fetchAssoc("SELECT MAX(merchantid) AS merid FROM merchantlist");
   $nmid = $result['merid'] + 1;
   
-  $query = "DELETE FROM merchantlist WHERE merchantid = 0";
-  $mysql->query_no_result($query);
+  $database->executeQuery("DELETE FROM merchantlist WHERE merchantid = 0");
 
-  $query = "INSERT INTO merchantlist (slot,item,faction_required,level_required,classes_required,quantity) 
-            SELECT slot,item,faction_required,level_required,classes_required,quantity FROM merchantlist where merchantid=$mid";
-  $mysql->query_no_result($query);
+  $database->executeQuery(
+      "INSERT INTO merchantlist (slot,item,faction_required,level_required,classes_required,quantity) 
+            SELECT slot,item,faction_required,level_required,classes_required,quantity FROM merchantlist where merchantid = ?",
+      [$mid],
+      'i'
+    );
 
-  $query = "UPDATE merchantlist set merchantid=$nmid where merchantid=0";
-  $mysql->query_no_result($query);
+  $database->executeQuery("UPDATE merchantlist SET merchantid = ? WHERE merchantid = 0", [$nmid], 'i');
 
-  $query = "UPDATE npc_types set merchant_id=$nmid where id=$npcid";
-  $mysql->query_no_result($query);
+  $database->executeQuery("UPDATE npc_types SET merchant_id = ? WHERE id = ?", [$nmid, $npcid], 'ii');
 }
 
 function sort_merchantlist(): void
 {
   check_authorization();
-  global $mysql;
+  global $database;
   $merchantid = get_merchant_id();
   $item_id = array();
  
-  $query = "SELECT COUNT(slot) AS item_count FROM merchantlist WHERE merchantid=$merchantid";
-  $result = $mysql->query_assoc($query);
+  $result = $database->fetchAssoc("SELECT COUNT(slot) AS item_count FROM merchantlist WHERE merchantid = ?", [$merchantid], 'i');
   $item_count = $result['item_count'];
 
-  $query = "SELECT MAX(slot) AS max_slot FROM merchantlist WHERE merchantid=$merchantid";
-  $result = $mysql->query_assoc($query);
+  $result = $database->fetchAssoc("SELECT MAX(slot) AS max_slot FROM merchantlist WHERE merchantid = ?", [$merchantid], 'i');
   $max_slot = $result['max_slot'];
  
-  $query = "SELECT item FROM merchantlist WHERE merchantid=$merchantid";
-  $results = $mysql->query_mult_assoc($query);
+  $results = $database->fetchAll("SELECT item FROM merchantlist WHERE merchantid = ?", [$merchantid], 'i');
 
   foreach ($results as $result) {
     $item_id[] = $result['item'];
   }
  
-  for ($i=0; $i<$item_count; $i++) {
-    $query = "UPDATE merchantlist SET slot=$max_slot+$i+1 WHERE merchantid=$merchantid AND item=$item_id[$i]";
-    $mysql->query_no_result($query);
+  for ($i = 0; $i < $item_count; $i++) {
+    $database->executeQuery(
+        "UPDATE merchantlist SET slot = ? WHERE merchantid = ? AND item = ?",
+        [$max_slot + $i + 1, $merchantid, $item_id[$i]],
+        'iiii'
+    );
   }
 
   for ($i=0; $i<$item_count; $i++) {
-    $query = "UPDATE merchantlist SET slot=$i+1 WHERE merchantid=$merchantid AND item=$item_id[$i]";
-    $mysql->query_no_result($query);
-  }   
+    $database->executeQuery(
+        "UPDATE merchantlist SET slot = ? WHERE merchantid = ? AND item = ?",
+        [$i + 1, $merchantid, $item_id[$i]],
+        'iii'
+    );
+  }
 }
  
 function merchantlist_npcid(): void
 {
    check_authorization();
-   global $mysql, $npcid;
+   global $database, $npcid;
    $mid = $_GET['mid'];
 
-   $query = "SELECT COUNT(*) AS npc_count FROM npc_types WHERE merchant_id=$mid AND id != $npcid";
-   $result = $mysql->query_assoc($query);  
+   $result = $database->fetchAssoc("SELECT COUNT(*) AS npc_count FROM npc_types WHERE merchant_id = ? AND id != ?", [$mid, $npcid], 'ii');
    $count = $result['npc_count'];
 
-   if($count == 0){
-    $query = "UPDATE npc_types set merchant_id=$npcid WHERE id=$npcid";
-    $mysql->query_no_result($query);
+   if($count == 0) {
+    $database->executeQuery("UPDATE npc_types SET merchant_id = ? WHERE id = ?", [$npcid, $npcid], 'ii');
 
-    $query = "UPDATE merchantlist set merchantid=$npcid WHERE merchantid=$mid";
-    $mysql->query_no_result($query);
-   }	 
+    $database->executeQuery("UPDATE merchantlist SET merchantid = ? WHERE merchantid = ?", [$npcid, $mid], 'ii');
+   }
 }
 ?>
