@@ -48,7 +48,7 @@ This document tracks the gradual migration from the legacy `mysql` class to the 
 - [ ] `lib/items.php` - Item editor
 - [ ] `lib/spawn.php` - Spawn/spawngroup editor
 - [x] `lib/loot.php` - Loot table editor
-- [ ] `lib/merchant.php` - Merchant editor
+- [x] `lib/merchant.php` - Merchant editor
 
 ---
 
