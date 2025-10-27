@@ -955,7 +955,7 @@ switch ($action) {
     break;
   case 89:  // Special Ability script
     check_authorization();
-    change_special_abilitities();
+    change_special_abilities();
     header("Location: index.php?editor=npc&z=$z&zoneid=$zoneid&npcid=$npcid");
     exit;
   case 90: // Add emote entry
@@ -1445,7 +1445,7 @@ function update_npc(): void {
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
-    $query = "UPDATE npc_types SET $fields WHERE id=$npcid";
+    $query = "UPDATE npc_types SET $fields WHERE id=$npcid"; // TODO: Refactor so this can be parameterized
      $mysql->query_no_result($query);
      $database->executeQuery(
          "UPDATE npc_types SET special_abilities = TRIM(TRAILING '^' FROM special_abilities)", [], ''
@@ -1455,7 +1455,7 @@ function update_npc(): void {
 
 function add_npc () {
   check_authorization();
-  global $mysql, $specialattacks;
+  global $mysql, $database, $specialattacks;
 
   if (!isset($_POST['name']) || $_POST['name'] == '')
 	  return;
@@ -1580,16 +1580,17 @@ function add_npc () {
   $fields .= "rare_spawn=\"" .$_POST['rare_spawn'] . "\"";
 
   if ($fields != '') {
-    $query = "INSERT INTO npc_types SET $fields";
-    $query2 = "UPDATE npc_types SET special_abilities = TRIM(TRAILING '^' FROM special_abilities)";
+    $query = "INSERT INTO npc_types SET $fields"; // TODO: Refactor so this can be parameterized
      $mysql->query_no_result($query);
-     $mysql->query_no_result($query2);
+     $database->executeQuery(
+         "UPDATE npc_types SET special_abilities = TRIM(TRAILING '^' FROM special_abilities)", [], ''
+     );
   }
 }
 
 function copy_npc () {
   check_authorization();
-  global $mysql;
+  global $mysql, $database;
 
   $fields = '';
   $fields .= "id=\"" . $_POST['id']. "\", ";
@@ -1690,15 +1691,17 @@ function copy_npc () {
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
-    $query = "INSERT INTO npc_types SET $fields";
-    $query2 = "UPDATE npc_types SET special_abilities = TRIM(TRAILING '^' FROM special_abilities)";
+    $query = "INSERT INTO npc_types SET $fields"; // TODO: Refactor so this can be parameterized
      $mysql->query_no_result($query);
-     $mysql->query_no_result($query2);
+     $database->executeQuery(
+         "UPDATE npc_types SET special_abilities = TRIM(TRAILING '^' FROM special_abilities)", [], ''
+     );
   }
 }
 
-function update_npc_bytier() {
-  global $mysql, $z, $npcid;
+function update_npc_bytier(): void
+{
+  global $database, $z, $npcid;
 
   $zid = getZoneID($z);
   $min_id = $zid*1000-1;
@@ -1772,58 +1775,78 @@ function update_npc_bytier() {
   }
 
   if($type == 1) {
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE id=$npcid";
-    $mysql->query_no_result($query);
+    $database->executeQuery(
+        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE id = ?",
+        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $npcid],
+        'iiiiiii'
+    );
   }
 
   if($type == 2) {
-    $query = "SELECT name FROM npc_types WHERE id=$npcid";
-    $result = $mysql->query_assoc($query);
+    $result = $database->fetchAssoc("SELECT name FROM npc_types WHERE id = ?", [$npcid], 'i');
     $nname = $result['name'];
 
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name=\"$nname\" AND id > $min_id AND id < $max_id";
-    $mysql->query_no_result($query);
+    $database->executeQuery(
+        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE name = ? AND id > ? AND id < ?",
+        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nname, $min_id, $max_id],
+        'iiiiiisii'
+    );
   }
 
   if($type == 3) {
-    $query = "SELECT race FROM npc_types WHERE id=$npcid";
-    $result = $mysql->query_assoc($query);
+    $result = $database->fetchAssoc("SELECT race FROM npc_types WHERE id = ?", [$npcid], 'i');
     $nrace = $result['race'];
 
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE race=$nrace AND id > $min_id AND id < $max_id";
-    $mysql->query_no_result($query);
+    $database->executeQuery(
+        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE race = ? AND id > ? AND id < ?",
+        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nrace, $min_id, $max_id],
+        'iiiiiiiii'
+    );
   }
 
   if($type == 4) {
-    $query = "SELECT class FROM npc_types WHERE id=$npcid";
-    $result = $mysql->query_assoc($query);
+    $result = $database->fetchAssoc("SELECT class FROM npc_types WHERE id = ?", [$npcid], 'i');
     $nclass = $result['class'];
 
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE class=$nclass AND id > $min_id AND id < $max_id";
-    $mysql->query_no_result($query);
+    $database->executeQuery(
+        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE class = ? AND id > ? AND id < ?",
+        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nclass, $min_id, $max_id],
+        'iiiiiiiii'
+    );
   }
 
   if($type == 5) {
-    $query = "SELECT level FROM npc_types WHERE id=$npcid";
-    $result = $mysql->query_assoc($query);
+    $result = $database->fetchAssoc("SELECT level FROM npc_types WHERE id = ?", [$npcid], 'i');
     $nlevel = $result['level'];
 
-    $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE level=$nlevel AND id > $min_id AND id < $max_id";
-    $mysql->query_no_result($query);
+    $database->executeQuery(
+        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE level = ? AND id > ? AND id < ?",
+        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nlevel, $min_id, $max_id],
+        'iiiiiiiii'
+    );
   }
 
   if($type == 6) {
     if($name == '' && $class == 0 && $race == 0 && ($level == '' || $level == 0)) {
-      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE id=$npcid";
-      $mysql->query_no_result($query);
+      $database->executeQuery(
+          "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE id = ?",
+          [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $npcid],
+          'iiiiiii'
+      );
     }
     if($name == '' && ($class > 0 || $race > 0 || $level > 0)) {
-      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name=$nname AND level=$nlevel AND class=$nclass AND race=$nrace AND id > $min_id AND id < $max_id";
-      $mysql->query_no_result($query);
+      $database->executeQuery(
+          "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE name = ? AND level = ? and class = ? AND race = ? AND id > ? AND id < ?",
+          [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nname, $nlevel, $nclass, $nrace, $min_id, $max_id],
+          'iiiiiisiiiii'
+      );
     }
     else {
-      $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name like \"$nname\" AND level=$nlevel AND class=$nclass AND race=$nrace AND id > $min_id AND id < $max_id";
-      $mysql->query_no_result($query);
+      $database->executeQuery(
+          "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE name like ? AND level = ? AND class = ? AND race = ? AND id > ? AND id < ?",
+          [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nname, $nlevel, $nclass, $nrace, $min_id, $max_id],
+          'iiiiiisiiiii'
+      );
     }
   }
 }
@@ -2748,19 +2771,19 @@ function mass_update_npcs(): void
     $where_string .= " AND hp $sign $hp";
   }
 
-  if($final_string != '')
+  if($final_string != '') // TODO: Refactor the code that builds $final_string so it can be parameterized
   {
     if($change_all == 1)
     {
       $query = "UPDATE npc_types SET $final_string WHERE id > $min_id AND id < $max_id";
       $mysql->query_no_result($query);
     }
-    elseif($name == '' && $class == 0 && $race == 0 && $bodytype == 0 && ($level == '' || $level == 0) && $hp == '') 
+    elseif($name == '' && $class == 0 && $race == 0 && $bodytype == 0 && ($level == '' || $level == 0) && $hp == '')
     {
       $query = "UPDATE npc_types SET $final_string WHERE id=$npcid";
       $mysql->query_no_result($query);
     }
-    elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodtype > 0)) 
+    elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodytype > 0))
     {
       $query = "UPDATE npc_types SET $final_string WHERE name=$nname $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
       $mysql->query_no_result($query);
@@ -2773,10 +2796,10 @@ function mass_update_npcs(): void
   }
 }
 
-function change_special_abilitities(): void
+function change_special_abilities(): void
 {
   check_authorization();
-  global $mysql, $z, $npcid, $specialattacks, $max_special_ability;
+  global $database, $z, $npcid, $specialattacks, $max_special_ability;
 
   $zid = getZoneID($z);
   $min_id = $zid*1000-1;
@@ -2838,7 +2861,7 @@ function change_special_abilitities(): void
   {
     if($sa_type == 1 || $sa_type == 2)
     {
-        if($change_all == 1)
+        if($change_all == 1) // TODO: Refactor this so it can be parameterized
         {
           $query = "SELECT id AS currentid, `special_abilities` from npc_types WHERE id > $min_id AND id < $max_id";
         } 
@@ -2846,7 +2869,7 @@ function change_special_abilitities(): void
         {
           $query = "SELECT id AS currentid, `special_abilities` from npc_types WHERE id=$npcid";
         }
-        elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodtype > 0)) 
+        elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodytype > 0))
         {
           $query = "SELECT id AS currentid, `special_abilities` from npc_types WHERE name=$nname $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
         }
@@ -2968,15 +2991,19 @@ function change_special_abilitities(): void
   {
     if($change_all == 1)
     {
-      $query = "UPDATE npc_types SET special_abilities = \"$custom\" WHERE id > $min_id AND id < $max_id";
-      $mysql->query_no_result($query);
+      $database->executeQuery(
+          "UPDATE npc_types SET special_abilities = ? WHERE id > ? AND id < ?",
+          [$custom, $min_id, $max_id],
+          'sii'
+      );
     }
     elseif($name == '' && $class == 0 && $race == 0 && $bodytype == 0 && ($level == '' || $level == 0) && $hp == '') 
     {
-      $query = "UPDATE npc_types SET special_abilities = \"$custom\" WHERE id=$npcid";
-      $mysql->query_no_result($query);
+      $database->executeQuery(
+          "UPDATE npc_types SET special_abilities = ? WHERE id = ?", [$custom, $npcid], 'si'
+      );
     }
-    elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodtype > 0)) 
+    elseif($name == '' && ($class > 0 || $race > 0 || $level > 0 || $bodytype > 0)) // TODO: Refactor the code that builds $where_string so it can be properly parameterized
     {
       $query = "UPDATE npc_types SET special_abilities = \"$custom\" WHERE name=$nname $where_string AND class=$nclass AND race=$nrace AND bodytype=$nbodytype AND id > $min_id AND id < $max_id";
       $mysql->query_no_result($query);
