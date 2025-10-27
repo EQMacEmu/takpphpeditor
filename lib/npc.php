@@ -1699,156 +1699,135 @@ function copy_npc () {
   }
 }
 
-function update_npc_bytier(): void
-{
-  global $database, $z, $npcid;
+function update_npc_bytier() {
+    global $mysql, $z, $npcid;
 
-  $zid = getZoneID($z);
-  $min_id = $zid*1000-1;
-  $max_id = $zid*1000+1000;
-  $class = $_POST['class_selected'];
-  $race = $_POST['race_selected'];
-  $type = $_POST['npcchange_selected'];
-  $name = $_POST['npcname'];
-  $level = $_POST['npclevel'];
-  $stat = $_POST['npcstatchange_selected'];
+    $zid = getZoneID($z);
+    $min_id = $zid*1000-1;
+    $max_id = $zid*1000+1000;
+    $class = $_POST['class_selected'];
+    $race = $_POST['race_selected'];
+    $type = $_POST['npcchange_selected'];
+    $name = $_POST['npcname'];
+    $level = $_POST['npclevel'];
+    $stat = $_POST['npcstatchange_selected'];
 
-  if($race == 0){ $nrace = "race"; }
-  if($race > 0){ $nrace = $race; }
-  if($class == 0){ $nclass = "class"; }
-  if($class > 0){ $nclass = $class; }
-  if($name == ''){ $nname = "name"; }
-  if($name != ''){ $nname = $name; }
-  if($level == '' || $level == 0){ $nlevel = "level"; }
-  if($level > 0){ $nlevel = $level; }
+    if($race == 0){ $nrace = "race"; }
+    if($race > 0){ $nrace = $race; }
+    if($class == 0){ $nclass = "class"; }
+    if($class > 0){ $nclass = $class; }
+    if($name == ''){ $nname = "name"; }
+    if($name != ''){ $nname = $name; }
+    if($level == '' || $level == 0){ $nlevel = "level"; }
+    if($level > 0){ $nlevel = $level; }
 
-  $npctype = 0;
-  if ($_POST['npctype_selected'] == 1) $npctype = 1.0;
-  if ($_POST['npctype_selected'] == 2) $npctype = 1.1;
-  if ($_POST['npctype_selected'] == 3) $npctype = 1.2;
-  if ($_POST['npctype_selected'] == 4) $npctype = 1.35;
+    $npctype = 0;
+    if ($_POST['npctype_selected'] == 1) $npctype = 1.0;
+    if ($_POST['npctype_selected'] == 2) $npctype = 1.1;
+    if ($_POST['npctype_selected'] == 3) $npctype = 1.2;
+    if ($_POST['npctype_selected'] == 4) $npctype = 1.35;
 
-  $npcclass = 0;
-  if ($_POST['npcclass_selected'] == 1) $npcclass = 1.0;
-  if ($_POST['npcclass_selected'] == 2) $npcclass = 1.1;
-  if ($_POST['npcclass_selected'] == 3) $npcclass = 1.2;
-  if ($_POST['npcclass_selected'] == 4) $npcclass = 1.35;
+    $npcclass = 0;
+    if ($_POST['npcclass_selected'] == 1) $npcclass = 1.0;
+    if ($_POST['npcclass_selected'] == 2) $npcclass = 1.1;
+    if ($_POST['npcclass_selected'] == 3) $npcclass = 1.2;
+    if ($_POST['npcclass_selected'] == 4) $npcclass = 1.35;
 
-  $npctier = 0;
-  if ($_POST['npctier_selected'] == 1) $npctier = 1.0;
-  if ($_POST['npctier_selected'] == 2) $npctier = 1.25;
-  if ($_POST['npctier_selected'] == 3) $npctier = 1.75;
-  if ($_POST['npctier_selected'] == 4) $npctier = 1.9;
-  if ($_POST['npctier_selected'] == 5) $npctier = 2.0;
-  if ($_POST['npctier_selected'] == 6) $npctier = 2.5;
-  if ($_POST['npctier_selected'] == 7) $npctier = 2.75;
-  if ($_POST['npctier_selected'] == 8) $npctier = 3.0;
-  if ($_POST['npctier_selected'] == 9) $npctier = 3.15;
+    $npctier = 0;
+    if ($_POST['npctier_selected'] == 1) $npctier = 1.0;
+    if ($_POST['npctier_selected'] == 2) $npctier = 1.25;
+    if ($_POST['npctier_selected'] == 3) $npctier = 1.75;
+    if ($_POST['npctier_selected'] == 4) $npctier = 1.9;
+    if ($_POST['npctier_selected'] == 5) $npctier = 2.0;
+    if ($_POST['npctier_selected'] == 6) $npctier = 2.5;
+    if ($_POST['npctier_selected'] == 7) $npctier = 2.75;
+    if ($_POST['npctier_selected'] == 8) $npctier = 3.0;
+    if ($_POST['npctier_selected'] == 9) $npctier = 3.15;
 
-  if($stat == 1) {
-    $ac_ = "((((level - 1) / 10.0) * 65.0) + 25.0) * ($npctier * $npctype)";
-    $mresist = "MR";
-    $cresist = "CR";
-    $dresist = "DR";
-    $presist = "PR";
-    $fresist = "FR";
-  }
-
-  if($stat == 2) {
-    $resist = "(80*0.4) * ($npctier * $npctype * $npcclass)";
-    $mresist = $resist;
-    $cresist = $resist;
-    $dresist = $resist;
-    $presist = $resist;
-    $fresist = $resist;
-    $ac_ = "AC";
-  }
-
-  if($stat == 3) {
-    $ac_ = "((((level - 1) / 10.0) * 65.0) + 25.0) * ($npctier * $npctype)";
-    $resist = "(80*0.4) * ($npctier * $npctype * $npcclass)";
-    $mresist = $resist;
-    $cresist = $resist;
-    $dresist = $resist;
-    $presist = $resist;
-    $fresist = $resist;
-  }
-
-  if($type == 1) {
-    $database->executeQuery(
-        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE id = ?",
-        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $npcid],
-        'iiiiiii'
-    );
-  }
-
-  if($type == 2) {
-    $result = $database->fetchAssoc("SELECT name FROM npc_types WHERE id = ?", [$npcid], 'i');
-    $nname = $result['name'];
-
-    $database->executeQuery(
-        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE name = ? AND id > ? AND id < ?",
-        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nname, $min_id, $max_id],
-        'iiiiiisii'
-    );
-  }
-
-  if($type == 3) {
-    $result = $database->fetchAssoc("SELECT race FROM npc_types WHERE id = ?", [$npcid], 'i');
-    $nrace = $result['race'];
-
-    $database->executeQuery(
-        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE race = ? AND id > ? AND id < ?",
-        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nrace, $min_id, $max_id],
-        'iiiiiiiii'
-    );
-  }
-
-  if($type == 4) {
-    $result = $database->fetchAssoc("SELECT class FROM npc_types WHERE id = ?", [$npcid], 'i');
-    $nclass = $result['class'];
-
-    $database->executeQuery(
-        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE class = ? AND id > ? AND id < ?",
-        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nclass, $min_id, $max_id],
-        'iiiiiiiii'
-    );
-  }
-
-  if($type == 5) {
-    $result = $database->fetchAssoc("SELECT level FROM npc_types WHERE id = ?", [$npcid], 'i');
-    $nlevel = $result['level'];
-
-    $database->executeQuery(
-        "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE level = ? AND id > ? AND id < ?",
-        [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nlevel, $min_id, $max_id],
-        'iiiiiiiii'
-    );
-  }
-
-  if($type == 6) {
-    if($name == '' && $class == 0 && $race == 0 && ($level == '' || $level == 0)) {
-      $database->executeQuery(
-          "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE id = ?",
-          [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $npcid],
-          'iiiiiii'
-      );
+    if($stat == 1) {
+        $ac_ = "((((level - 1) / 10.0) * 65.0) + 25.0) * ($npctier * $npctype)";
+        $mresist = "MR";
+        $cresist = "CR";
+        $dresist = "DR";
+        $presist = "PR";
+        $fresist = "FR";
     }
-    if($name == '' && ($class > 0 || $race > 0 || $level > 0)) {
-      $database->executeQuery(
-          "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE name = ? AND level = ? and class = ? AND race = ? AND id > ? AND id < ?",
-          [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nname, $nlevel, $nclass, $nrace, $min_id, $max_id],
-          'iiiiiisiiiii'
-      );
+
+    if($stat == 2) {
+        $resist = "(80*0.4) * ($npctier * $npctype * $npcclass)";
+        $mresist = $resist;
+        $cresist = $resist;
+        $dresist = $resist;
+        $presist = $resist;
+        $fresist = $resist;
+        $ac_ = "AC";
     }
-    else {
-      $database->executeQuery(
-          "UPDATE npc_types SET ac = ?, mr = ?, cr = ?, dr = ?, pr = ?, fr = ? WHERE name like ? AND level = ? AND class = ? AND race = ? AND id > ? AND id < ?",
-          [$ac_, $mresist, $cresist, $dresist, $presist, $fresist, $nname, $nlevel, $nclass, $nrace, $min_id, $max_id],
-          'iiiiiisiiiii'
-      );
+
+    if($stat == 3) {
+        $ac_ = "((((level - 1) / 10.0) * 65.0) + 25.0) * ($npctier * $npctype)";
+        $resist = "(80*0.4) * ($npctier * $npctype * $npcclass)";
+        $mresist = $resist;
+        $cresist = $resist;
+        $dresist = $resist;
+        $presist = $resist;
+        $fresist = $resist;
     }
-  }
+
+    if($type == 1) {
+        $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE id=$npcid";
+        $mysql->query_no_result($query);
+    }
+
+    if($type == 2) {
+        $query = "SELECT name FROM npc_types WHERE id=$npcid";
+        $result = $mysql->query_assoc($query);
+        $nname = $result['name'];
+
+        $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name=\"$nname\" AND id > $min_id AND id < $max_id";
+        $mysql->query_no_result($query);
+    }
+
+    if($type == 3) {
+        $query = "SELECT race FROM npc_types WHERE id=$npcid";
+        $result = $mysql->query_assoc($query);
+        $nrace = $result['race'];
+
+        $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE race=$nrace AND id > $min_id AND id < $max_id";
+        $mysql->query_no_result($query);
+    }
+
+    if($type == 4) {
+        $query = "SELECT class FROM npc_types WHERE id=$npcid";
+        $result = $mysql->query_assoc($query);
+        $nclass = $result['class'];
+
+        $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE class=$nclass AND id > $min_id AND id < $max_id";
+        $mysql->query_no_result($query);
+    }
+
+    if($type == 5) {
+        $query = "SELECT level FROM npc_types WHERE id=$npcid";
+        $result = $mysql->query_assoc($query);
+        $nlevel = $result['level'];
+
+        $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE level=$nlevel AND id > $min_id AND id < $max_id";
+        $mysql->query_no_result($query);
+    }
+
+    if($type == 6) {
+        if($name == '' && $class == 0 && $race == 0 && ($level == '' || $level == 0)) {
+            $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE id=$npcid";
+            $mysql->query_no_result($query);
+        }
+        if($name == '' && ($class > 0 || $race > 0 || $level > 0)) {
+            $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name=$nname AND level=$nlevel AND class=$nclass AND race=$nrace AND id > $min_id AND id < $max_id";
+            $mysql->query_no_result($query);
+        }
+        else {
+            $query = "UPDATE npc_types SET ac = $ac_, mr = $mresist, cr = $cresist, dr = $dresist, pr = $presist, fr = $fresist WHERE name like \"$nname\" AND level=$nlevel AND class=$nclass AND race=$nrace AND id > $min_id AND id < $max_id";
+            $mysql->query_no_result($query);
+        }
+    }
 }
 
 function get_faction_name($id): mixed {
