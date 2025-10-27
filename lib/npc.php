@@ -1863,7 +1863,6 @@ function update_npc_faction_id($fid): void {
   check_authorization();
   global $database, $npcid;
 
-  $query = "UPDATE npc_types SET npc_faction_id=$fid WHERE id=$npcid";
   $database->executeQuery("UPDATE npc_types SET npc_faction_id = ? WHERE id = ?", [$fid, $npcid], 'ii');
 }
 
@@ -1959,8 +1958,8 @@ function suggest_npc_faction_id(): mixed {
 }
 
 function get_npc_faction_id_name(): ?array {
-  global $database, $npcid;
-  $id = get_npc_faction_id($npcid);
+  global $database;
+  $id = get_npc_faction_id();
   return $database->fetchAssoc(
       "SELECT * FROM npc_faction WHERE id = ?",
       [$id],
@@ -1970,11 +1969,11 @@ function get_npc_faction_id_name(): ?array {
 
 function update_npc_faction_id_name(): void {
   check_authorization();
-  global $database, $npcid;
+  global $database;
 
   $name = $_POST['name'];
   $ipa = $_POST['ipa'];
-  $id = get_npc_faction_id($npcid);
+  $id = get_npc_faction_id();
   $database->executeQuery(
       "UPDATE npc_faction SET name = ?, ignore_primary_assist = ? WHERE id = ?",
       [$name, $ipa, $id],
@@ -1989,17 +1988,17 @@ function search_factions($search): array {
 
 function update_primary_faction(): void {
   check_authorization();
-  global $database, $npcid;
-  $id = get_npc_faction_id($npcid);
+  global $database;
+  $id = get_npc_faction_id();
   $fid = $_GET['fid'];
   $database->executeQuery("UPDATE npc_faction SET primaryfaction = ? WHERE id = ?", [$fid, $id], 'ii');
 }
 
 function add_faction_hit(): void {
   check_authorization();
-  global $database, $npcid;
+  global $database;
 
-  $npc_faction_id = get_npc_faction_id($npcid);
+  $npc_faction_id = get_npc_faction_id();
   $fid = $_GET['fid'];
   $value = $_POST['value'];
   $npc_value = $_POST['npc_value'];
@@ -2158,7 +2157,7 @@ function delete_npc(): void {
 function suggest_npcid() {
   global $database, $z;
 
-  $result = $database->fetchAll("SELECT zoneidnumber FROM zone WHERE short_name = ?", [$z], 's');
+  $result = $database->fetchAssoc("SELECT zoneidnumber FROM zone WHERE short_name = ?", [$z], 's');
 
   if ($result) { // Associated with a zone
     $npczoneid = $result['zoneidnumber'];
