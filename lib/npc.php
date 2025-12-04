@@ -1311,7 +1311,7 @@ function remove_equipmentset(): void {
 
 function update_npc(): void {
   check_authorization();
-  global $database, $npcid, $specialattacks;
+  global $database, $npcid, $specialattacks, $fields;
 
   $oldstats = npc_info();
   extract($oldstats);
@@ -1445,8 +1445,8 @@ function update_npc(): void {
   $fields =  rtrim($fields, ", ");
 
   if ($fields != '') {
-    $query = "UPDATE npc_types SET $fields WHERE id=$npcid"; // TODO: Refactor so this can be parameterized
-     $mysql->query_no_result($query);
+    $database->executeQuery("UPDATE npc_types SET $fields WHERE id=$npcid"); // TODO: Refactor so this can be parameterized
+
      $database->executeQuery(
          "UPDATE npc_types SET special_abilities = TRIM(TRAILING '^' FROM special_abilities)", [], ''
      );
