@@ -1311,7 +1311,7 @@ function remove_equipmentset(): void {
 
 function update_npc(): void {
   check_authorization();
-  global $database, $npcid, $specialattacks, $fields;
+  global $database, $npcid, $specialattacks;
 
   $oldstats = npc_info();
   extract($oldstats);
